@@ -27,7 +27,7 @@ The server speaks OAuth 2.1. Follow [agent runtime](../../references/agent-runti
 
 They sign in (magic link), pick the workspace the client may see, press Allow, and `list_accounts` answers. Nothing is pasted into the terminal. Find the connection for the current client under Settings → Tokens; removing it there disconnects.
 
-A token (`SPRID_PAT`, minted at `https://app.sprid.studio/settings/tokens`, starts with `sprd_`) is only for CI or a client that cannot open a browser. Never ask the user to paste one into the conversation. The `sprid` CLI (`npm i -g sprid`) pairs a machine the same browser-first way (`sprid login`), and `sprid mcp` is a stdio adapter for clients that cannot reach the HTTP endpoint.
+A token (`SPRID_PAT`, minted at `https://app.sprid.studio/settings/tokens`, starts with `sprd_`) is only for CI or a client that cannot open a browser. Never ask the user to paste one into the conversation. The `sprid` CLI (`npm i -g @sprid/cli`) pairs a machine the same browser-first way (`sprid login`), and `sprid mcp` is a stdio adapter for clients that cannot reach the HTTP endpoint.
 
 The authenticated `?surface=core` catalog includes the everyday workflow. `get_capabilities` reports availability and browser fallbacks; specialized primitives are listed with `?surface=all`.
 

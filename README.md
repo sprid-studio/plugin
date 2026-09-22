@@ -85,7 +85,7 @@ Reads your repo, the public store pages, and, with your keys on your machine, yo
 After the local diagnosis, connect your repo for scheduled publishing and weekly results:
 
 ```sh
-npm install -g sprid
+npm install -g @sprid/cli
 sprid login
 sprid init
 sprid connect
@@ -102,7 +102,7 @@ Your agent’s MCP connection is separate from CLI login. In Claude Code:
 
 Pick `sprid`. A browser opens on `app.sprid.studio`: sign in (magic link), choose the workspace the client may see, press Allow, and the terminal is connected. Nothing is pasted. Find the connection for your client under Settings → Tokens; remove it there to disconnect. For Codex, follow [agent runtime](references/agent-runtime.md).
 
-A token is only for CI, or a client that cannot open a browser: mint one under Settings → Tokens, export it as `SPRID_PAT`, and send it as `Authorization: Bearer`. The `sprid` CLI pairs a machine the same browser-first way (`npm i -g sprid && sprid login`).
+A token is only for CI, or a client that cannot open a browser: mint one under Settings → Tokens, export it as `SPRID_PAT`, and send it as `Authorization: Bearer`. The `sprid` CLI pairs a machine the same browser-first way (`npm i -g @sprid/cli && sprid login`).
 
 Keys for the sensors never go through the conversation: `sprid connect asc --key ~/AuthKey.p8 …`, `sprid connect play --key sa.json`, or `sprid connect --from-local` to push everything in `~/.sprid/secrets/<slug>.json`. A client that only speaks stdio can use `sprid mcp`.
 

@@ -8,7 +8,7 @@ references beside the legacy setup task so another surface resumes the same work
 ## Save the task
 
 Check `command -v sprid`. If absent, install the CLI after delivering the result
-(`npm install -g sprid`), then save the task without authenticating:
+(`npm install -g @sprid/cli`), then save the task without authenticating:
 
 ```sh
 sprid setup begin --file marketing/posts/001-example.md --task publish

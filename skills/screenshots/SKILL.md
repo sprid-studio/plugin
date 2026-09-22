@@ -27,7 +27,7 @@ still requires the user's local simulator or manual upload.
 sprid screenshots --help
 ```
 
-Bun runs the TypeScript directly; nothing to build. `npm install -D sprid` gives the repo the `AsoConfig` type through `sprid/screenshots` for the config file.
+Bun runs the TypeScript directly; nothing to build. `npm install -D @sprid/cli` gives the repo the `AsoConfig` type through `@sprid/cli/screenshots` for the config file.
 
 If it is not installed and cannot be, write the config anyway and say what is missing; the config is the durable artefact.
 
@@ -46,7 +46,7 @@ Keep headlines short enough for the layout and use the app’s voice and visual 
 ## 2. Write `aso.config.ts`
 
 ```ts
-import type { AsoConfig } from "sprid/screenshots";
+import type { AsoConfig } from "@sprid/cli/screenshots";
 
 export const config: AsoConfig = {
   outputDir: "./screenshots",

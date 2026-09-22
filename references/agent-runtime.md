@@ -28,7 +28,7 @@ These skills require Sprid CLI 0.1.0 or later. The guided `sprid plan` and
 remain unreleased until the reviewed package is published. Before a job that uses the CLI,
 run `sprid doctor --apply-updates --json` once, before preparing or sending changes.
 Use the project's installed CLI when the project declares `sprid`; otherwise use
-the global CLI. Do not fetch `npx sprid@latest` for individual steps mid-job.
+the global CLI. Do not fetch `npx @sprid/cli@latest` for individual steps mid-job.
 
 The doctor checks npm's `latest` release, caches the result for one day, and reports
 `current`, `recommended`, `check`, `compatible`, `requiresApproval`, `installation`
