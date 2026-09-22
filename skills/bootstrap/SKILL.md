@@ -24,7 +24,7 @@ Reads: the repo (config, existing marketing material, relevant public product su
 
 When the app has a store listing and store discovery or conversion is relevant, fetch `https://apps.apple.com/app/id<APP_STORE_ID>` and `https://play.google.com/store/apps/details?id=<PACKAGE>`. Read the name, subtitle, first screenshot's headline, description's first two lines, rating count. A web-only product does not fail this check.
 
-If the repo is not an app, say so in one line and stop.
+If the repo is not a product people use (an app, website or service), say so in one line and stop.
 
 ## Check whether product use is measurable
 
@@ -115,6 +115,8 @@ Write `.sprid/app.json` with every identifier found (no secrets), in the App Pro
 ```
 
 Tell the user which identifiers matter for the chosen plan and where to find the missing ones. Preserve any existing `.sprid/app.json` fields you did not infer again.
+
+Note the app's icon while you are in the config: Expo `icon`, the largest `AppIcon.appiconset` image, Android's `ic_launcher` at xxxhdpi, or the site's `apple-touch-icon`. Saving the App Profile gives every account without an avatar the App Store artwork or the website's icon on its own, so do nothing when either exists. For an app with neither (pre-launch, no site yet), once a Sprid account exists run `sprid account avatar <account> <path-to-icon.png>`: PNG, JPEG or WebP, 512 px or more. Sprid's mails and the `account.avatarUrl` template binding draw it.
 
 After delivering the first result, save its continuation using
 [resuming setup](../../references/setup-continuation.md). Keep the exact artifact,

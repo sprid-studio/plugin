@@ -17,8 +17,8 @@ Replace `<slug>` with your Sprid account slug.
 ## Click path (the connect)
 
 1. Sign in to the X account you want to use.
-2. Review Sprid’s requested access and click **Authorize app**.
-3. Return to Sprid and check the connected handle.
+2. Review the requested access and click **Authorize app**.
+3. Back in Sprid, check the connected handle.
 
 ## How to check it worked
 
@@ -26,28 +26,26 @@ Run `sprid status` and confirm the handle. After publishing a reviewed post, che
 
 ## The caption is its own field
 
-Keep the **X caption** within **280 characters**. If the box is empty, Sprid uses your shared caption. An overlong caption must be shortened before publishing.
-
-Carousels with more than four images publish as a thread, with the caption on the first post.
+The **X caption** has a **280-character** limit. Left empty, it uses your shared caption, which must then fit too. Carousels over four images publish as a thread, with the caption on the first post.
 
 ## If it fails
 
 - **Connection expired or refresh failed:** run the connect command again.
-- **Access denied after reconnecting:** contact [Sprid support](mailto:hello@sprid.studio) with the error message.
+- **Access denied after reconnecting:** send the error to [Sprid support](mailto:hello@sprid.studio).
 - **Publishing limit reached:** check the post’s status and retry when the limit resets.
+
+## Investigate with this connection
+
+Operations `posts` and `comments`, read from Sprid’s stored publishes, metric snapshots and inbox (no live platform read; missing metrics are unmeasured, not zero).
+
+```sh
+sprid marketing-review capabilities --app <slug> --source x --json
+```
+
+See [connected queries](https://sprid.studio/docs/queries).
 
 ## Sources
 
 - [OAuth 2.0 authorization code with PKCE](https://docs.x.com/resources/fundamentals/authentication/oauth-2-0/authorization-code)
 - [Create a Post](https://docs.x.com/x-api/posts/create-post)
 - [Chunked media upload](https://docs.x.com/x-api/media/quickstart/media-upload-chunked)
-
-## Investigate with this connection
-
-Your agent can use `list_marketing_queries` and `query_marketing_source` for `posts`, `comments`. Discover the exact parameters and required setup with:
-
-```sh
-sprid marketing-review capabilities --app <slug> --source x --json
-```
-
-Queries Sprid’s stored publishes, metric snapshots and inbox for the linked content account. No live platform sync or paid API read. Missing metrics are unmeasured; this does not expose the platform’s entire API. See [connected queries](https://sprid.studio/docs/queries) for the shared workflow. Extra operations may need additional read permissions; a stored key alone is not live verification.

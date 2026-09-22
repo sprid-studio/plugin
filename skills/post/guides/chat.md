@@ -1,53 +1,61 @@
 # Use Sprid in chat
 
-**What this guide does:** Take an app from setup to a reviewed post and confirmed delivery using Sprid MCP and your browser. No CLI or installed skills are required for this flow.
+**What this guide does:** Take an app from setup to a reviewed post and confirmed delivery using only your chat app and a browser. No CLI or installed skills needed.
 
-Read [one marketing plan](../../../references/guided-marketing.md). Begin with `get_marketing_plan` when available and reuse its prepared artifact, accepted guidance and exact continuation. A browser user can start discovery from a website or store URL without creating a social account.
+You tell the agent what you want; it handles the tool calls below. The tool names are here so the agent knows the order. Setup should only ask for the connection the current task needs.
 
-## Connect Sprid via MCP
+## Connect Sprid
 
-Choose your chat at `https://sprid.studio/start#chat` and follow its connection steps, then tell your connected agent what you want to make. You do not need to learn the tool names below. They tell the agent how to continue: check capabilities, retrieve the relevant guide, follow the returned next action and ask you for missing inputs or approval. Setup should introduce only the connection or tool your current task needs.
+Choose your chat at `https://sprid.studio/start#chat` and follow its steps. Your chat may call this an app, connector or integration. The address is `https://api.sprid.studio/api/mcp?surface=core`. Sign in to Sprid and authorize the right workspace.
 
-Add `https://api.sprid.studio/api/mcp?surface=core` in your chat application's remote MCP connection settings. Sign in to Sprid and authorize the intended workspace. A host may call this an app, connector or integration. **Sprid MCP** is the remote service behind it. Sprid skills supply optional workflow instructions; the plugin bundles those skills and the MCP configuration. Sprid CLI adds terminal access and local production.
+Agent: when available, start with `get_marketing_plan` and reuse its prepared work and next step rather than starting over. Discovery can start from a website or store URL, with no social account.
 
-Call `get_capabilities`, then `list_apps` and `list_accounts`. Reuse existing records. If your app is missing, describe it or supply its website/store URL, confirm its identity and create its App Profile using `upsert_app_profile`. A content account owns its voice and media; a channel is the exact social destination. Use the dashboard's account setup if one is missing. Never choose a handle just because it is first in a list.
+## Pick the app and account
 
-## Connect the destination
+Agent: call `get_capabilities`, then `list_apps` and `list_accounts`, and reuse what exists. If the app is missing, get its description or website/store URL, confirm it and create it with `upsert_app_profile`. A content account owns voice and media; a channel is one exact social destination. Never pick a handle just because it is first in a list. A missing account is created in the dashboard.
 
-Read `get_documentation` with the platform name. Use `connect_channel` and open its returned OAuth link in the browser. The person completes consent; `channel_status` checks the saved result. The CLI is optional.
+## Connect a destination or data source
 
-For analytics or store credentials, open the secure App Profile form at `https://app.sprid.studio/settings/app-profiles`. Select the app and service, enter its identifiers and choose the key file or paste the key into that form. Never put credentials in chat, tool arguments or generated reports. `get_marketing_review` performs a live read; a saved-key indicator establishes configuration only.
+- **Social channel:** `get_documentation` with the platform name, then `connect_channel`. The person opens the returned link and approves in the browser; `channel_status` confirms the saved result.
+- **Store or analytics:** the person enters identifiers and the key in the secure form at `https://app.sprid.studio/settings/app-profiles`. Credentials never go in chat, tool arguments or reports. A saved-key indicator only proves configuration; `get_marketing_review` does a live read.
 
-## Use images or a finished video
+## Bring images or a finished video
 
-Draft the copy in your current chat, using the content account's voice and the intended platform. Ordinary drafting does not require an additional Sprid model key.
+Draft copy in the chat, in the account’s voice. No extra model key needed.
 
-If your host exposes the selected files, use `import_assets` with its file references. Each file has `download_url`, `file_id`, and optionally `mime_type` and `file_name`. Public HTTPS URLs and existing `{kind, id}` library references are also accepted. The limit is 32 MiB per imported file. PNG, JPEG, WebP and finished MP4 are supported. The result reports each position independently; retry missing files before assembling the full post. Files are copied to the selected account and deduplicated by bytes. Temporary download URLs are not retained as provenance.
+If the chat exposes the attached files, pass them to `import_assets`: each file has `download_url` and `file_id`, optionally `mime_type` and `file_name`. Public HTTPS URLs and existing `{kind, id}` library references also work. Limits: PNG, JPEG, WebP or finished MP4, up to 32 MiB each. Each position reports on its own; retry the missing ones before building the post. Files are copied to the account and deduplicated by bytes; temporary download URLs are not kept.
 
-For an image generated in ChatGPT, use the existing result when the host exposes a transferable file. Direct transfer of every generated-image type is unverified. If the host cannot transfer an image, download it and use the browser upload fallback. Do not ask the agent to recreate the image or transcribe binary data. A `sandbox:` URL or a local path cannot be fetched by remote MCP.
+A `sandbox:` URL or local path can’t be fetched. For an image the chat generated, use the existing file if the host exposes it (not verified for every host); otherwise download it and use the browser upload. Never ask the agent to recreate an image or transcribe binary data.
 
-Fallback: call `create_upload_session` with the content account and a new UUID `requestId`. Open its authenticated browser link, select the files, then return to chat. Read `get_studio_job` with the returned ID. Its result keys are zero-based positions. The same session and asset IDs work in another chat client. Existing files incur no image-generation charge.
+**Fallback: browser upload.** Call `create_upload_session` with the account and a new UUID `requestId`. The person opens the link and picks the files. Then read `get_studio_job` with the returned ID; its result keys are zero-based positions. The same session and asset IDs work from any other chat. No image-generation charge.
 
 ## Create and review the post
 
-Use `create_post_from_assets` with a new UUID `requestId`, account, ordered `{kind, id}` assets, captions and aspect ratio. Keep the ID and inputs when retrying a lost response. `presentation: "finished"` preserves artwork without text overlays or added music; images fit inside the chosen output canvas, which can add margins. `presentation: "editable"` allows `text` and `subtitle` on image slides. One finished video becomes one reel. Never mix a finished video with image slides in this operation.
+Call `create_post_from_assets` with a new UUID `requestId`, the account, ordered `{kind, id}` assets, captions and aspect ratio. Reuse the same ID and inputs if a response is lost.
 
-Read the draft with `get_post`; edit captions using `update_post` and slide content using `update_slide` or `batch_update_slides`. Call `preview_post`. Inspect every returned slide or the video, and check captions, order, crop and legibility. Links work even when your host cannot show an embedded preview. A preview is not publication approval.
+- `presentation: "finished"` keeps artwork as-is: no text overlay, no added music. Images fit inside the canvas, which can add margins.
+- `presentation: "editable"` allows `text` and `subtitle` on image slides.
+- One finished video becomes one reel. Never mix a video with image slides.
 
-For photos or text that need to become a reel, inspect `get_capabilities` for hosted creation. `create_reel` accepts ordered scenes with `imageId`, `text` and `durationMs`, up to 120 seconds. It creates a silent finished MP4. Check `spend_status`, explain the render charge (3 cents per started render minute or the plan allowance), and obtain authorization before `confirmed: true`. Save its job ID and read `get_studio_job`; a retry with the same ID never starts a second render. A stopped job reports `needs_attention` rather than silently charging another attempt. Custom app capture and arbitrary local builds remain external inputs; upload their finished files.
+Edit with `update_post` (captions) and `update_slide` or `batch_update_slides` (slides). Call `preview_post` and check every slide or the video: captions, order, crop, legibility. Preview links work even if the chat can’t embed them. A preview is not approval to publish.
 
-## Approve delivery and read the receipt
+## Make a reel from photos or text
 
-Open the returned `/p/<postId>` review link. The person reviews the actual media and captions, chooses exact channels and time, and completes platform-specific choices. TikTok privacy and interaction choices have no defaults. The existing posting screen owns those requirements. An agent-supplied confirmation flag is not evidence of a human click.
+Check `get_capabilities` for hosted creation first. `create_reel` takes ordered scenes (`imageId`, `text`, `durationMs`), up to 120 seconds, and makes a silent MP4. It costs 3 cents per started render minute, or uses the plan allowance: check `spend_status`, tell the person, and get their go-ahead before sending `confirmed: true`. Save the job ID and read `get_studio_job`. Retrying with the same ID never starts a second render; a stopped job reports `needs_attention` instead of charging again.
 
-After approval, read `get_publication_status`. Keep draft, scheduled, failed and delivered states separate. Report delivery only with its platform receipt. Read a failure before retrying; never repeat a publishing call merely because a response was lost.
+App captures, simulator recordings and your own build scripts run outside remote MCP. Upload their finished files.
 
-For results, read the `marketing-review` guide through `get_documentation`. Return to the same app/account and post IDs across clients. Call `next_actions` for the next relevant need; an empty `verb` means follow its browser link.
+## Approve and confirm delivery
+
+The person opens the returned `/p/<postId>` link, reviews the real media and captions, and picks the channels, time and platform options. TikTok privacy and interaction choices have no defaults and are made on that screen. An agent-supplied confirmation flag is not a human click.
+
+After approval, read `get_publication_status`. Keep draft, scheduled, failed and delivered apart, and report delivery only with the platform receipt. Read a failure before retrying. Never repeat a publish call just because a response was lost.
+
+For results, read `get_documentation` for `marketing-review`. Keep the same app, account and post IDs across clients. `next_actions` gives the next step; an empty `verb` means follow its browser link.
 
 ## Limits and troubleshooting
 
-- An inaccessible attachment needs the browser upload page, not a CLI installation.
-- A missing account or service needs secure dashboard setup. Never paste credentials into MCP.
-- Check current capabilities before promising hosted creation. App binaries, native simulator captures and arbitrary repository scripts still run outside remote MCP.
-- Store screenshot composition and store release commands remain explicit local capabilities unless `get_capabilities` reports a hosted implementation.
-- Uploaded-file and generated-file transfer require separate host integration checks. A supported schema alone does not prove a particular host exposes either file.
+- **Attachment can’t be read:** use the browser upload, not the CLI.
+- **Missing account or service:** set it up in the dashboard. Never paste credentials into chat.
+- **Hosted creation:** check `get_capabilities` before promising it. Store screenshots and store releases are local unless it reports otherwise.
+- **File transfer:** whether a host exposes uploaded or generated files has to be checked per host. A supported schema doesn’t prove it.

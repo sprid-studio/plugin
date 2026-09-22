@@ -4,13 +4,13 @@
 
 ## You need
 
-Access to **Paddle Billing**. Paddle Classic keys cannot be used for this connection. Know whether you are using your live account or sandbox.
+**Paddle Billing** access (Paddle Classic keys do not work), and whether the key is for your live account or sandbox.
 
 ## Click path (vendors.paddle.com)
 
-1. Open **Developer tools → Authentication → New API key** and name it `Sprid`.
-2. Select **transaction.read** and **subscription.read**. Leave other permissions off.
-3. Create the key and save it to a private file such as `~/keys/paddle-sprid.txt`. It is shown only once.
+1. **Developer tools → Authentication → New API key**, named `Sprid`.
+2. Select **transaction.read** and **subscription.read** only.
+3. Create the key and save it to a private file such as `~/keys/paddle-sprid.txt`. It is shown once.
 
 ## Then run
 
@@ -18,7 +18,7 @@ Access to **Paddle Billing**. Paddle Classic keys cannot be used for this connec
 sprid connect paddle --app <slug> --key ~/keys/paddle-sprid.txt
 ```
 
-Replace `<slug>` with your Sprid app slug and use your own file path. For a sandbox key, add `--env sandbox`.
+Use your Sprid app slug and your own file path. Add `--env sandbox` for a sandbox key.
 
 ## How to check it worked
 
@@ -26,27 +26,25 @@ Ask your agent: “Check that Sprid can read this Paddle account’s completed s
 
 ## What the numbers mean
 
-Revenue covers 28 complete days of gross completed transactions, including tax and before refunds, credits, chargebacks and Paddle’s fees. It will differ from your payout. MRR estimates current active subscription prices over their billing periods. Currencies remain separate; incomplete pagination makes a total unavailable.
+Revenue covers 28 complete days of gross completed transactions: tax included, before refunds, credits, chargebacks and Paddle’s fees, so it will exceed your payout. MRR is current active subscription prices over their billing periods. Currencies stay separate; incomplete pagination makes a total unavailable.
 
 ## If it fails
 
-- **Access denied:** check whether the key is for sandbox. If so, reconnect with `--env sandbox`.
-- **A permission is missing:** create a replacement key with both permissions above, then reconnect.
-- **Revenue exceeds your payout:** compare customer payments, rather than the amount left after tax and fees.
-
-## Sources
-
-- [List transactions](https://developer.paddle.com/api-reference/transactions/list-transactions)
-- [API authentication](https://developer.paddle.com/api-reference/about/authentication)
+- **Access denied:** a sandbox key needs `--env sandbox`.
+- **A permission is missing:** create a replacement key with both permissions, then reconnect.
+- **Revenue exceeds your payout:** expected. Compare against customer payments, not what is left after tax and fees.
 
 ## Investigate with this connection
 
-Your agent can use `list_marketing_queries` and `query_marketing_source` for `transactions`, `subscriptions`. Discover the exact parameters and required setup with:
+Reads `transactions` and `subscriptions` for the key’s merchant account, live or sandbox as saved. Amounts are minor-unit strings. Subscription creation-date filters apply per page, so keep paginating past pages with no matches.
 
 ```sh
 sprid marketing-review capabilities --app <slug> --source paddle --json
 ```
 
-Credential-scoped merchant account, with sandbox/live from the profile. Dates filter billed or created time as described; monetary values are minor-unit strings. See [connected queries](https://sprid.studio/docs/queries) for the shared workflow. Extra operations may need additional read permissions; a stored key alone is not live verification.
+See [connected queries](https://sprid.studio/docs/queries).
 
-Subscription investigations need `subscription.read` in addition to `transaction.read` for transaction pages. Creation-date filtering on subscriptions happens per page in Sprid; continue pagination even if a page contains no matches.
+## Sources
+
+- [List transactions](https://developer.paddle.com/api-reference/transactions/list-transactions)
+- [API authentication](https://developer.paddle.com/api-reference/about/authentication)

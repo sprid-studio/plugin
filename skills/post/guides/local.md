@@ -1,28 +1,33 @@
 # Build locally and send to Sprid
 
-**What this guide does:** Build content with your own tools, upload originals into Sprid, and continue editing, reviewing and measuring the same posts in chat or the dashboard.
+**What this guide does:** Build content with your own tools, upload the finished files to Sprid, and keep editing, reviewing and measuring the same posts in chat or the dashboard.
 
-Read [one marketing plan](../../../references/guided-marketing.md). Preserve the shared action and artifact identity when moving local output into Sprid; login failure must leave the local result usable.
+Two command families: `sprid media` is local production and file transfer (`init`, `build`, `check`, `register`, `push`, `preview`, `upload`). `sprid post` works on shared posts on the server. If sign-in fails, the local result stays usable. Keep the same post and plan IDs when you move work into Sprid.
 
-## Name the work
+## Build
 
-`sprid media` owns local production and file transfer. `sprid post` owns shared server posts. Sprid MCP reaches the same connected operations from chat; optional Sprid skills teach the method. A plugin packages the skills and MCP configuration.
-
-`sprid media` is the prefix for that local pipeline: `build`, `register`, `check`, `push` and `preview`. A numeric local slug stays local: shared preview is explicitly `sprid post preview --id <postId>`.
-
-## Build and upload
-
-Use your app's existing renderer or design tools. `sprid media init` configures built-in stills or simulator-screen recipes; `sprid media build <slug>` builds through that configuration. `sprid media check <slug>` checks the output. Trusted TS/JS configuration executes local code. Native captures and binary builds require the app's own environment.
-
-Sign in with `sprid login`. For finished files, run:
+Use your app’s own renderer or design tools, or a built-in recipe:
 
 ```sh
+sprid media init          # set up the stills or simulator-screen recipe
+sprid media build <slug>
+sprid media check <slug>
+```
+
+A TS/JS config runs local code, so only use one you trust. Native captures and binary builds need your app’s own environment. A local slug stays local; a shared preview is always `sprid post preview --id <postId>`.
+
+## Upload
+
+```sh
+sprid login
 sprid media upload slide-01.png slide-02.png --account my-account --json
 ```
 
-The upload goes directly to storage. Sprid checks the original bytes and returns ordered asset IDs. PNG, JPEG, WebP and MP4 imports are bounded at 32 MiB per file; the existing local `push` video path handles larger files under its own limits. The command prints its request ID before uploading. Resume with the same files in the same order and `--request-id <UUID>`; read saved results with `sprid media job <UUID>`. Do not reuse a session for a different ordered selection.
+Files go straight to storage and come back as ordered asset IDs. PNG, JPEG, WebP and MP4, up to 32 MiB each; larger videos go through `sprid media push`. The command prints a request ID first. To resume, rerun with the same files in the same order and `--request-id <UUID>`, or read the saved result with `sprid media job <UUID>`. Don’t reuse a request ID for a different selection.
 
-Create `draft.json` with the returned IDs:
+## Create and review the post
+
+Write `draft.json` with the returned IDs and a new UUID as `requestId` (keep it for retries):
 
 ```json
 {
@@ -36,20 +41,23 @@ Create `draft.json` with the returned IDs:
 }
 ```
 
-Replace the example request ID with a new UUID for each new draft, then keep it for retries. Use `kind: "video"` and one asset for a finished reel. Finished artwork gets no new overlay or music. Images fit inside the selected canvas; inspect any margins in the shared preview.
+For a finished reel, use one asset with `kind: "video"`. `finished` artwork gets no overlay or music; images fit inside the canvas, so check the preview for margins.
 
 ```sh
 sprid post create --file draft.json --json
 sprid post get 123 --json
-sprid post update 123 --file changes.json --json
+sprid post update 123 --file changes.json --json   # e.g. {"captionInstagram":"Revised caption"}
 sprid post preview --id 123 --json
 sprid post deliveries 123 --json
 ```
 
-`changes.json` uses the existing post-update schema, for example `{"captionInstagram":"Revised caption"}`. Continue in chat by supplying post ID `123`; do not create another draft. The returned review link opens the same dashboard screen used from MCP. Human approval and platform choices remain explicit. Read delivery receipts before reporting success.
+The review link opens the same dashboard screen as from chat. To continue in chat, give it post ID `123` instead of creating another draft. Approval and platform choices stay with a person. Check delivery receipts before reporting success.
 
 ## Hosted options and results
 
-`sprid capabilities --json` reports server limits and local-only tasks. `sprid media import --file sources.json` accepts the same account/files/urls/assets payload as MCP `import_assets`. `sprid media reel --file recipe.json` starts the explicit metered hosted recipe; the payload and approval requirements are in `sprid docs chat`. Poll with `sprid media job <UUID>`.
+- `sprid capabilities --json`: server limits and what stays local.
+- `sprid media import --file sources.json`: the same account/files/urls/assets payload as MCP `import_assets`.
+- `sprid media reel --file recipe.json`: the metered hosted reel. Payload and approval rules are in `sprid docs chat`. Poll with `sprid media job <UUID>`.
+- `sprid marketing-review`: connected evidence. `sprid docs marketing-review` covers coverage and attribution.
 
-Use `sprid marketing-review` for connected evidence, and the optional marketing-review skill to interpret it alongside repo changes. Secrets are handled by CLI key-file commands or secure Sprid forms, never conversations. Read `sprid docs marketing-review` for coverage and attribution rules.
+Keys go in through CLI key-file commands or the secure Sprid forms, never a conversation.
