@@ -5,6 +5,9 @@
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
   "homepage": "https://sprid.studio/agents",
+  "bugs": {
+    "email": "hello@sprid.studio"
+  },
   "engines": {
     "node": ">=20"
   },
