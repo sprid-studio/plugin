@@ -60,7 +60,7 @@ Reads the repo and the public listing. Comes back with the listing graded (5 che
 | `/sprid:store-metadata` | "keywords", "the listing" | Name, subtitle, keywords, description per locale from one config, adapted to the app’s markets, pushed on your word |
 | `/sprid:research` | "what do people actually say" | Reddit posts and your reviews into a hook bank, with each seam's worth written down |
 | `/sprid:principles` | "why", "should I run ads" | Decision checks for channels, acquisition economics and content, tested against your own evidence |
-| `/sprid:post` | "post this", "fill the queue" | Draft, review, schedule and publish through Sprid; a human approves on the posting screen |
+| `/sprid:post` | "post this", "fill the queue" | Draft, review, schedule and publish through Sprid |
 | `/sprid:reels` | "reels", "why did it get no views", "video at volume" | Format selection, reproducible localization, render checks and outcome measurement |
 
 ## Marketing review
@@ -78,7 +78,7 @@ notes can be imported with `tools/migrate-review.mjs --from <mapping.json> --app
 
 ## What it touches
 
-Reads your repo, the public store pages, and, with your keys on your machine, your own analytics. Writes markdown under `marketing/` and `.sprid/app.json`. Never puts a secret in the conversation. Never posts, replies or follows on your behalf; every publish is one you approved on Sprid's posting screen, which is how the TikTok and Meta APIs are meant to be used.
+Reads your repo, the public store pages, and, with your keys on your machine, your own analytics. Writes markdown under `marketing/` and `.sprid/app.json`. Never puts a secret in the conversation. Never posts, replies or follows on its own: it publishes when you ask it to, through the platforms’ official APIs. A TikTok post also needs its privacy, interaction and disclosure choices, which are made on the posting screen; a Pinterest pin needs its reviewed details.
 
 ## Connecting to Sprid
 
