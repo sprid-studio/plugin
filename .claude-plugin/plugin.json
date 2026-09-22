@@ -1,0 +1,24 @@
+{
+  "name": "sprid",
+  "version": "1.0.0",
+  "description": "You shipped the app. Now ship the marketing. Reads your repo and store listing, drafts the first post in your voice, makes the screenshots, and connects to Sprid for the Monday mail and the queue.",
+  "author": {
+    "name": "Sprid",
+    "url": "https://sprid.studio"
+  },
+  "homepage": "https://sprid.studio/agents",
+  "repository": "https://github.com/sprid-studio/plugin",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "marketing",
+    "app-store",
+    "aso",
+    "tiktok",
+    "instagram",
+    "mcp",
+    "indie",
+    "solo-founder"
+  ],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}

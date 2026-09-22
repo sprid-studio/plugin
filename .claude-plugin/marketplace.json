@@ -1,0 +1,12 @@
+{
+  "name": "sprid",
+  "owner": { "name": "Sprid", "url": "https://sprid.studio" },
+  "plugins": [
+    {
+      "name": "sprid",
+      "source": "./",
+      "description": "You shipped the app. Now ship the marketing. Diagnosis, screenshots, store copy and the first post run locally; Sprid holds the sensors, the Monday mail and the queue.",
+      "category": "marketing"
+    }
+  ]
+}

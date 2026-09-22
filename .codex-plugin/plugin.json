@@ -1,0 +1,31 @@
+{
+  "name": "sprid",
+  "version": "1.0.0+codex.20260909193734",
+  "description": "Marketing for your app, inside your coding agent: diagnose distribution, review analytics, prepare store assets, and manage content through Sprid.",
+  "author": {
+    "name": "Sprid",
+    "url": "https://sprid.studio"
+  },
+  "homepage": "https://sprid.studio/docs/install",
+  "repository": "https://github.com/sprid-studio/plugin",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "marketing",
+    "analytics",
+    "app-store",
+    "aso",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Sprid",
+    "shortDescription": "Run your app’s marketing from its repo.",
+    "longDescription": "Read your repo and store listing, review marketing analytics against what shipped, prepare store assets, and draft content in your app’s voice. Connect Sprid for insights and publishing.",
+    "developerName": "Sprid",
+    "category": "Productivity",
+    "capabilities": [],
+    "websiteURL": "https://sprid.studio",
+    "defaultPrompt": "Use Sprid to review this app’s marketing."
+  }
+}

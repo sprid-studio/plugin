@@ -1,0 +1,10 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "studio.sprid/sprid",
+  "description": "Sprid: draft, review, schedule and publish carousels and reels; App Profiles, store reviews and the Monday mail for developers with apps in the stores.",
+  "version": "1.0.0",
+  "websiteUrl": "https://sprid.studio/agents",
+  "remotes": [
+    { "type": "streamable-http", "url": "https://api.sprid.studio/api/mcp" }
+  ]
+}
