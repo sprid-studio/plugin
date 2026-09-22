@@ -1,7 +1,9 @@
 # sprid
 
-**You built the app. Let’s get it seen.**
-Your coding agent runs it. You review it like a PR.
+**You shipped the app. Now ship the marketing.**
+
+Your app’s results, marketing plan and next move. Together in Sprid, ready for
+the coding agent you already use.
 
 For developers with apps in the stores. The skills run in your repo with your keys and cost nothing; Sprid, the server, holds what a local file cannot: the daily store-review digest, the Monday mail, memory of what already ran, and the queue that publishes when you are not there.
 
