@@ -59,6 +59,8 @@ Reads the repo and the public listing. Comes back with the listing graded (5 che
 | `/sprid:screenshots` | "screenshots", "localise the listing" | A config file and a headless composer: every language × device × slot from raw captures |
 | `/sprid:store-metadata` | "keywords", "the listing" | Name, subtitle, keywords, description per locale from one config, adapted to the app’s markets, pushed on your word |
 | `/sprid:research` | "what do people actually say" | Reddit posts and your reviews into a hook bank, with each seam's worth written down |
+| `/sprid:scout` | "who is winning in my niche", "what ads are they running" | Measures the accounts working in your niche and harvests the public ad library, over your own browser, filed locally |
+| `/sprid:ads` | "run ads", "how is the campaign doing" | Campaigns, sets and creatives built from archetypes, through a copy gate, with one confirmed call that spends |
 | `/sprid:principles` | "why", "should I run ads" | Decision checks for channels, acquisition economics and content, tested against your own evidence |
 | `/sprid:post` | "post this", "fill the queue" | Draft, review, schedule and publish through Sprid |
 | `/sprid:reels` | "reels", "why did it get no views", "video at volume" | Format selection, reproducible localization, render checks and outcome measurement |
