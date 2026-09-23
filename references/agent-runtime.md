@@ -93,7 +93,7 @@ Marketing review reads connected sources from Sprid first (`get_marketing_review
 or `sprid marketing-review`). Local App Profile + sensor credentials remain a
 fallback when Sprid or a source is unavailable. Read secrets inside scripts, never into chat. Missing
 credentials become Data gaps. A review request authorizes local analysis and a
-report; send a reflection or publish content only when the user requests that
+report; save an event or publish content only when the user requests that
 external action or has already authorized it.
 
 ## Account and CLI handoff

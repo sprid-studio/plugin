@@ -75,7 +75,7 @@ Choose the route from the observed product, audience and existing distribution. 
 When content is the recommended route, draft the first post:
 
 Draft one carousel in `marketing/posts/001-<slug>.md`, unless the user has requested
-another format. Use an existing account format where available; otherwise choose
+another format. Use the account's existing templates where available; otherwise choose
 an appropriate structure for the app and explain that choice briefly.
 
 When Pinterest is the recommended or requested channel, read [Pinterest content and publishing](../post/guides/pinterest.md) and draft one standalone image Pin, preferably 2:3, or a finished video concept, preferably 9:16, instead of a carousel. Start from a matching destination page, and include its board, title, description, URL, alt text and measurement plan. Instagram/TikTok open-loop and slide-completion rules do not apply.

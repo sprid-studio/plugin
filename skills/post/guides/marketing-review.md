@@ -32,7 +32,7 @@ Lead with the decision, then the evidence, the limits and what would change the 
 
 - **Shared context:** when authorized, save non-secret definitions, investigations, decisions, corrections and release references with `save_marketing_review_context`, sending `baseRevision` from the latest read. A conflict returns both versions; reconcile before retrying. Saved context is a claim with references, not verification. CLI: `sprid marketing-review context --app <slug>` reads, `--file <context.json>` imports `{baseRevision,context}`. Private notes stay local.
 - **Changes:** log confirmed product or marketing changes with `add_event`, naming the areas they affect and why.
-- **The review itself:** save it as an app-scoped `kind: "note"` event with the date, conclusion, evidence references, coverage and next hypothesis in `meta`. Other clients read it with `list_events`. `log_reflection` is only for a post’s own statistics.
+- **The review itself:** save it as an app-scoped `kind: "note"` event with the date, conclusion, evidence references, coverage and next hypothesis in `meta`. Other clients read it with `list_events`.
 
 Never store secrets or signed attachment URLs in any of these.
 

@@ -15,9 +15,9 @@ Know the tradeoff: **this is a fresh browser read, not a library lookup.** `get_
 
 Only one analysis runs at a time, but discovery and analysis are independent, so a deep read of one account can run alongside a discovery already in flight. That is a good use of a long run's waiting.
 
-`analyze_account` writes nothing to the library; its report lives in `job_results`. It is also the bridge to pulling evidence: each `top_posts` entry carries a `type` and a `url`, and the slideshow entries are the ones `start_download` takes as links. The videos cannot be pulled; leave them.
+`analyze_account` writes nothing to the library; its report lives in `job_results`. It is also the bridge to pulling evidence: each `top_posts` entry carries a `type` and a `url`, and both kinds are links `start_download` takes - slideshows as images, and videos when `include_videos` is set.
 
-## `start_download`: slideshows to disk, as evidence
+## `start_download`: posts to disk, as evidence
 
 Read the rights rule in SKILL.md before the first call. What comes down is someone else's work, held so a format can be taken apart and rebuilt in the user's own voice and images. It is never material to post, to re-upload, or to place in a draft.
 
@@ -31,6 +31,12 @@ Give it **either accounts or links, never both** (call it twice if you need both
 Set these at the top level to move the whole call, and any single account may carry its own to be treated differently in the same run.
 
 **By links.** Give the URLs of particular posts (`https://www.tiktok.com/@handle/photo/...`) and it pulls exactly those. This is where `analyze_account`'s slideshow urls go.
+
+**Videos come back as frames, not as files.** `include_videos` opens the post, seeks its player and draws single frames to a canvas: 0, 1, 2, 5 and 10 seconds by default, saved beside a `sheet.png` that tiles them left to right. Nothing is downloaded, and that is not squeamishness - the signed playable url answers 403 from anywhere, because the player runs on Media Source Extensions and its source is a handle with no bytes behind it. Seeking the player is what works, and it costs the same five seeks whether the video is fifteen seconds or four minutes.
+
+Those offsets are not arbitrary. Frame 0 is the cover the feed shows before anyone presses anything, and the seconds after it are where a viewer either stays or leaves. Read the sheet the way you would read a storyboard: what the cover already says, what the opening card claims, when the first cut lands, whether the last frame is worth screenshotting. `sheet_offsets` moves the times when a longer post needs them. ffmpeg tiles the sheet; without it the frames still land and the sheet does not.
+
+Once something is on disk, [teardown.md](teardown.md) is how to read it: the order to look in, the six things to name, and what a sheet cannot tell you.
 
 **When to pull at all:** when the structure is the question and the summary numbers cannot answer it. How many slides before the turn, where the hook lands, whether the caption carries the promise or the first card does, what the last card asks for. Pull a few strong examples of one format, not an account's whole output; a teardown needs enough to see the pattern and nothing more.
 

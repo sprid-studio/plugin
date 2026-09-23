@@ -59,7 +59,7 @@ Keep review-derived lines attributed to reviews; use them for hooks or benefits 
 
 ## 4. Write `marketing/HOOKS.md`
 
-Ranked by confidence: from real users (highest), from validated engagement (upvotes), from the corpus. Each hook carries its source line. When the user has authorized saving to Sprid, add selected de-identified lines with `add_line` (type `hook`) so drafting can pull from the bank. A connection alone does not authorize uploading support material.
+Ranked by confidence: from real users (highest), from validated engagement (upvotes), from the corpus. Each hook carries its source line. `/sprid:post` drafts from this file.
 
 ## Rules
 

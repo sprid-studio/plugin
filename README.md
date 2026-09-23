@@ -9,7 +9,7 @@ For developers with apps in the stores. The skills run in your repo with your ke
 
 ## Install
 
-The plugin includes native manifests for Codex and Claude Code, sharing all nine skills and the same MCP server.
+The plugin includes native manifests for Codex and Claude Code, sharing all eleven skills and the same MCP server.
 
 ### Codex
 
@@ -108,7 +108,7 @@ A token is only for CI, or a client that cannot open a browser: mint one under S
 
 Keys for the sensors never go through the conversation: `sprid connect asc --key ~/AuthKey.p8 …`, `sprid connect play --key sa.json`, or `sprid connect --from-local` to push everything in `~/.sprid/secrets/<slug>.json`. A client that only speaks stdio can use `sprid mcp`.
 
-The plugin's `.mcp.json` lists the ~25 everyday verbs (`?surface=core`). Templates, avatars, ads and the reel factory are behind `?surface=all`.
+The plugin's `.mcp.json` lists the everyday verbs (`?surface=core`). Templates, ads, fonts and tracks are behind `?surface=all`.
 
 Scheduled publishing and the weekly email need a Sprid account, an active plan or trial, and the relevant connected services. Local drafts and reviews using available local data still work without an account. Current plans: [sprid.studio/pricing](https://sprid.studio/pricing).
 

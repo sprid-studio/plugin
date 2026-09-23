@@ -1,6 +1,6 @@
 ---
 name: scout
-description: Research the accounts and ads already winning in a niche, by driving the user's own Chrome on this machine, and file everything found into a local library. Use when the user wants to study competitors, see what ads a rival is running, find TikTok slideshow accounts worth learning from, discover the formats that travel in a niche, build a content strategy for a product or app, take a format apart slide by slide, or read back accounts they already found. Load product.md when the goal is promoting something, discover.md to find accounts, analysis.md to measure and present results, ads.md for the ad library.
+description: Research the accounts and ads already winning in a niche, by driving the user's own Chrome on this machine, and file everything found into a local library. Use when the user wants to study competitors, see what ads a rival is running, find TikTok slideshow accounts worth learning from, discover the formats that travel in a niche, build a content strategy for a product or app, take a format apart slide by slide, or read back accounts they already found. Load product.md when the goal is promoting something, discover.md to find accounts, analysis.md to measure and present results, teardown.md to take a pulled post apart, ads.md for the ad library.
 ---
 
 # /sprid:scout
@@ -26,7 +26,7 @@ The same holds for what goes into Sprid. Pushed slideshows land in the inspirati
 
 ## The person you are talking to has not read this
 
-This file and the four beside it were written for you. The user has never read them. So do not speak back to them in the private language of these pages. Never quote a rule from here, never name a filter or a verdict the way this document names it, and never lean on a phrase like "near miss" or "pass rate" or "the window" as though the user already knew what it meant. Those are words to think with, not words to say.
+This file and the five beside it were written for you. The user has never read them. So do not speak back to them in the private language of these pages. Never quote a rule from here, never name a filter or a verdict the way this document names it, and never lean on a phrase like "near miss" or "pass rate" or "the window" as though the user already knew what it meant. Those are words to think with, not words to say.
 
 When you tell the user why an account is worth their attention, build the reason out of the numbers in front of you, in their own language, as if the idea were new. A sentence that would only make sense to someone who had read this skill is the wrong sentence, however true it is.
 
@@ -72,6 +72,42 @@ claude mcp add --transport stdio --scope user scout -- sprid-scout
 If the tools below are not in the session, that install has not happened yet.
 Say so and hand over those two lines rather than reaching for another route.
 
+## Two lanes, and the fast one has a price
+
+**The dedicated profile** is the default: its own Chrome profile, its own TikTok
+login, measurement, filters, verdicts, downloads. Everything below this section
+runs there.
+
+**The user's own Chrome** is the fast lane on macOS, and it exists because it
+needs no login at all - it borrows the session they already have.
+
+```
+sprid-scout-quick "@handle"      # the account's posts, with view counts
+sprid-scout-quick "#hashtag"     # every post the tag's grid holds
+```
+
+Say the price in these words before anyone turns it on: it needs **View →
+Developer → Allow JavaScript from Apple Events**, and that switch is not
+per-site. While it is on, any script on that machine can run JavaScript in any
+tab that browser has open, including banking and mail. It is a reasonable trade
+for someone who trusts what they run, and it is theirs to make knowingly. Tell
+them they can switch it back off afterwards.
+
+What it gives: the user's stats, every post in the grid as a link, whether each
+is a slideshow or a video, and the view counts where the page prints them - about
+80 posts from an account or 170 from a hashtag in fifteen seconds. It opens its
+own tab and closes it, so it never takes the tab in front of them.
+
+What it cannot give, and why: the feed endpoint is signature-gated and answers
+an empty body when called directly, and a profile grid makes no API calls to
+intercept. So a tile carries no date, and **no windowed measurement is possible
+here** - "average views over the last 30 days", the filters and the verdicts all
+need the dedicated-profile lane.
+
+Use the two together: find the posts fast, then hand those urls to
+`start_download` as links to pull the media. That download still needs the
+one-time login, since the media itself is fetched as a signed-in user.
+
 ## First call, every session
 
 Call `status` first. It says whether Chrome is installed, whether a TikTok session is saved here, what is already running, and how big the library has grown.
@@ -88,7 +124,7 @@ If no TikTok session is saved, call `login_tiktok`. It opens a Chrome window on 
 **Runs (open Chrome, take minutes, return a job_id).**
 - `start_discovery` is the flagship: search for accounts posting slideshows about your keywords, then measure each one against your filters. Read discover.md before using it.
 - `analyze_account` reads one named account deeply and returns a full report.
-- `start_download` pulls slideshows to disk as evidence for a teardown, by account or by post link. Read the rights rule at the top of this page before you call it.
+- `start_download` pulls slideshows as images and, with `include_videos`, reads a video as frames off its own player into a sheet - by account or by post link. Read the rights rule at the top of this page before you call it.
 - `start_ad_harvest` collects the ads currently running in a niche from the public ad library. No login, a throwaway browser, and the cheapest research here. Read ads.md before using it.
 
 **Run followers and controls.** Every run tool hands back a `job_id` and returns at once.
@@ -126,5 +162,6 @@ Scout reads and never writes. It posts nothing, follows nobody, leaves no commen
 
 - **discover.md**: how discovery works, how to write keywords, how the filters behave as mechanisms, how to follow and retune a run in flight, and how to recover one that came back short. Read it before any discovery.
 - **analysis.md**: `analyze_account`, pulling evidence, the library, how to read the metrics, and how to present results like a strategist.
+- **teardown.md**: how to read a frame sheet or a pulled slideshow - the order, the six things to name, what a sheet cannot tell you, and how to end on a rebuild. Read it before describing anything you pulled.
 - **ads.md**: the ad-library half - how to write the queries, what days live does and does not mean, and how to read a harvest. Read it before any ad research.
 - **product.md**: how to research and understand the user's product first, then derive the niche and the keywords from it. Start here whenever the goal is to promote something.
