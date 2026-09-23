@@ -37,23 +37,39 @@ In **Settings → Apps → your app → PostHog**, set the account-created event
 | Metric | What counts |
 |---|---|
 | Registrations | First `sprid_signup` event per PostHog person, across all surfaces |
-| New app users | First native app activity, including anonymous people |
-| Active app users | Distinct people with native activity in the period |
-| Web visitors | Distinct pageview visitors on the saved website hostname |
+| New product users | First product activity, including anonymous people |
+| Active product users | Distinct people with product activity in the period |
+| Web visitors | Distinct pageview visitors on the saved website hostname, minus your product |
 
 **Registrations.** Send `sprid_signup` from your server after the account is created, with the account id as `distinct_id`, and identify that id in your clients. Never fire it on login, page load or install. An existing `posthogEvents.signup` mapping also works; `posthogConfig.registration.event` wins over it. No matching event history reads as unavailable; history with no new registrations reads as zero. Periods before the tracking start are unavailable, and comparisons crossing it, or with no confirmed start, are withheld. Backfill with the original creation timestamps.
 
-**App and web.** Native defaults need `posthog-react-native` on iOS, iPadOS or Android and reject explicit web surfaces: set `app_surface: 'web'` on Expo web and `'native'` on devices. Web counts need a browser and exclude reported bots and crawler user agents. Every metric excludes events or people with `is_internal`, `is_test` or `sprid_test = true`. What remains is observed identities, not guaranteed humans.
+### What counts as your product
+
+Set this under **What counts as your product** on the same screen. It decides who is an active person, and it is the single setting most likely to make the people card wrong.
+
+| Your product is | Choose | Also give |
+|---|---|---|
+| An iOS or Android app | **A phone app** | Nothing. This is the default |
+| A web app on its own subdomain | **A website or web app** | The hostnames, such as `app.example.com` |
+| A web app under a path on your marketing domain | **A website or web app** | The paths, such as `/app`, `/dashboard` |
+| A phone app with a web client | **Both** | The web hostnames or paths |
+
+**A web product must say where it lives.** Your marketing pages and your product are the same PostHog events; without a hostname or a path there is nothing to tell them apart, and every visitor would be counted as someone using the product. Sprid refuses that configuration rather than reporting it.
+
+Whatever you name here is **subtracted from your website visitor numbers**, so a page inside the product is never also counted as a visit.
+
+**A phone app** needs `posthog-react-native` on iOS, iPadOS or Android and rejects explicit web surfaces: set `app_surface: 'web'` on Expo web and `'native'` on devices. Web counts need a browser and exclude reported bots and crawler user agents. Every metric excludes events or people with `is_internal`, `is_test` or `sprid_test = true`. What remains is observed identities, not guaranteed humans.
 
 ### Custom properties
 
 Advanced rules go under **Custom properties**:
 
 ```json
-{"registration":{"identity":{"scope":"event","property":"account_id"}},"app":{"filters":[{"scope":"event","property":"client_type","operator":"in","values":["native"]}]},"exclude":[{"scope":"person","property":"staff","operator":"in","values":[true]}]}
+{"registration":{"identity":{"scope":"event","property":"account_id"}},"app":{"kind":"web","hosts":["app.example.com"]},"exclude":[{"scope":"person","property":"staff","operator":"in","values":[true]}]}
 ```
 
-- `app.filters` replaces SDK/OS matching with your own native rule; all filters must match.
+- `app.kind` is `native`, `web` or `both`, with `app.hosts` and `app.pathPrefixes` saying where a web product lives. This is what the screen above writes.
+- `app.filters` replaces the whole definition with your own rule; all filters must match. Choosing it shows as **Custom rules** on the screen, and the rule is subtracted from web visitors the same way.
 - `exclude` removes matching traffic from every metric.
 - `registration.filters` narrows the registration event, for example `result = success`.
 - `registration.identity` defaults to `person_id`. A configured property must be present and should never change, because it counts accounts.

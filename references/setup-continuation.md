@@ -83,3 +83,41 @@ not attest a human click. Counts retain per-destination receipts.
 The local task history contains stages and timestamps, with the artifact path
 kept on the customer's machine. Never upload repository paths or raw draft files
 as telemetry. Only the intended post copy is sent when preparing the server draft.
+
+## Keep setup current
+
+After creating or linking the app and account, and during each connected marketing
+review, read `next_actions` (CLI: `sprid status --json`) in the intended workspace,
+app and account scope. This is the shared onboarding list used by Home. Re-read
+after a completed step; do not carry forward a checklist from an earlier run.
+
+Check the saved state behind the recommendation:
+
+| Area | What completes it | Continue through |
+|---|---|---|
+| Identity | Correct app, linked account and a product/store/repository link | App Profile and account Details; leave deliberately independent accounts independent |
+| Icon | The account has a saved avatar | Account Details → Upload avatar; `set_account_avatar {account}` tries the app's store/site icon; `sprid account avatar <account> <file>` uploads a local icon |
+| Voice | Existing account instructions/archetype or the app's saved voice | Reuse the repo's guide, save through the supported account or plan operation within authorization, then read it back |
+| Publishing | Chosen destination connected, timezone and posting times saved | Channel connection, account Details and Posting; saving a cadence does not schedule content |
+| Measurement | Relevant store, product analytics, revenue, search and traffic sources return scoped evidence | Secure connection forms or CLI key-file commands; a saved identifier alone does not verify access |
+| Continuity | Prepared work has a next action; delivery and review results remain readable | Saved plan, queue, current `next_actions` and the next review |
+
+An App Profile save attempts icon import, but failures leave the avatar empty.
+Check `get_account` or `list_accounts` before calling it complete. Preserve an
+existing custom avatar. If discovery fails, use the icon already in the repo or
+ask for an image; do not generate replacement branding. Browser-only users can
+upload through account Details. Never send image bytes through a tool argument.
+
+Repair failed delivery and broken connections before optional polish. Keep the
+user's original work moving while setup is incomplete. Recommend one useful
+next step with its scoped action and the outcome it unlocks; keep the remaining
+items available without printing the whole inventory in every reply. Home's
+suggestion dismissal is local to that device; it does not mean a service is
+connected or that every agent has been told to stop suggesting it. Respect any
+explicit declined or inapplicable service recorded in the user's context.
+
+Reuse services the app already uses, and check revenue overlap. No new provider
+account, paid plan, automatic publishing or collection opt-in is implied by this
+check. A marketing review authorizes recommendations; perform setup writes only
+when covered by the user's setup request or standing authorization. After an
+authorized write, verify the saved scope and result, then resume the same task.

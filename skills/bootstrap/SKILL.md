@@ -116,7 +116,7 @@ Write `.sprid/app.json` with every identifier found (no secrets), in the App Pro
 
 Tell the user which identifiers matter for the chosen plan and where to find the missing ones. Preserve any existing `.sprid/app.json` fields you did not infer again.
 
-Note the app's icon while you are in the config: Expo `icon`, the largest `AppIcon.appiconset` image, Android's `ic_launcher` at xxxhdpi, or the site's `apple-touch-icon`. Saving the App Profile gives every account without an avatar the App Store artwork or the website's icon on its own, so do nothing when either exists. For an app with neither (pre-launch, no site yet), once a Sprid account exists run `sprid account avatar <account> <path-to-icon.png>`: PNG, JPEG or WebP, 512 px or more. Sprid's mails and the `account.avatarUrl` template binding draw it.
+Find the existing app icon in the config: Expo `icon`, `AppIcon.appiconset`, Android launcher assets or the site's touch icon. After authorized setup, follow [keep setup current](../../references/setup-continuation.md#keep-setup-current). Verify the saved avatar; a store or website URL is only a possible import source. Preserve any custom avatar.
 
 After delivering the first result, save its continuation using
 [resuming setup](../../references/setup-continuation.md). Keep the exact artifact,
@@ -130,12 +130,20 @@ Link an existing shared action with `sprid plan link-local --id <action-id>
 `sprid plan prepare-local --file <action.json> --app <slug>` once; the original
 task ID makes retries idempotent and the imported body must match the local file.
 
+## 6b. Continue integration
+
+Once connected, follow [keep setup current](../../references/setup-continuation.md#keep-setup-current). Read the shared `next_actions` list and verify app identity, saved icon and voice, then the publishing and measurement setup the route needs. Continue authorized setup without asking again for routine steps; provider consent stays with the user.
+
+Name the publishing destinations already connected and the next missing destination when the route uses content. If the provider account does not exist, follow [account creation](../connect/guides/social-accounts.md). For measurement, distinguish a source Sprid can read from a local-only read and an unavailable source; cite local evidence on its own merits. Offer the next useful connection through [connect](../connect/SKILL.md), with what it unlocks. A declined connection leaves the prepared work usable and does not trigger another setup pitch.
+
 ## 7. Report
 
 Under 200 words: lead with the recommended route and why, then name the prepared
 artifact path and the evidence or uncertainty that matters. Include a listing
 grade only when section 2 applied, and name only profile fields relevant to this
-work. End with the one action that continues the prepared result.
+work. End with the one action that continues the prepared result - and if that
+result has no connected destination or no connected evidence, the missing
+connection is that action. Never close on a draft without saying where it can go.
 
 Never invent a number. If the listing could not be fetched, say "listing not read" and grade what the repo holds.
 

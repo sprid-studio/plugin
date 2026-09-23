@@ -28,7 +28,7 @@ For each finding, test another explanation: tracking changes, traffic exclusions
 
 ## Report and save
 
-Lead with the decision, then the evidence, the limits and what would change the answer. Keep failed reads apart from reads that returned nothing. `next_actions` gives the follow-up. A missing credential goes to the secure App Profile form or a CLI key-file command; no provider MCP is needed for a supported query.
+Lead with the decision, then the evidence, the limits and what would change the answer. Keep failed reads apart from reads that returned nothing. `next_actions` gives the follow-up. Check [remaining setup](../../../references/setup-continuation.md#keep-setup-current), including the saved app icon, voice and relevant connections. Recommend the next useful integration step without repeating completed or explicitly declined setup. A missing credential goes to the secure App Profile form or a CLI key-file command; no provider MCP is needed for a supported query.
 
 - **Shared context:** when authorized, save non-secret definitions, investigations, decisions, corrections and release references with `save_marketing_review_context`, sending `baseRevision` from the latest read. A conflict returns both versions; reconcile before retrying. Saved context is a claim with references, not verification. CLI: `sprid marketing-review context --app <slug>` reads, `--file <context.json>` imports `{baseRevision,context}`. Private notes stay local.
 - **Changes:** log confirmed product or marketing changes with `add_event`, naming the areas they affect and why.
