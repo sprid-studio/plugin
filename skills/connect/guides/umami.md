@@ -11,14 +11,14 @@ An **API key**. On Umami Cloud that is any plan. Self-hosting, you need a versio
 ## Click path
 
 1. Open [Umami](https://cloud.umami.is), or your own instance.
-2. **Settings → API keys → Create API key**. Name it `sprid` and copy the key. Umami shows it once.
-3. Save it to a file, such as `~/Downloads/umami-key.txt`, so it never sits in your shell history.
+2. **Settings → API keys → Create API key**. Name it `sprid`. Umami shows it once.
+3. Copy the key and leave it on your clipboard.
 4. **Settings → Websites →** the site **→ Details**. Copy the **Website ID**. It is a uuid such as `8f2a1c90-4d1e-4b7a-9f33-2c0b5e7a1d44`, **not** the domain.
 
 ## Then run
 
 ```
-sprid connect umami --key ~/Downloads/umami-key.txt --site 8f2a1c90-4d1e-4b7a-9f33-2c0b5e7a1d44
+sprid connect umami --key-from-clipboard --site 8f2a1c90-4d1e-4b7a-9f33-2c0b5e7a1d44
 ```
 
 Self-hosting? Add `--host https://analytics.example.com`. Sprid appends the `/api` your instance serves under, so either form works. Add `--use` to make Umami the source Sprid reports website traffic from.
@@ -28,6 +28,8 @@ Self-hosting? Add `--host https://analytics.example.com`. Sprid appends the `/ap
 PostHog, Google Analytics, Plausible and Umami all count the same visits to the same site. Sprid reads **one** of them per app and never adds them together, because adding them would overstate your traffic by roughly the overlap, and the overlap is nearly everything.
 
 With one connected, that one answers. With several, Sprid uses the one you chose with `--use` (PostHog by default, because it also answers the people and registration cards). The others stay connected and idle, and the traffic card says so.
+
+Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
 
 ## How to check it worked
 

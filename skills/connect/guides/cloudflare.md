@@ -16,7 +16,7 @@ Access to your domain’s Cloudflare account and permission to create a token. E
 4. **Zone Resources → Include → Specific zone**: your domain.
 5. **Account Resources → Include**: your account.
 6. Leave **Client IP Address Filtering** and **TTL** empty. **Continue to summary → Create Token**.
-7. Save the token to a private file such as `~/keys/cloudflare-sprid.txt`. It is shown once.
+7. Copy the token and leave it on your clipboard. It is shown once.
 
 For a connection that survives you leaving the team, create an account-owned token instead under **Manage Account → Account API Tokens**, with the same permissions.
 
@@ -27,10 +27,12 @@ Your domain → **Overview** → **API** card: copy **Zone ID** and **Account ID
 ## Then run
 
 ```
-sprid connect cloudflare --token ~/keys/cloudflare-sprid.txt --zone 0123456789abcdef0123456789abcdef
+sprid connect cloudflare --key-from-clipboard --zone 0123456789abcdef0123456789abcdef
 ```
 
-Use your own file path and Zone ID. Keep the token out of chat.
+Use your own Zone ID. Keep the token out of chat.
+
+Sprid reads the token from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the token is copied and it runs this for you. Typing it yourself, copy the token last: paste the command into your terminal first, then copy the token, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the token and run it again. Without clipboard access (a remote shell), save the token to a file and pass `--token <file>` instead.
 
 ## How to check it worked
 

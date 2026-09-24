@@ -10,15 +10,18 @@ Access to your Polar organization’s developer settings.
 
 1. Open your organization → **Settings → Developers → New Organization Access Token**, and name it `Sprid`.
 2. Select **metrics:read** only.
-3. Create the token and save it to a private file such as `~/keys/polar-sprid.txt`. It is shown once.
+3. Create the token. It is shown once.
+4. Copy the token and leave it on your clipboard.
 
 ## Then run
 
 ```
-sprid connect polar --app <slug> --key ~/keys/polar-sprid.txt
+sprid connect polar --app <slug> --key-from-clipboard
 ```
 
-Use your Sprid app slug and your own file path. A personal token covering several organizations also needs `--org <organization-id>`.
+Use your Sprid app slug. A personal token covering several organizations also needs `--org <organization-id>`.
+
+Sprid reads the token from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the token is copied and it runs this for you. Typing it yourself, copy the token last: paste the command into your terminal first, then copy the token, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the token and run it again. Without clipboard access (a remote shell), save the token to a file and pass `--key <file>` instead.
 
 ## How to check it worked
 

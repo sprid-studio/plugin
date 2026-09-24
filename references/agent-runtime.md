@@ -27,7 +27,7 @@ These skills require Sprid CLI 0.1.0 or later. The guided `sprid plan` and
 `sprid research` commands require 0.1.1. `sprid account avatar`, and passing a
 ref such as `BND-78` or `BND-R4` where a post or review id goes, require 0.1.3;
 an older CLI refuses a ref as a usage error. `sprid connect ga4|plausible|umami`
-requires 0.1.5. Before a job that uses the CLI,
+requires 0.1.5, and `--key-from-clipboard` requires 0.1.6. Before a job that uses the CLI,
 run `sprid doctor --apply-updates --json` once, before preparing or sending changes.
 Use the project's installed CLI when the project declares `sprid`; otherwise use
 the global CLI. Do not fetch `npx @sprid/cli@latest` for individual steps mid-job.

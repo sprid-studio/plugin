@@ -11,7 +11,8 @@ Access to your app’s PostHog project and permission to create a **personal API
 1. **Settings → Account → Personal API keys → Create personal API key**, named `Sprid <app name>`.
 2. Under access, select **Projects** and choose your app’s project. Leave **All access** off.
 3. Select **Query → Read** and **Project → Read**. Leave write access off.
-4. Copy the key before closing the dialog and save it to a private file such as `~/keys/posthog-myapp.txt`. Use a separate key per app.
+4. Create the key and keep the dialog open: PostHog shows it once. Use a separate key per app.
+5. Copy the key and leave it on your clipboard.
 
 ## Project id and host
 
@@ -21,10 +22,12 @@ Access to your app’s PostHog project and permission to create a **personal API
 ## Then run
 
 ```sh
-sprid connect posthog --app myapp --key ~/keys/posthog-myapp.txt --project 12345 --host eu
+sprid connect posthog --app myapp --key-from-clipboard --project 12345 --host eu
 ```
 
-Use your own app slug, file path, project id and host. Add `--workspace <slug>` if needed. Keep the key out of chat.
+Use your own app slug, project id and host. Add `--workspace <slug>` if needed. Keep the key out of chat.
+
+Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
 
 ## How to check it worked
 

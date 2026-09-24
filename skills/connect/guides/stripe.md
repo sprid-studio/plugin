@@ -13,15 +13,18 @@ Permission to create a **restricted API key** in Stripe: live and read-only, beg
    - **Core → Charges** and **Account**
    - **Billing → Subscriptions**, **Invoices** and **Prices**
 3. Leave every other permission at **None**.
-4. Create the key and save it to a private file such as `~/keys/stripe-sprid.txt`.
+4. Create the key.
+5. Copy the key and leave it on your clipboard.
 
 ## Then run
 
 ```
-sprid connect stripe --app <slug> --key ~/keys/stripe-sprid.txt
+sprid connect stripe --app <slug> --key-from-clipboard
 ```
 
-Use your Sprid app slug and your own file path. Keep the key out of chat.
+Use your Sprid app slug. Keep the key out of chat.
+
+Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
 
 ## How to check it worked
 

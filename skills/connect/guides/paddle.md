@@ -10,15 +10,18 @@
 
 1. **Developer tools → Authentication → New API key**, named `Sprid`.
 2. Select **transaction.read** and **subscription.read** only.
-3. Create the key and save it to a private file such as `~/keys/paddle-sprid.txt`. It is shown once.
+3. Create the key. It is shown once.
+4. Copy the key and leave it on your clipboard.
 
 ## Then run
 
 ```
-sprid connect paddle --app <slug> --key ~/keys/paddle-sprid.txt
+sprid connect paddle --app <slug> --key-from-clipboard
 ```
 
-Use your Sprid app slug and your own file path. Add `--env sandbox` for a sandbox key.
+Use your Sprid app slug. Add `--env sandbox` for a sandbox key.
+
+Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
 
 ## How to check it worked
 

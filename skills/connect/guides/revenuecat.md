@@ -12,7 +12,8 @@
 2. Name it `Sprid analytics` and select **V2**.
 3. **Charts metrics permissions**: set **Overview Configuration Access Level** and **Charts Configuration Access Level** to **Read only**.
 4. **Project configuration permissions**: set **Apps Configuration Access Level** to **Read only**. Leave everything else at **No access**.
-5. Click **Generate** and save the key to a private file such as `~/keys/revenuecat-myapp.txt`. Use a separate key per app.
+5. Click **Generate**. Use a separate key per app.
+6. Copy the key and leave it on your clipboard.
 
 ## Project id
 
@@ -21,10 +22,12 @@
 ## Then run
 
 ```sh
-sprid connect revenuecat --app myapp --key ~/keys/revenuecat-myapp.txt --project proj1ab2c3d4
+sprid connect revenuecat --app myapp --key-from-clipboard --project proj1ab2c3d4
 ```
 
-Use your own app slug, file path and project id. Add `--workspace <slug>` if needed. Keep the key out of chat.
+Use your own app slug and project id. Add `--workspace <slug>` if needed. Keep the key out of chat.
+
+Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
 
 ## How to check it worked
 

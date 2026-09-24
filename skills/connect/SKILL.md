@@ -8,15 +8,23 @@ description: Walk the user through connecting one service to Sprid, click by cli
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
 Read [one marketing plan](../../references/guided-marketing.md). Connect only a dependency of the active app action; a missing optional service is not onboarding debt.
 
-Sprid holds encrypted keys and OAuth tokens and does the unattended work. This skill guides setup without exposing secrets to the conversation. Local users can use `sprid connect` with a key-file path. Browser-chat users open the secure App Profile form, select the app/service and choose the key file or enter its value there. Social channels use `connect_channel` and the returned OAuth link. The agent shows the guide and verifies the saved connection; neither MCP nor this skill needs to receive secret values.
+Sprid holds encrypted keys and OAuth tokens and does the unattended work. This skill guides setup without exposing secrets to the conversation. Local users run `sprid connect` with `--key-from-clipboard` for a copied key, or a file path for a downloaded one. Browser-chat users open the secure App Profile form, select the app/service and choose the key file or enter its value there. Social channels use `connect_channel` and the returned OAuth link. The agent shows the guide and verifies the saved connection; neither MCP nor this skill needs to receive secret values.
 
 ## The rule: the agent never asks for, reads, or repeats a secret value
 
-- Never ask the user to paste a key, token, `.p8`, service-account JSON, password or `phx_`/`sk_` string into the conversation. If they paste one anyway, do not echo it, do not write it to a file, tell them to rotate it (the guide's "if it fails" section says where), and continue with the file path instead.
+- Never ask the user to paste a key, token, `.p8`, service-account JSON, password or `phx_`/`sk_` string into the conversation. If they paste one anyway, do not echo it, do not write it to a file, tell them to rotate it (the guide's "if it fails" section says where), and continue with a fresh key through `--key-from-clipboard`.
 - Never `cat`, `Read`, `grep -v` or otherwise open a key file, `.env`, or `~/.sprid/secrets/<slug>.json`. Checking a file **exists** (`ls -la ~/Downloads/AuthKey_*.p8`) is fine. Reading it is not.
 - Never run `curl` with a key in it yourself. The probes in the guides are for the user's terminal; hand them over as text.
 - Identifiers are not secrets and may be discussed: Issuer IDs, Key IDs, app ids, package names, `sc-domain:` strings, PostHog project ids, RevenueCat `proj…` ids, zone ids, account slugs.
-- Always pass a **file path** to `sprid connect` for credentials. Some CLI flags retain literal-value compatibility; agents must use files to keep secrets out of tool arguments and shell history.
+- Never put a key value in a `sprid connect` argument. Use `--key-from-clipboard` for a copied key, and a **file path** for a downloaded one. Some flags still accept a literal value for compatibility; agents never use that, because it leaves the secret in tool arguments and shell history.
+
+## A copied key: `--key-from-clipboard` (recommended)
+
+Most providers show a key once and expect it copied: RevenueCat, Stripe, PostHog, Polar, Paddle, Lemon Squeezy, Plausible, Umami, Cloudflare and the BYOK model keys. For these, `sprid connect <service> … --key-from-clipboard` is the recommended path. The CLI reads the clipboard when it runs, saves the key to Sprid and then empties the clipboard. The key never reaches the screen, the chat, shell history or a file. Services whose key is a download (ASC `.p8`, Google service-account JSON) keep `--key <file>`, and the CLI refuses the flag for them.
+
+**The agent runs the command, the user only copies.** Walk the user through the guide's click path to the point where the key is shown, then ask them to copy it and reply "copied". Don't ask for the key itself. Then run the guide's `Then run` line yourself, with the ids filled in. This way the user never has to copy the command out of chat, which is what would put the command on the clipboard in place of the key.
+
+If the user runs it themselves (their own terminal, or `!` in Claude Code), the order is: paste the command, **copy the key last**, press Enter. If the clipboard still holds the command, the CLI refuses it ("holds text with spaces") and saves nothing. Have them copy the key again and rerun. No clipboard access (an SSH session, Linux without `wl-clipboard`/`xclip`/`xsel`): fall back to the key saved in a file and `--key <file>`.
 
 ## Make every key a Sprid-only key
 
