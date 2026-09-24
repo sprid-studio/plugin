@@ -35,7 +35,7 @@ After the first Pin publishes, open Pinterest signed out or from another account
 
 ## Trial and Standard access
 
-Publishing and scheduling need **Sprid’s** Pinterest app to have Standard access. With Trial access you can connect and browse boards, but Sprid refuses to publish or schedule. This is Sprid’s approval, not something you apply for, and reconnecting does not change it. Keep preparing drafts, but do not treat them as booked.
+Public Pins need **Sprid’s** Pinterest app to have Standard access. This is Sprid’s approval, not something you apply for. Until then Sprid runs Pinterest in test mode: you can connect, pick or create boards and publish image Pins, but every Pin and board it creates is visible only to you, on your own profile. Video Pins are not available in test mode. When Standard access arrives, reconnect once: a test-mode connection cannot publish public Pins.
 
 ## Prepare the account
 
@@ -52,7 +52,8 @@ Read [Pinterest content and publishing](https://sprid.studio/docs/pinterest) bef
 - **“No Pinterest boards yet”:** create one from the board picker. If Sprid asks for board permission, reconnect once; older connections lack the board write scope.
 - **Existing boards missing:** reconnect once, then contact [Sprid support](mailto:hello@sprid.studio) with the account name and error.
 - **Access denied:** confirm the Pinterest account is active and you finished the consent screen. Retry once, then contact Sprid support.
-- **Publishing or scheduling requires Standard access:** see Trial and Standard access above. Boards stay selectable; only Sprid can change the tier.
+- **“Reconnect Pinterest to create test Pins” or “…to publish public Pins”:** the connection was made under the other access tier, and its token only works there. Reconnect once. See Trial and Standard access above.
+- **Boards missing in test mode:** test mode sees only boards created in test mode. Create one from the board picker.
 - **Analytics unavailable:** use a business account and check the Pin is public. Unavailable data is unavailable, not zero.
 
 ## Sources

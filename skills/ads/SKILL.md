@@ -1,6 +1,6 @@
 ---
 name: ads
-description: Prepare, review and run paid campaigns on Meta through Sprid - campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server and, to spend anything, a token holding ads:spend.
+description: Prepare, review and run paid campaigns through Sprid - promoting a published post on Instagram or Facebook (Meta), YouTube (Google Ads) or TikTok (Spark Ads), and on Meta the full test system of campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost or promote a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server and, to spend anything, a token holding ads:spend.
 ---
 
 # /sprid:ads
@@ -96,6 +96,31 @@ lacks `ads:spend`, say so plainly: that scope is granted deliberately, on a toke
 minted for it, and quietly working around it is not an option.
 
 The same rule governs `start_promotion`, which is the other way spend begins.
+
+## Promoting a published post, on any network
+
+A promotion is a paid ad built from a post as it went out, and it runs only on
+the platform that post is live on. The network follows the platform:
+Instagram and Facebook go through Meta, YouTube through Google Ads, TikTok as a
+Spark Ad. An Instagram post is never shown on Facebook, and the reverse.
+
+1. **`promotion_connection`** lists every network with its own answer: the ad
+   account, currency, the posts it can promote and a `requestKey`, or the
+   sentence saying why it is not connected. Pick the row whose network matches
+   the post. A network that is not connected is a
+   [connect](../connect/SKILL.md) step for the user, never something to route
+   around by promoting the same post on another platform.
+2. **`create_promotion`** with that row's `requestKey` and currency. It
+   prepares everything paused. Keep the `requestKey` on a retry.
+3. **`start_promotion`** with `confirmed: true`, on the user's explicit word,
+   after showing the network, the platform, the daily budget, the days and the
+   total.
+
+Two network details. A TikTok post marked `needsAuthorization` needs the
+creator's ad authorization code (in TikTok: the post, then Ad settings, then
+generate a code), passed as `promotion.authorizationCode`; only the user can
+make it. The archetype test system above (ad sets, creatives, batches) is Meta
+only; on Google Ads and TikTok, promotion is the whole surface.
 
 ## Budgets, pauses and rules
 
