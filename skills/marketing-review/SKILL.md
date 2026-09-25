@@ -5,7 +5,7 @@ description: Review an app’s marketing and growth against shipped changes. Com
 
 # Marketing review [period]
 
-Read [agent runtime](../../references/agent-runtime.md) for invocation and tool discovery. Without a local repository or terminal, follow the [portable connected review](../post/guides/marketing-review.md), also available through `get_documentation` with `topic: "marketing-review"`. Label missing repository and private-database evidence explicitly; supported server reads require no CLI. The repo-specific workflow below applies in Codex or Claude Code, with the report in `marketing-reports/<YYYY-MM-DD>.md`.
+Read [agent runtime](../../references/agent-runtime.md) for invocation and tool discovery, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else. Without a local repository or terminal, follow the [portable connected review](../post/guides/marketing-review.md), also available through `get_documentation` with `topic: "marketing-review"`. Label missing repository and private-database evidence explicitly; supported server reads require no CLI. The repo-specific workflow below applies in Codex or Claude Code, with the report in `marketing-reports/<YYYY-MM-DD>.md`.
 
 ## Resolve the app and its history
 

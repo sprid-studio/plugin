@@ -5,7 +5,7 @@ description: Read this repo and its relevant public surfaces, reconcile existing
 
 # /sprid:bootstrap
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md) before discovery. Bootstrap updates that plan; it does not create a parallel checklist.
 
 The free door. Nothing here needs a Sprid token; the output is files in the repo and a plan the user can read in two minutes. The one job is a **diagnosis the user can screenshot**: what the app is, what useful marketing work already exists, which route fits the evidence, and one inspectable artifact. A post is one possible artifact. If the run ends with a generic checklist it failed.
@@ -135,6 +135,23 @@ task ID makes retries idempotent and the imported body must match the local file
 Once connected, follow [keep setup current](../../references/setup-continuation.md#keep-setup-current). Read the shared `next_actions` list and verify app identity, saved icon and voice, then the publishing and measurement setup the route needs. Continue authorized setup without asking again for routine steps; provider consent stays with the user.
 
 Name the publishing destinations already connected and the next missing destination when the route uses content. If the provider account does not exist, follow [account creation](../connect/guides/social-accounts.md). For measurement, distinguish a source Sprid can read from a local-only read and an unavailable source; cite local evidence on its own merits. Offer the next useful connection through [connect](../connect/SKILL.md), with what it unlocks. A declined connection leaves the prepared work usable and does not trigger another setup pitch.
+
+## 6c. Ask once about keeping Sprid current
+
+Only when the session's version check ran through a CLI whose `installation.kind`
+is not `unsupported` and whose output says `autoDecided: false`. Otherwise skip
+this step without comment: someone already answered, or there is nothing to switch.
+
+Ask one question after the prepared work, never before it and never bundled with
+a connection pitch:
+
+> Should Sprid keep itself up to date? At the start of each session I'd install
+> compatible updates to the Sprid CLI and these skills, and tell you when one
+> needs a restart to load. Breaking updates still wait for you.
+
+Yes: `sprid update --auto on`. No: `sprid update --auto off`, which records the
+answer so no later session asks again. No answer: run neither and ask again in
+a later bootstrap. The user can change it at any time with the same command.
 
 ## 7. Report
 

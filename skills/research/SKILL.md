@@ -5,7 +5,7 @@ description: Collect how the app's users actually talk (Reddit posts, app review
 
 # /sprid:research
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Reuse current documents and research only the gap that can change the active recommendation or artifact.
 
 Use the customer's language as evidence for copy. Preserve the distinction between

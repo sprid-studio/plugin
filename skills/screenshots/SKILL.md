@@ -5,7 +5,7 @@ description: Produce App Store and Google Play screenshot sets from raw captures
 
 # /sprid:screenshots
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Use the accepted promise map and preserve existing locale-specific work; screenshot preparation never implies store submission.
 
 Make screenshot sets reproducible: a config file is the source of truth, raw captures go in named files, one command renders every language × device × slot.

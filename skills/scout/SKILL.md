@@ -5,7 +5,7 @@ description: Research the accounts and ads already winning in a niche, by drivin
 
 # /sprid:scout
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Scout serves the plan's active question; a niche swept for its own sake is browser time spent for nothing.
 
 Scout runs research on this machine. When the user asks it to find, measure or pull down accounts, it opens their own Chrome, logged in as them, and reads the way a person would: it loads search results, scrolls profiles, and reads posts. There is no API behind it. Everything discovery finds is filed into a local library and stays there, so the second question about an account never costs a second run.

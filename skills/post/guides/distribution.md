@@ -7,8 +7,8 @@ looked good got no reach.
 
 Whether a post is *good* and whether it *travels* are two different questions.
 This one is about the second. Every rule here exists because of a specific
-mechanic, and if the mechanic changes the rule goes with it - so each is written
-with its reason attached rather than as a commandment.
+mechanic, and if the mechanic changes the rule goes with it, so each one carries
+its reason.
 
 **Verified against published sources 2026-08-04.** Platform mechanics decay.
 Treat anything here as a claim about a moving system, re-check it quarterly, and
@@ -53,7 +53,7 @@ effort on the prose.
 - Distribution starts with a **small test batch of roughly 200-500 viewers**,
   mostly followers and people who engage with adjacent content. What that batch
   does decides everything afterwards. This is why the first hour matters, and
-  why a weak second slide is fatal rather than merely costly.
+  why a weak second slide can end the post’s reach.
 - Saves are weighted and photo posts save well. A carousel with fewer views but
   a high save-and-comment share is doing better than a higher-view post that
   bounces on slide one.
@@ -66,9 +66,9 @@ effort on the prose.
 |---|---|
 | **Slide 2 is a second hook.** It delivers on slide 1 *and* opens a new thread, and it has to work cold | the platform re-serves from slide 2; TikTok's test batch dies there |
 | **Seven slides for a narrative format** (hook, five body, closer) | seven to ten is the reported dwell-time sweet spot; under five reads as a short post, over ten causes mid-carousel fatigue |
-| **No slide may be skippable.** If a body slide can be removed without breaking the post, you wrote a list, not an experience | completion is the ranking signal, and a list lets people stop anywhere |
+| **No slide may be skippable.** If a body slide can be removed without breaking the post, you wrote a list, and people can stop anywhere in a list | completion is the ranking signal, and a list lets people stop anywhere |
 | **The peak lands in the last third** | a middle peak makes the tail a letdown, and the tail is where completion is won |
-| **Design for the send, not the like.** At least one slide should make someone think of a specific person | sends per reach is the non-follower signal, worth several likes |
+| **Design for sends.** At least one slide should make someone think of a specific person | sends per reach is the non-follower signal, worth several likes |
 | **The send prompt lives in the caption**, naming one kind of person, never "share if you relate" | it belongs where sends are earned, and it keeps the last slide screenshottable |
 | **At least two slides hand over something usable** | recognition earns likes; recognition plus something doable earns saves, and saves compound |
 | **Captions carry the audience's own search phrases, in prose** | captions are indexed; hashtags are not distribution |
@@ -95,14 +95,14 @@ a few posts carry most of the reach. Judging before 90 days is judging noise.
 
 ## When something works, fan it out
 
-A post that breaks out is the beginning of the work, not the end.
+When a post breaks out, the work starts: more like it, and the best one promoted.
 
 1. Make five to ten variants of the winner with the structure fixed and **exactly
    one variable changed** - the hook phrasing, the register, the opening image.
 2. One variable per variant, or the result teaches nothing.
 3. Log which variant won *and* which source line its hook came from. That tells
    you which well to keep digging.
-4. A losing variant is data. Kill it rather than nursing it.
+4. A losing variant tells you something. Stop it and write down what.
 
 ## What is worth not believing
 

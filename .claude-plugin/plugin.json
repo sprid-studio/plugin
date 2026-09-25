@@ -1,6 +1,5 @@
 {
   "name": "sprid",
-  "version": "1.0.0",
   "description": "You shipped the app. Now ship the marketing. Reads your repo and store listing, drafts the first post in your voice, makes the screenshots, and connects to Sprid for the Monday mail and the queue.",
   "author": {
     "name": "Sprid",

@@ -5,7 +5,7 @@ description: Write and push App Store Connect and Google Play listing copy (name
 
 # /sprid:store-metadata
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Start from the current listing and accepted promise map, then prepare exact locale diffs; a saved draft is not submitted or public.
 
 The listing is a form that most developers fill once, the night before submission. This makes it a file in the repo, reviewed like code, pushed with one command.

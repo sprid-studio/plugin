@@ -5,7 +5,7 @@ description: Prepare, review and run paid campaigns through Sprid - promoting a 
 
 # /sprid:ads
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). An ad serves the plan's active goal; a campaign with no stated hypothesis is money spent on finding out nothing.
 
 Everything here prepares. **Exactly one call spends money**, it needs the user to

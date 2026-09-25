@@ -8,7 +8,7 @@ description: >-
 
 # /sprid:principles
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Treat principles as recommendation policy; they do not replace accepted app evidence, task-specific guidance or the user's explicit goal.
 
 Read the reference relevant to the decision:

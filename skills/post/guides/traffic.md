@@ -12,7 +12,7 @@ order, and keep any rule as narrow as your evidence.
 Sprid flags candidates. When one day carries at least 35% of a 30-day period
 and runs at ten times the median day, `next` shows **Review that day** with the
 date, the multiple and that day’s pageviews per visitor against the rest of the
-month. It is a prompt, not a verdict: a daily series can’t tell a crawl from a
+month. Treat it as a reason to look closer: a daily series can’t tell a crawl from a
 good day.
 
 ## Four reads, in order

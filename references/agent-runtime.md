@@ -21,41 +21,70 @@ new verbs with an older installation.
 Claude Code uses `/sprid:<skill>`; Codex selects skills with `$` or by name.
 Cross-references using `/sprid:` name a sibling skill; read its `SKILL.md` when needed.
 
-## CLI version at the start of a job
+## Versions at the start of a job
 
-These skills require Sprid CLI 0.1.0 or later. The guided `sprid plan` and
-`sprid research` commands require 0.1.1. `sprid account avatar`, and passing a
-ref such as `BND-78` or `BND-R4` where a post or review id goes, require 0.1.3;
+Run this once per session, before the first Sprid skill does anything else,
+including a marketing review or any other job that never touches the CLI. It
+checks both halves: the CLI against npm, and these skills against the latest
+pushed release, each cached for a day, so repeating it costs nothing.
+
+```sh
+sprid doctor --apply-updates --plugin "<plugin>" --json
+```
+
+`<plugin>` is the plugin root (see Paths below). Use the project's installed CLI
+when the project declares `sprid`; otherwise the global one. Do not fetch
+`npx @sprid/cli@latest` for individual steps mid-job.
+
+**Skills (`plugin` in the output).** A host caches installed skills and does not
+refresh them by itself, so an agent can run months-old instructions without
+anyone noticing. When `plugin.updated` is true, the new skills are on disk but
+not loaded: finish the current job on the loaded ones and tell the user
+`plugin.reload`. When `plugin.updateAvailable` is true and nothing was updated,
+say so before starting, with `plugin.latest`, `plugin.current` and the exact
+`plugin.updateCommand`, and offer to run it; it replaces only Sprid's own skills.
+`check: "unavailable"` is not evidence that the skills are current; continue.
+
+**No CLI, or a CLI that refuses `--plugin`** (older than 0.1.9). Read `version`
+from `<plugin>/package.json` and compare it with `version` at
+https://raw.githubusercontent.com/sprid-studio/plugin/main/package.json. Update
+commands by host, read off where the skills are installed:
+
+| Installed under | Update |
+|---|---|
+| `~/.claude/plugins/cache/<marketplace>/sprid/` | `claude plugin marketplace update <marketplace> && claude plugin update sprid@<marketplace>`, then `/reload-plugins` |
+| `~/.codex/plugins/cache/<marketplace>/sprid/` | `codex plugin marketplace upgrade <marketplace> && codex plugin add sprid@<marketplace>`, then a new thread |
+| a skills folder (`npx skills add`) | `npx skills update`, then a new session |
+
+**CLI.** These skills require Sprid CLI 0.1.0 or later. The guided `sprid plan`
+and `sprid research` commands require 0.1.1. `sprid account avatar`, and passing
+a ref such as `BND-78` or `BND-R4` where a post or review id goes, require 0.1.3;
 an older CLI refuses a ref as a usage error. `sprid connect ga4|plausible|umami`
-requires 0.1.5, `--key-from-clipboard` requires 0.1.6, and `sprid connect meta-ads`
-requires 0.1.7. Before a job that uses the CLI,
-run `sprid doctor --apply-updates --json` once, before preparing or sending changes.
-Use the project's installed CLI when the project declares `sprid`; otherwise use
-the global CLI. Do not fetch `npx @sprid/cli@latest` for individual steps mid-job.
+requires 0.1.5, `--key-from-clipboard` requires 0.1.6, `sprid connect meta-ads`
+requires 0.1.7, and `sprid doctor --plugin` requires 0.1.9.
 
-The doctor checks npm's `latest` release, caches the result for one day, and reports
-`current`, `recommended`, `check`, `compatible`, `requiresApproval`, `installation`
-and `updateCommand`. An unavailable check is not evidence that the CLI is current;
-continue ordinary supported work offline. A missing doctor command means the CLI
-needs updating through its original package manager before relying on this protocol.
+The doctor reports `current`, `recommended`, `check`, `compatible`,
+`requiresApproval`, `installation` and `updateCommand` for the CLI. An
+unavailable check is not evidence that the CLI is current; continue ordinary
+supported work offline. A missing doctor command means the CLI needs updating
+through its original package manager before relying on this protocol.
 
 `--apply-updates` installs only when this installation has explicitly opted in with
-`sprid update --auto on`, the registry check succeeds, and the update is compatible.
-Never enable opt-in on the user's behalf without their instruction. Major changes,
-and minor changes before 1.0, need a new approval; no 0.0.x update is automatic.
-When `updated` is true, start a new CLI process before continuing. Do not replay a
-publish, release upload or other mutation just because an update completed.
+`sprid update --auto on`, the check succeeds, and the update is compatible. That
+one switch covers the CLI and the skills. Never enable it on the user's behalf
+without their instruction; when they ask Sprid to keep itself current, that is
+the instruction. `autoDecided: false` means nobody has answered for this
+installation yet; bootstrap asks once ([step 6c](../skills/bootstrap/SKILL.md#6c-ask-once-about-keeping-sprid-current)),
+and no other skill raises it. Major changes, and minor changes before 1.0, need a new
+approval; no 0.0.x update is automatic. When the CLI reports `updated`, start a
+new CLI process before continuing. Do not replay a publish, release upload or
+other mutation just because an update completed.
 
 Without opt-in, report an available update before starting the task. Run
 `sprid update` only within the user's authorization; `--yes` approves a potentially
 breaking update and must not be added merely to get past the check. Project updates
 change its dependency declaration and lockfile; review those diffs. Updates use the
 project's package manager configuration, so the project must be trusted.
-
-Plugin skills update through the host's plugin manager separately from npm. After
-a plugin update, start a fresh agent session to load the new instructions. A newer
-CLI alone does not reload cached skills. Do not claim this check verifies the plugin
-version or grants permission to publish content.
 
 ## Paths and local scripts
 

@@ -1,7 +1,7 @@
 // Navigation and command aliases only. Instructions live in guides/*.md.
 export const GUIDE_GROUPS = [
   { title: 'Account setup', slugs: ['social-accounts'] },
-  { title: 'Stores and analytics', slugs: ['app-store-connect', 'google-play', 'search-console', 'posthog', 'google-analytics', 'plausible', 'umami', 'revenuecat', 'stripe', 'polar', 'lemonsqueezy', 'paddle', 'cloudflare'] },
+  { title: 'Stores and analytics', slugs: ['app-store-connect', 'google-play', 'search-console', 'posthog', 'google-analytics', 'plausible', 'umami', 'revenuecat', 'stripe', 'polar', 'lemonsqueezy', 'paddle', 'cloudflare', 'github'] },
   { title: 'Publishing channels', slugs: ['instagram', 'tiktok', 'tiktok-comments', 'youtube', 'linkedin', 'facebook', 'x', 'pinterest'] },
   { title: 'Ads', slugs: ['meta-ads', 'google-ads', 'tiktok-ads'] },
 ];

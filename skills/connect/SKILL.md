@@ -5,7 +5,7 @@ description: Walk the user through connecting one service to Sprid, click by cli
 
 # /sprid:connect [service]
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths.
+Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Connect only a dependency of the active app action; a missing optional service is not onboarding debt.
 
 Sprid holds encrypted keys and OAuth tokens and does the unattended work. This skill guides setup without exposing secrets to the conversation. Local users run `sprid connect` with `--key-from-clipboard` for a copied key, or a file path for a downloaded one. Browser-chat users open the secure App Profile form, select the app/service and choose the key file or enter its value there. Social channels use `connect_channel` and the returned OAuth link. The agent shows the guide and verifies the saved connection; neither MCP nor this skill needs to receive secret values.
