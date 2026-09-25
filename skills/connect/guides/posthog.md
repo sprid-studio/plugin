@@ -75,6 +75,7 @@ Advanced rules go under **Custom properties**:
 - `app.filters` replaces the whole definition with your own rule; all filters must match. Choosing it shows as **Custom rules** on the screen, and the rule is subtracted from web visitors the same way.
 - `exclude` removes matching traffic from every metric.
 - `registration.filters` narrows the registration event, for example `result = success`.
+- `registration.accounts: false` says the app has no accounts (a local-first app, or one that identifies by device). Registrations then read as not applicable instead of a missing event, and the weekly email stops listing them as unread.
 - `registration.identity` defaults to `person_id`. A configured property must be present and should never change, because it counts accounts.
 - Each rule takes `scope: event|person`, `operator: in|not_in` and string, number or boolean `values`. A missing property fails `in` and passes `not_in`. Property names are literal keys, dots included.
 

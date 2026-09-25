@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.3 - 2026-09-26
+
+- The PostHog connect guide documents `registration.accounts: false`, for an
+  app with no accounts (local-first, or identified by device). Registrations
+  then read as not applicable and the weekly email stops listing them as unread.
+
 ## 1.0.2 - 2026-09-25
 
 - `sprid connect github` needs CLI 0.1.10; 0.1.9 refused `--repo`.
