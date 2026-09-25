@@ -1,6 +1,6 @@
 {
   "name": "sprid-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Codex and Claude Code plugin for Sprid: marketing for developers with apps in the stores. Skills run locally; the MCP server is Sprid.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",

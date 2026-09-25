@@ -61,7 +61,8 @@ and `sprid research` commands require 0.1.1. `sprid account avatar`, and passing
 a ref such as `BND-78` or `BND-R4` where a post or review id goes, require 0.1.3;
 an older CLI refuses a ref as a usage error. `sprid connect ga4|plausible|umami`
 requires 0.1.5, `--key-from-clipboard` requires 0.1.6, `sprid connect meta-ads`
-requires 0.1.7, and `sprid doctor --plugin` requires 0.1.9.
+requires 0.1.7, `sprid doctor --plugin` requires 0.1.9, and
+`sprid connect github` requires 0.1.10.
 
 The doctor reports `current`, `recommended`, `check`, `compatible`,
 `requiresApproval`, `installation` and `updateCommand` for the CLI. An

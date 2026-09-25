@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.2 - 2026-09-25
+
+- `sprid connect github` needs CLI 0.1.10; 0.1.9 refused `--repo`.
+
 ## 1.0.1 - 2026-09-25
 
 - Installed copies now update. The Claude Code manifest carries no version, so
