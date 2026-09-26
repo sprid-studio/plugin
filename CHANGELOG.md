@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.4 - 2026-09-26
+
+- Credits are quoted to the person as Sprid credits, one to a cent: a render
+  minute is 3 credits, and a `creditCeilingCents` of 400 is 400 credits. The
+  guides no longer quote the wallet in dollars.
+
 ## 1.0.3 - 2026-09-26
 
 - The PostHog connect guide documents `registration.accounts: false`, for an

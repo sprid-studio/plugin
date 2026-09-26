@@ -93,7 +93,9 @@ Hosted research requires separate `costCeilingCents` (provider safety cap) and
 Read `marketing_plan_capabilities` before quoting either. Customer-owned
 Anthropic keys are billed by the provider and never debit Sprid credits.
 Hosted screenshot composition also requires `creditCeilingCents` (3–30 cents).
-Explain the maximum before approval; actual usage is charged and unused
+Every `*Cents` credit field is stored in cents, and the person sees Sprid
+credits: one to a cent, so a 400-cent ceiling is 400 credits. Quote credits,
+never dollars, when explaining a charge. Explain the maximum before approval; actual usage is charged and unused
 reservations return to the wallet. Uncertain outcomes keep their reservation
 until reconciled. Never submit a new request ID to bypass that fence.
 

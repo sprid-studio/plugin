@@ -41,7 +41,7 @@ Edit with `update_post` (captions) and `update_slide` or `batch_update_slides` (
 
 ## Make a reel from photos or text
 
-Check `get_capabilities` for hosted creation first. `create_reel` takes ordered scenes (`imageId`, `text`, `durationMs`), up to 120 seconds, and makes a silent MP4. It costs 3 cents per started render minute, or uses the plan allowance: check `spend_status`, tell the person, and get their go-ahead before sending `confirmed: true`. Save the job ID and read `get_studio_job`. Retrying with the same ID never starts a second render; a stopped job reports `needs_attention` instead of charging again.
+Check `get_capabilities` for hosted creation first. `create_reel` takes ordered scenes (`imageId`, `text`, `durationMs`), up to 120 seconds, and makes a silent MP4. It costs 3 Sprid credits per started render minute, or uses the plan allowance: check `spend_status`, tell the person, and get their go-ahead before sending `confirmed: true`. Save the job ID and read `get_studio_job`. Retrying with the same ID never starts a second render; a stopped job reports `needs_attention` instead of charging again.
 
 App captures, simulator recordings and your own build scripts run outside remote MCP. Upload their finished files.
 
