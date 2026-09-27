@@ -39,12 +39,14 @@ In **Settings → Apps → your app → PostHog**, set the account-created event
 
 | Metric | What counts |
 |---|---|
-| Registrations | First `sprid_signup` event per PostHog person, across all surfaces |
+| Signups | First `sprid_signup` event per PostHog person, across all surfaces |
 | New product users | First product activity, including anonymous people |
 | Active product users | Distinct people with product activity in the period |
 | Web visitors | Distinct pageview visitors on the saved website hostname, minus your product |
 
-**Registrations.** Send `sprid_signup` from your server after the account is created, with the account id as `distinct_id`, and identify that id in your clients. Never fire it on login, page load or install. An existing `posthogEvents.signup` mapping also works; `posthogConfig.registration.event` wins over it. No matching event history reads as unavailable; history with no new registrations reads as zero. Periods before the tracking start are unavailable, and comparisons crossing it, or with no confirmed start, are withheld. Backfill with the original creation timestamps.
+**Signups.** Send `sprid_signup` from your server after the account is created, with the account id as `distinct_id`, and identify that id in your clients. Never fire it on login, page load or install. An existing `posthogEvents.signup` mapping also works; `posthogConfig.registration.event` wins over it. With no tracking start date, no matching event history reads as unavailable; with one, it reads as zero signups. A period that starts before the tracking date is counted from that date and says so. Comparisons crossing it, or with no confirmed start, are withheld. Backfill with the original creation timestamps.
+
+When an app reports signups, they are its user count on Home and in Insights. First product activity counts anonymous devices, so it moves into that card's detail.
 
 ### What counts as your product
 
@@ -62,6 +64,19 @@ Set this under **What counts as your product** on the same screen. It decides wh
 Whatever you name here is **subtracted from your website visitor numbers**, so a page inside the product is never also counted as a visit.
 
 **A phone app** needs `posthog-react-native` on iOS, iPadOS or Android and rejects explicit web surfaces: set `app_surface: 'web'` on Expo web and `'native'` on devices. Web counts need a browser and exclude reported bots and crawler user agents. Every metric excludes events or people with `is_internal`, `is_test` or `sprid_test = true`. What remains is observed identities, not guaranteed humans.
+
+### Keep your own testing out
+
+On a new app, your own phone, simulators and store reviewers can outnumber real people. Sprid already drops Google Play's pre-launch test devices, events reporting `$is_emulator`, reported bots, and anything flagged `is_internal`, `is_test` or `sprid_test`. Two things are yours to add:
+
+- **Flag your own accounts.** After sign-in, register `is_internal: true` when the account's email is on your own domain, store-review accounts included, and set it on the person if you identify. A web client that never identifies has to put it on every event, before the first pageview. Do the same on the server event that records a signup.
+- **List your own devices** under `exclude`, for what happens before sign-in, such as a fresh install. Open your app, then read the newest events in PostHog for the `$device_name` values:
+
+```json
+{"exclude":[{"scope":"event","property":"$device_name","operator":"in","values":["Pixel 8","Simulator iOS","sdk_gphone64_arm64"]}]}
+```
+
+Apple's review devices have reported `$device_name` `iPhone99,7`, with locale `en-US` and time zone `US/Pacific`, in every app we checked (September 2026). Add it if it shows up in yours.
 
 ### Custom properties
 

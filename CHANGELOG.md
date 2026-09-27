@@ -3,6 +3,14 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.6 - 2026-09-27
+
+- The PostHog connect guide gains "Keep your own testing out": flag your own
+  accounts `is_internal`, list your own devices under `exclude`, and what Sprid
+  already drops (Play pre-launch devices, emulators, bots). Registrations are
+  now called Signups and are an app's user count on Home and in Insights; a
+  period that starts before the tracking date counts from that date.
+
 ## 1.0.5 - 2026-09-27
 
 - `store.mjs` no longer double-counts App Store Connect reports. Apple's daily
