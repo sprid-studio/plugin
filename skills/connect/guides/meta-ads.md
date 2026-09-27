@@ -7,6 +7,7 @@
 - A Facebook profile with two-factor authentication turned on. Meta will not let you add ad assets without it.
 - A **business portfolio** at [business.facebook.com](https://business.facebook.com). One per company is enough, even with several apps or brands. See **One portfolio or several** below.
 - A **Facebook Page** for the brand. Ads always run from a Page, including the ones shown on Instagram. To create one, see [Create your social accounts](https://sprid.studio/docs/connect/social-accounts).
+- To promote **Instagram** posts: the Instagram account **linked to that Page**. Meta runs an Instagram ad through the Page the profile is linked to, so without the link only Facebook posts can be promoted.
 - An **ad account** with a payment method, one per brand.
 - Optional: a **dataset** (formerly Meta Pixel) if you want campaigns that optimise for signups or purchases.
 
@@ -18,9 +19,10 @@ Skip any step you have already done.
 
 1. **Business portfolio.** Go to [business.facebook.com](https://business.facebook.com) and create a business portfolio under your company’s legal name.
 2. **Page.** In the portfolio, open **Settings → Accounts → Pages** and add the brand’s Page. Give yourself access that includes **Ads**.
-3. **Ad account.** Open **Settings → Accounts → Ad accounts → Add → Create a new ad account**. Pick the **currency** and **time zone** carefully: once the account has spent anything, neither can be changed. Choose the currency of the market you advertise in. Give yourself **Manage campaigns** or full control.
-4. **Payment method.** Open **Billing & payments** for that ad account and add a card. Sprid can connect an account without one, but no campaign can start until it has one.
-5. **Dataset (optional).** Open [Events Manager](https://business.facebook.com/events_manager2) → **Connect data sources → Web**, name it after your domain and copy its **dataset id**. Sprid only needs the id. The events themselves reach it from your site or app, through the Meta Pixel or the Conversions API, and without events a conversion campaign has nothing to optimise for.
+3. **Instagram (to promote Instagram posts).** On the Page, open **Settings → Linked accounts → Instagram** and connect the brand’s Instagram account. It has to be the same account you publish to from Sprid. Sprid reads the link from Meta each time you promote, so you can do this later without reconnecting.
+4. **Ad account.** Open **Settings → Accounts → Ad accounts → Add → Create a new ad account**. Pick the **currency** and **time zone** carefully: once the account has spent anything, neither can be changed. Choose the currency of the market you advertise in. Give yourself **Manage campaigns** or full control.
+5. **Payment method.** Open **Billing & payments** for that ad account and add a card. Sprid can connect an account without one, but no campaign can start until it has one.
+6. **Dataset (optional).** Open [Events Manager](https://business.facebook.com/events_manager2) → **Connect data sources → Web**, name it after your domain and copy its **dataset id**. Sprid only needs the id. The events themselves reach it from your site or app, through the Meta Pixel or the Conversions API, and without events a conversion campaign has nothing to optimise for.
 
 ## Then run
 
@@ -28,7 +30,7 @@ Skip any step you have already done.
 sprid connect meta-ads --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug. Add `--dataset <id>` if you created one in step 5. You can also use **Settings → Accounts → [account] → Meta Ads** in Sprid.
+Replace `<slug>` with your Sprid account slug. Add `--dataset <id>` if you created one in step 6. You can also use **Settings → Accounts → [account] → Meta Ads** in Sprid.
 
 ## Click path (the connect)
 
@@ -66,12 +68,14 @@ Give each ad account its own payment method where you can, and add a second admi
 - **“Re-run the connect with --page / --ad-account”:** the profile manages several. Copy the right ids from the message and run the command again with them.
 - **“Already connected to another account”:** that ad account is connected to a different Sprid account. Check you picked the right one; move it only if you mean to.
 - **Campaign refuses to start with a conversion goal:** the connection has no dataset. Reconnect with `--dataset <id>`.
-- **Campaign refuses to start at all:** add a payment method to the ad account (step 4).
+- **Campaign refuses to start at all:** add a payment method to the ad account (step 5).
+- **Instagram shows “Not linked” on the Ads page or in Promote:** the Page has no Instagram account linked. Link it (step 3), then press **I’ve linked it**. If the Page is linked to a different Instagram account than the one Sprid publishes to, Meta will only promote that other account’s posts: change the link, or connect the Page that belongs to your Instagram account.
 - **“Invalid Scopes”, app unavailable or “URL blocked”:** contact [Sprid support](mailto:hello@sprid.studio). Only Sprid can fix these.
 - **Expiring connection in `sprid status`:** Meta’s sign-in lasts about 60 days. Run the connect again.
 
 ## Sources
 
+- [Connect a professional Instagram account and a Facebook Page](https://www.facebook.com/business/help/connect-instagram-to-page)
 - [Create a business portfolio](https://www.facebook.com/business/help/1710077379203657)
 - [Add an ad account to your business portfolio](https://www.facebook.com/business/help/915885887059947)
 - [Ad account limits](https://www.facebook.com/business/help/1026272311098874)

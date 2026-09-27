@@ -3,6 +3,15 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.9 - 2026-09-28
+
+- The RevenueCat connect guide explains how to see who buys: send RevenueCat's
+  purchase events to the analytics or attribution tool you already use, under
+  the same user id. The key's permissions are unchanged.
+- The Meta Ads guide says Instagram posts can only be promoted once the
+  Instagram account is linked to the Facebook Page the ad account runs as, and
+  how to link it. The Instagram and ads guides point to it.
+
 ## 1.0.8 - 2026-09-27
 
 - Every marketing review now ends by saving its verdict and ranked agenda to

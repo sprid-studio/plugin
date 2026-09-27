@@ -37,6 +37,18 @@ Ask your agent: “Check that Sprid can read this app’s RevenueCat overview an
 
 Connect the services that record the other sales. Sprid withholds a combined total when RevenueCat may already include the same Stripe or Paddle sales, or when currencies or definitions differ. RevenueCat Web Billing and your own Stripe are separate merchant accounts, so they never overlap.
 
+## See who buys
+
+This key tells Sprid how much you sold, split by country, store, product and, when the app sends attribution to RevenueCat, by campaign. It cannot tell which visitor or user became a buyer. More permissions on this key would not change that: RevenueCat’s API reads customers one at a time.
+
+To see who buys, send RevenueCat’s purchase events to the tool that already knows your users, under the same user id:
+
+1. In the app, give RevenueCat the id your analytics tool uses. Either log the user in with it (`Purchases.logIn`), or set the attribute the integration’s own RevenueCat page names.
+2. In RevenueCat, open **Integrations** and turn on the one you use: Amplitude, Mixpanel, PostHog, Segment, mParticle, Firebase (which reaches Google Analytics), or an attribution provider such as AppsFlyer or Adjust. For anything else, use a webhook or a scheduled export to your warehouse.
+3. Ask the question in that tool: which sources, pages or onboarding steps come before a purchase.
+
+Cookieless analytics such as Plausible count visits without knowing who made them, so there is no user to match. Their UTM sources still line up with RevenueCat’s campaign breakdown as totals.
+
 ## If it fails
 
 - **Key rejected:** check it is an active V2 secret key for this project.

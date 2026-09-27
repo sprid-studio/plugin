@@ -53,6 +53,11 @@ behind it:
 | YouTube | a Google Ads video campaign (YouTube, Shorts, Discover, Gmail) | your Google Ads account |
 | TikTok | a Spark Ad on TikTok | your TikTok ad account |
 
+Instagram needs one more thing: the Instagram account has to be linked to the
+Facebook Page your Meta ad account runs as, because that is how Meta runs an
+Instagram ad. Until it is, the Ads page shows Instagram as **Not linked**, and
+tapping it says what to do.
+
 Sprid checks the ad account can pay before you choose a budget, the network
 reviews the ad, and you get an email when it goes live, is rejected (with the
 network's reason) or ends (with what the money bought). The budget and end date

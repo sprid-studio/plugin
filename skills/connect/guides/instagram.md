@@ -4,7 +4,7 @@
 
 ## You need
 
-- An Instagram **Business** or **Creator** account. A Facebook Page is optional. No account yet? Start with [Create your social accounts](https://sprid.studio/docs/connect/social-accounts).
+- An Instagram **Business** or **Creator** account. A Facebook Page is optional for publishing. To promote Instagram posts as ads, link the account to the Page your [Meta Ads](https://sprid.studio/docs/connect/meta-ads) connection uses. No account yet? Start with [Create your social accounts](https://sprid.studio/docs/connect/social-accounts).
 - Your phone for any two-factor prompt.
 
 To switch a personal account: profile → **≡ → Settings and activity → For professionals → Account type and tools → Switch to professional account** → pick a category → **Creator** or **Business**. You can skip linking a Facebook Page.
