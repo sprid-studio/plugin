@@ -7,6 +7,7 @@ Sprid’s review packet includes a versioned `dataset`: observations, checked re
 - `definition` names the entity, measurement kind, unit, calculation basis and implementation version. An active subscription is not a unique customer; a store download is not an activated person.
 - `window` uses an exclusive end and retains its calendar. `asOf` belongs to a snapshot; `fetchedAt` records collection. Historical revenue and current MRR are separate observations.
 - `quality` separates coverage, pagination, sampling, finality and trust. A successful HTTP request does not prove complete coverage. Unknown, pending, suppressed and unavailable values remain missing.
+- Social post metrics are cumulative snapshots sampled before the end. Pinterest Pin metrics are dated daily activity summed over the days actually observed, with that coverage attached; a missing day is unmeasured, not zero. Never subtract one rolling total from another, and compare Pins at equal ages.
 - `value.kind: money` stores an exact decimal coefficient and scale with a currency and conversion policy. Do not assume every provider amount is cents. Keep gross, refunded revenue and proceeds separate.
 
 ## Respond to a blocked calculation

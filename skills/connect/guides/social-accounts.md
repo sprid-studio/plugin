@@ -58,13 +58,17 @@ Then follow the [YouTube connection guide](https://sprid.studio/docs/connect/you
 
 Create or sign in to each account in TikTok, confirm the handle and the owner’s recovery access, and complete any verification yourself. Then follow the [TikTok connection guide](https://sprid.studio/docs/connect/tiktok).
 
+## Set up Pinterest
+
+Create a free business account at [Pinterest for business](https://www.pinterest.com/business/create/), or convert an existing personal account in its settings; a private personal account has to be made public first. Pinterest Analytics needs a business account. Claim your website there if Pins will link to it, then create one or two boards named for topics people search. Then follow the [Pinterest connection guide](https://sprid.studio/docs/connect/pinterest).
+
 ## Then run
 
 ```sh
 sprid connect instagram --account yourbrand
 ```
 
-Use your Sprid publishing-account slug and the platform: `instagram`, `facebook`, `youtube` or `tiktok`. Connect only accounts that already exist.
+Use your Sprid publishing-account slug and the platform: `instagram`, `facebook`, `youtube`, `tiktok` or `pinterest`. Connect only accounts that already exist.
 
 In an agent-controlled browser, add `--no-browser` and open the returned authorization link in the session signed in to the correct account. Keep that link private.
 
@@ -97,3 +101,4 @@ Run `sprid status --json` and match each platform identity to its Sprid publishi
 - [Create a Facebook Page](https://www.facebook.com/pages/create/)
 - [YouTube channel list](https://www.youtube.com/channel_switcher)
 - [YouTube feature eligibility](https://support.google.com/youtube/answer/9891124?hl=en)
+- [Get a Pinterest business account](https://help.pinterest.com/en/business/article/get-a-business-account)

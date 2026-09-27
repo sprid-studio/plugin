@@ -1,6 +1,6 @@
 # Pinterest
 
-**What Sprid does with this:** Publish the Pins you select to the right boards, keep their destination links intact and read their results when analytics access is available.
+**What Sprid does with this:** Publish the image and video Pins you select to the right boards, keep their destination links intact and read their daily results.
 
 ## You need
 
@@ -33,10 +33,6 @@ Run `sprid status` and confirm Pinterest shows the intended account. Open a draf
 
 After the first Pin publishes, open Pinterest signed out or from another account and check the Pin, board, visual, title and destination. A successful API response does not prove public visibility.
 
-## Trial and Standard access
-
-Public Pins need **Sprid’s** Pinterest app to have Standard access. This is Sprid’s approval, not something you apply for. Until then Sprid runs Pinterest in test mode: you can connect, pick or create boards and publish image Pins, but every Pin and board it creates is visible only to you, on your own profile. Video Pins are not available in test mode. When Standard access arrives, reconnect once: a test-mode connection cannot publish public Pins.
-
 ## Prepare the account
 
 Create a few specific boards around topics people search for, such as “Small apartment viewing checklist” rather than “Inspiration”. Board names, descriptions and saved Pins give Pinterest context.
@@ -47,18 +43,26 @@ Read [Pinterest content and publishing](https://sprid.studio/docs/pinterest) bef
 
 ## If it fails
 
-- **“Pinterest is unavailable until API credentials and an access tier are configured”:** this Sprid deployment is not ready for Pinterest. Follow Sprid’s status or contact support; you do not supply credentials.
+- **Sprid says Pinterest is unavailable:** Pinterest is not enabled on the Sprid server you are using. Contact [Sprid support](mailto:hello@sprid.studio); you do not supply credentials.
 - **Wrong account connected:** disconnect it in Sprid, sign out of Pinterest in that browser, then reconnect and check the identity before authorizing.
 - **“No Pinterest boards yet”:** create one from the board picker. If Sprid asks for board permission, reconnect once; older connections lack the board write scope.
 - **Existing boards missing:** reconnect once, then contact [Sprid support](mailto:hello@sprid.studio) with the account name and error.
 - **Access denied:** confirm the Pinterest account is active and you finished the consent screen. Retry once, then contact Sprid support.
-- **“Reconnect Pinterest to create test Pins” or “…to publish public Pins”:** the connection was made under the other access tier, and its token only works there. Reconnect once. See Trial and Standard access above.
-- **Boards missing in test mode:** test mode sees only boards created in test mode. Create one from the board picker.
+- **“Reconnect Pinterest to publish public Pins”:** the saved connection cannot publish. Reconnect once with the same Pinterest account.
 - **Analytics unavailable:** use a business account and check the Pin is public. Unavailable data is unavailable, not zero.
+
+## Investigate with this connection
+
+Operation `posts`, read from Sprid’s stored Pin publishes and collected daily Pin metrics: impressions, saves, Pin clicks, outbound clicks and video views, summed up to the exclusive end with the days actually observed. There is no `comments` operation: Sprid does not collect Pinterest comments. Compare Pins at equal ages, such as 30, 60 and 90 days. An outbound click is someone leaving Pinterest, not a website session or an install. Live results for one Pin come from `get_pinterest_metrics` (MCP) or `GET /api/metrics/pinterest`.
+
+```sh
+sprid marketing-review capabilities --app <slug> --source pinterest --json
+```
+
+See [connected queries](https://sprid.studio/docs/queries).
 
 ## Sources
 
-- [Pinterest developer access tiers](https://developer.pinterest.com/docs/key-concepts/access-tiers/)
 - [Pinterest developer guidelines](https://policy.pinterest.com/en/developer-guidelines)
 - [Claim your website](https://help.pinterest.com/en/business/article/claim-your-website)
 - [Pinterest Analytics](https://help.pinterest.com/en/business/article/pinterest-analytics)

@@ -59,15 +59,15 @@ Privacy level, comment/duet/stitch permissions and the commercial-content disclo
 
 ## Pinterest
 
-For cadence advice or a request to fill the Pinterest queue, read the guide’s “Choose a cadence to test” and “Review and schedule in Sprid” sections. Keep its suggested cadences labelled as experiments; respect an existing user-chosen schedule. Check timezone, occupied days and unplaced Pins in the dry run before committing.
+For cadence advice or a request to fill the Pinterest queue, read the guide’s “Choose a cadence to test” and “Review and schedule the batch” sections. Keep its suggested cadences labelled as experiments; respect an existing user-chosen schedule. Check timezone, occupied days and unplaced Pins in the dry run before committing.
 
-Use `list_connections` to select the exact Pinterest `channelId`, then `list_pinterest_boards`. If it returns no boards, say so and use `create_pinterest_board` only after the user supplies or approves the name and privacy. An image Pin is one post, preferably created at `aspectRatio: "2:3"`; a video Pin is one finished video, preferably 9:16. Save its board, optional section, title, description, destination, alt text and disclosures as `pinterestOptions` through `update_post`. Render and show the preview.
+Use `list_connections` to select the exact Pinterest `channelId`, then `list_pinterest_boards`. If it returns no boards, say so and use `create_pinterest_board` only after the user supplies or approves the name and privacy. An image Pin is one post, preferably created at `aspectRatio: "2:3"`; a video Pin is one finished video, preferably 9:16, and a finished reel can go out as one. A carousel deck is not a Pin. Every Pin needs a board and a destination link. Give the plain destination URL: Sprid adds per-Pin tracking parameters (`utm_source=pinterest` and the publish ID) when it publishes, which is how the site’s analytics sees the visit. A link that already carries its own `utm_source` goes out as written and loses that per-Pin attribution, so add your own only when you need your own campaign names. Save its board, optional section, title, description, destination, alt text and disclosures as `pinterestOptions` through `update_post`. Render and show the preview.
 
-Before scheduling, show the concrete Pin or dry-run batch and have the user select every Pin. That one selection authorizes the saved schedule; the cron publishes it later without another approval. Added or edited Pins need review before they join the schedule. Read results with `get_pinterest_metrics`; keep outbound clicks separate from Pin clicks, saves and activation.
+Before scheduling, show the concrete Pin or dry-run batch and have the user select every Pin. That one selection authorizes the saved schedule; the cron publishes it later without another approval. Added or edited Pins need review before they join the schedule. Read results with `get_pinterest_metrics`: dated daily impressions, saves, Pin clicks, outbound clicks and video views. Saves are interest on Pinterest; an outbound click is someone leaving it, and neither is a site session or an install. Pins keep being found for months, so compare them at equal ages (30, 60 and 90 days), never a fresh Pin against an old one and never on a first-48-hours read. There are no likes, comments or shares, and Pin comments are not collected into the Inbox.
 
 ## Captions and hashtags
 
-One field per platform. Hashtags live in the caption, on their own line at the end; there is no separate tag field and any tool call carrying one is refused by name.
+One field per platform. Hashtags live in the caption, on their own line at the end; there is no separate tag field and any tool call carrying one is refused by name. A Pin has no caption: people read the title and description saved in `pinterestOptions`.
 
 ## What not to do
 

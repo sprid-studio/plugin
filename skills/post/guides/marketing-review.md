@@ -20,6 +20,7 @@ In a browser chat there is no repository. For a question about a shipped change,
 `list_marketing_queries` lists supported reads and their schemas; `query_marketing_source` runs them with Sprid’s saved credentials. Follow pagination and keep truncation visible. `get_documentation` with `metrics` covers definitions and refused calculations; with `queries`, source-specific reads.
 
 - Keep acquisition apart from activation, and people apart from events. A post impression is not an install; a download is not an activated user.
+- Pinterest Pins resurface for months: compare them at equal ages (30, 60 and 90 days). Saves are interest on Pinterest and outbound clicks are people leaving it; neither is a site session or an install. The `pinterest` source has `posts` only, with no comments. See [Pinterest content and publishing](pinterest.md).
 - Compare equal windows and comparable populations.
 - No onboarding events means recommending instrumentation, not guessing a funnel.
 - Keep revenue sources separate until the overlap check says they can be added.

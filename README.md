@@ -47,7 +47,7 @@ The `/sprid:` names below are Claude Code commands. In Codex, select the corresp
 
 ## What the first run does
 
-Reads the repo and the public listing. Comes back with the listing graded (5 checks, quoted), a recommended channel and the evidence for testing it, a voice guide lifted from your own copy, one drafted carousel that sounds like you, and `.sprid/app.json`, the App Profile that connects the repo to Sprid. No token, no account, nothing sent anywhere.
+Reads the repo and the public listing. Comes back with the listing graded (5 checks, quoted), a recommended channel and the evidence for testing it, a voice guide lifted from your own copy, one drafted carousel that sounds like you (a Pin when Pinterest is the channel), and `.sprid/app.json`, the App Profile that connects the repo to Sprid. No token, no account, nothing sent anywhere.
 
 ## Skills
 
@@ -62,8 +62,8 @@ Reads the repo and the public listing. Comes back with the listing graded (5 che
 | `/sprid:scout` | "who is winning in my niche", "what ads are they running" | Measures the accounts working in your niche and harvests the public ad library, over your own browser, filed locally |
 | `/sprid:ads` | "run ads", "how is the campaign doing" | Campaigns, sets and creatives built from archetypes, through a copy gate, with one confirmed call that spends |
 | `/sprid:principles` | "why", "should I run ads" | Decision checks for channels, acquisition economics and content, tested against your own evidence |
-| `/sprid:post` | "post this", "fill the queue" | Draft, review, schedule and publish through Sprid |
-| `/sprid:reels` | "reels", "why did it get no views", "video at volume" | Format selection, reproducible localization, render checks and outcome measurement |
+| `/sprid:post` | "post this", "make a Pin", "fill the queue" | Draft, review, schedule and publish a Pin, carousel or reel through Sprid |
+| `/sprid:reels` | "reels", "why did it get no views", "video at volume" | Reels, TikToks, Shorts and video Pins: format selection, reproducible localization, render checks and outcome measurement |
 
 ## Marketing review
 
@@ -80,7 +80,7 @@ notes can be imported with `tools/migrate-review.mjs --from <mapping.json> --app
 
 ## What it touches
 
-Reads your repo, the public store pages, and, with your keys on your machine, your own analytics. Writes markdown under `marketing/` and `.sprid/app.json`. Never puts a secret in the conversation. Never posts, replies or follows on its own: it publishes when you ask it to, through the platforms’ official APIs. A TikTok post also needs its privacy, interaction and disclosure choices, which are made on the posting screen; a Pinterest pin needs its reviewed details.
+Reads your repo, the public store pages, and, with your keys on your machine, your own analytics. Writes markdown under `marketing/` and `.sprid/app.json`. Never puts a secret in the conversation. Never posts, replies or follows on its own: it publishes when you ask it to, through the platforms’ official APIs. A TikTok post also needs its privacy, interaction and disclosure choices, which are made on the posting screen; a Pinterest Pin needs its reviewed board, link and details.
 
 ## Connecting to Sprid
 

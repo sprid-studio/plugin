@@ -71,6 +71,16 @@ function col(row, ...res) {
 // Download every DAILY instance's segments overlapping [start,end), parse, and reduce
 // with `fn`. `fn` receives (row, acc, rowDate) so callers can bucket by window themselves
 // — we read the widest range once rather than re-downloading per window.
+//
+// Daily instances OVERLAP: each one re-delivers the previous day or two in full
+// (App Downloads Standard carries 2 dates per instance, Discovery and Engagement 3,
+// measured on a live app 2026-09-27), and Apple's rule is that the latest processing
+// instance replaces a date's whole batch. Summing every instance counted each
+// downloads day twice and each engagement day three times. So rows are grouped
+// by Date per instance, each Date is taken from exactly one instance (latest
+// processingDate, ties broken by id so the result is deterministic), and `fn`
+// only runs once every instance is in.
+// https://developer.apple.com/documentation/analytics-reports/data-completeness-corrections
 async function ascReadReport(token, reportId, start, end, fn, acc) {
   const instances = await ascList(token, `/analyticsReports/${reportId}/instances?filter[granularity]=DAILY&limit=200`);
   const inRange = (instances.data || []).filter((i) => {
@@ -79,9 +89,12 @@ async function ascReadReport(token, reportId, start, end, fn, acc) {
     const d = i.attributes?.processingDate; return d && d >= start;
   });
   let sampledHeader = null;
-  const dates = new Set();
+  // Date -> the one instance whose rows count for it.
+  const byDate = new Map();
+  let superseded = 0, ties = 0;
   const readInstance = async (inst) => {
     const segs = await ascList(token, `/analyticsReportInstances/${inst.id}/segments`);
+    const own = new Map();
     for (const seg of segs.data || []) {
       const url = seg.attributes?.url; if (!url) continue;
       const response = await request(url);
@@ -93,13 +106,26 @@ async function ascReadReport(token, reportId, start, end, fn, acc) {
       for (const r of rows) {
         const dk = col(r, /^Date$/i);
         const date = dk ? r[dk] : null;
-        if (date && date >= start && date < end) dates.add(date);
-        fn(r, acc, date);
+        // Rows outside the window never reach a bucket, so they are not retained.
+        if (!date || date < start || date >= end) continue;
+        if (!own.has(date)) own.set(date, []);
+        own.get(date).push(r);
       }
     }
+    // Merge only a fully read instance: a date's batch may span several segments.
+    const revision = String(inst.attributes?.processingDate ?? '');
+    const id = String(inst.id);
+    for (const [date, rows] of own) {
+      const held = byDate.get(date);
+      if (held) {
+        superseded++;
+        if (revision === held.revision) ties++;
+        if (revision < held.revision || (revision === held.revision && id < held.id)) continue;
+      }
+      byDate.set(date, { revision, id, rows });
+    }
   };
-  // Independent daily instances dominate Apple latency. Keep a small pool and
-  // reduce each download immediately instead of retaining whole reports in memory.
+  // Independent daily instances dominate Apple latency. Keep a small pool.
   // Drain in-flight reads on failure; never leave collectors running after return.
   let cursor = 0, stopped = false;
   const outcomes = await Promise.allSettled(Array.from({ length: Math.min(3, inRange.length) }, async () => {
@@ -111,7 +137,9 @@ async function ascReadReport(token, reportId, start, end, fn, acc) {
   }));
   const failed = outcomes.find(result => result.status === 'rejected');
   if (failed) throw failed.reason;
-  return { instances: inRange.length, header: sampledHeader, dates: [...dates].sort() };
+  const dates = [...byDate.keys()].sort();
+  for (const date of dates) for (const r of byDate.get(date).rows) fn(r, acc, date);
+  return { instances: inRange.length, header: sampledHeader, dates, superseded, ambiguousDates: ties };
 }
 
 const emptyAscMetrics = () => ({ impressions: 0, productPageViews: 0, taps: 0, downloads: 0, firstTimeDownloads: 0, redownloads: 0 });
@@ -258,6 +286,9 @@ export async function collectAppStore(token, appId, w, allowCreate = false) {
         ? 'Prior downloads are zero. This can mean no downloads, suppressed rows, or unavailable history. Verify report coverage before interpreting a change.'
         : null,
       acc.maxDate && acc.maxDate < inclusiveEnd(w.curEnd) ? `ASC data runs through ${acc.maxDate}, not ${w.curEnd}.` : null,
+      (meta.engagement?.ambiguousDates || 0) + (meta.downloads?.ambiguousDates || 0)
+        ? 'Apple delivered some dates in two instances with the same processing date; one instance was kept per date by id. Verify those days before quoting them.'
+        : null,
     ].filter(Boolean).join(' '),
     _debug: meta,
   };

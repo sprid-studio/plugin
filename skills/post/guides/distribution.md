@@ -3,7 +3,8 @@
 **What this guide does:** Explains what Instagram and TikTok actually reward,
 and turns each mechanic into a rule you can build a post against. Read it before
 deciding a format, a slide count or a caption length, and when a post that
-looked good got no reach.
+looked good got no reach. Pinterest works on search and has its own guide,
+[Pinterest content and publishing](pinterest.md).
 
 Whether a post is *good* and whether it *travels* are two different questions.
 This one is about the second. Every rule here exists because of a specific
@@ -59,6 +60,16 @@ effort on the prose.
   bounces on slide one.
 - Interest-based distribution means an outlier is possible from your first post.
   TikTok is spikier; Instagram grinds.
+
+## Pinterest
+
+The rules below are for Instagram and TikTok and do not apply to a Pin.
+Pinterest is visual search: a Pin is found through search, home feeds and
+related Pins for months, mostly regardless of followers, so there is no
+first-hour test batch and no second slide. Relevance comes from the image, the
+title and description, the board and the page the link opens. Judge Pins at
+equal ages (30, 60 and 90 days) by outbound clicks and what they lead to on
+your site.
 
 ## What follows for how you build a post
 

@@ -109,6 +109,17 @@ one hardest to get:
 - Taps through to your site or store are the number that pays. The rest are
   directional.
 
+## A reel as a Pinterest video Pin
+
+The same file can go out as a video Pin, with its own board, destination link,
+title and description. The timing arithmetic still holds for whoever presses
+play. The kill rule does not carry over: a Pin is found through search and
+related Pins for months, with no first test batch, so compare video Pins at
+equal ages (30, 60 and 90 days). Pinterest reports daily impressions, saves, Pin
+clicks, outbound clicks and video views (2 seconds with half the video in view),
+with no hook rate, retention curve, likes, comments or shares. The number that
+pays is outbound clicks followed through to visits and activation.
+
 ## One picture, many languages
 
 The reason a demo video is usually made once is that the work is a person

@@ -32,7 +32,9 @@ product, audience and business model before recommending a change.
   missing, propose an explicitly bounded measurement experiment. Drafting does
   not authorize spend; launching requires the user's approval.
 - **Treat engagement as an intermediate outcome.** Views, saves and shares can
-  inform creative decisions. Use attributable visits, activation, purchases or
+  inform creative decisions. Compare posts at equal ages: a reel is read in its
+  first days, a Pinterest Pin keeps being found for months and is read at 30,
+  60 and 90 days. Use attributable visits, activation, purchases or
   another declared product outcome for business decisions. State attribution gaps.
 - **Keep distribution state visible.** Distinguish drafts, approvals, scheduled
   rows and confirmed publishes. Diagnose the step that prevents distribution

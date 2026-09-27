@@ -3,6 +3,19 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.5 - 2026-09-27
+
+- `store.mjs` no longer double-counts App Store Connect reports. Apple's daily
+  report instances overlap (each re-delivers the previous day or two), and the
+  review summed every instance: first-time downloads and their source and
+  territory splits came out about 2x, impressions and page views about 3x. Each
+  date is now read from its latest processing instance only.
+- Pinterest is a full channel across the skills and references: connected
+  queries list `pinterest` `posts` (no `comments`, since Sprid collects no Pin
+  comments), Pins are read at equal ages with saves and outbound clicks kept
+  apart, and a reel can go out as a video Pin. `sprid post` lanes target
+  Pinterest with a `pinterest` block (needs CLI 0.1.13).
+
 ## 1.0.4 - 2026-09-26
 
 - Credits are quoted to the person as Sprid credits, one to a cent: a render

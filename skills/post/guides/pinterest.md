@@ -19,7 +19,7 @@ Pick the page and the action before making the visual:
 1. One useful guide, tool, feature page or store destination.
 2. The concrete question it answers.
 3. One next action that continues the same task, such as opening that feature.
-4. Campaign parameters added without removing existing ones, with a stable Pin or creative ID so visits trace back to the exact Pin.
+4. The plain destination URL. When it publishes, Sprid adds `utm_source=pinterest` and the Pin’s publish ID, so visits trace back to the exact Pin. A link that already carries its own `utm_source` goes out as written and loses that per-Pin tagging; add your own only for your own campaign names.
 
 The page must deliver the pictured promise immediately and work on a phone. A specific Pin that lands on a generic homepage breaks the promise. A store visit is not an install, and an outbound click is not activation: report each step separately.
 
@@ -70,8 +70,6 @@ The visual earns attention, the metadata gives context, the destination complete
 
 ## Publish your first Pin
 
-Publishing and scheduling need Sprid’s Pinterest app to have Standard access. With Trial access you can connect, browse boards and prepare drafts, but Sprid refuses to publish or schedule. That access belongs to Sprid’s integration; you don’t apply for a developer app.
-
 1. Connect Pinterest, run `sprid status` and confirm the account.
 2. Create or open a post with exactly one image (ideally 2:3) or one finished video (ideally 9:16).
 3. Open **Publish**, select **Pinterest**, then pick a **Board** and optional section.
@@ -112,6 +110,8 @@ Before approving, check every Pin’s creative, metadata, destination, board and
 - **Pin clicks:** opens of the Pin in close-up.
 - **Outbound clicks:** clicks through to a destination outside Pinterest.
 - **Video views:** at least 2 seconds with at least 50% of the video in view.
+
+Each is dated daily activity, kept as its own number. Pinterest reports no likes, comments or shares here, and Sprid does not collect Pin comments, so there is nothing for a Pin in the Inbox.
 
 For app growth the path is **impression → outbound click → qualified visit → app action → activation**. Saves are a diagnostic, not the goal: a Pin with many saves and few outbound clicks may be a good reference on Pinterest and bring little acquisition.
 

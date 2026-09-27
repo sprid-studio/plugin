@@ -1,6 +1,6 @@
 ---
 name: reels
-description: Plan, build and review vertical videos from app screens, photographs, text or a custom renderer. Use for reels, TikToks, Shorts, video localization, batch production or diagnosing video performance.
+description: Plan, build and review vertical videos from app screens, photographs, text or a custom renderer. Use for reels, TikToks, Shorts, video Pins, video localization, batch production or diagnosing video performance.
 ---
 
 # /sprid:reels
@@ -36,6 +36,12 @@ and the build command with each spec so edits can be reproduced.
 - Custom graphics or generated media: use the customer's renderer through a
   `build:` command in `sprid.config.ts`, then register, check, preview and draft
   with `sprid post`. Preserve the customer's established rendering pipeline.
+- A lane that should also go to Pinterest gets a `pinterest` block: `boardId`,
+  a `link` containing `<slug>`, and `title`, `description` and `altText`.
+  Sprid tags each Pin's link for attribution; the optional `utm` is off by
+  default and replaces that per-Pin tagging, so set it only for your own
+  campaign names. `sprid post check` refuses a Pin with no board or link, more
+  than one slide, or an image taller than 2:3.
 
 ## Review before scheduling
 
@@ -56,6 +62,13 @@ with duration, audience, sample size and publication window visible. For acquisi
 follow through to attributable visits and product outcomes when coverage allows.
 Average watch time is not a direct measurement of retention at a particular second.
 State unavailable metrics and avoid universal kill thresholds or guarantees of reach.
+
+A reel published as a Pinterest video Pin is judged differently. Pins are found
+through search and related Pins for months, so compare them at equal Pin ages
+(30, 60 and 90 days) and never on a first-48-hours read. Its numbers are dated
+daily impressions, saves, Pin clicks, outbound clicks and video views, with no
+retention curve, likes, comments or shares. Read the
+[Pinterest guide](../post/guides/pinterest.md) before judging one.
 
 ## Then: what is next
 
