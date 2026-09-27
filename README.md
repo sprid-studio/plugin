@@ -9,7 +9,7 @@ For developers with apps in the stores. The skills run in your repo with your ke
 
 ## Install
 
-The plugin includes native manifests for Codex and Claude Code, sharing all eleven skills and the same MCP server.
+The plugin includes native manifests for Codex, Claude Code and Cursor, sharing all eleven skills and the same MCP server.
 
 ### Codex
 
@@ -24,6 +24,21 @@ Start a new thread in your app repo and ask: “Use Sprid’s bootstrap skill.�
 existing app: “Use Sprid’s marketing-review skill.” Read
 [agent runtime](references/agent-runtime.md) for MCP connection and script paths.
 
+### Cursor
+
+In Cursor, open **Customize**, choose **From GitHub Repository** and paste
+`https://github.com/sprid-studio/plugin`. The plugin brings the skills and the Sprid
+connection; sign in to Sprid from Cursor’s MCP settings when you need live data.
+
+Prefer the terminal (Terminal → New Terminal in Cursor)? Install the skills alone:
+
+```sh
+npx skills add sprid-studio/plugin --agent cursor
+```
+
+Then add the connection with [Add to Cursor](https://sprid.studio/docs/mcp?agent=cursor).
+Start a new Agent chat in your app repo and ask: “Use Sprid’s bootstrap skill.”
+
 ### Claude Code
 
 ```
@@ -31,7 +46,7 @@ existing app: “Use Sprid’s marketing-review skill.” Read
 /plugin install sprid@sprid
 ```
 
-Or the skills alone, for Cursor, Codex, OpenClaw and the rest:
+Or the skills alone, for Codex, OpenClaw and the rest:
 
 ```
 npx skills add sprid-studio/plugin
@@ -43,7 +58,7 @@ Then, in an app repo:
 /sprid:bootstrap
 ```
 
-The `/sprid:` names below are Claude Code commands. In Codex, select the corresponding Sprid skill or ask for it by name. [Agent runtime](references/agent-runtime.md) describes portable tool discovery and script paths.
+The `/sprid:` names below are Claude Code commands. In Codex and Cursor, select the corresponding Sprid skill or ask for it by name. [Agent runtime](references/agent-runtime.md) describes portable tool discovery and script paths.
 
 ## What the first run does
 

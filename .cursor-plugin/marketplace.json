@@ -1,0 +1,17 @@
+{
+  "name": "sprid",
+  "owner": {
+    "name": "Sprid",
+    "email": "hello@sprid.studio"
+  },
+  "metadata": {
+    "description": "Sprid's plugin for Cursor: marketing skills for your app's repo and the Sprid MCP connection."
+  },
+  "plugins": [
+    {
+      "name": "sprid",
+      "source": "./",
+      "description": "Read your repo and store listing, review marketing analytics against what shipped, prepare store assets, and draft content in your app's voice."
+    }
+  ]
+}

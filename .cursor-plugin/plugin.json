@@ -1,0 +1,23 @@
+{
+  "name": "sprid",
+  "displayName": "Sprid",
+  "description": "Marketing for your app, inside your coding agent: diagnose distribution, review analytics, prepare store assets, and manage content through Sprid.",
+  "version": "1.0.7",
+  "author": {
+    "name": "Sprid",
+    "email": "hello@sprid.studio"
+  },
+  "publisher": "Sprid",
+  "homepage": "https://sprid.studio/docs/install?agent=cursor",
+  "repository": "https://github.com/sprid-studio/plugin",
+  "keywords": [
+    "marketing",
+    "analytics",
+    "app-store",
+    "aso",
+    "mcp"
+  ],
+  "category": "marketing",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

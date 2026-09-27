@@ -3,6 +3,14 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.7 - 2026-09-27
+
+- The plugin installs in Cursor. A `.cursor-plugin/` manifest and marketplace
+  file let Cursor's Customize → From GitHub Repository import the whole plugin,
+  skills and Sprid connection together, with no terminal. The README gains a
+  Cursor section; `npx skills add ... --agent cursor` stays as the terminal
+  route.
+
 ## 1.0.6 - 2026-09-27
 
 - The PostHog connect guide gains "Keep your own testing out": flag your own
