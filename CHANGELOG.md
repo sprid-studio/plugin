@@ -3,6 +3,20 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.8 - 2026-09-27
+
+- Every marketing review now ends by saving its verdict and ranked agenda to
+  Sprid (`save_marketing_review`, or `sprid marketing-review save`), and starts
+  by reading the last saved one. The full report still stays in the repo; the
+  app's Reviews page shows what each review concluded.
+- Posts handed over for review come with a one-click link: the Sprid review
+  screen or editor for posts in Sprid, and a browser preview for media rendered
+  locally, instead of a bare post id or file path.
+- When a post or reel needs the user's eyes, the post and reels skills now
+  open a local render in the browser (`sprid media preview --open`) and link
+  anything already in Sprid straight to its review screen or editor, instead
+  of naming a post ID.
+
 ## 1.0.7 - 2026-09-27
 
 - The plugin installs in Cursor. A `.cursor-plugin/` manifest and marketplace

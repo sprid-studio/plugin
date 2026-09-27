@@ -39,7 +39,7 @@ The authenticated `?surface=core` list is the everyday workflow. Every other ver
 4. `batch_update_slides` with the copy. Use the selected account’s templates and voice; `/sprid:bootstrap` §4 provides a starting structure when neither exists.
 5. `search_images` by tag and mood; `generate_image` only when generation is authorized and `spend_status` shows headroom. Choose style, subjects and demographics from the brief and account guidance. Do not inject another brand’s camera style or restrictions.
 6. `review_post`. Fix every applicable error, then re-review. Apply the configured account and format gates. For Pinterest, do not rewrite a useful standalone Pin to satisfy an Instagram/TikTok open-loop, slide-count or completion gate; report that gate as inapplicable and use the Pinterest guide. Report the returned review result and keep other unresolved failures in draft; do not invent a universal score threshold.
-7. `render_post_preview` and show the user the images.
+7. `render_post_preview` and show the user the images, with the post linked as in [Hand it over for review](#hand-it-over-for-review).
 8. Schedule with the narrowest bulk verb that fits:
    - Adding a destination to an existing future queue: `mirror_schedule` with its default dry run, inspect every post/time/error, then repeat with `dryRun: false`.
    - Placing several unscheduled posts on a cadence: `schedule_batch` with `dryRun: true`, inspect every placement/error, then repeat with `dryRun: false`.
@@ -48,6 +48,15 @@ The authenticated `?surface=core` list is the everyday workflow. Every other ver
 Do not loop over `schedule_post` when either bulk verb fits. Both bulk paths preflight the complete queue before writing, so one invalid destination or media file stops the run with zero new bookings. A later concurrent channel change can still interrupt execution; report each returned placement rather than claiming the whole batch from the call alone.
 
 For supplied artwork or MP4s, use `import_assets` then `create_post_from_assets`; reuse its request ID on retry. If chat cannot transfer a file, use `create_upload_session`. `preview_post` returns media and the shared approval link. Explicit hosted photos/text creation uses `create_reel` when available, after render-spend authorization. Publish-time composition remains disabled: both hosted creation and local rendering must produce one finished MP4 before scheduling. Read the chat guide for limits and job recovery.
+
+## Hand it over for review
+
+Whenever the user has to look at something, give them a way to open it in one click. A bare post ID or a file path sends them hunting for it.
+
+- **Rendered locally and not yet in Sprid** (a reel or stills from `sprid media build`, or the output of the app's own renderer): open it in their browser for them. `sprid media preview --open` puts the whole batch on one page, as a grid and a feed you arrow through; use `--serve` instead when they need to scrub a video or are on Safari. For a single file outside the registry, run `open <file>` on macOS or `xdg-open <file>` on Linux. Say in one line what just opened.
+- **In Sprid** (an idea, draft, scheduled or published post): link every post you mention to its screen in Sprid, as a Markdown link on the post's title or ref. The review screen, where a person approves it and makes the platform choices, is `https://app.sprid.studio/p/<id>`. The editor is `https://app.sprid.studio/post/<id>`. Both accept the ref (`BND-78`) as well as the number. Prefer a link a tool returned (`preview_post`, `next.web.url`) over one you build. Link the review screen when the ask is to approve or schedule, and the editor when the ask is to change something.
+
+Once local work has been pushed into Sprid, the Sprid link is the one to act on, because that is where approval happens. When the agent runs on the user's machine and exactly one post is waiting, also `open` its link; for a batch, give the list of links rather than opening a tab per post.
 
 ## Apps and accounts
 
@@ -78,4 +87,4 @@ One field per platform. Hashtags live in the caption, on their own line at the e
 
 ## Report
 
-What is scheduled (date, platform, post id), what is in draft and why, and the one thing waiting on the user.
+What is scheduled (date, platform, and the post linked to its Sprid screen), what is in draft and why, and the one thing waiting on the user, with the link that does it.

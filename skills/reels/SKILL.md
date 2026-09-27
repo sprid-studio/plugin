@@ -52,7 +52,9 @@ Measure and listen to the audio when sound is intended; intentional silence is v
 Keep audio rights and platform disclosure requirements with the publishing decision.
 
 Do not treat a successful render as proof of creative quality. Show the preview
-and resolve failures before scheduling. Follow [post](../post/SKILL.md) for
+and resolve failures before scheduling. Open a local render in the user's
+browser with `sprid media preview --open`, and link a reel already in Sprid to
+its screen there, as in [post: hand it over for review](../post/SKILL.md#hand-it-over-for-review). Follow [post](../post/SKILL.md) for
 publishing authorization and platform-specific choices.
 
 ## Measure the declared outcome
