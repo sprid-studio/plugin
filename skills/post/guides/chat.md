@@ -37,7 +37,9 @@ Call `create_post_from_assets` with a new UUID `requestId`, the account, ordered
 - `presentation: "editable"` allows `text` and `subtitle` on image slides.
 - One finished video becomes one reel. Never mix a video with image slides.
 
-Edit with `update_post` (captions) and `update_slide` or `batch_update_slides` (slides). Call `preview_post` and check every slide or the video: captions, order, crop, legibility. Preview links work even if the chat can’t embed them. A preview is not approval to publish.
+Edit with `update_post` (captions) and `update_slide` or `batch_update_slides` (slides). Call `preview_post` and check every slide or the video: captions, order, crop, legibility. It returns a small image of each slide for the agent to look at and an embedded preview for the person; a chat without embedded apps still shows the images. A preview is not approval to publish.
+
+Agent: show the person the preview, and link every post you mention with the `links` the tools return, as a Markdown link on its ref or title: `links.review` when the ask is to approve or schedule, `links.editor` when it is to change something. Never draw the slides in your own widget or artifact: those sandboxes block Sprid's media host and the images show broken.
 
 ## Make a reel from photos or text
 

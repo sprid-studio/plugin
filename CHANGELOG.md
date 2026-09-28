@@ -3,6 +3,17 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.10 - 2026-09-28
+
+- Previews show in the chat. `preview_post` and `render_post_preview` return a
+  small image of every slide, which the agent checks before calling a post done
+  and shows you. The post skill and chat guide tell the agent never to redraw a
+  preview in its own widget, where Sprid's media host is blocked and every
+  image shows broken.
+- Every post the agent mentions is a link to its page in Sprid: the review
+  screen when you are approving or scheduling, the editor when something needs
+  changing.
+
 ## 1.0.9 - 2026-09-28
 
 - The RevenueCat connect guide explains how to see who buys: send RevenueCat's
