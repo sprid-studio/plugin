@@ -3,6 +3,18 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.11 - 2026-09-28
+
+- Carousel, video or both: a post's slides can also go out as a video, and each
+  destination gets the one you choose (for example a photo carousel on TikTok
+  and a reel on Instagram). The post skill explains the video tools, how a
+  render is quoted and confirmed before it is booked, and how a booking waits
+  for its render.
+- TikTok: agents send posts to the creator's TikTok drafts on their own. A
+  direct post goes out only after the person confirms it on Sprid's posting
+  screen; the agent hands over that link instead of choosing privacy or
+  disclosure itself.
+
 ## 1.0.10 - 2026-09-28
 
 - Previews show in the chat. `preview_post` and `render_post_preview` return a

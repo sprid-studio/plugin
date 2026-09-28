@@ -8,7 +8,7 @@ description: Draft, review, schedule and publish a Pin, carousel or reel through
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Reuse the plan's accepted audience, guidance bundle and prepared artifact instead of asking for a new brief.
 
-Sprid MCP supplies connected operations; this skill supplies editorial method. Read [Use Sprid in chat](guides/chat.md) for the complete browser-only path, attachment imports and hosted creation. Read [Build locally](guides/local.md) when a repository or renderer is available. If tools are missing, connect remote MCP through the host; CLI installation is optional. The agent drafts and prepares. **Nothing is published unless the person asks for it**, and a TikTok post is completed on the posting screen, where its privacy, interaction and disclosure choices are made. Never claim a post is live because a tool returned; say what state it is in.
+Sprid MCP supplies connected operations; this skill supplies editorial method. Read [Use Sprid in chat](guides/chat.md) for the complete browser-only path, attachment imports and hosted creation. Read [Build locally](guides/local.md) when a repository or renderer is available. If tools are missing, connect remote MCP through the host; CLI installation is optional. The agent drafts and prepares. **Nothing is published unless the person asks for it**, and a TikTok post straight to the profile is confirmed by the person on the posting screen, where its privacy, interaction and disclosure choices are made (a TikTok draft can go unattended, see TikTok below). Never claim a post is live because a tool returned; say what state it is in.
 
 For Pinterest, read [Pinterest content and publishing](guides/pinterest.md) before drafting, reviewing or scheduling. Pinterest is search- and destination-led: a useful standalone checklist can be complete on the Pin, and the Instagram/TikTok open-loop and carousel-completion rules do not apply. Keep the account’s voice, factual gates and asset-rights rules. The user must select every Pin in an approved batch; those selected Pins may then publish automatically on their schedule without another approval at posting time.
 
@@ -47,7 +47,15 @@ The authenticated `?surface=core` list is the everyday workflow. Every other ver
 
 Do not loop over `schedule_post` when either bulk verb fits. Both bulk paths preflight the complete queue before writing, so one invalid destination or media file stops the run with zero new bookings. A later concurrent channel change can still interrupt execution; report each returned placement rather than claiming the whole batch from the call alone.
 
-For supplied artwork or MP4s, use `import_assets` then `create_post_from_assets`; reuse its request ID on retry. If chat cannot transfer a file, use `create_upload_session`. `preview_post` returns media and the shared approval link. Explicit hosted photos/text creation uses `create_reel` when available, after render-spend authorization. Publish-time composition remains disabled: both hosted creation and local rendering must produce one finished MP4 before scheduling. Read the chat guide for limits and job recovery.
+For supplied artwork or MP4s, use `import_assets` then `create_post_from_assets`; reuse its request ID on retry. If chat cannot transfer a file, use `create_upload_session`. `preview_post` returns media and the shared approval link. Explicit hosted photos/text creation uses `create_reel` when available, after render-spend authorization. A locally rendered video is uploaded as one finished MP4 and publishes as it is. Read the chat guide for limits and job recovery.
+
+## Carousel, video or both
+
+A post can go out as its slides, as its own video made from those slides, or both, per destination: a carousel on TikTok and a reel on Instagram, to compare them. `get_post` returns `outputsResolved`. Change it only when the person asks, with `update_post {outputs}`: `{video: true}` sends the video where it is the default (TikTok, YouTube) and the carousel elsewhere; `{byPlatform: {instagram: "video"}}` changes one destination. YouTube takes only video, LinkedIn only a carousel.
+
+The video is compiled from the slides on every read, so words, images and a slide's length stay on the slides (`update_slide`; `durationMs` pins a slide, empty means automatic). Start with `get_video_capabilities`, read `get_post_video` (revision, slide times, issues), then change transitions, element motion, what shows in the carousel or the video, the cover, the music mix and video-only layers with `edit_post_video {baseRevision, requestId, operations}`.
+
+A video destination publishes a final render of the video as it is now. `quote_post_video_render`, show the person the price and the ceiling, and only after they agree call `render_post_video {mode: "final", confirmed: true}` with the quote's revision and `outputHash`; a render of the same video is reused without charge. Book with its `videoRenderId`, or in one step with `render: {confirmed: true, creditCeilingCents}` on `schedule_post` or `publish_post`, and the booking waits for the render. An edit after booking leaves it on the old render: `post_queue` marks it stale, and `rebook_post_video {jobId}` moves it onto a new one. A direct TikTok post of a video also needs the person to play that render on the posting screen.
 
 ## Hand it over for review
 
@@ -65,7 +73,12 @@ Use `list_apps` to resolve the app and its content accounts inside the authorize
 
 ## TikTok
 
-Privacy level, comment/duet/stitch permissions and the commercial-content disclosure have no default and are never remembered between posts. `schedule_post` for TikTok needs them in `options.tiktok` every time, and the user has to have answered them; the agent does not pick. Say which are missing rather than guessing.
+Privacy level, comment/duet/stitch permissions and the commercial-content disclosure are the person's to answer on Sprid's posting screen, every time. They have no default, are never remembered between posts, and the agent never picks them, not even when the person tells you their usual choice. Two ways to get a post to TikTok:
+
+- **As a draft, unattended.** Pass `options.tiktok = { "postMode": "MEDIA_UPLOAD" }` to `publish_post` or `schedule_post`. It lands in the creator's TikTok inbox and they finish and post it in the TikTok app. Call it a draft, never a post.
+- **Straight to the profile.** Sprid refuses a direct post from an agent and returns `approvalUrl`. Give the person that link, and `open` it when you run on their machine. It opens the posting screen on TikTok at the time you asked for; they answer, see the preview and confirm, and the booking then publishes on schedule with nobody watching. Moving that booking later keeps their answers, unless the post changed after they confirmed, which asks them again.
+
+Report a direct TikTok post as booked only once `post_queue` or `get_post` shows it.
 
 ## Pinterest
 

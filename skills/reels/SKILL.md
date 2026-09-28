@@ -29,8 +29,11 @@ and the build command with each spec so edits can be reproduced.
 
 ## Choose the build path
 
-- Text on a backdrop: render it with the customer's local renderer and upload
-  the finished MP4 before booking.
+- Slides already in Sprid (text cards, a carousel to animate): make the post's
+  own video there, with transitions and motion, and choose which destinations
+  get it. See [post: carousel, video or both](../post/SKILL.md#carousel-video-or-both).
+- Text on a backdrop from the customer's own renderer: render it locally and
+  upload the finished MP4 before booking.
 - App demonstrations or photographs: use `sprid post` with the `screen` or
   `stills` recipe. Inspect `sprid post help` and the repo's existing configuration.
 - Custom graphics or generated media: use the customer's renderer through a
