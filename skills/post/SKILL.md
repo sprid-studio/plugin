@@ -92,6 +92,13 @@ Before scheduling, show the concrete Pin or dry-run batch and have the user sele
 
 One field per platform. Hashtags live in the caption, on their own line at the end; there is no separate tag field and any tool call carrying one is refused by name. A Pin has no caption: people read the title and description saved in `pinterestOptions`.
 
+### Platform presentation
+
+Before writing captions or exporting media, read [platform presentation](../../references/platform-presentation.md)
+for the selected destinations. It covers collapsed text, cropping, interface
+controls, links and the fields Sprid actually publishes, with examples. Keep
+the user's theme, voice and chosen format; these are technical checks.
+
 ## What not to do
 
 - No posting to a channel the user did not name.

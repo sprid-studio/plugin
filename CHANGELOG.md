@@ -3,6 +3,13 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.14 - 2026-09-30
+
+- Share technical presentation checks between the post and reels skills:
+  collapsed captions, title truncation, crops, interface overlays, subtitles,
+  links and destination fields. Include practical examples without prescribing
+  themes or creative formats, and distinguish estimates from native previews.
+
 ## 1.0.13 - 2026-09-30
 
 - Require CLI 1.0.0 for UUID record identifiers. Local post examples use post references and UUID media IDs.

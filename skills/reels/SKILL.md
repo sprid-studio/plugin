@@ -48,6 +48,10 @@ and the build command with each spec so edits can be reproduced.
 
 ## Review before scheduling
 
+Read [platform presentation](../../references/platform-presentation.md) for the
+selected destinations. Check overlays, crops, covers, subtitles and clickable
+destinations without changing the user’s chosen theme or video format.
+
 Check the actual rendered file for readable text, cropping, transitions and
 caption timing. Follow the account's configured voice and quality gates. Verify
 claims against their sources and include attribution required by the media license.
