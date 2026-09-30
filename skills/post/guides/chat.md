@@ -31,13 +31,13 @@ A `sandbox:` URL or local path can’t be fetched. For an image the chat generat
 
 ## Create and review the post
 
-Call `create_post_from_assets` with a new UUID `requestId`, the account, ordered `{kind, id}` assets, captions and aspect ratio. Reuse the same ID and inputs if a response is lost.
+Call `create_post` with a new UUID `requestId`, the account, ordered `{kind, id}` assets, captions and aspect ratio. Reuse the same ID and inputs if a response is lost.
 
 - `presentation: "finished"` keeps artwork as-is: no text overlay, no added music. Images fit inside the canvas, which can add margins.
 - `presentation: "editable"` allows `text` and `subtitle` on image slides.
 - One finished video becomes one reel. Never mix a video with image slides.
 
-Edit with `update_post` (captions) and `update_slide` or `batch_update_slides` (slides). Call `preview_post` and check every slide or the video: captions, order, crop, legibility. It returns a small image of each slide for the agent to look at and an embedded preview for the person; a chat without embedded apps still shows the images. A preview is not approval to publish.
+Edit with `update_post` (captions) and `update_slides` (slides). Call `preview_post` and check every slide or the video: captions, order, crop, legibility. It returns a small image of each slide for the agent to look at and an embedded preview for the person; a chat without embedded apps still shows the images. A preview is not approval to publish.
 
 Agent: show the person the preview, and link every post you mention with the `links` the tools return, as a Markdown link on its ref or title: `links.review` when the ask is to approve or schedule, `links.editor` when it is to change something. Never draw the slides in your own widget or artifact: those sandboxes block Sprid's media host and the images show broken.
 
@@ -45,7 +45,7 @@ Agent: show the person the preview, and link every post you mention with the `li
 
 Check `get_capabilities` for hosted creation first. `create_reel` takes ordered scenes (`imageId`, `text`, `durationMs`), up to 120 seconds, and makes a silent MP4. It costs 3 Sprid credits per started render minute, or uses the plan allowance: check `spend_status`, tell the person, and get their go-ahead before sending `confirmed: true`. Save the job ID and read `get_studio_job`. Retrying with the same ID never starts a second render; a stopped job reports `needs_attention` instead of charging again.
 
-To turn an existing post's slides into a video instead, use its own video where your tool list offers it (the reviewed connector does not list these tools yet; Sprid's own MCP server does): `get_video_capabilities`, then `get_post_video` and `edit_post_video` for transitions and motion, and `update_post {outputs}` for which destinations get it. Rendering it is metered the same way: `quote_post_video_render`, the person's go-ahead, then `render_post_video` with `confirmed: true`. Book a video destination with the render's `videoRenderId`.
+To turn an existing post's slides into a video instead, use its own video: `get_video_capabilities`, then `get_post_video` and `edit_post_video` for transitions and motion, and `update_post {outputs}` for which destinations get it. Rendering it is metered the same way: `quote_post_video_render`, the person's go-ahead, then `render_post_video` with `confirmed: true`. Book a video destination with the render's `videoRenderId`.
 
 App captures, simulator recordings and your own build scripts run outside remote MCP. Upload their finished files.
 
@@ -55,7 +55,7 @@ The person opens the returned `/p/<postId>` link, reviews the real media and cap
 
 TikTok works two ways from chat. A draft, `options.tiktok = { "postMode": "MEDIA_UPLOAD" }`, goes to the creator's TikTok inbox without anyone approving it in Sprid; they finish it in the TikTok app. A post straight to their profile is refused from chat and comes back with `approvalUrl`: send the person that link. It opens the posting screen on TikTok at the time asked for, and once they answer and confirm, the booking publishes on its own.
 
-After approval, read `get_publication_status`. Keep draft, scheduled, failed and delivered apart, and report delivery only with the platform receipt. Read a failure before retrying. Never repeat a publish call just because a response was lost.
+After approval, read `post_queue`. Keep draft, scheduled, failed and delivered apart, and report delivery only with the platform receipt. Read a failure before retrying. Never repeat a publish call just because a response was lost.
 
 For results, read `get_documentation` for `marketing-review`. Keep the same app, account and post IDs across clients. `next_actions` gives the next step; an empty `verb` means follow its browser link.
 

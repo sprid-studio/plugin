@@ -25,7 +25,7 @@ the user paid to reach.
 2. **`suggest_ad_categories`** - read the copy and declare the regulated
    category if there is one. See below; this is the step with legal consequences.
 3. **`create_ad_campaign`** → **`create_ad_set`** → **`create_ad_creative`** →
-   **`create_ad`**. Or **`create_ad_batch`** for one copy against several
+   **`create_ads`** with an `ads` array for one or several
    creatives, which is the normal shape of a test.
 4. **`review_ad_copy`** on every piece of copy before it goes anywhere near the
    launch. Errors stop the launch; fix them rather than arguing with them.
@@ -127,7 +127,7 @@ only; on Google Ads and TikTok, promotion is the whole surface.
 - `update_ad_budget` changes a budget. **You do not move spend on your own.** An
   agent that reallocates a budget between reads is a worse failure than a
   campaign that runs three days too long, because the user can see the second one.
-- `pause_ad` / `pause_ad_set` stop delivery, and a pause is only real once the
+- `pause_ads` with `target: {kind: "ad" | "set", id}` stops delivery, and a pause is only real once the
   platform confirms it. An unconfirmed compensating pause leaves the row needing
   attention: say that, rather than reporting a pause that may not have landed.
 - `create_ad_rule` and `evaluate_ad_rules` express "if this, then that" as

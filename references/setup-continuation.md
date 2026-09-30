@@ -59,7 +59,7 @@ plus a board and a destination link; a multi-slide draft is not a Pin.
 
 Use `sprid setup continue --platform <platform>` for the chosen destination.
 Provider approval returns to this post. Optional analytics sources never block it.
-Open the returned post URL or use `render_post_preview` through an authenticated
+Open the returned post URL or use `preview_post` through an authenticated
 MCP connection. Show the actual preview and destination before approval. Retain
 the platform's disclosure and privacy choices on its publishing screen.
 
@@ -105,7 +105,7 @@ Check the saved state behind the recommendation:
 | Continuity | Prepared work has a next action; delivery and review results remain readable | Saved plan, queue, current `next_actions` and the next review |
 
 An App Profile save attempts icon import, but failures leave the avatar empty.
-Check `get_account` or `list_accounts` before calling it complete. Preserve an
+Check `list_accounts` before calling it complete. Preserve an
 existing custom avatar. If discovery fails, use the icon already in the repo or
 ask for an image; do not generate replacement branding. Browser-only users can
 upload through account Details. Never send image bytes through a tool argument.

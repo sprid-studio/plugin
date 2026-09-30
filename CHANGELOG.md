@@ -3,6 +3,14 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.12 - 2026-09-30
+
+- Post creation accepts ordered assets, with retry protection and finished-artwork
+  safeguards. Slide editing and appending accept one or many entries. The guides
+  use these shared operations for images, ideas and videos.
+- Ad creation accepts one or many creatives; pausing explicitly selects an ad or
+  ad set. Existing tool names remain compatible on plugin connections.
+
 ## 1.0.11 - 2026-09-28
 
 - Carousel, video or both: a post's slides can also go out as a video, and each
