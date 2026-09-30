@@ -27,6 +27,8 @@ Files go straight to storage and come back as ordered asset IDs. PNG, JPEG, WebP
 
 ## Create and review the post
 
+Sprid record IDs are UUIDs. Posts also have readable references such as `SPR-9`; either identifies the same post.
+
 Write `draft.json` with the returned IDs and a new UUID as `requestId` (keep it for retries):
 
 ```json
@@ -37,7 +39,7 @@ Write `draft.json` with the returned IDs and a new UUID as `requestId` (keep it 
   "captionInstagram": "The caption, with hashtags at the end",
   "aspectRatio": "4:5",
   "presentation": "finished",
-  "assets": [{ "kind": "image", "id": 101 }, { "kind": "image", "id": 102 }]
+  "assets": [{ "kind": "image", "id": "28dc0981-a925-44b0-8ec5-70279f8fef41" }, { "kind": "image", "id": "b7a4e0bc-92de-451d-9b3e-d384a2ddcc83" }]
 }
 ```
 
@@ -45,13 +47,13 @@ For a finished reel, use one asset with `kind: "video"`. `finished` artwork gets
 
 ```sh
 sprid post create --file draft.json --json
-sprid post get 123 --json
-sprid post update 123 --file changes.json --json   # e.g. {"captionInstagram":"Revised caption"}
-sprid post preview --id 123 --json
-sprid post deliveries 123 --json
+sprid post get SPR-9 --json
+sprid post update SPR-9 --file changes.json --json   # e.g. {"captionInstagram":"Revised caption"}
+sprid post preview --id SPR-9 --json
+sprid post deliveries SPR-9 --json
 ```
 
-The review link opens the same dashboard screen as from chat. To continue in chat, give it post ID `123` instead of creating another draft. Approval and platform choices stay with a person. Check delivery receipts before reporting success.
+The review link opens the same dashboard screen as from chat. To continue in chat, give it post reference `SPR-9` instead of creating another draft. Approval and platform choices stay with a person. Check delivery receipts before reporting success.
 
 ## Hosted options and results
 

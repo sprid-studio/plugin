@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.13 - 2026-09-30
+
+- Require CLI 1.0.0 for UUID record identifiers. Local post examples use post references and UUID media IDs.
+
 ## 1.0.12 - 2026-09-30
 
 - Post creation accepts ordered assets, with retry protection and finished-artwork

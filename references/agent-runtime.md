@@ -56,7 +56,7 @@ commands by host, read off where the skills are installed:
 | `~/.codex/plugins/cache/<marketplace>/sprid/` | `codex plugin marketplace upgrade <marketplace> && codex plugin add sprid@<marketplace>`, then a new thread |
 | a skills folder (`npx skills add`) | `npx skills update`, then a new session |
 
-**CLI.** These skills require Sprid CLI 0.1.0 or later. The guided `sprid plan`
+**CLI.** These skills require Sprid CLI 1.0.0 or later for UUID record identifiers. The guided `sprid plan`
 and `sprid research` commands require 0.1.1. `sprid account avatar`, and passing
 a ref such as `BND-78` or `BND-R4` where a post or review id goes, require 0.1.3;
 an older CLI refuses a ref as a usage error. `sprid connect ga4|plausible|umami`
