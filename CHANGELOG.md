@@ -3,6 +3,17 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.16 - 2026-10-02
+
+- TikTok connector guidance requires an explicit delivery mode and every direct-post
+  setting plus creator confirmation. Includes fresh creator choices and distinguishes
+  caller-attested consent from a posting-screen click; TikTok audit acceptance is unverified.
+
+## 1.0.15 - 2026-10-02
+
+- Google Play setup guidance retries saved credentials after temporary provider
+  failures and checks review access separately from download reports and replies.
+
 ## 1.0.14 - 2026-09-30
 
 - Share technical presentation checks between the post and reels skills:

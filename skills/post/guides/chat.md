@@ -51,9 +51,16 @@ App captures, simulator recordings and your own build scripts run outside remote
 
 ## Approve and confirm delivery
 
-The person opens the returned `/p/<postId>` link, reviews the real media and captions, and picks the channels, time and platform options. TikTok privacy and interaction choices have no defaults and are made on that screen. An agent-supplied confirmation flag is not a human click.
+Publishing and scheduling require the person's approval of the preview and intended destinations. The browser review link remains available for picking channels, time and platform options.
 
-TikTok works two ways from chat. A draft, `options.tiktok = { "postMode": "MEDIA_UPLOAD" }`, goes to the creator's TikTok inbox without anyone approving it in Sprid; they finish it in the TikTok app. A post straight to their profile is refused from chat and comes back with `approvalUrl`: send the person that link. It opens the posting screen on TikTok at the time asked for, and once they answer and confirm, the booking publishes on its own.
+TikTok requires an explicit `postMode`; nothing defaults to a direct post or a draft:
+
+- `MEDIA_UPLOAD` sends the media to the creator's TikTok inbox. They finish the post in TikTok; report it as a draft.
+- `DIRECT_POST` requires `privacyLevel`, `disableComment`, `disableDuet`, `disableStitch`, `yourBrandToggle`, `brandedContentToggle` and `confirmed: true` in `options.tiktok`. Fetch fresh choices with `list_connections {includeTikTokCreatorInfo: true}` and show the creator identity, media and caption. The person chooses every setting for this post. Photo posts use `disableDuet: true` and `disableStitch: true`; comments respect the creator's restriction. Branded content cannot use `SELF_ONLY`.
+
+Before sending `confirmed: true`, get the person's approval of this exact post and their agreement to TikTok's [Music Usage Confirmation](https://www.tiktok.com/legal/page/global/music-usage-confirmation/en), plus the [Branded Content Policy](https://www.tiktok.com/legal/page/global/bc-policy/en) for branded content. That flag is a caller's attestation, not proof of a click in TikTok's prescribed UI. Never invent choices or carry usual preferences into a new post. If choices are missing, open the returned `approvalUrl` for the person to answer in Sprid.
+
+TikTok's published guidelines specify a privacy dropdown and posting controls. Acceptance of this chat-based confirmation flow has not been verified with TikTok. Keep that distinction explicit in review submissions.
 
 After approval, read `post_queue`. Keep draft, scheduled, failed and delivered apart, and report delivery only with the platform receipt. Read a failure before retrying. Never repeat a publish call just because a response was lost.
 

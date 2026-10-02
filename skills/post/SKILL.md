@@ -8,7 +8,7 @@ description: Draft, review, schedule and publish a Pin, carousel or reel through
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Reuse the plan's accepted audience, guidance bundle and prepared artifact instead of asking for a new brief.
 
-Sprid MCP supplies connected operations; this skill supplies editorial method. Read [Use Sprid in chat](guides/chat.md) for the complete browser-only path, attachment imports and hosted creation. Read [Build locally](guides/local.md) when a repository or renderer is available. If tools are missing, connect remote MCP through the host; CLI installation is optional. The agent drafts and prepares. **Nothing is published unless the person asks for it**, and a TikTok post straight to the profile is confirmed by the person on the posting screen, where its privacy, interaction and disclosure choices are made (a TikTok draft can go unattended, see TikTok below). Never claim a post is live because a tool returned; say what state it is in.
+Sprid MCP supplies connected operations; this skill supplies editorial method. Read [Use Sprid in chat](guides/chat.md) for the complete browser-only path, attachment imports and hosted creation. Read [Build locally](guides/local.md) when a repository or renderer is available. If tools are missing, connect remote MCP through the host; CLI installation is optional. The agent drafts and prepares. **Nothing is published unless the person asks for it**, and a TikTok post straight to the profile requires the person's explicit settings and approval for that post (see TikTok below). Never claim a post is live because a tool returned; say what state it is in.
 
 For Pinterest, read [Pinterest content and publishing](guides/pinterest.md) before drafting, reviewing or scheduling. Pinterest is search- and destination-led: a useful standalone checklist can be complete on the Pin, and the Instagram/TikTok open-loop and carousel-completion rules do not apply. Keep the account’s voice, factual gates and asset-rights rules. The user must select every Pin in an approved batch; those selected Pins may then publish automatically on their schedule without another approval at posting time.
 
@@ -73,10 +73,12 @@ Use `list_apps` to resolve the app and its content accounts inside the authorize
 
 ## TikTok
 
-Privacy level, comment/duet/stitch permissions and the commercial-content disclosure are the person's to answer on Sprid's posting screen, every time. They have no default, are never remembered between posts, and the agent never picks them, not even when the person tells you their usual choice. Two ways to get a post to TikTok:
+Read the chat guide's "Approve and confirm delivery" section. Neither delivery mode nor privacy, interaction and disclosure settings have a connector default; the person chooses for the post being reviewed.
 
-- **As a draft, unattended.** Pass `options.tiktok = { "postMode": "MEDIA_UPLOAD" }` to `publish_post` or `schedule_post`. It lands in the creator's TikTok inbox and they finish and post it in the TikTok app. Call it a draft, never a post.
-- **Straight to the profile.** Sprid refuses a direct post from an agent and returns `approvalUrl`. Give the person that link, and `open` it when you run on their machine. It opens the posting screen on TikTok at the time you asked for; they answer, see the preview and confirm, and the booking then publishes on schedule with nobody watching. Moving that booking later keeps their answers, unless the post changed after they confirmed, which asks them again.
+- **Draft.** Pass `options.tiktok = {"postMode": "MEDIA_UPLOAD"}`. It lands in the creator's TikTok inbox for them to finish. Report it as a draft.
+- **Direct post.** Fetch fresh creator choices with `list_connections {includeTikTokCreatorInfo: true}`. Show the identity and preview, collect every setting, and obtain approval of the post and TikTok's linked policies before passing `postMode: "DIRECT_POST"` and `confirmed: true`. The chat guide lists every required field. Missing choices can be completed through `approvalUrl`; open it when running on the person's machine. Moving an existing booking can retain its answers only while the content and settings match.
+
+Connector confirmation is caller-attested. TikTok has not verified acceptance of this chat-based flow; do not represent it as an audited posting-screen click.
 
 Report a direct TikTok post as booked only once `post_queue` or `get_post` shows it.
 

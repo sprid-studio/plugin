@@ -41,8 +41,19 @@ Use your own file path. Keep its contents out of chat.
 
 Run `sprid status`, then ask your agent: “Check that Sprid can read this app’s Play reviews and download reports. Tell me what is missing.” The review email only arrives when there are new reviews.
 
+Status reflects saved configuration and collection errors. To re-test a saved
+key in chat, run `sync_store_reviews` for the app (discover it with `find_tools`
+if needed). Its `connected` count reports successful review reads, including
+empty results. Check downloads separately with `get_insights` or
+`get_marketing_review`, including the latest reported date. Review access does
+not verify download access or permission to reply.
+
 ## If it fails
 
+- **503 or another temporary server error:** retry the read with the key already
+  saved in Sprid. This failure alone does not establish a key or permission
+  problem. Sprid retries review reads with bounded backoff and collects again
+  on its scheduled run. If it keeps failing, contact hello@sprid.studio.
 - **Permission denied:** check the service account appears under **Users and permissions** with your app selected. New permissions can take time; integrators report up to 24 hours, which Google’s docs do not confirm.
 - **Google Play’s API is switched off:** enable **Google Play Android Developer API** in the service account’s Cloud project. Sprid’s error message links to it.
 - **Reviews are empty:** Google’s API only returns recent reviews with written text. Older reviews and star-only ratings stay visible in the store but not to Sprid.
