@@ -72,6 +72,8 @@ Reads the repo and the public listing. Comes back with the listing graded (5 che
 | `/sprid:connect` | "connect this service" | Connect analytics, stores, revenue and publishing channels |
 | `/sprid:marketing-review` | "how is it going", "did that change work" | Search Console + Cloudflare + App Store Connect + Play + PostHog + RevenueCat joined to `git log`, one dated report, ranked recommendations, honest Data gaps |
 | `/sprid:screenshots` | "screenshots", "localise the listing" | A config file and a headless composer: every language × device × slot from raw captures |
+| `/sprid:landing-page` | "rewrite my homepage", "nobody signs up" | Investigates the page, its visitors and the competitors, writes a short brief of testable decisions, drafts the headings first, then measures whether the new page converts |
+| `/sprid:seo-pages` | "SEO", "rank on Google", "why no clicks" | Decides whether search can reach this app, writes a small test batch of pages, runs the technical checks that silently stop ranking, and grows only what earns clicks |
 | `/sprid:store-metadata` | "keywords", "the listing" | Name, subtitle, keywords, description per locale from one config, adapted to the app’s markets, pushed on your word |
 | `/sprid:research` | "what do people actually say" | Reddit posts and your reviews into a hook bank, with each seam's worth written down |
 | `/sprid:scout` | "who is winning in my niche", "what ads are they running" | Measures the accounts working in your niche and harvests the public ad library, over your own browser, filed locally |

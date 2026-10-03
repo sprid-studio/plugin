@@ -31,7 +31,7 @@ Reads `marketing/VOICE.md`, the current listing (fetched public page, or `fastla
 ## Workflow
 
 1. Fetch the current listing and put it in a table: field, locale, current value, character count.
-2. Draft the new values in the voice guide's register. One table per locale.
+2. Draft the new values in the voice guide's register. One table per locale. Choose the subtitle's angle with [finding the frame](../../references/copy-framing.md), then run the [writing gate](../../references/writing-gate.md) on the subtitle and the description's first lines.
 3. Write the config. Run the dry run. Paste its output.
 4. Ask the user to read it. Then `--execute` on their word, never before.
 

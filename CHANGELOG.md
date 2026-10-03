@@ -3,6 +3,25 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.1.0 - 2026-10-03
+
+- `/sprid:landing-page`: works out what a homepage or landing page has to say by
+  investigating the page, who arrives, how users describe the problem and what
+  competitors promise, writes a short brief of testable decisions, drafts the
+  headings first, and records a baseline and read date to check the result.
+- `/sprid:seo-pages`: decides whether search can bring this app users, plans a small
+  first batch of pages against the current results, writes them from sourced facts,
+  runs technical checks that silently stop pages ranking, and grows only what earns
+  clicks. Includes a way to measure mentions in AI answers.
+- A shared writing gate (`references/writing-gate.md`) for any copy a stranger reads:
+  mechanical checks for machine-written tells, the swap and "Now you can" tests, and
+  proof rules. The store listing skill and the marketing review now point to it and
+  to the new skills.
+- `references/copy-framing.md`: how to find the angle for a headline from the
+  readers' own words, the alternatives they compare against and what holds them
+  back, with several frames drafted before one is chosen and a cheap way to test
+  them as posts first.
+
 ## 1.0.17 - 2026-10-03
 
 - Listing assets for Anthropic's plugin directory: a square icon at
