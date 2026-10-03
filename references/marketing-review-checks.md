@@ -1,5 +1,24 @@
 # Checks that keep a marketing review honest
 
+## Read the measurement checks first
+
+The PostHog source carries `checks`: findings that a number in this review cannot be taken at face value, each with its evidence and fix (`checksRun` and `checksSkipped` say what was tested). Read them before any rate or trend, and carry each into the report's appendix until a later reading clears it. They ask; they never change a number.
+
+| Check | What it means |
+|---|---|
+| `silent-paywall` | A platform (or a storefront) shows the paywall to enough people that several sales were expected, and none happened. Read it as a broken offering or product until a device test proves otherwise, never as that platform's demand. |
+| `paywall-context` | Paywall events carry no price, product or offering, so a price change and a failed load are indistinguishable. |
+| `payment-geo` | Payment-integration events all carry one server's location, and PostHog sets it on the person. Person-level country is wrong for every payer; use store country. |
+| `direct-crawler` | Desktop, no-referrer people from one country are most of the website. Read website numbers with that group set aside until `review_traffic` says what it is. |
+| `apple-review-devices` | US iPhones with locale `en` or `zh-Hans`, active one day, never at the paywall: Apple's build check and App Review, counted as installs. |
+| `signup-surface` | An account-created event fires on a surface the registration event never covers, so registrations undercount. |
+| `dead-entry` | A configured entry page (`entryUrls`) had almost no pageviews in 14 days. Every funnel number below it is structurally zero; check the links before citing it. |
+
+Two traps have no automatic check, because Sprid does not read the data:
+
+- **Email opens with no clicks.** Many opens and zero clicks across every send means click tracking is missing or broken, not that nobody clicked: one app recorded 1 421 opens and 0 clicks, ever. Check that links are rewritten or tagged and that the click endpoint writes a row before reading any email engagement. Opens are inflated by privacy proxies anyway, so a click or a return to the product is the only engagement worth reporting.
+- **A plan citing a funnel.** Before using a funnel step's numbers, check its entry page receives traffic today, and add it to `entryUrls` so the next review checks it for you.
+
 ## Choose services by the question
 
 Start with the decision the user cannot make, then inventory the tools already in the repo and the authorized connections available to the agent. Check dependencies and emitting code as well as provider configuration; an absent Sprid sensor is not evidence that the customer lacks that capability. Reuse a working service before recommending another subscription or duplicate SDK.
@@ -47,6 +66,7 @@ For an instrumentation change, compare behavior only inside verified coverage. P
 
 - PostHog MCP project selection can drift. Switch to the profile’s project before each independent query and verify its id or known event taxonomy. A warning that a previously observed event does not exist is an identity failure, not zero activity. Prefer a REST URL containing the explicit project id. A 403 is an access gap; retries with rewritten SQL cannot fix it.
 - `$lib = 'posthog-react-native'` can include Expo web. Verify whether `$app_version` distinguishes native builds in this app before using it as a surface filter. Keep server and unknown SDKs visible; do not silently discard them.
+- The registration event must cover every surface where an account can be created (app, website, web app). Name the event and the surfaces it fires on in the report; a server event emitted after the account exists is the reliable choice. Reconcile its count against the account table when the repo has one.
 - Count distinct people, exclude internal accounts using verified identifiers, and state whether identities are accounts, RevenueCat ids, anonymous browsers or devices. Do not add daily unique counts and call the sum unique users.
 - Read repeat use and cohort return behaviour before recommending acquisition spend. Sparse mature cohorts do not support a retention trend. Identify cohorts that have had time to return.
 - Check meaningful exposure and resolved state. A mount event sent before data loads cannot establish that an empty screen was shown. Inspect server allowlists and stored properties before treating null metadata as “the user chose nothing.”
@@ -58,7 +78,8 @@ For an instrumentation change, compare behavior only inside verified coverage. P
 - On an SEO-led site, cross-check apparent traffic changes against GSC clicks and a verified click-driven event. A crawler population leaving can reverse a raw visitor trend. A fixed percentage gap between vendors is not a universal anomaly threshold.
 - A spike is judged, not assumed. Read [traffic spikes](https://sprid.studio/docs/traffic) before excluding anything, and check the COMPARISON period for the same fingerprint: a scraper in the baseline moves the percentage as far as one in the current period, and correcting only the obvious half reads as a confident answer while still being wrong.
 - GSC date bounds are inclusive in Pacific time. Scripts convert the review’s exclusive end to the preceding calendar date. Inspect `dataThrough`; the last row with observations is not a promise of full coverage. Query/page lists omit anonymized searches and can be truncated. A query absent from a prior top-N list has unknown prior clicks, not zero.
-- Downloads by Source Type × territory answer store acquisition. Impressions by source answer listing exposure. Do not interchange them. Both store referrers are last-click floors; a web reader searching the store later appears organic.
+- Downloads by Source Type × territory answer store acquisition. Impressions by source answer listing exposure. Do not interchange them: in one app the web referrer was 3.9% of App Store impressions and 29% of first-time downloads, and quoting the first as an acquisition share inverted the conclusion. Both store referrers are last-click floors; a web reader searching the store later appears organic, so every referrer share is a minimum.
+- A platform with zero revenue is not a demand reading until its paywall is known to sell. Check the `silent-paywall` finding and the offering on a real device before comparing platforms.
 - Read an onboarding attribution question if the app has one, split by market and report its respondent count/skip coverage. It captures a different step from last-click attribution; do not turn a small respondent sample into a population percentage.
 - Store search-term fields may be suppressed or empty. Inspect the returned coverage; do not spend the review hunting terms absent from the available export.
 - Existing reviews may include demand investigations, such as unfulfilled searches or inventory gaps. Follow the repo's local investigation index and current instructions; rank recorded demand only when the sample supports it. These are app-specific extensions, not mandatory scripts for every customer.
@@ -111,7 +132,7 @@ Use the app’s existing event conventions. Inspect its SDK version and current 
 | What do they actually use? | Meaningful feature actions emitted after success, with a stable feature/surface property. A screen view shows exposure; a saved item, completed analysis or read article needs its own success definition. |
 | Where does onboarding stop? | Start, step viewed and step completed, with stable step id and flow version; record skips and explicit exits separately. Include the final completion and the first real value action. |
 | Did they get value and return? | An app-specific activation event excluding tutorial/demo/seeded actions, followed by repeat meaningful use in a defined return window. Onboarding completion alone does not establish activation. |
-| Does use lead to payment? | If monetized, distinguish paywall exposure, trial start and confirmed payment. Use a verified billing/server outcome for money and a joinable identity. |
+| Does use lead to payment? | If monetized, distinguish paywall exposure, trial start and confirmed payment. Use a verified billing/server outcome for money and a joinable identity. Put price, currency, product id, offering id, `offering_loaded` and `has_free_phase` on the paywall event, and price, currency and product id on the purchase; report billing errors to an error tracker, not only the console. |
 
 Attach a stable pseudonymous user id after authentication and verify anonymous-to-identified continuity and logout reset. Distinguish native app, web app and marketing site explicitly, with app/build version, environment and relevant locale/market. Do not infer the surface from SDK name alone. Mark internal/test traffic and apply those exclusions in queries.
 

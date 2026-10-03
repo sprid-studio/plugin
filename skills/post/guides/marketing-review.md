@@ -19,6 +19,9 @@ In a browser chat there is no repository. For a question about a shipped change,
 
 `list_marketing_queries` lists supported reads and their schemas; `query_marketing_source` runs them with Sprid’s saved credentials. Follow pagination and keep truncation visible. `get_documentation` with `metrics` covers definitions and refused calculations; with `queries`, source-specific reads.
 
+- Read the PostHog source's measurement `checks` before any rate. Each one (a platform whose paywall never sells, payers all placed in the US by the payment integration, a one-country desktop crawler, Apple's review devices, a signup surface the registration event misses, a dead funnel entry) says a number cannot be read at face value. A platform at zero revenue is not zero demand until its paywall is known to sell.
+- Store impressions by source are listing exposure; downloads by source are acquisition. Do not quote one as the other, and treat every store referrer as a last-click floor.
+- Many email opens with no clicks at all means click tracking is broken, not that nobody clicked.
 - Keep acquisition apart from activation, and people apart from events. A post impression is not an install; a download is not an activated user.
 - Pinterest Pins resurface for months: compare them at equal ages (30, 60 and 90 days). Saves are interest on Pinterest and outbound clicks are people leaving it; neither is a site session or an install. The `pinterest` source has `posts` only, with no comments. See [Pinterest content and publishing](pinterest.md).
 - Compare equal windows and comparable populations.

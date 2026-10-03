@@ -47,6 +47,8 @@ To see who buys, send RevenueCat’s purchase events to the tool that already kn
 2. In RevenueCat, open **Integrations** and turn on the one you use: Amplitude, Mixpanel, PostHog, Segment, mParticle, Firebase (which reaches Google Analytics), or an attribution provider such as AppsFlyer or Adjust. For anything else, use a webhook or a scheduled export to your warehouse.
 3. Ask the question in that tool: which sources, pages or onboarding steps come before a purchase.
 
+**The PostHog integration moves every payer to the US.** RevenueCat sends its events from its own servers, so PostHog's GeoIP gives each `rc_` event the server's location (Ashburn, Virginia on every event we measured) and sets it on the person. After the first purchase, person-level country reads US for everyone who paid. Read buyer country from RevenueCat's country breakdown, which is the store country, or from a purchase event your app sends itself; never from person properties. To stop the overwrite, exclude `rc_` events from GeoIP enrichment in PostHog's data pipeline settings, if your plan allows filtering it. Sprid's own country breakdowns already come from RevenueCat, and its review flags this pattern when it finds it.
+
 Cookieless analytics such as Plausible count visits without knowing who made them, so there is no user to match. Their UTM sources still line up with RevenueCat’s campaign breakdown as totals.
 
 ## If it fails

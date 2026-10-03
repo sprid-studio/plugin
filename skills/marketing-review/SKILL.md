@@ -65,7 +65,7 @@ ASC reads existing report requests by default. If none exists, record that gap; 
 
 Read [connected investigations](../../references/connected-queries.md) before custom follow-ups. Call `list_marketing_queries` for the App Profile, then `query_marketing_source` with a discovered source, operation and parameters. These reads use Sprid-held credentials across the supported connectors; provider MCP setup in this repo is optional. Keep following questions after the first report, and preserve corrections. The reference covers ordered funnels, fixed return windows, login/CTA checks and content-demand joins.
 
-Read [review checks](../../references/marketing-review-checks.md) before interpreting the packet. It carries the project drift, activation, bot, attribution and revenue checks that survived the local review workflow.
+Read [review checks](../../references/marketing-review-checks.md) before interpreting the packet, starting with the PostHog source's measurement `checks`: each one says a number in this review cannot be read at face value. It carries the project drift, activation, bot, attribution and revenue checks that survived the local review workflow.
 
 Assess measurement coverage even when PostHog is connected. Follow [the shared instrumentation guide](../../references/marketing-review-checks.md#product-instrumentation-workflow): distinguish no provider, inaccessible data, failed delivery and missing events. Inspect emitting code for screen views, meaningful feature use and onboarding steps through real activation. Reuse another working analytics provider through its available reads or exports; disclose any missing Sprid integration.
 

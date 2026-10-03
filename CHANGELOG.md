@@ -3,6 +3,17 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.0.17 - 2026-10-03
+
+- Listing assets for Anthropic's plugin directory: a square icon at
+  `.claude-plugin/icon.png` and the privacy policy URL in the Claude manifest.
+- Installs as a Gemini CLI extension: `gemini-extension.json` at the root connects
+  the Sprid MCP server (OAuth on first use) and the skills load from `skills/`.
+- Marketing reviews read PostHog's measurement checks first: each one names a number
+  that cannot be taken at face value (a paywall that never sells, every payer in one
+  country, review devices, a signup surface the event misses). PostHog and RevenueCat
+  setup guides say how to fix each.
+
 ## 1.0.16 - 2026-10-02
 
 - TikTok connector guidance requires an explicit delivery mode and every direct-post

@@ -46,6 +46,8 @@ In **Settings → Apps → your app → PostHog**, set the account-created event
 
 **Signups.** Send `sprid_signup` from your server after the account is created, with the account id as `distinct_id`, and identify that id in your clients. Never fire it on login, page load or install. An existing `posthogEvents.signup` mapping also works; `posthogConfig.registration.event` wins over it. With no tracking start date, no matching event history reads as unavailable; with one, it reads as zero signups. A period that starts before the tracking date is counted from that date and says so. Comparisons crossing it, or with no confirmed start, are withheld. Backfill with the original creation timestamps.
 
+**Every signup surface has to send it.** An event your app sends after sign-up misses accounts made on your website, and the other way round: one app's in-app event missed 17% of its signups, which happened on its website. A server event covers every surface at once. Without one, list each surface's account-created event in `registration.events`; the first of any of them per identity counts, so an existing account signing in elsewhere is not a new signup. Never add a sign-in event that existing accounts also send. The marketing review flags a signup-like event on a surface where your registration event never fires.
+
 When an app reports signups, they are its user count on Home and in Insights. First product activity counts anonymous devices, so it moves into that card's detail.
 
 ### What counts as your product
@@ -78,6 +80,10 @@ On a new app, your own phone, simulators and store reviewers can outnumber real 
 
 Apple's review devices have reported `$device_name` `iPhone99,7`, with locale `en-US` and time zone `US/Pacific`, in every app we checked (September 2026). Add it if it shows up in yours.
 
+Two more Apple populations pass every default rule, because they are real iPhones: the device that checks each uploaded build (a fresh US person per build, often Cupertino, locale a bare `en` where real phones send `en-US`) and App Review (US, locale `zh-Hans`, about one a day). Both are active for one day and never reach a paywall: one app counted 14 of them as installs in two months. The marketing review flags them with their counts. Exclude a locale only after checking none of your real users send it.
+
+Google Play's pre-launch devices are covered by default: in the app we checked, every `OnePlus8Pro` event carried the fleet's screen width and every `sdk_gphone` event carried `$is_emulator` (2026-10-03). If yours sends neither property, list the device names under `exclude`.
+
 ### Custom properties
 
 Advanced rules go under **Custom properties**:
@@ -90,15 +96,31 @@ Advanced rules go under **Custom properties**:
 - `app.filters` replaces the whole definition with your own rule; all filters must match. Choosing it shows as **Custom rules** on the screen, and the rule is subtracted from web visitors the same way.
 - `exclude` removes matching traffic from every metric.
 - `registration.filters` narrows the registration event, for example `result = success`.
+- `registration.events` adds account-created events from other surfaces, counted with `registration.event` (see Signups above).
+- `entryUrls` lists the pages a plan, campaign or bio link sends people to, such as a web funnel's first step. The review flags one with almost no pageviews in 14 days, which usually means a link stopped pointing at it.
 - `registration.accounts: false` says the app has no accounts (a local-first app, or one that identifies by device). Registrations then read as not applicable instead of a missing event, and the weekly email stops listing them as unread.
 - `registration.identity` defaults to `person_id`. A configured property must be present and should never change, because it counts accounts.
 - Each rule takes `scope: event|person`, `operator: in|not_in` and string, number or boolean `values`. A missing property fails `in` and passes `not_in`. Property names are literal keys, dots included.
 
 The same object is `posthogConfig` in REST `PATCH /api/app-profiles/:id`, MCP `upsert_app_profile` and the App Profile JSON used by `sprid init`, where `registration.event` and `registration.since` also live. No credentials or SQL belong in it. After saving, fetch Insights and check its registration notes and totals against your database before trusting a funnel.
 
+### Paywall and purchase events
+
+A paywall event that says only that a paywall appeared cannot tell a price change from a paywall that failed to load: both read as fewer sales. One app's Android paywall had no purchasable product for five months and its revenue view read as zero demand. Send at least these, and map the events under `posthogEvents` as `paywallShown` and `purchase`:
+
+| Event | Properties |
+|---|---|
+| Paywall shown | `price`, `currency`, `product_id`, `offering_id`, `offering_loaded` (true once the store returned a product), `has_free_phase`, `store_country` |
+| Purchase or trial started, after the store confirms it | `price`, `currency`, `product_id`, `has_free_phase` |
+| Purchase failed | `product_id`, the store's error code |
+
+Report a billing error to your error tracker too, never only to the console. The marketing review flags a platform that shows the paywall to many people and never sells, and paywall events that carry none of these properties.
+
 ## Review suspected automated traffic
 
 Read [Check whether a traffic spike is real](https://sprid.studio/docs/traffic) (`sprid docs traffic`) before saving a rule: a spike or a shared fingerprint alone does not prove bots.
+
+Not every crawler arrives as a spike. One site's September was 84% people on desktop, with no referrer, from one country, most of them for one pageview, with a normal Chrome user agent that no bot filter catches. The marketing review flags a desktop, direct, single-country group above half of website people; confirm it here before excluding anything.
 
 Open **Web visitors → Review traffic exclusions**, or **Settings → Apps → your app → PostHog → Review traffic**. Pick a UTC date range and a traffic group, preview the effect, then save. Agents use MCP `review_traffic` or `POST /api/app-profiles/:ref/traffic-review?workspaceId=…` with `{"start":"2026-09-18","end":"2026-09-19"}`: end dates exclusive, UTC, at most 31 days. An optional `exclusion` previews a rule against this period and the one before. Save approved rules in `posthogConfig.trafficExclusions` through `upsert_app_profile` or the profile PATCH route, keeping the rest of the configuration. Sprid records who edited it and when.
 
