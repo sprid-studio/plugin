@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.1.1 - 2026-10-04
+
+- `/sprid:ads`: spending starts only when you press Launch or Confirm in the Sprid app.
+  `launch_ads`, `start_promotion` and the two budget tools return what the change would
+  commit and the link to that button; the skill shows you the amount and sends you the link.
+
 ## 1.1.0 - 2026-10-03
 
 - `/sprid:landing-page`: works out what a homepage or landing page has to say by

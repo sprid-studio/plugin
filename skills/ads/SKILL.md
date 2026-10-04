@@ -1,6 +1,6 @@
 ---
 name: ads
-description: Prepare, review and run paid campaigns through Sprid - promoting a published post on Instagram or Facebook (Meta), YouTube (Google Ads) or TikTok (Spark Ads), and on Meta the full test system of campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost or promote a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server and, to spend anything, a token holding ads:spend.
+description: Prepare, review and run paid campaigns through Sprid - promoting a published post on Instagram or Facebook (Meta), YouTube (Google Ads) or TikTok (Spark Ads), and on Meta the full test system of campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost or promote a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server; spending itself is confirmed by the user in the Sprid app.
 ---
 
 # /sprid:ads
@@ -8,9 +8,9 @@ description: Prepare, review and run paid campaigns through Sprid - promoting a 
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). An ad serves the plan's active goal; a campaign with no stated hypothesis is money spent on finding out nothing.
 
-Everything here prepares. **Exactly one call spends money**, it needs the user to
-say so, and it is the only call in this skill you may never make on your own
-initiative. Everything before it is drafting, and everything after it is reading.
+Everything here prepares. **No call spends money.** Spending starts when the
+user presses Launch or Confirm in the Sprid app, on a link you hand them.
+Everything before that is drafting, and everything after it is reading.
 
 Ads are the surface where being wrong is most expensive. A post that breaks a
 voice rule can be deleted. An ad that breaks one has already been shown to people
@@ -29,7 +29,8 @@ the user paid to reach.
    creatives, which is the normal shape of a test.
 4. **`review_ad_copy`** on every piece of copy before it goes anywhere near the
    launch. Errors stop the launch; fix them rather than arguing with them.
-5. **`launch_ads`** with `confirmed: true`, on the user's explicit word.
+5. **`launch_ads`** returns what launching commits and an `approvalUrl`. Show the
+   user the amount and send them the link; they press Launch there.
 6. **`ad_council`** once a week. **`ad_post_mortem`** and **`close_ad_set`** when
    it ends.
 
@@ -81,21 +82,20 @@ worked around by rephrasing until it passes. What it catches:
   a moment, and the moment is what stops a scroll.
 - **Length before the fold**, and headline truncation.
 
-Warnings pass. Errors stop `launch_ads`. A draft is allowed to be wrong; an ad
+Warnings pass. Errors stop the launch. A draft is allowed to be wrong; an ad
 about to be paid for is not.
 
-## The one call that spends
+## Where spending starts
 
-`launch_ads` requires a token holding `ads:spend` **and** `confirmed: true`.
-Preparation never launches. Every object you built before this is paused, and
-staying paused costs nothing.
+Only a person signed in to the Sprid app can start delivery or raise a budget.
+`launch_ads`, `start_promotion`, `update_ad_budget` and
+`change_promotion_budget` change nothing: each returns what the spend would
+commit and an `approvalUrl`. No token can do more, whatever its scopes, and the
+REST routes behind those buttons refuse tokens too.
 
-Never launch because it seemed like the obvious next step. Show the user what
-will run, what it will cost a day, and for how long, and wait. If their token
-lacks `ads:spend`, say so plainly: that scope is granted deliberately, on a token
-minted for it, and quietly working around it is not an option.
-
-The same rule governs `start_promotion`, which is the other way spend begins.
+Show the user what will run, what it costs a day, for how long and the total,
+then send them the link. Do not say anything is live until `ads_overview` or
+`list_promotions` shows it.
 
 ## Promoting a published post, on any network
 
@@ -112,9 +112,9 @@ Spark Ad. An Instagram post is never shown on Facebook, and the reverse.
    around by promoting the same post on another platform.
 2. **`create_promotion`** with that row's `requestKey` and currency. It
    prepares everything paused. Keep the `requestKey` on a retry.
-3. **`start_promotion`** with `confirmed: true`, on the user's explicit word,
-   after showing the network, the platform, the daily budget, the days and the
-   total.
+3. **`start_promotion`** returns the budget and an `approvalUrl`. Show the user the
+   network, the platform, the daily budget, the days and the total, and send
+   them the link; they press Confirm there.
 
 Two network details. A TikTok post marked `needsAuthorization` needs the
 creator's ad authorization code (in TikTok: the post, then Ad settings, then
@@ -124,9 +124,11 @@ only; on Google Ads and TikTok, promotion is the whole surface.
 
 ## Budgets, pauses and rules
 
-- `update_ad_budget` changes a budget. **You do not move spend on your own.** An
-  agent that reallocates a budget between reads is a worse failure than a
-  campaign that runs three days too long, because the user can see the second one.
+- `update_ad_budget` and `change_promotion_budget` take your proposed amount and
+  return the link where the user sets it. **Propose a budget change only when
+  asked.** An agent that reallocates budgets between reads is a worse failure
+  than a campaign that runs three days too long, because the user can see the
+  second one.
 - `pause_ads` with `target: {kind: "ad" | "set", id}` stops delivery, and a pause is only real once the
   platform confirms it. An unconfirmed compensating pause leaves the row needing
   attention: say that, rather than reporting a pause that may not have landed.

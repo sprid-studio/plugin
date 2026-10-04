@@ -17,9 +17,10 @@ behind it. A brand-new creative has only an opinion. Start with the post, and
 make new creatives once you know what the winning one had.
 
 **Nothing spends without you.** Everything Sprid or your agent prepares is
-paused. Exactly one step starts spending, and it waits for your yes, showing
-what will run, what it costs a day and for how long. An agent never moves a
-budget between reads on its own.
+paused. Spending starts only when you press Launch or Confirm in the Sprid app,
+on a screen that shows what will run, what it costs a day and for how long. An
+agent can prepare a campaign and send you that link. It can't start one or
+raise a budget itself.
 
 **Keep the words, vary the picture.** We read 3,549 live ads across five
 markets. Among advertisers running eight or more, the median was 2.9 ads per
@@ -115,5 +116,4 @@ market, which is where the shapes above came from.
   TikTok.
 - A published post to promote, or, on Meta, an image or video to build a
   creative from.
-- For an agent to launch anything, a token that holds the `ads:spend`
-  permission. It's granted deliberately, on a token made for it.
+- You, signed in to the Sprid app, to press Launch. No agent or token can.
