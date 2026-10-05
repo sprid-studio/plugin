@@ -116,6 +116,43 @@ A paywall event that says only that a paywall appeared cannot tell a price chang
 
 Report a billing error to your error tracker too, never only to the console. The marketing review flags a platform that shows the paywall to many people and never sells, and paywall events that carry none of these properties.
 
+## Countries, sources and entry pages
+
+Each website breakdown is one PostHog property on each `$pageview`. posthog-js fills them all itself, so a site that loads it with default settings needs nothing here. They go missing when something else sends the events, and the breakdown then reads **Unknown**. Insights and `get_insights` (`traffic.gaps`) name which one is missing, why, and the fix.
+
+| Breakdown | Property Sprid reads | posthog-js sets it from |
+|---|---|---|
+| Country, region, city | `$geoip_country_code`, `$geoip_subdivision_1_name`, `$geoip_city_name` | PostHog’s GeoIP lookup of the visitor’s IP |
+| Source | `$referring_domain` | The referrer’s hostname, or `$direct` when there is none, on every page of the visit |
+| Entry and exit page, sessions, bounce, time on site | `$session_id` | One id per visit |
+| Browser, OS, device | `$browser`, `$os`, `$device_type` | The user agent |
+| Pages, hostname | `$pathname`, `$host` | The page address |
+
+Website events also need `$lib: "web"`; Sprid tells your site apart from your app by it.
+
+Three setups lose the country, and each has its own fix:
+
+- **Cookieless mode** (`cookieless_mode: "always"`): PostHog does not geolocate cookieless events, so every country is Unknown. Register the country yourself before the first pageview, from a value your host already has. On Cloudflare that is `request.cf.country`, the `CF-IPCountry` header, or `loc=` in `/cdn-cgi/trace` on your own domain: `posthog.register({ $geoip_country_code: "SE" })`. Or turn cookieless mode off if your privacy policy allows it.
+- **Your own relay or server** (a Worker, an API route or a proxy that calls PostHog’s capture endpoint): PostHog sees the server’s IP, or none if you set `$geoip_disable: true`. Set `$geoip_country_code` in the relay. A property called `country` does not count: nothing in PostHog or Sprid reads it.
+- **"Discard client IP data"** under Project settings, or the GeoIP transformation switched off under Data pipelines: no event in the project gets a location. Turn it back on, or supply the country as above.
+
+A relay also has to send what posthog-js would have: `$referring_domain` on every pageview (`$direct` when the visit had no referrer, and the landing page’s referrer on every later page of the same visit), and a `$session_id` that stays the same for the whole visit. For example, in a Cloudflare Worker:
+
+```js
+properties: {
+  ...props,
+  $lib: "web",
+  $host: "example.com",
+  $pathname: path,
+  $session_id: visitId,
+  $referring_domain: visitReferrer || "$direct",
+  $geoip_disable: true,                         // PostHog never sees the IP
+  $geoip_country_code: request.cf?.country ?? null,
+}
+```
+
+A visit whose source is `localhost` is someone on a development build clicking through to your live site. Stop capturing on development hosts, or exclude it as below.
+
 ## Review suspected automated traffic
 
 Read [Check whether a traffic spike is real](https://sprid.studio/docs/traffic) (`sprid docs traffic`) before saving a rule: a spike or a shared fingerprint alone does not prove bots.

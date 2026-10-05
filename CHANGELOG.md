@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.1.2 - 2026-10-05
+
+- `/sprid:connect` for PostHog covers countries, sources and entry pages that read Unknown:
+  the property each one reads, the three setups that lose the country (cookieless mode,
+  your own relay, discarded IPs) with the fix for each, and what a relay has to send.
+
 ## 1.1.1 - 2026-10-04
 
 - `/sprid:ads`: spending starts only when you press Launch or Confirm in the Sprid app.

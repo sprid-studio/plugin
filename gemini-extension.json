@@ -1,6 +1,6 @@
 {
   "name": "sprid",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Marketing for your app, inside your coding agent: diagnose distribution, review analytics, prepare store assets, and manage content through Sprid.",
   "mcpServers": {
     "sprid": {
