@@ -60,6 +60,8 @@ TikTok requires an explicit `postMode`; nothing defaults to a direct post or a d
 
 Before sending `confirmed: true`, get the person's approval of this exact post and their agreement to TikTok's [Music Usage Confirmation](https://www.tiktok.com/legal/page/global/music-usage-confirmation/en), plus the [Branded Content Policy](https://www.tiktok.com/legal/page/global/bc-policy/en) for branded content. That flag is a caller's attestation, not proof of a click in TikTok's prescribed UI. Never invent choices or carry usual preferences into a new post. If choices are missing, open the returned `approvalUrl` for the person to answer in Sprid.
 
+An approval covers the version the person saw. If you edit a booked direct post afterwards, the edit's result carries `tiktokApproval`: the booking will not publish as it is. Show the person the change and the settings in its `rebook` call, ask whether to post this version, and only after they agree call `rebook` with `options.tiktok.confirmed: true` added. `post_queue` returns the same call while the approval is outstanding.
+
 TikTok's published guidelines specify a privacy dropdown and posting controls. Acceptance of this chat-based confirmation flow has not been verified with TikTok. Keep that distinction explicit in review submissions.
 
 After approval, read `post_queue`. Keep draft, scheduled, failed and delivered apart, and report delivery only with the platform receipt. Read a failure before retrying. Never repeat a publish call just because a response was lost.

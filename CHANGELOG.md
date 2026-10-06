@@ -3,6 +3,14 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.1.4 - 2026-10-06
+
+- `/sprid:post`: if you change a TikTok post after you approved it, your agent now tells
+  you, shows you what changed and asks before booking it again, so the post goes out at
+  its slot. Switching another platform to video no longer counts as a change to the TikTok
+  post. A video booked more than two hours ahead is rendered two hours before it goes out,
+  so edits until then cost nothing.
+
 ## 1.1.3 - 2026-10-06
 
 - `/sprid:connect` no longer offers saving an Anthropic or fal key to Sprid. Work Sprid
