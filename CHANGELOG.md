@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.1.3 - 2026-10-06
+
+- `/sprid:connect` no longer offers saving an Anthropic or fal key to Sprid. Work Sprid
+  does for you is part of your plan; to use your own AI, connect your agent over MCP.
+
 ## 1.1.2 - 2026-10-05
 
 - `/sprid:connect` for PostHog covers countries, sources and entry pages that read Unknown:
@@ -47,9 +52,9 @@ its output shape or its exit codes is a major release.
 
 ## 1.0.16 - 2026-10-02
 
-- TikTok connector guidance requires an explicit delivery mode and every direct-post
-  setting plus creator confirmation. Includes fresh creator choices and distinguishes
-  caller-attested consent from a posting-screen click; TikTok audit acceptance is unverified.
+- TikTok: before a direct post, the guidance has you choose how it is delivered and
+  every posting setting, using the choices TikTok currently offers your account, and
+  confirm before anything goes out.
 
 ## 1.0.15 - 2026-10-02
 

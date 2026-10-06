@@ -20,7 +20,7 @@ Sprid holds encrypted keys and OAuth tokens and does the unattended work. This s
 
 ## A copied key: `--key-from-clipboard` (recommended)
 
-Most providers show a key once and expect it copied: RevenueCat, Stripe, PostHog, Polar, Paddle, Lemon Squeezy, Plausible, Umami, Cloudflare and the BYOK model keys. For these, `sprid connect <service> … --key-from-clipboard` is the recommended path. The CLI reads the clipboard when it runs, saves the key to Sprid and then empties the clipboard. The key never reaches the screen, the chat, shell history or a file. Services whose key is a download (ASC `.p8`, Google service-account JSON) keep `--key <file>`, and the CLI refuses the flag for them.
+Most providers show a key once and expect it copied: RevenueCat, Stripe, PostHog, Polar, Paddle, Lemon Squeezy, Plausible, Umami and Cloudflare. For these, `sprid connect <service> … --key-from-clipboard` is the recommended path. The CLI reads the clipboard when it runs, saves the key to Sprid and then empties the clipboard. The key never reaches the screen, the chat, shell history or a file. Services whose key is a download (ASC `.p8`, Google service-account JSON) keep `--key <file>`, and the CLI refuses the flag for them.
 
 **The agent runs the command, the user only copies.** Walk the user through the guide's click path to the point where the key is shown, then ask them to copy it and reply "copied". Don't ask for the key itself. Then run the guide's `Then run` line yourself, with the ids filled in. This way the user never has to copy the command out of chat, which is what would put the command on the clipboard in place of the key.
 
