@@ -32,7 +32,7 @@ TikTok requires you to choose these on every post, with nothing pre-filled:
 - The commercial-content disclosure, if the post promotes your business or another brand. Branded content cannot use **Only me**.
 - The music and branded-content terms shown above the publish button.
 
-In a batch, your choices apply to every post shown. Rescheduling a booking keeps its original choices.
+In a batch, your choices apply to every post shown. Rescheduling a post keeps its original choices.
 
 ## If it fails
 

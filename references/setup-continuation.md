@@ -72,7 +72,7 @@ coverage assessment. Reuse saved evidence after interruption, refresh explicitly
 ## Verify the outcome
 
 `sprid setup continue --json` returns each publish row separately. `scheduled`
-is an accepted booking; `published` is a delivery result. Mixed success stays
+is accepted and waiting for its slot; `published` is a delivery result. Mixed success stays
 mixed. Do not retry a successfully published destination. For a repo change,
 inspect release evidence before claiming it shipped. A weekly email never means
 the local agent ran a repo review.

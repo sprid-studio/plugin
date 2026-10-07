@@ -33,7 +33,7 @@ and the build command with each spec so edits can be reproduced.
   own video there, with transitions and motion, and choose which destinations
   get it. See [post: carousel, video or both](../post/SKILL.md#carousel-video-or-both).
 - Text on a backdrop from the customer's own renderer: render it locally and
-  upload the finished MP4 before booking.
+  upload the finished MP4 before scheduling.
 - App demonstrations or photographs: use `sprid post` with the `screen` or
   `stills` recipe. Inspect `sprid post help` and the repo's existing configuration.
 - Custom graphics or generated media: use the customer's renderer through a

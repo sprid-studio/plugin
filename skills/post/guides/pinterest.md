@@ -95,7 +95,7 @@ For a two-a-day test, choose **Daily** and two times in the batch scheduler, for
 
 Order Pins so destinations alternate, and check the calendar preview for busy days, gaps and unplaced Pins. Preparing a large batch at once is fine; publication spreads across the schedule.
 
-**MCP:** `schedule_batch` with `cadence: "daily"`, `times: ["09:00", "17:00"]`, the account/channel and the selected post IDs. Run `dryRun: true` first and check `placements`, `unplaced` and `timezone`. Busy days are skipped by default, so read the returned plan instead of promising an end date. Commit only the reviewed Pins and report what was booked. CLI users read this guide with `sprid docs pinterest-content` and the queue with `sprid queue`; place batches in the scheduling screen or over MCP.
+**MCP:** `schedule_batch` with `cadence: "daily"`, `times: ["09:00", "17:00"]`, the account/channel and the selected post IDs. Run `dryRun: true` first and check `placements`, `unplaced` and `timezone`. Busy days are skipped by default, so read the returned plan instead of promising an end date. Commit only the reviewed Pins and report what was scheduled. CLI users read this guide with `sprid docs pinterest-content` and the queue with `sprid queue`; place batches in the scheduling screen or over MCP.
 
 Before approving, check every Pin’s creative, metadata, destination, board and time, plus factual claims, rights and disclosure. Pinterest’s developer guidelines require the user to choose each Pin that publishes: Sprid shows the concrete Pins and schedule and records the selection. Those Pins then publish on time without asking again.
 

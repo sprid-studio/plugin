@@ -45,7 +45,7 @@ Agent: show the person the preview, and link every post you mention with the `li
 
 Check `get_capabilities` for hosted creation first. `create_reel` takes ordered scenes (`imageId`, `text`, `durationMs`), up to 120 seconds, and makes a silent MP4. It costs 3 Sprid credits per started render minute, or uses the plan allowance: check `spend_status`, tell the person, and get their go-ahead before sending `confirmed: true`. Save the job ID and read `get_studio_job`. Retrying with the same ID never starts a second render; a stopped job reports `needs_attention` instead of charging again.
 
-To turn an existing post's slides into a video instead, use its own video: `get_video_capabilities`, then `get_post_video` and `edit_post_video` for transitions and motion, and `update_post {outputs}` for which destinations get it. Rendering it is metered the same way: `quote_post_video_render`, the person's go-ahead, then `render_post_video` with `confirmed: true`. Book a video destination with the render's `videoRenderId`.
+To turn an existing post's slides into a video instead, use its own video: `get_video_capabilities`, then `get_post_video` and `edit_post_video` for transitions and motion, and `update_post {outputs}` for which destinations get it. Rendering it is metered the same way: `quote_post_video_render`, the person's go-ahead, then `render_post_video` with `confirmed: true`. Schedule a video destination with the render's `videoRenderId`.
 
 App captures, simulator recordings and your own build scripts run outside remote MCP. Upload their finished files.
 
@@ -60,7 +60,7 @@ TikTok requires an explicit `postMode`; nothing defaults to a direct post or a d
 
 Before sending `confirmed: true`, get the person's approval of this exact post and their agreement to TikTok's [Music Usage Confirmation](https://www.tiktok.com/legal/page/global/music-usage-confirmation/en), plus the [Branded Content Policy](https://www.tiktok.com/legal/page/global/bc-policy/en) for branded content. That flag is a caller's attestation, not proof of a click in TikTok's prescribed UI. Never invent choices or carry usual preferences into a new post. If choices are missing, open the returned `approvalUrl` for the person to answer in Sprid.
 
-An approval covers the version the person saw. If you edit a booked direct post afterwards, the edit's result carries `tiktokApproval`: the booking will not publish as it is. Show the person the change and the settings in its `rebook` call, ask whether to post this version, and only after they agree call `rebook` with `options.tiktok.confirmed: true` added. `post_queue` returns the same call while the approval is outstanding.
+An approval covers the version the person saw. If you edit a scheduled direct post afterwards, the edit's result carries `tiktokApproval`: the scheduled post will not publish as it is. Show the person the change and the settings in its `rebook` call, ask whether to post this version, and only after they agree call `rebook` with `options.tiktok.confirmed: true` added. `post_queue` returns the same call while the approval is outstanding.
 
 TikTok's published guidelines specify a privacy dropdown and posting controls. Acceptance of this chat-based confirmation flow has not been verified with TikTok. Keep that distinction explicit in review submissions.
 
