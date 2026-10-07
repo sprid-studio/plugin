@@ -64,6 +64,8 @@ requires 0.1.5, `--key-from-clipboard` requires 0.1.6, `sprid connect meta-ads`
 requires 0.1.7, `sprid doctor --plugin` requires 0.1.9,
 `sprid connect github` requires 0.1.10, and `sprid marketing-review save|history`
 requires 0.1.15; with an older CLI, call `save_marketing_review` over MCP instead.
+Pinterest account analytics, board/section management, Pinterest Ads connection
+and the `sprid ads promotion` commands require 1.2.0; older clients can use MCP.
 
 The doctor reports `current`, `recommended`, `check`, `compatible`,
 `requiresApproval`, `installation` and `updateCommand` for the CLI. An

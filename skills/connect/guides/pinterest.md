@@ -1,6 +1,6 @@
 # Pinterest
 
-**What Sprid does with this:** Publish the image and video Pins you select to the right boards, keep their destination links intact and read their daily results.
+**What Sprid does with this:** Publish the image and video Pins you select to the right boards, keep their destination links intact and read their daily and account-wide results. Rename boards, edit descriptions and create or rename sections.
 
 ## You need
 
@@ -66,3 +66,18 @@ See [connected queries](https://sprid.studio/docs/queries).
 - [Pinterest developer guidelines](https://policy.pinterest.com/en/developer-guidelines)
 - [Claim your website](https://help.pinterest.com/en/business/article/claim-your-website)
 - [Pinterest Analytics](https://help.pinterest.com/en/business/article/pinterest-analytics)
+
+## Account-wide results and board management
+
+Open **Insights → From social → Pinterest** to read organic results for the entire connected Pinterest account, including Pins created outside Sprid. The window uses completed UTC days and exposes missing coverage. Do not add account totals to per-post totals. Account analytics are read live without server retention.
+
+```sh
+sprid pinterest overview --account <slug> --days 30
+sprid pinterest update <boardId> --account <slug> --name "Useful guides" --description "Searchable guides"
+sprid pinterest section-create <boardId> --account <slug> --name "Getting started"
+sprid pinterest section-update <boardId> <sectionId> --account <slug> --name "First steps"
+```
+
+In a Pin’s board picker, **Manage board and sections** opens the same operations. Creating a section selects it as that Pin’s destination. Public and secret boards require their respective write scopes; reconnect if the grant predates them.
+
+Pinterest ads use a separate [Pinterest Ads connection](https://sprid.studio/docs/connect/pinterest-ads). Connecting ordinary Pinterest does not request advertising permissions.

@@ -1,6 +1,6 @@
 ---
 name: ads
-description: Prepare, review and run paid campaigns through Sprid - promoting a published post on Instagram or Facebook (Meta), YouTube (Google Ads) or TikTok (Spark Ads), and on Meta the full test system of campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost or promote a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server; spending itself is confirmed by the user in the Sprid app.
+description: Prepare, review and run paid campaigns through Sprid - promoting a published post on Instagram or Facebook (Meta), YouTube (Google Ads) TikTok (Spark Ads) or Pinterest, and on Meta the full test system of campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost or promote a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server; spending itself is confirmed by the user in the Sprid app.
 ---
 
 # /sprid:ads
@@ -102,7 +102,7 @@ then send them the link. Do not say anything is live until `ads_overview` or
 A promotion is a paid ad built from a post as it went out, and it runs only on
 the platform that post is live on. The network follows the platform:
 Instagram and Facebook go through Meta, YouTube through Google Ads, TikTok as a
-Spark Ad. An Instagram post is never shown on Facebook, and the reverse.
+Spark Ad, Pinterest through Pinterest Ads. An Instagram post is never shown on Facebook, and the reverse.
 
 1. **`promotion_connection`** lists every network with its own answer: the ad
    account, currency, the posts it can promote and a `requestKey`, or the
@@ -120,7 +120,13 @@ Two network details. A TikTok post marked `needsAuthorization` needs the
 creator's ad authorization code (in TikTok: the post, then Ad settings, then
 generate a code), passed as `promotion.authorizationCode`; only the user can
 make it. The archetype test system above (ad sets, creatives, batches) is Meta
-only; on Google Ads and TikTok, promotion is the whole surface.
+only; on Google Ads, TikTok and Pinterest, promotion is the whole surface.
+
+Pinterest requires a public Pin owned by the selected advertiser and an explicit
+`promotion.maxBidCents` (maximum CPC). It creates a paused consideration campaign
+with a fixed daily budget. Its run counts UTC days, including the creation day,
+and ends at UTC midnight. Only ordinary categories are supported. Read the
+[Pinterest Ads guide](../connect/guides/pinterest-ads.md) for consent and reporting.
 
 ## Budgets, pauses and rules
 

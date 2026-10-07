@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.2.0 - 2026-10-07
+
+- Pinterest setup covers account-wide organic analytics and board/section management.
+- New Pinterest Ads guide: separate advertising consent, reviewed maximum CPC and fixed daily budget, paused preparation, app-only spending approval and campaign reporting.
+
 ## 1.1.4 - 2026-10-06
 
 - `/sprid:post`: if you change a TikTok post after you approved it, your agent now tells
