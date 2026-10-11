@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.2.3 - 2026-10-12
+
+- The chat guide has the agent create a missing content account with `create_content_account` instead of sending the person to the dashboard, and ask whether the app has users before offering analytics and revenue connections.
+
 ## 1.2.2 - 2026-10-09
 
 - Refresh the plugin version alongside the Pinterest video upload fix.

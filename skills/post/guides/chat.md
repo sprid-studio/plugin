@@ -8,11 +8,13 @@ You tell the agent what you want; it handles the tool calls below. The tool name
 
 Choose your chat at `https://sprid.studio/start#chat` and follow its steps. Your chat may call this an app, connector or integration. The address is `https://api.sprid.studio/api/mcp?surface=core`. Sign in to Sprid and authorize the right workspace.
 
-Agent: when available, start with `get_marketing_plan` and reuse its prepared work and next step rather than starting over. Discovery can start from a website or store URL, with no social account.
+Agent: once the app exists, start with `get_marketing_plan` and reuse its prepared work and next step rather than starting over. Discovery can start from a website or store URL, with no social account.
 
 ## Pick the app and account
 
-Agent: call `get_capabilities`, then `list_apps` and `list_accounts`, and reuse what exists. If the app is missing, get its description or website/store URL, confirm it and create it with `upsert_app_profile`. A content account owns voice and media; a channel is one exact social destination. Never pick a handle just because it is first in a list. A missing account is created in the dashboard.
+Agent: call `get_capabilities`, then `list_apps` and `list_accounts`, and reuse what exists. If the app is missing, get its description or website/store URL, confirm it and create it with `upsert_app_profile`. A content account owns voice and media; a channel is one exact social destination. Never pick a handle just because it is first in a list. If the app has no account, ask what to call it and create it with `create_content_account`.
+
+Then ask whether the app has users yet. If it does, offer the analytics and revenue connections `next_actions` lists first: each link opens Sprid’s secure form, and the first recommendation then reads real numbers. If it has none yet, go on to the first post; connecting stays optional.
 
 ## Connect a destination or data source
 
