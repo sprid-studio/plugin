@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.2.4 - 2026-10-14
+
+- Add a Meta conversion campaign guide covering preflight checks, creative controls, attribution and app approval. Explain shared Meta ad accounts, spending limits and the connections affected by removing access.
+
+- The chat guide provides an app fallback when a connector does not expose account creation.
+
 ## 1.2.3 - 2026-10-12
 
 - The chat guide has the agent create a missing content account with `create_content_account` instead of sending the person to the dashboard, and ask whether the app has users before offering analytics and revenue connections.

@@ -12,7 +12,7 @@ Agent: once the app exists, start with `get_marketing_plan` and reuse its prepar
 
 ## Pick the app and account
 
-Agent: call `get_capabilities`, then `list_apps` and `list_accounts`, and reuse what exists. If the app is missing, get its description or website/store URL, confirm it and create it with `upsert_app_profile`. A content account owns voice and media; a channel is one exact social destination. Never pick a handle just because it is first in a list. If the app has no account, ask what to call it and create it with `create_content_account`.
+Agent: call `get_capabilities`, then `list_apps` and `list_accounts`, and reuse what exists. If the app is missing, get its description or website/store URL, confirm it and create it with `upsert_app_profile`. A content account owns voice and media; a channel is one exact social destination. Never pick a handle just because it is first in a list. If the app has no account, ask what to call it. Use `create_content_account` when your connector exposes it. If that tool is unavailable, open `https://app.sprid.studio/settings/accounts/new?workspaceId=<workspace-id>&app=<app-id>` with the selected app’s workspace and app IDs filled in. Ask the person to confirm that app and create the account, then read `list_accounts` again.
 
 Then ask whether the app has users yet. If it does, offer the analytics and revenue connections `next_actions` lists first: each link opens Sprid’s secure form, and the first recommendation then reads real numbers. If it has none yet, go on to the first post; connecting stays optional.
 

@@ -29,12 +29,12 @@ line. The ad library counts placements separately, so the exact ratio overstates
 but the shape holds: the people who keep paying hold the copy and change the
 creative. A new version changes one thing, or the result teaches nothing.
 
-**Give it time to be readable.** Meta's delivery settles after roughly 50
-optimisation events in a week, and Google and TikTok need a similar learning
-period. Before that, a result is noise, and the most
-common way to waste money on ads is to stop an ad set before it has said
-anything, then decide the idea doesn't work. Sprid says whether a result is
-readable before it says whether it worked.
+**Check how much evidence you have.** Meta says ad sets usually leave learning
+after about 50 results in the week following the last significant edit. That
+is delivery guidance. A smaller sample can still expose a broken checkout.
+Sprid’s three-day early-observation flag describes its own review policy;
+it does not report Meta’s learning status. Read the sample and follow-up period
+before deciding whether an offer worked.
 
 **Judge by what happens in your product.** Cost per install or subscriber comes
 first and impressions come last, because the order a report puts numbers in is
@@ -73,6 +73,10 @@ verdict about the reader, two columns where the reader does the arithmetic, or
 one sourced number. The shape is what makes a result transferable: "showing the
 verdict beat listing features" is something you can build again, "ad 7 beat
 ad 3" is not.
+
+For a campaign that optimizes for a signup or purchase, follow
+[Run your first Meta conversion campaign](https://sprid.studio/docs/meta-conversions).
+It covers server events, custom conversions and the fresh checks before launch.
 
 ## The checks before money moves
 

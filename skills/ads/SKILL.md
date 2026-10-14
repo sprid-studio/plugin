@@ -128,6 +128,10 @@ with a fixed daily budget. Its run counts UTC days, including the creation day,
 and ends at UTC midnight. Only ordinary categories are supported. Read the
 [Pinterest Ads guide](../connect/guides/pinterest-ads.md) for consent and reporting.
 
+For conversion campaigns, read [the Meta conversion guide](guides/meta-conversions.md)
+before setup. A dataset ID alone cannot prove recent activity for the chosen event.
+Run `dataset_health` and resolve its readiness reason before preparing launch.
+
 ## Budgets, pauses and rules
 
 - `update_ad_budget` and `change_promotion_budget` take your proposed amount and
@@ -138,8 +142,9 @@ and ends at UTC midnight. Only ordinary categories are supported. Read the
 - `pause_ads` with `target: {kind: "ad" | "set", id}` stops delivery, and a pause is only real once the
   platform confirms it. An unconfirmed compensating pause leaves the row needing
   attention: say that, rather than reporting a pause that may not have landed.
-- `create_ad_rule` and `evaluate_ad_rules` express "if this, then that" as
-  something the user approved once, which is the honest way to automate a pause.
+- `create_ad_rule` and `evaluate_ad_rules` flag a threshold for review. A fired
+  rule sends its observed value to the owner; it does not pause delivery. The
+  person chooses Pause or Keep in the Sprid app.
 
 ## Reading results
 
@@ -148,10 +153,9 @@ what next" rather than printing a dashboard. It reads cost per optimised event
 first and impressions last, on purpose: the order a report puts numbers in is the
 order people believe them in.
 
-It also says whether a set is **readable** at all. Below the learning phase,
-nothing in it means anything - and the most common way to waste money on ads is
-to kill a set before it has told you anything, then conclude the shape does not
-work.
+Its **readable** flag uses Sprid’s three-day early-observation policy. It does
+not report Meta’s learning status or prove a sample is conclusive. Check event
+volume and the time people have had to pay before judging the result.
 
 - `ad_metrics` and `ad_breakdown` for the detail. **Never sum a campaign row and
   its children**; they are independent reporting levels and adding them double

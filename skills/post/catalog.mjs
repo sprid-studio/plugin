@@ -12,6 +12,7 @@ export const CONTENT_GUIDE_SPECS = [
     url: 'https://sprid.studio/docs/pinterest',
   },
   { id: 'distribution', file: 'distribution', title: 'Why a post travels', url: 'https://sprid.studio/docs/distribution' },
+  { id: 'meta-conversions', file: 'meta-conversions', dir: 'ads/guides', title: 'Run your first Meta conversion campaign.', url: 'https://sprid.studio/docs/meta-conversions' },
   { id: 'ads', file: 'ads', dir: 'ads/guides', title: 'Ads: pay to show more people what already worked', url: 'https://sprid.studio/docs/ads' },
   {
     id: 'reel-first-seconds',
