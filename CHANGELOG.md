@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.3.0 - 2026-10-18
+
+- Marketing review: new reference "From diagnosis to an activity". After the headline movements, split the paying segment's volume from its rates, trace a volume change upstream, check each lever against earlier tests, then pick the kind of activity the evidence points to (reach through owned channels and dated moments, converting the visitors entry pages already get, winning the click in search, a missing handoff, a truth pass). The first agenda item is now an activity brief with audience size, date, assets, success measure, baseline and stop rule, handed to the execution skill.
+
 ## 1.2.4 - 2026-10-14
 
 - Add a Meta conversion campaign guide covering preflight checks, creative controls, attribution and app approval. Explain shared Meta ad accounts, spending limits and the connections affected by removing access.

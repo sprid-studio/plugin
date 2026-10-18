@@ -79,6 +79,10 @@ Read actual diffs, current listing/landing copy and release evidence for changes
 
 Read app-specific `review` settings and referenced investigations using [repository review sources](../../references/repository-review-sources.md). Complete each enabled investigation or name its coverage gap in the report. A demand ledger, lifecycle-email analysis, attribution question, acquisition DB or retention query used in earlier reviews remains part of coverage after migration. If an existing app has no inventory yet, discover it from the repo and earlier reports during this review; do not require another bootstrap. Re-check inherited metric definitions against the instrumentation; never silently substitute an easier event.
 
+## Turn the diagnosis into an activity
+
+Read [from diagnosis to an activity](../../references/review-to-action.md) once the headline movements are explained and before the agenda is written. Split the paying segment's volume from its rates, trace a volume change upstream until technical causes are ruled out two ways, and check each proposed lever against earlier tests and natural experiments in the repository. Then pick the kind of activity the evidence points to: reaching the segment through owned channels and dated moments, converting the visitors entry pages already get (rate by source × device, what they see, whether their device can finish), winning the click in search, building a missing handoff, or a truth pass. The first agenda item is an activity brief with audience size, date, assets, success measure in the paying segment, baseline and stop rule, handed to the execution skill. Rank no-build activities above anything that needs a release.
+
 ## Write and finish
 
 Follow [the business report contract](../../references/marketing-review-report.md). Lead with the commercial verdict, a compact scorecard and one ranked agenda spanning marketing, revenue and product value. Inspect actual pages and distribution, challenge the current strategy and revisit the dated hypothesis ledger. Keep required revenue and app-specific investigations in this review. Measurement fixes earn priority through the decisions they enable.

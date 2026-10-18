@@ -40,6 +40,8 @@ Paid acquisition and publisher advertising get separate verdicts. When buying ad
 
 Rank decisions across these areas together. Each recommendation names what changes, where, the evidence strength, the outcome sought and what would stop or reverse it. Prioritize measurement work only when it can change a consequential decision. Maintain successful distribution when evidence supports it; a review need not manufacture a new direction.
 
+The first item arrives as an activity brief from [diagnosis to an activity](review-to-action.md): audience and its count, the dated hook, existing assets, channel and date, success measure in the paying segment and a stop rule. A heading without a count or a date is not yet a recommendation.
+
 Optional investigations must go beyond completed required analysis. Select relevant named tracks with concrete deliverables, such as landing-page copy variants or reconciled acquisition-cost scenarios. Follow the user's preferred number and presentation. Do not label an essential unfinished revenue or activation read as optional.
 
 ## Evidence appendix and reproducibility
