@@ -94,7 +94,7 @@ Sprid requests opt-outs for the documented creative enhancements it supports and
 
 Use `ad_status` to check delivery and rejection messages. Ask for `ad_council` to compare cost per optimized event with your target. Then compare Meta’s clicks with your app’s actual outcomes.
 
-The stage-by-stage diagnosis below is a manual check using Meta reports and your own analytics. Sprid’s automatic combined funnel diagnosis is planned.
+The stage-by-stage diagnosis below uses Meta reports and your own analytics. Verify each stage against its source and keep attribution gaps explicit.
 
 | Stage | Compare | Investigate when that stage loses people |
 |---|---|---|

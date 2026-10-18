@@ -8,16 +8,10 @@ description: Find out whether search can bring this app users, then write, ship 
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md). Search is one route among several; take it when the evidence says it can reach this app's readers.
 
-Search can compound for years, or it can absorb months and return nothing. Both
-happened on apps we run. A site generated from one app's own database grew from
-about 400 to 3,300 clicks a month. A library of a few dozen guides went from 10
-clicks a quarter to 220 a month, then levelled off. More than 2,000 carefully
-sourced pages for a third app earned 2 clicks in 90 days. Careful sourcing did not
-separate them. What did was whether people searched for what the pages answered,
-whether someone else already owned those results, and whether the pages held
-something nobody else had.
-That is why this skill starts with an investigation and a small test, and grows
-only what the numbers support.
+Assess search demand, competition and what the product can contribute before
+recommending a page library. Use the customer's existing results to choose the
+scale of the work. For an untested page type, agree a representative test and
+the evidence needed to expand it.
 
 ## What this touches
 
@@ -55,7 +49,9 @@ evidence. A "no" is a useful result; say it plainly.
 
 ## 2. Plan a small first batch
 
-Pick five to ten pages, never a whole library. For each, write down:
+Choose a batch large enough to test the relevant page types and markets. Preserve
+an explicitly requested scope and explain any evidence that argues for changing it.
+For each page, write down:
 
 - the query and the searcher's intent (what they want to do next);
 - why this page can win against the current top results;
@@ -101,7 +97,7 @@ Before scaling any page type past the test batch, read
 ## 4. Check what would silently stop it ranking
 
 Run the [technical checks](references/technical-checks.md) on every new page type
-and after every structural change. Most of the search failures we have seen were here:
+and after every structural change. Check for:
 redirects that never fired, canonicals pointing at redirects, sitemaps listing
 pages marked not to be indexed, links to pages that do not exist. Each one looked
 fine in the code.

@@ -4,17 +4,12 @@
 Instagram, Facebook, YouTube and TikTok: when to spend, how a promotion runs
 from draft to result, and which numbers to believe along the way.
 
-Ads don't rescue a post nobody wanted. They amplify, and they amplify
-whatever you give them, including a weak idea. So the order Sprid follows is
-organic first: publish, see which posts people actually watched and saved, and
-put money behind the one that already beat your normal. That post has passed
-the hardest test for free.
+Choose a paid campaign from the customer's audience, objective and acquisition
+economics. Organic results can help select a post to promote, but a paid creative
+can also be tested directly with an approved budget and a measurable outcome.
+Neither social engagement nor a competitor's activity proves profitable demand.
 
-## What we believe
-
-**Promote proof, not hope.** A post that did twice your median has evidence
-behind it. A brand-new creative has only an opinion. Start with the post, and
-make new creatives once you know what the winning one had.
+## Preparing a campaign
 
 **Nothing spends without you.** Everything Sprid or your agent prepares is
 paused. Spending starts only when you press Launch or Confirm in the Sprid app,
@@ -22,24 +17,19 @@ on a screen that shows what will run, what it costs a day and for how long. An
 agent can prepare a campaign and send you that link. It can't start one or
 raise a budget itself.
 
-**Keep the words, vary the picture.** We read 3,549 live ads across five
-markets. Among advertisers running eight or more, the median was 2.9 ads per
-line of copy, and the largest wellness advertiser ran 109 ads on essentially one
-line. The ad library counts placements separately, so the exact ratio overstates,
-but the shape holds: the people who keep paying hold the copy and change the
-creative. A new version changes one thing, or the result teaches nothing.
+**Give each test a question.** A visual test can hold the copy constant; a
+message test can hold the format constant. Record what changes and what result
+would support the hypothesis. When several elements change together, treat the
+result as evidence about the complete variant.
 
-**Check how much evidence you have.** Meta says ad sets usually leave learning
-after about 50 results in the week following the last significant edit. That
-is delivery guidance. A smaller sample can still expose a broken checkout.
-Sprid’s three-day early-observation flag describes its own review policy;
-it does not report Meta’s learning status. Read the sample and follow-up period
-before deciding whether an offer worked.
+**Check how much evidence you have.** Read delivery, conversions and the
+follow-up period before judging a campaign. A platform's learning status and
+Sprid's review guidance answer different questions. A small sample may reveal a
+broken destination without establishing which creative performs better.
 
-**Judge by what happens in your product.** Cost per install or subscriber comes
-first and impressions come last, because the order a report puts numbers in is
-the order people believe them in. When your app reports who became a paying
-customer, that outranks anything the platform can see.
+**Judge by what happens in your product.** Use the outcome the campaign is meant to produce, such as a qualified lead,
+paid account or completed order. Check attribution and reconcile platform
+conversions with the business records before estimating acquisition value.
 
 ## Two ways to start
 
@@ -109,7 +99,7 @@ Meta's Ad Library shows every active ad: the creative, the copy and the date it
 started. It shows no spend, no clicks and no results. Days live means somebody
 keeps paying, not that it works, so a competitor's ad is "longest-running",
 never "best-performing". Sprid's scout research reads the library for your own
-market, which is where the shapes above came from.
+market. Use those observations to propose tests, with their sources and limits.
 
 ## You need
 

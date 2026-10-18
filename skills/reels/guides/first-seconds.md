@@ -1,132 +1,88 @@
 # The first seconds of a reel
 
-**What this guide does:** Explains why a vertical video is watched or skipped in
-its opening seconds, and gives the timing arithmetic to build one that gets past
-it. Read it before writing a hook, choosing a length, or diagnosing a reel that
-got no views.
+**What this guide does:** Helps write and inspect the opening of a vertical video,
+then test changes against the customer's own results.
 
-Both platforms decide a video's reach from a small first batch of viewers and
-from what each of them does in the first seconds. Nothing after second three
-matters to someone who left at second two. Everything below follows from that.
+Start from the audience, the purpose of the post and the account's accepted voice.
+A product demonstration, an explainer and a personal story can need different
+openings. No fixed duration or hook formula is a performance guarantee.
 
-Each claim carries how we know it: **measured** (we ran it and wrote the number
-down), **reproduced** (we made the mistake and watched it happen), **published**
-(the platform or a cited source says so, we have not tested it).
+## Make the opening understandable
 
-## Frame 0 is the cover, so it must already be readable
+Inspect the rendered first frame and the opening at normal playback speed on a
+phone-sized preview. Check that the subject and any essential text are visible,
+including when playback starts without sound. An empty fade or an unreadable
+caption can delay the point of the video.
 
-**Reproduced, twice, on two different accounts.** The feed shows the video's
-first frame as its poster image. A hook that fades in from black has a black
-cover. A hook that animates up from 0.42 opacity reads as washed-out grey for
-the first half second - which is inside the window that decides whether anyone
-stays.
+Choose the cover separately where the destination supports it. Do not assume
+that every platform or placement uses the same frame as its cover.
 
-Place the first card. Do not animate it in. Light it at 0.7 opacity or more, and
-make it true at t=0.
+## Match timing to the content
 
-## The opener has to end before second three
+Read the opening aloud and watch it without pausing. Keep enough time to read
+and understand it, then move when the next useful piece of information arrives.
+Shorten excess wording before speeding up the cards.
 
-**Reproduced.** A hook card held for 3.3 seconds puts the first cut at 3.1
-seconds, so the entire skip window contains one motionless card. Nothing has
-happened yet when the viewer decides.
+For text-led videos, inspect each card's reading load, contrast and placement.
+For demonstrations, allow the viewer to see the action and its result. Captions
+must follow speech without covering the thing being explained. Validate each
+language separately because translated text and narration have different lengths.
 
-Size the opener to its own reading load with a floor of 1.6 seconds, and check
-that the first cut lands under three. A cut inside the window is the cheapest
-signal you have that this video is going somewhere.
+Treat renderer timing defaults as starting points. Keep deliberate pauses when
+they help comprehension; neither a cut before a fixed second nor a shorter total
+runtime is evidence that the video will perform better.
 
-## Length: one measured result, and its confound
+## Choose an opening worth testing
 
-**Measured, on one of our own accounts, 2026-08-29.** A batch cut to 15.5
-seconds drew 113-162 views on an account with a single follower. The 29-32
-second cuts that followed on the same account drew 6-22, and one sat at 6 views
-after 29 hours - a distribution collapse rather than a slow start.
+Use customer language, a recognizable situation, a useful question, a product
+action or a sourced fact. Deliver what the opening promises. A how-to or a question
+is appropriate when it fits the viewer's intent and the content answers it.
 
-State the confound honestly: three things changed in that batch at once
-(background, word density, length). Length is the reversible one, not the proven
-one. That account now runs a 10-13 second test. **Neither band is a benchmark**,
-and anyone quoting 15.5 seconds as an optimum - including us - is over-reading a
-single comparison.
+Write alternatives for the same idea before choosing. Keep the account's voice,
+accepted examples and previous corrections with the brief. Do not invent a
+quotation or present a drafted hook as something a customer said.
 
-## The timing arithmetic
+Choose the next beat so the explanation progresses. End with the useful result
+and a call to action when it serves the purpose of the post.
 
-Reading load, not taste. These are the holds that stop a card from reading faster
-than it is shown.
+## Diagnose with available evidence
 
-| | hold | why |
-|---|---|---|
-| any word | 300 ms | silent reading speed on a phone |
-| any character | 52 ms | a compound noun is one word and twenty letters, so take `max(words, chars)` |
-| opener | 1.6-2.8 s | reading load + 0.5 s, and the first cut must land under 3 s |
-| body or turn | 2.4-4.2 s | reading load + 0.7 s |
-| a big number | 2.6-3.8 s | the number reads at a glance, its label does not |
-| closer | 3.6-5.0 s | reading load + 1.3 s; this is the card people screenshot |
-| overlap | 200 ms | each card starts before the previous one leaves |
+Read the connected platform's returned metrics and coverage before selecting a
+comparison. Use retention or opening-view metrics when actually available through
+that connection or the user's native analytics. Do not promise an API metric that
+the current tools do not expose.
 
-Word budgets per card, never totalled: hook 3-11, body 3-14, closer 4-16. A
-3.5-second card holds roughly 10 words or 55 characters at a comfortable size.
-Past that the card reads faster than it holds, and the viewer waits - which is
-the same experience as being bored.
+Average watch time divided by duration describes average watch proportion. It
+does not establish how many viewers stayed through the opening. Views, likes and
+saves also cannot reconstruct that curve. State a missing metric as a gap.
 
-## What a hook is, and is not
+Compare posts of similar age, audience, placement and distribution. Show the
+sample size and spread. A small or unevenly distributed sample may support a
+new experiment without establishing a winning format.
 
-- A sentence your buyer has actually thought, or the sharpest fact stated flat.
-  A scene or a number. It opens a loop the closer shuts.
-- **Not a "how to".** That creates an expectation of information, and information
-  can be postponed. Not a question. Not "did you know".
-- **Recognition stops a scroll; tempo does not.** A harvested ten-word hook beat
-  an invented four-word one on our own account (**reproduced**). Hooks come from
-  what people actually said - forum threads, reviews, support mail - not from the
-  bank of phrases that sound like hooks.
-- **The second card is a second hook.** It has to work cold, with the first card
-  gone. On carousels the platform literally re-serves from the second slide; on
-  video, the first cut is the same second chance.
-- The closer is flat and screenshottable, and it lets the product do the work
-  rather than issuing an install instruction.
+## Test one explanation at a time
 
-## The kill rule
+Record the hypothesis, what changes and what outcome would support it. For an
+opening test, keep the body comparable. If length, visuals and wording all change,
+report the result as a comparison of complete variants rather than attributing
+it to one change.
 
-**Published**, from platform averages rather than our own numbers: under 25% of
-viewers still watching past three seconds, keep the body and replace the hook.
-Around 30% is healthy and 40% is exceptional on TikTok.
-
-Two guards on that rule. Never judge a format before ten posts, and never judge
-a new account before 90 days - distribution is a power law, and a handful of
-posts carry most of the reach. Reading the first three posts of a new account
-is reading noise.
-
-## Where that number actually lives
-
-This matters more than it sounds, because the metric the kill rule needs is the
-one hardest to get:
-
-- Views, likes, comments, shares, saves and reach come back through the
-  platforms' public APIs, and Sprid stores them per post.
-- **Three-second hook rate and the retention curve exist only inside the native
-  Instagram and TikTok insights screens.** There is no API field for them as an
-  organic number. If you need them, you open the app.
-- Average watch time is available through both business APIs, which makes
-  `average watch ÷ duration` the honest proxy you can automate.
-- Taps through to your site or store are the number that pays. The rest are
-  directional.
+Choose a review point from the customer's posting cadence and observed delivery.
+Do not impose a universal retention threshold, post count or account age before
+a decision. A visible defect can be corrected before a performance test finishes.
+Connect creative results to qualified visits, purchases or the declared business
+outcome where measurement supports it.
 
 ## A reel as a Pinterest video Pin
 
-The same file can go out as a video Pin, with its own board, destination link,
-title and description. The timing arithmetic still holds for whoever presses
-play. The kill rule does not carry over: a Pin is found through search and
-related Pins for months, with no first test batch, so compare video Pins at
-equal ages (30, 60 and 90 days). Pinterest reports daily impressions, saves, Pin
-clicks, outbound clicks and video views (2 seconds with half the video in view),
-with no hook rate, retention curve, likes, comments or shares. The number that
-pays is outbound clicks followed through to visits and activation.
+Prepare its board, destination, title and description using the
+[Pinterest guide](../../post/guides/pinterest.md). Compare Pins at matching ages
+and keep platform metrics separate from site visits and product outcomes.
+Do not import an Instagram or TikTok retention benchmark into a Pin review.
 
-## One picture, many languages
+## Reuse footage across languages
 
-The reason a demo video is usually made once is that the work is a person
-holding a phone. Split it instead: the wordless part (the footage, the gesture
-script, the photographs) and the worded part (the captions and cards, bound to
-marks in the footage rather than to timestamps).
-
-The rule that makes it hold: **no word is ever inside a picture.** A wordless
-cutaway serves every language you have a string table for, so a seventh language
-costs its translation and one render rather than a second shoot.
+Keep captions and other editable text separate from footage where practical.
+Bind overlays to the relevant actions so translated narration can be retimed.
+Localize product screens when their visible text matters to the explanation.
+Preview each export; a reusable composition still needs language-specific review.

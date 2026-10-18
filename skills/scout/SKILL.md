@@ -24,13 +24,15 @@ Never hand a pulled image back as something to post, never suggest re-uploading 
 
 The same holds for what goes into Sprid. Pushed slideshows land in the inspiration library as reference for analysis - what the format was, how it performed - and a library entry is a thing to learn from, never a source of artwork.
 
-## The person you are talking to has not read this
+## Explain findings in plain language
 
-This file and the five beside it were written for you. The user has never read them. So do not speak back to them in the private language of these pages. Never quote a rule from here, never name a filter or a verdict the way this document names it, and never lean on a phrase like "near miss" or "pass rate" or "the window" as though the user already knew what it meant. Those are words to think with, not words to say.
+Explain why an account is relevant using its observed results and the user's
+question. Define a filter or verdict when it affects the recommendation. If asked
+how the research works, explain the method and its limits openly.
 
-When you tell the user why an account is worth their attention, build the reason out of the numbers in front of you, in their own language, as if the idea were new. A sentence that would only make sense to someone who had read this skill is the wrong sentence, however true it is.
-
-This holds while a run is working as much as it does at the end. A run keeps a running arithmetic about itself: the rate it is passing accounts at, the finish it projects, the seconds it spends per profile. That arithmetic is the language you think in. Between waits there are two things worth offering, silence and something the user actually gains from: an account worth seeing, a change you made and why, a real problem you hit. Reading a dashboard aloud is neither.
+During a run, report useful findings, changed search criteria or a blocker. Avoid
+reciting unchanged progress counters. Make filter changes visible so the user can
+steer the research.
 
 ## Think like a strategist, not a terminal
 
@@ -39,7 +41,7 @@ Many people here are founders who want to see what competitors are doing, find a
 - Point at what matters without being asked. If an account is reaching far past its follower count, say so and offer to take its format apart.
 - Render accounts as links the user can click, `https://www.tiktok.com/@username`. A handle they can open beats text they have to copy.
 - Findings land as a short table plus an expert reading and a recommendation, never a JSON dump. See analysis.md.
-- Searches usually run best in English even for a non-English product. English slideshow content tends to be deeper, and the user can take what they learn and publish in their own language. See discover.md.
+- Start with the audience's language and market. Broaden to other languages when that answers the research question, and keep those samples distinguishable. See discover.md.
 
 ## Habits of mind
 
@@ -69,10 +71,11 @@ npm install -g @sprid/scout
 claude mcp add --transport stdio --scope user scout -- sprid-scout
 ```
 
-If the tools below are not in the session, that install has not happened yet.
-Say so and hand over those two lines rather than reaching for another route.
+If the tools are missing, check whether Scout is installed but disconnected.
+Explain its local browser requirement and help connect it within the user's
+authorized setup. Use an available read-only research method if Scout cannot run.
 
-## Two lanes, and the fast one has a price
+## Browser access
 
 **The dedicated profile** is the default: its own Chrome profile, its own TikTok
 login, measurement, filters, verdicts, downloads. Everything below this section
@@ -94,14 +97,12 @@ for someone who trusts what they run, and it is theirs to make knowingly. Tell
 them they can switch it back off afterwards.
 
 What it gives: the user's stats, every post in the grid as a link, whether each
-is a slideshow or a video, and the view counts where the page prints them - about
-80 posts from an account or 170 from a hashtag in fifteen seconds. It opens its
+is a slideshow or a video, and the view counts where the page prints them - as many
+posts as the loaded grid exposes, with coverage reported for that read. It opens its
 own tab and closes it, so it never takes the tab in front of them.
 
-What it cannot give, and why: the feed endpoint is signature-gated and answers
-an empty body when called directly, and a profile grid makes no API calls to
-intercept. So a tile carries no date, and **no windowed measurement is possible
-here** - "average views over the last 30 days", the filters and the verdicts all
+What it cannot give, and why: the quick grid read does not supply reliable post dates, so **no windowed
+measurement is possible here** - "average views over the last 30 days", the filters and the verdicts all
 need the dedicated-profile lane.
 
 Use the two together: find the posts fast, then hand those urls to
@@ -156,7 +157,7 @@ A run can park and wait on a person, and `await_job` returns immediately with `e
 
 After you have relayed it, call `await_job` again with the same id. It holds through the pause and picks the run back up the instant it resumes, so a solved challenge carries the run to the end with no second prompt from you. Stopping ends a run for good, so never stop one the user did not ask you to stop. Everything a run measured before it ended is kept either way, and `job_results` still reads it back.
 
-Scout reads and never writes. It posts nothing, follows nobody, leaves no comment, and sends no message. The one thing it does that touches another account is an occasional like during a search, which is how the session tells the algorithm what it is interested in. If the user asks scout to act on a platform rather than read it, that is the publishing side of Sprid, not this.
+Discovery must only read. Scout `0.1.0` can like posts automatically; do not run discovery on that release. Update to a release that removes automatic likes first. Research must not like, follow, comment or message on the user's behalf. Publishing uses Sprid's separate publishing tools and the user's authorization.
 
 ## Go deeper
 

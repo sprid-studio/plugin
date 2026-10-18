@@ -153,7 +153,7 @@ what next" rather than printing a dashboard. It reads cost per optimised event
 first and impressions last, on purpose: the order a report puts numbers in is the
 order people believe them in.
 
-Its **readable** flag uses Sprid’s three-day early-observation policy. It does
+Its **readable** flag is review guidance based on the available observation window. It does
 not report Meta’s learning status or prove a sample is conclusive. Check event
 volume and the time people have had to pay before judging the result.
 

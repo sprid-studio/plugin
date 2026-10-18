@@ -85,16 +85,15 @@ Then a second wall at two or three seconds answers the question the first one
 raises: of the covers that promised something, which ones deliver a change by
 the time the skip window closes.
 
-A wall of twelve is usually enough to call a convention; a wall of four is an
-anecdote with a nice layout.
+Show the sample size and selection criteria. A pattern in a small selected
+set may justify a test without establishing a convention across the niche.
 
 ## Budget the frames
 
-Frames are cheap to take and expensive to read: past roughly fifty in one
-context, a model starts losing the early ones. Spend them deliberately - five
-offsets on three posts and a twelve-cell wall is forty-seven frames and a
-complete picture of a niche. Sampling one post at twenty offsets is almost
-always the worse buy.
+Sample frames that answer the current question. A cover comparison needs
+comparable openings; a timing investigation needs the transitions around the
+suspected problem. Expand the sample when missing evidence could change the
+conclusion, and state what stills cannot establish about motion or audio.
 
 ## For an ad, three more things to name
 
@@ -158,16 +157,9 @@ They exist so the structure can be described and rebuilt in the user's own
 product, voice and images. They are never republished, never placed in a draft,
 and never handed back as something to post.
 
-## Where this method comes from
+## Limits of a teardown
 
-Written from what the frames can actually show, plus two things already measured
-here: the opening seconds decide whether a video is watched at all, and a cover
-frame that is not finished at t=0 is the most expensive mistake available. The
-ad-side vocabulary (angle, offer framing, fatigue) is the standard one used in
-creative testing, and it is here because it is what makes two teardowns
-comparable, not because it is ours.
-
-It is deliberately not a film-grammar rubric. Framing, camera movement, eye-trace
-and cut type are worth naming when the user is directing a shoot; for deciding
-what to post next week, what the subject is, what is being done and what the
-first frame promises carry almost all of the signal.
+A frame sheet can show layout, wording and visual sequence. It cannot establish
+why viewers stayed, what an ad earned or how a complete motion sequence felt.
+Keep those claims separate from directly observed features. Use current account
+results or an explicit experiment to evaluate a proposed rebuild.

@@ -26,8 +26,8 @@ stock - then it is just text on a picture.
 **Two columns, the reader does the arithmetic.** "Here is what that money buys
 you elsewhere" against "here is what it buys here". Both sides must be stated in
 the same grammar; if the right column reads as a different kind of thing, the
-comparison collapses. The longest-running shape in the harvest that produced this
-library ran 326 days.
+comparison collapses. Use current evidence from the customer's market when
+comparing this shape with others.
 
 **Four panels, before and after.** A short illustrated narrative in one still.
 Needs a real before - a recognisable bad evening, not a shrug - and a specific

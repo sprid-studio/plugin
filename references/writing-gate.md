@@ -2,30 +2,31 @@
 
 Run this on any copy a stranger will read before deciding about the app: a homepage,
 a landing page, a search page, a store listing, an ad. Readers are suspicious of
-machine-written text, and they decide in seconds. The copy has to read as if a person
-who knows the product wrote it. Fix every hit, then run the gate again.
+machine-written text, and they decide in seconds. The copy should sound like the
+customer's product. Read their voice guide and accepted examples first. Its
+punctuation, register and terminology take precedence over stylistic suggestions here.
 
 ## 1. Mechanical checks
 
-Search the draft for these and read each hit. A real guarantee can survive; a rhythm
-device cannot.
+Check clarity and consistency with the customer's voice. These are editing prompts,
+not a universal banned-word list. Keep a construction when it conveys the intended
+meaning clearly; do not flag it solely because it appears in this list.
 
-- **Dashes.** Em and en dashes. Use a comma, a colon, a full stop or a hyphen with spaces.
+- **Punctuation.** Follow the customer's conventions for dashes, quotes and emphasis.
 - **Contrast reveals.** "Not X, but Y", "X, not Y", "It's not about X", "rather than",
-  "instead of", "more than just". Say the positive thing. Keep a negation only when it
-  states what the product will or will not do: "No account needed", "Nothing posts
-  without you".
+  "instead of", "more than just". Check that the comparison explains a real
+  difference instead of adding a slogan. Preserve useful negations and comparisons.
 - **Colon and question reveals.** "The result?", "Here's the thing:", "The catch:".
-- **Triplets.** Rhetorical lists of three ("faster, simpler, smarter"). Lists of real
-  things are fine.
+- **Lists.** Replace empty claims such as "faster, simpler, smarter" with specific
+  benefits. The number of items is not itself a defect.
 - **Balanced pairs.** Two clauses with the same shape ("Your data. Your rules.").
-  Break one, or merge them into one sentence that says what happens.
+  Check whether the pair says something specific and fits the brand's voice.
 - **Aphoristic closers.** A last line with a turn that could be printed on a mug.
   Replace it with the literal fact it was dressing up.
-- **Filler words.** seamless, robust, leverage, unlock, empower, supercharge,
+- **Potential filler.** seamless, robust, leverage, unlock, empower, supercharge,
   effortless, streamline, journey, landscape, delve, game-changing, "in today's".
-- **Long sentences.** Re-read every sentence over 20 words. Split it or cut it.
-- **Exclamation marks** in body copy.
+- **Long sentences.** Split them when the meaning becomes hard to follow.
+- **Exclamation marks.** Match the customer's voice and the purpose of the copy.
 
 ## 2. Meaning tests
 

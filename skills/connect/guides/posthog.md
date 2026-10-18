@@ -69,20 +69,25 @@ Whatever you name here is **subtracted from your website visitor numbers**, so a
 
 ### Keep your own testing out
 
-On a new app, your own phone, simulators and store reviewers can outnumber real people. Sprid already drops Google Play's pre-launch test devices, events reporting `$is_emulator`, reported bots, and anything flagged `is_internal`, `is_test` or `sprid_test`. Two things are yours to add:
+Keep known staff and test activity separate from customer metrics. Sprid applies
+its built-in exclusions and flags including `is_internal`, `is_test` and
+`sprid_test`; inspect the reading's filter notes to see what was excluded.
 
-- **Flag your own accounts.** After sign-in, register `is_internal: true` when the account's email is on your own domain, store-review accounts included, and set it on the person if you identify. A web client that never identifies has to put it on every event, before the first pageview. Do the same on the server event that records a signup.
-- **List your own devices** under `exclude`, for what happens before sign-in, such as a fresh install. Open your app, then read the newest events in PostHog for the `$device_name` values:
+- Flag verified staff or test identities on the events and person records that
+  your queries use. Include anonymous test sessions when they can be identified
+  safely, and apply the same convention to server events.
+- Use custom exclusions only for properties that reliably identify testing in
+  this product. A common phone model, country or language also describes customers.
+
+For example, a dedicated person property can identify verified staff accounts:
 
 ```json
-{"exclude":[{"scope":"event","property":"$device_name","operator":"in","values":["Pixel 8","Simulator iOS","sdk_gphone64_arm64"]}]}
+{"exclude":[{"scope":"person","property":"staff","operator":"in","values":[true]}]}
 ```
 
-Apple's review devices have reported `$device_name` `iPhone99,7`, with locale `en-US` and time zone `US/Pacific`, in every app we checked (September 2026). Add it if it shows up in yours.
-
-Two more Apple populations pass every default rule, because they are real iPhones: the device that checks each uploaded build (a fresh US person per build, often Cupertino, locale a bare `en` where real phones send `en-US`) and App Review (US, locale `zh-Hans`, about one a day). Both are active for one day and never reach a paywall: one app counted 14 of them as installs in two months. The marketing review flags them with their counts. Exclude a locale only after checking none of your real users send it.
-
-Google Play's pre-launch devices are covered by default: in the app we checked, every `OnePlus8Pro` event carried the fleet's screen width and every `sdk_gphone` event carried `$is_emulator` (2026-10-03). If yours sends neither property, list the device names under `exclude`.
+Possible store-review activity needs corroboration from release timing or known
+test records. A measurement warning is a reason to investigate, not permission
+to exclude everyone sharing that device name, locale or geography.
 
 ### Custom properties
 

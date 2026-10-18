@@ -6,7 +6,7 @@
 
 Two phases, both of them a real browser loading real pages.
 
-**Phase 1, search.** It works through your keywords one at a time, in the order you gave them. For each it loads TikTok's own search, the Top tab first and the Photo tab behind it when Top runs thin, scrolls, and collects every account posting a photo slideshow about that keyword. It also likes a slideshow now and then, which tells TikTok's algorithm what this session is into and shapes what it serves next. It keeps going, keyword after keyword, until it has a large enough pool of candidates.
+**Phase 1, search.** It works through your keywords one at a time, in the order you gave them. For each it loads TikTok's own search, the Top tab first and the Photo tab behind it when Top runs thin, scrolls, and collects every account posting a photo slideshow about that keyword. It keeps going, keyword after keyword, until it has a large enough pool of candidates.
 
 **Phase 2, measure.** It visits each candidate profile one at a time and measures it: what share of their posts are slideshows, average and total views over the window, how often they post, how steady that is, their top hashtags. Every profile it opens is measured and kept, each carrying a verdict. An account either passed every filter, or failed one or more and the result says which and by what margin, or the window you chose held none of its posts so there was nothing to average, or it could not be read honestly at all.
 
@@ -26,7 +26,7 @@ This is why the length of the list is itself a lever. A short list gives Phase 1
 
 **Vary the intent behind each search.** The same niche is searched by someone fixing a problem, someone looking to buy, someone after a routine, someone wanting before-and-after proof. Spread across those rather than rephrasing one of them ten ways.
 
-The language of the search is not tied to the language of the product. English usually surfaces the best accounts even for a Spanish product, and the user can take the inspiration and publish in Spanish. Reach for another language when you have a reason, not by reflex.
+Search the customer's relevant languages and markets first. Broaden the sample when it helps discover a format, and label evidence from other markets. Do not assume a format will transfer unchanged.
 
 ## The filters, as mechanisms
 

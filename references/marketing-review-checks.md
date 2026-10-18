@@ -6,17 +6,17 @@ The PostHog source carries `checks`: findings that a number in this review canno
 
 | Check | What it means |
 |---|---|
-| `silent-paywall` | A platform (or a storefront) shows the paywall to enough people that several sales were expected, and none happened. Read it as a broken offering or product until a device test proves otherwise, never as that platform's demand. |
+| `silent-paywall` | A platform (or a storefront) shows the paywall to enough people that several sales were expected, and none happened. Investigate the offering, payment flow and sample before attributing the result to demand. |
 | `paywall-context` | Paywall events carry no price, product or offering, so a price change and a failed load are indistinguishable. |
-| `payment-geo` | Payment-integration events all carry one server's location, and PostHog sets it on the person. Person-level country is wrong for every payer; use store country. |
-| `direct-crawler` | Desktop, no-referrer people from one country are most of the website. Read website numbers with that group set aside until `review_traffic` says what it is. |
-| `apple-review-devices` | US iPhones with locale `en` or `zh-Hans`, active one day, never at the paywall: Apple's build check and App Review, counted as installs. |
+| `payment-geo` | Payment-integration events all carry one server's location, and PostHog sets it on the person. Verify whether person-level geography was overwritten; use a verified purchase-country source. |
+| `direct-crawler` | A concentrated traffic group needs investigation with `review_traffic`. Preserve it until corroborating evidence supports an exclusion. |
+| `apple-review-devices` | Possible store-review or test activity. Corroborate with release timing and verified test identities; locale or country alone does not establish who used the app. |
 | `signup-surface` | An account-created event fires on a surface the registration event never covers, so registrations undercount. |
-| `dead-entry` | A configured entry page (`entryUrls`) had almost no pageviews in 14 days. Every funnel number below it is structurally zero; check the links before citing it. |
+| `dead-entry` | A configured entry page (`entryUrls`) has little observed traffic. Check tracking, links and alternate entrances before interpreting the funnel. |
 
 Two traps have no automatic check, because Sprid does not read the data:
 
-- **Email opens with no clicks.** Many opens and zero clicks across every send means click tracking is missing or broken, not that nobody clicked: one app recorded 1 421 opens and 0 clicks, ever. Check that links are rewritten or tagged and that the click endpoint writes a row before reading any email engagement. Opens are inflated by privacy proxies anyway, so a click or a return to the product is the only engagement worth reporting.
+- **Email opens with no clicks.** Check both actual engagement and tracking. Verify a controlled link click reaches the intended destination and writes the expected event. Opens alone do not establish that a person read the message.
 - **A plan citing a funnel.** Before using a funnel step's numbers, check its entry page receives traffic today, and add it to `entryUrls` so the next review checks it for you.
 
 ## Choose services by the question
@@ -43,7 +43,7 @@ For each relevant source, record capability, provider/project, access path, veri
 
 The automatic review packet covers its implemented collectors. Add other sources as explicitly cited supplemental evidence in the report; do not claim the runner collected them. Do not put another provider’s identifiers or event map into `posthogProjectId` or `posthogEvents`, invent `sprid connect <provider>` commands, or mark unsupported sources as connected. Keep credentials out of reports and use the provider’s authorized credential mechanism.
 
-When a customer uses an unsupported service, capture the integration need alongside the report’s gap: provider, capability, required read, project identity, current workaround and whether unattended access is needed. Do not send a feature request or promise a connector release. Future adapters should preserve the same evidence contract (source/project, window and timezone, metric/identity definitions, coverage and error status); review rules and instrumentation checks remain shared across providers. This is an extension direction, not a generic connector API that exists today.
+When a customer uses an unsupported service, capture the integration need alongside the report’s gap: provider, capability, required read, project identity, current workaround and whether unattended access is needed. Do not send a feature request or promise a connector release.
 
 Candidate capabilities checked against official sources on 2026-09-10: [Amplitude product analytics](https://amplitude.com/docs/analytics/product-analytics), [Mixpanel product analytics](https://mixpanel.com/platform/product-analytics/), [Google Analytics for Firebase](https://firebase.google.com/docs/analytics/get-started), [GA4 reporting API](https://developers.google.com/analytics/devguides/reporting/data/v1), [Clarity recordings](https://learn.microsoft.com/en-gb/clarity/session-recordings/recordings-overview). Recheck SDK/platform support and read permissions at recommendation time.
 
@@ -78,8 +78,8 @@ For an instrumentation change, compare behavior only inside verified coverage. P
 - On an SEO-led site, cross-check apparent traffic changes against GSC clicks and a verified click-driven event. A crawler population leaving can reverse a raw visitor trend. A fixed percentage gap between vendors is not a universal anomaly threshold.
 - A spike is judged, not assumed. Read [traffic spikes](https://sprid.studio/docs/traffic) before excluding anything, and check the COMPARISON period for the same fingerprint: a scraper in the baseline moves the percentage as far as one in the current period, and correcting only the obvious half reads as a confident answer while still being wrong.
 - GSC date bounds are inclusive in Pacific time. Scripts convert the review’s exclusive end to the preceding calendar date. Inspect `dataThrough`; the last row with observations is not a promise of full coverage. Query/page lists omit anonymized searches and can be truncated. A query absent from a prior top-N list has unknown prior clicks, not zero.
-- Downloads by Source Type × territory answer store acquisition. Impressions by source answer listing exposure. Do not interchange them: in one app the web referrer was 3.9% of App Store impressions and 29% of first-time downloads, and quoting the first as an acquisition share inverted the conclusion. Both store referrers are last-click floors; a web reader searching the store later appears organic, so every referrer share is a minimum.
-- A platform with zero revenue is not a demand reading until its paywall is known to sell. Check the `silent-paywall` finding and the offering on a real device before comparing platforms.
+- Downloads by Source Type × territory answer store acquisition. Impressions by source answer listing exposure. Use the denominator that answers the question and keep those shares separate. Both store referrers are last-click floors; a web reader searching the store later appears organic, so every referrer share is a minimum.
+- For a platform with zero revenue, check payment flow, coverage and sample size. A `silent-paywall` finding is a lead for a device test, not proof of the cause.
 - Read an onboarding attribution question if the app has one, split by market and report its respondent count/skip coverage. It captures a different step from last-click attribution; do not turn a small respondent sample into a population percentage.
 - Store search-term fields may be suppressed or empty. Inspect the returned coverage; do not spend the review hunting terms absent from the available export.
 - Existing reviews may include demand investigations, such as unfulfilled searches or inventory gaps. Follow the repo's local investigation index and current instructions; rank recorded demand only when the sample supports it. These are app-specific extensions, not mandatory scripts for every customer.
@@ -166,5 +166,4 @@ Inspect `sources.revenue.data.sources`: the RevenueCat row must have `ok: true`.
 
 Missing history is a data gap; never replace it with zero revenue. Current MRR and 28-day overview revenue are snapshots, not totals for the review’s dates.
 
-
-Instrumentation sources checked 2026-09-10: [SDK integration](https://posthog.com/docs/libraries), [React Native navigation](https://posthog.com/docs/libraries/react-native), [identity](https://posthog.com/docs/product-analytics/identify), [funnels](https://posthog.com/docs/product-analytics/funnels).
+Instrumentation sources: [SDK integration](https://posthog.com/docs/libraries), [React Native navigation](https://posthog.com/docs/libraries/react-native), [identity](https://posthog.com/docs/product-analytics/identify), [funnels](https://posthog.com/docs/product-analytics/funnels).

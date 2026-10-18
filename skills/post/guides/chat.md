@@ -19,7 +19,7 @@ Then ask whether the app has users yet. If it does, offer the analytics and reve
 ## Connect a destination or data source
 
 - **Social channel:** `get_documentation` with the platform name, then `connect_channel`. The person opens the returned link and approves in the browser; `channel_status` confirms the saved result.
-- **Store or analytics:** the person enters identifiers and the key in the secure form at `https://app.sprid.studio/settings/app-profiles`. Credentials never go in chat, tool arguments or reports. A saved-key indicator only proves configuration; `get_marketing_review` does a live read.
+- **Store or analytics:** the person enters identifiers and the key in the secure form at `https://app.sprid.studio/settings/app-profiles`. Credentials never go in chat, tool arguments or reports. A saved-key indicator only proves configuration; `get_marketing_review` reports source status and freshness; inspect those before treating data as current.
 
 ## Bring images or a finished video
 
@@ -64,7 +64,7 @@ Before sending `confirmed: true`, get the person's approval of this exact post a
 
 An approval covers the version the person saw. If you edit a scheduled direct post afterwards, the edit's result carries `tiktokApproval`: the scheduled post will not publish as it is. Show the person the change and the settings in its `rebook` call, ask whether to post this version, and only after they agree call `rebook` with `options.tiktok.confirmed: true` added. `post_queue` returns the same call while the approval is outstanding.
 
-TikTok's published guidelines specify a privacy dropdown and posting controls. Acceptance of this chat-based confirmation flow has not been verified with TikTok. Keep that distinction explicit in review submissions.
+Chat approval does not establish that TikTok's required posting controls have been completed. Use the Sprid review link for those controls and consent before confirming delivery; do not describe chat-only approval as platform-verified.
 
 After approval, read `post_queue`. Keep draft, scheduled, failed and delivered apart, and report delivery only with the platform receipt. Read a failure before retrying. Never repeat a publish call just because a response was lost.
 

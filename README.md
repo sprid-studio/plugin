@@ -62,7 +62,7 @@ The `/sprid:` names below are Claude Code commands. In Codex and Cursor, select 
 
 ## What the first run does
 
-Reads the repo and the public listing. Comes back with the listing graded (5 checks, quoted), a recommended channel and the evidence for testing it, a voice guide lifted from your own copy, one drafted carousel that sounds like you (a Pin when Pinterest is the channel), and `.sprid/app.json`, the App Profile that connects the repo to Sprid. No token, no account, nothing sent anywhere.
+Reads the repo and relevant public product pages, reuses your existing marketing work and recommends a route with evidence. Prepares an inspectable artifact, such as a page draft, a content draft or a listing improvement, plus an App Profile when needed. Initial drafts stay local and need no Sprid account; public-page research makes requests to those sites.
 
 ## Skills
 
@@ -70,14 +70,14 @@ Reads the repo and the public listing. Comes back with the listing graded (5 che
 |---|---|---|
 | `/sprid:bootstrap` | "where do I start" | The local diagnosis and first draft above |
 | `/sprid:connect` | "connect this service" | Connect analytics, stores, revenue and publishing channels |
-| `/sprid:marketing-review` | "how is it going", "did that change work" | Search Console + Cloudflare + App Store Connect + Play + PostHog + RevenueCat joined to `git log`, one dated report, ranked recommendations, honest Data gaps |
+| `/sprid:marketing-review` | "how is it going", "did that change work" | Connected results and available change history, compared against your saved goals, with a dated report, evidence-based recommendations and explicit data gaps |
 | `/sprid:screenshots` | "screenshots", "localise the listing" | A config file and a headless composer: every language × device × slot from raw captures |
 | `/sprid:landing-page` | "rewrite my homepage", "nobody signs up" | Investigates the page, its visitors and the competitors, writes a short brief of testable decisions, drafts the headings first, then measures whether the new page converts |
 | `/sprid:seo-pages` | "SEO", "rank on Google", "why no clicks" | Decides whether search can reach this app, writes a small test batch of pages, runs the technical checks that silently stop ranking, and grows only what earns clicks |
 | `/sprid:store-metadata` | "keywords", "the listing" | Name, subtitle, keywords, description per locale from one config, adapted to the app’s markets, pushed on your word |
 | `/sprid:research` | "what do people actually say" | Reddit posts and your reviews into a hook bank, with each seam's worth written down |
 | `/sprid:scout` | "who is winning in my niche", "what ads are they running" | Measures the accounts working in your niche and harvests the public ad library, over your own browser, filed locally |
-| `/sprid:ads` | "run ads", "how is the campaign doing" | Campaigns, sets and creatives built from archetypes, through a copy gate, with one confirmed call that spends |
+| `/sprid:ads` | "run ads", "how is the campaign doing" | Campaigns, sets and creatives built from archetypes, through a copy gate, with spending approved by you in the Sprid app |
 | `/sprid:principles` | "why", "should I run ads" | Decision checks for channels, acquisition economics and content, tested against your own evidence |
 | `/sprid:post` | "post this", "make a Pin", "fill the queue" | Draft, review, schedule and publish a Pin, carousel or reel through Sprid |
 | `/sprid:reels` | "reels", "why did it get no views", "video at volume" | Reels, TikToks, Shorts and video Pins: format selection, reproducible localization, render checks and outcome measurement |
@@ -89,7 +89,7 @@ Sprid, together with stored post performance, queue state and milestones. The MC
 verb `get_marketing_review` uses the same contract. `--check` checks readiness
 without calling providers; `--since` and `--end` support explicit calendar windows.
 
-The skill adds local git/release context and writes the report. Its
+The skill adds available release, website or campaign change history and writes the report. Its
 `tools/review.mjs` runner calls Sprid first and uses local provider scripts only
 for missing/failed sources. Existing local event maps and app-specific review
 notes can be imported with `tools/migrate-review.mjs --from <mapping.json> --app
@@ -125,7 +125,7 @@ A token is only for CI, or a client that cannot open a browser: mint one under S
 
 Keys for the sensors never go through the conversation: `sprid connect asc --key ~/AuthKey.p8 …`, `sprid connect play --key sa.json`, or `sprid connect --from-local` to push everything in `~/.sprid/secrets/<slug>.json`. A client that only speaks stdio can use `sprid mcp`.
 
-The plugin's `.mcp.json` lists the everyday verbs (`?surface=core`). Templates, ads, fonts and tracks are behind `?surface=all`.
+The plugin's `.mcp.json` lists everyday tools (`?surface=core`). Use `find_tools` and `call_tool` to discover and call the rest; `?surface=all` exposes the full catalogue.
 
 Scheduled publishing and the weekly email need a Sprid account, an active plan or trial, and the relevant connected services. Local drafts and reviews using available local data still work without an account. Current plans: [sprid.studio/pricing](https://sprid.studio/pricing).
 

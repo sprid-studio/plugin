@@ -28,7 +28,7 @@ If the user runs it themselves (their own terminal, or `!` in Claude Code), the 
 
 ## Make every key a Sprid-only key
 
-Ask the user to create a NEW key or service account for Sprid rather than reusing the one their build pipeline holds (App Store Connect: a new Team Key named "Sprid"; Google Cloud: a new service account or at least a new JSON key; PostHog/RevenueCat: a new read-only key). Two reasons, say them: revoking Sprid's key later costs nothing else, and a key with the smallest role Sprid needs (the guide's "You need" line) is a smaller loss if anything ever leaks. Sprid stores every key encrypted (AES-256-GCM, key held only in Cloudflare secrets), never returns a value from any API, and deletes it the moment the user clears it in Settings or runs `sprid connect <service> --clear`.
+Use a dedicated credential for a new connection, with the permissions in the service guide. This lets the user revoke Sprid's access independently. Reuse an existing working Sprid connection. Keys are stored encrypted and are not returned in API responses; the user can remove them in Settings or with `sprid connect <service> --clear`.
 
 ## Before connecting
 
@@ -54,7 +54,7 @@ Read MCP `get_documentation` with `topic` set to the service name before giving 
 
 The CLI fetches current instructions and labels a bundled fallback if the server is unavailable. `--offline` selects that fallback explicitly. Use the returned `revision` when comparing copies. If neither tool is available, read `guides/<service>.md` here (`app-store-connect`, `google-play`, `search-console` for those aliases). Do not claim the installed copy is current without checking.
 
-The guide supplies prerequisites, exact permissions, commands, live verification and troubleshooting. Never reconstruct those from memory or copy them into this skill. Authors edit `guides/*.md`, run `bun run docs:build`, then `bun run docs:check` in the source repo; builds reject stale copies.
+The guide supplies prerequisites, exact permissions, commands, live verification and troubleshooting. Read the relevant guide instead of reconstructing those steps from memory. The same guides are available through `sprid docs` and `https://sprid.studio/docs`.
 
 Connect multiple revenue rails when they represent separate sales. RevenueCat app-list access lets Sprid check Stripe/Paddle overlap; inspect the result before summing money.
 

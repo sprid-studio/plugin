@@ -8,11 +8,11 @@ description: Read this repo and its relevant public surfaces, reconcile existing
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
 Read [one marketing plan](../../references/guided-marketing.md) before discovery. Bootstrap updates that plan; it does not create a parallel checklist.
 
-The free door. Nothing here needs a Sprid token; the output is files in the repo and a plan the user can read in two minutes. The one job is a **diagnosis the user can screenshot**: what the app is, what useful marketing work already exists, which route fits the evidence, and one inspectable artifact. A post is one possible artifact. If the run ends with a generic checklist it failed.
+Initial local work needs no Sprid token; the output is files in the repo and a plan the user can read in two minutes. The one job is a **diagnosis the user can screenshot**: what the app is, what useful marketing work already exists, which route fits the evidence, and one inspectable artifact. A post is one possible artifact. If the run ends with a generic checklist it failed.
 
 ## What this touches
 
-Reads: the repo (config, existing marketing material, relevant public product surfaces, `git log`). Writes only the missing artifact and plan under `marketing/`, plus `.sprid/app.json` when an App Profile draft is useful. Sends nothing anywhere. Never reads `.env` values into the conversation; it only notes which keys exist.
+Reads: the repo (config, existing marketing material, relevant public product surfaces, `git log`). Writes only the missing artifact and plan under `marketing/`, plus `.sprid/app.json` when an App Profile draft is useful. Initial artifacts stay local; fetching public product pages makes requests to those sites. Never reads `.env` values into the conversation; it only notes which keys exist.
 
 ## 1. Find the app
 
@@ -91,7 +91,7 @@ claims sourced. Do not invent testimonials, usage figures or customer outcomes.
 
 Then run the voice's never-say list over it. Fix, do not explain.
 
-## 5. Say what Tuesday is
+## 5. Record the plan
 
 `marketing/PLAN.md`, one page:
 

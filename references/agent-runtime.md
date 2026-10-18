@@ -26,7 +26,7 @@ Cross-references using `/sprid:` name a sibling skill; read its `SKILL.md` when 
 Run this once per session, before the first Sprid skill does anything else,
 including a marketing review or any other job that never touches the CLI. It
 checks both halves: the CLI against npm, and these skills against the latest
-pushed release, each cached for a day, so repeating it costs nothing.
+pushed release, with cached version metadata. Reuse the result during the session.
 
 ```sh
 sprid doctor --apply-updates --plugin "<plugin>" --json
@@ -56,16 +56,10 @@ commands by host, read off where the skills are installed:
 | `~/.codex/plugins/cache/<marketplace>/sprid/` | `codex plugin marketplace upgrade <marketplace> && codex plugin add sprid@<marketplace>`, then a new thread |
 | a skills folder (`npx skills add`) | `npx skills update`, then a new session |
 
-**CLI.** These skills require Sprid CLI 1.0.0 or later for UUID record identifiers. The guided `sprid plan`
-and `sprid research` commands require 0.1.1. `sprid account avatar`, and passing
-a ref such as `BND-78` or `BND-R4` where a post or review id goes, require 0.1.3;
-an older CLI refuses a ref as a usage error. `sprid connect ga4|plausible|umami`
-requires 0.1.5, `--key-from-clipboard` requires 0.1.6, `sprid connect meta-ads`
-requires 0.1.7, `sprid doctor --plugin` requires 0.1.9,
-`sprid connect github` requires 0.1.10, and `sprid marketing-review save|history`
-requires 0.1.15; with an older CLI, call `save_marketing_review` over MCP instead.
-Pinterest account analytics, board/section management, Pinterest Ads connection
-and the `sprid ads promotion` commands require 1.2.0; older clients can use MCP.
+**CLI.** These skills require Sprid CLI 1.0.0 or later for UUID record identifiers.
+Pinterest analytics, board management and promotion commands require 1.2.0.
+Check `sprid help` for the installed command contract; use an available MCP
+operation when the installed CLI does not support the required command.
 
 The doctor reports `current`, `recommended`, `check`, `compatible`,
 `requiresApproval`, `installation` and `updateCommand` for the CLI. An
@@ -196,5 +190,4 @@ local secrets file; a repo-only host change cannot send the key elsewhere.
 
 Install `sprid` once. `sprid screenshots` and `sprid release` use its bundled
 support packages and require Bun; they do not download a command on first use.
-The skills are named `screenshots` and `research` (formerly `aso-screenshots` and
-`harvest`). Start a new agent session after upgrading to refresh discovery.
+Start a new agent session after upgrading the plugin to refresh skill discovery.

@@ -77,6 +77,10 @@ and prepare one continuation. Email delivery, opening a review or copying a
 prompt does not complete it. Save the conclusion and chosen action in the same
 app plan.
 
+Read [business context and outcomes](review-to-action.md#1-follow-the-money-then-split-volume-from-rate) before selecting review metrics or a continuation. Reuse the context and revision returned by `get_marketing_plan`; a second context read is needed only for missing detail or a reported change/conflict. Accepted goals remain the customer's direction until changed. Investigate stale or contradicted facts without redoing unchanged setup. The app-scoped plan can describe a shop or service through its objective, audience and definitions; a mobile store and repository are optional surfaces.
+
+Choose execution from verified access and existing authorization: prepare content, use a supported CMS, work in an authorized repo or hand a complete brief to the customer's executor. Save the destination and expected verification with the artifact. An external issue being created or closed does not establish a delivered website change. Keep the underlying activity visible for follow-up; a missing execution capability does not change the business diagnosis.
+
 ## Surface and approval boundaries
 
 Browser-only users receive browser links, uploads and ready-to-apply artifacts;
