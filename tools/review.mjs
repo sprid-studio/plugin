@@ -41,14 +41,17 @@ async function main() {
     posthogEvents: Object.keys(remote.posthogEvents || {}).length ? remote.posthogEvents : local?.posthogEvents || {} } : local;
   if (!app) throw new Error('No App Profile available locally or from Sprid. Run sprid login/init, or bootstrap a local profile.');
   const packet = { app: app.slug, generatedAt: new Date().toISOString(), window, review: app.review || {}, eventMap: app.posthogEvents || {}, sprid: server, sources: {} };
-  const mapping = { gsc: 'gsc', cloudflare: 'cf-analytics', appStore: 'store', googlePlay: 'store', posthog: 'posthog' };
+  const mapping = { gsc: 'gsc', bing: 'bing', cloudflare: 'cf-analytics', appStore: 'store', googlePlay: 'store', posthog: 'posthog' };
   const scratch = mkdtempSync(join(tmpdir(), 'sprid-review-'));
   try {
     const profileFile = join(scratch, 'profile.json');
     writeFileSync(profileFile, JSON.stringify(app), { mode: 0o600 });
     await Promise.all(Object.entries(mapping).map(async ([source, script]) => {
       const fromServer = server.ok ? server.data.sources[source] : null;
-      if (['ready', 'partial', 'pending'].includes(fromServer?.status) || (fromServer?.collection && fromServer.collection.state !== 'disabled')) {
+      // A source the server cannot reach from its own network (Bing throttles
+      // cloud egress) says `localOnly`: read it here instead.
+      const localOnly = fromServer?.data?.localOnly === true;
+      if (!localOnly && (['ready', 'partial', 'pending'].includes(fromServer?.status) || (fromServer?.collection && fromServer.collection.state !== 'disabled'))) {
         packet.sources[source] = { via: 'sprid', ...fromServer };
         return;
       }

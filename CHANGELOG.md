@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.3.2 - 2026-10-19
+
+- Bing Webmaster Tools: a connect guide, and the marketing review reads Bing clicks, impressions, queries, pages and index size beside Search Console. A site Google ranks poorly can still draw its search traffic from Bing, so the review checks Bing before concluding search does not work.
+- When Sprid cannot reach Bing, the review reads it from the customer's machine with `tools/bing.mjs` and the app's local `bingWebmasterApiKeyPath`.
+
 ## 1.3.1 - 2026-10-19
 
 - Marketing reviews reuse saved goals, support app, shop and service outcomes, and turn findings into concrete actions when requested.

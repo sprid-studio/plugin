@@ -9,7 +9,7 @@
 //            gscProperty, cloudflareZoneId, cloudflareAccountTag, ...
 //   secrets  ~/.sprid/secrets/<slug>.json — never in a repo, never uploaded.
 //            Same shape the marketing-review skill documents:
-//            { gscServiceAccountPath, cloudflareApiToken,
+//            { gscServiceAccountPath, bingWebmasterApiKeyPath, cloudflareApiToken,
 //              asc: { keyId, issuerId, keyPath },
 //              playServiceAccounts: { "<packageName>": "<sa json path>" } }
 //            SPRID_SECRETS_FILE overrides the path.
@@ -70,6 +70,7 @@ export function loadSecrets(appId) {
 
 function normalizeSecrets(s) {
   return { ...s, gscServiceAccountPath: expandHome(s.gscServiceAccountPath),
+    bingWebmasterApiKeyPath: expandHome(s.bingWebmasterApiKeyPath),
     asc: s.asc ? { ...s.asc, keyPath: expandHome(s.asc.keyPath) } : undefined,
     playServiceAccounts: Object.fromEntries(Object.entries(s.playServiceAccounts || {}).map(([k, v]) => [k, expandHome(v)])),
   };

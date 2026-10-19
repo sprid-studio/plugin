@@ -57,7 +57,7 @@ commands by host, read off where the skills are installed:
 | a skills folder (`npx skills add`) | `npx skills update`, then a new session |
 
 **CLI.** These skills require Sprid CLI 1.0.0 or later for UUID record identifiers.
-Pinterest analytics, board management and promotion commands require 1.2.0.
+Pinterest analytics, board management and promotion commands require 1.2.0. `sprid connect bing` requires 1.2.9.
 Check `sprid help` for the installed command contract; use an available MCP
 operation when the installed CLI does not support the required command.
 
