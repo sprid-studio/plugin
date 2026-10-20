@@ -34,6 +34,34 @@ the user paid to reach.
 6. **`ad_council`** once a week. **`ad_post_mortem`** and **`close_ad_set`** when
    it ends.
 
+## Agree the bar before it spends
+
+`create_ad_set` refuses without a `hypothesis` and a `targetCostPerEventCents`.
+Most people have never written either, so propose both and ask the user to accept
+or change them. Say it in their words, not this vocabulary.
+
+- **The hypothesis** is one sentence: what this shows, to whom, and the result
+  that would count as working. "People who just tried a rival app will start our
+  trial from the first-week carousel, at or under 4.00 a trial", or for a shop,
+  "Gift buyers in December order from the bundle video at or under 12.00 an
+  order" Take the
+  audience and promise from the plan and the creative; the number comes next.
+- **The target cost** is the most one optimised event may cost and still pay.
+  Work it out with the user from what one event is worth: for a trial, the
+  trial-to-paid rate times first-year revenue times margin; for a shop order,
+  the margin on an average order; for an enquiry, the share that becomes paid
+  work times the margin on it. Show the arithmetic with their numbers. Where a number is
+  unknown, say so, use a stated guess and mark the test as a learning budget.
+- **The rules** Sprid arms with the set: cost per event above 1.5x the target
+  after 7 days, a week of spend with no events, and a cohort that does not come
+  back once the product reports one. Rules on cost or counts, and the council's
+  readable flag, wait until spend reaches twice the target: before that, a
+  verdict is noise at a small budget. Tell the user what that means in money and
+  days at the budget they chose.
+
+Write all three into the brief before launch. Afterwards, read results only
+against them; a bar moved after the data arrived is not a bar.
+
 ## Declare the regulated category
 
 `special_ad_categories` on the campaign. Housing, credit, employment and
@@ -153,7 +181,7 @@ what next" rather than printing a dashboard. It reads cost per optimised event
 first and impressions last, on purpose: the order a report puts numbers in is the
 order people believe them in.
 
-Its **readable** flag is review guidance based on the available observation window. It does
+Its **readable** flag is review guidance: at least 3 days, and spend of at least twice the target cost per event when one is set. It does
 not report Meta’s learning status or prove a sample is conclusive. Check event
 volume and the time people have had to pay before judging the result.
 

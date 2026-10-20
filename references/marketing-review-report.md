@@ -18,6 +18,10 @@ For each consequential movement, give the observation and population, the suppor
 
 Carry a dated hypothesis ledger with stable IDs, expected outcome, actual release/exposure, evidence since the last review, status and next observation. Statuses: proposed, running, supported, contradicted, inconclusive, invalidated by measurement, superseded. Preserve original dates. Do not silently discard an unresolved hypothesis or recommend an already shipped change again.
 
+Reconcile the ledger with what shipped before reading results. For each proposed or carried entry, search the window's commits, releases, CMS history or live product for the change. A change that reached customers becomes `running` with its ship date and build, even when nobody updated the ledger; one merged but not released stays proposed with that blocker named. Then read results only against the threshold and read date recorded before the change shipped. A threshold like "materially better" is not a threshold: give a number. Do not pick a comparison window after seeing the data. If no threshold was set, say so and set one now for the next read. On a read date, write the result into any results log the format or test keeps, so the rule it supports carries evidence.
+
+Keep the ledger in Sprid with `update_review_hypotheses`, one entry per id: a `running` entry needs `threshold` (with a number), `readOn` and `shippedAt`, and its threshold, metric and read date cannot change afterwards; supersede it and add a new entry instead. A settled entry carries its `result`. The review packet's `context.dueReads` lists the reads that are due, and `next` raises them for the person until the result is written.
+
 ## Cover the decisions the business needs
 
 Every review considers these areas. A quiet area gets a sentence; consequential findings earn detail. A failed source gets a precise limitation and the decision it prevents. Required investigations remain in this review, even when a deeper study could follow.
@@ -41,6 +45,12 @@ Paid acquisition and publisher advertising get separate verdicts. When buying ad
 ## One ranked agenda
 
 Rank decisions across these areas together. Each recommendation names what changes, where, the evidence strength, the outcome sought and what would stop or reverse it. Prioritize measurement work only when it can change a consequential decision. Maintain successful distribution when evidence supports it; a review need not manufacture a new direction.
+
+Show each carried recommendation with the date it was first made. One carried unchanged through two earlier reviews cannot be carried a third time as it stands: rank it first with the blocker named and the smallest step that removes it, hand it to a named executor, or drop it with the reason. Repetition without action is itself a finding about the process.
+
+When saving, give every agenda item a stable `id` (reuse the previous review's id for the same recommendation) and a `status`: `new`, `carried`, `escalated` (with `blocker`), `handed_off` (with `executor`), `dropped` (with `dropReason`) or `done`. Sprid dates each item from the first review that made it, counts the carries and refuses a third unchanged `carried`. An escalated item appears in the person's `next` list until it moves. List dropped and done items after the open ones so nothing disappears silently; the save response names open items from the last review that this one left out.
+
+A defect claim (a broken link, an event that does not fire, a step that fails) enters the agenda only after a controlled check reproduced it on the live product, with the device, build and steps recorded. Until then it is an investigation, labelled unverified, and it does not displace a verified finding. Save it with `defect: true` and the check in `verifiedBy {checkedAt, how}`; without `verifiedBy` Sprid stores it as an unverified investigation.
 
 The first item arrives as an activity brief from [diagnosis to an activity](review-to-action.md): audience and selection rule, the concrete change or hypothesis, assets, destination, downstream success measure and next observation. Include audience count and timing where supported and relevant. Name the deliverable and available executor or required handoff. A missing count does not invalidate a verified repair; inventing one does. Keep proposed work, prepared material, handed-off work and verified delivery distinct.
 

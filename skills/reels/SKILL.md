@@ -6,7 +6,7 @@ description: Plan, build and review vertical videos from app screens, photograph
 # /sprid:reels
 
 Run the [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else. Read [agent runtime](../../references/agent-runtime.md) first for tool discovery,
-script paths and account setup.
+script paths and account setup. Load [standing rules and corrections](../../references/standing-rules.md) before drafting, and write accepted corrections back.
 
 ## Choose the format from the brief
 

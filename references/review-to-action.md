@@ -44,7 +44,7 @@ Treat broken measurement as a hypothesis. Where authorized, reproduce the releva
 | Search visibility produces few qualified visits, or buying-intent queries lack a suitable destination | Improve search copy or create the missing page | § 6 | `/sprid:seo-pages` |
 | Visitors cannot complete a useful step on their device or path | Repair the handoff, checkout or product behavior | § 5 | Page specification or a patch through an authorized coding agent |
 | Copy, images or an offer contradict what customers can actually receive | Correct the product claim | § 5 | Relevant content skill; store skills only for app listings |
-| Missing measurement prevents a consequential decision | Establish that measurement | Review checks | Exact event/query specification, with implementation only when authorized |
+| Missing measurement prevents a consequential decision | Establish that measurement | Review checks | `/sprid:measurement`: tracking plan and verified events, with implementation only when authorized |
 
 Several activities can apply. Available tools determine what can be delivered, not which business problem deserves attention. A missing code connection should leave a concrete handoff, not generate unrelated content in its place.
 

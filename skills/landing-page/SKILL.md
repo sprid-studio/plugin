@@ -6,7 +6,7 @@ description: Work out what the app's homepage or a landing page has to say, writ
 # /sprid:landing-page
 
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
-Read [one marketing plan](../../references/guided-marketing.md). Start from the current page, the accepted promise and what the evidence says the page fails at. Change the page the plan points at, not every page.
+Read [one marketing plan](../../references/guided-marketing.md). Start from the current page, the accepted promise and what the evidence says the page fails at. Change the page the plan points at, not every page. Load [standing rules and corrections](../../references/standing-rules.md) before drafting, and write accepted corrections back.
 
 Every app and audience is different, so this skill gives you questions and a way
 to test the answers. Treat a page like code: read what is
@@ -46,6 +46,11 @@ mark guesses as guesses.
 - **What frame fits this reader?** Work through [finding the frame](../../references/copy-framing.md):
   what they already know, what they would use otherwise, what pushes and holds them
   back. Draft the hero in several frames before choosing one.
+- **Where do visitors stop?** Read scroll depth, dead clicks or session recordings
+  when they exist: a visitor who never scrolls to the action has a different problem
+  from one who sees it and leaves. Check how fast the page loads on a phone.
+- **What was tried before?** Read earlier briefs, reports and the page's history.
+  A version that was tested and lost comes back only with a reason it would do better now.
 - **What can only this app say?** The data, the screen, the result or the way of
   working nobody else has. If the honest answer is "nothing yet", that is the
   finding; tell the user before polishing words.
@@ -116,7 +121,9 @@ A page change is a hypothesis until the numbers come back.
    `search` when titles or headings changed) and a `why` that names the decision
    from the brief being tested.
 3. **Set the read date** in the brief: when the page has had about as many visitors
-   as the baseline period, and at least four weeks.
+   as the baseline period, and at least four weeks. Until then, leave the tested part of the page
+   alone: a redesign halfway through makes the test unreadable. If it must change,
+   record the date and start a new read.
 4. **Compare like with like.** A viral post or a new ad changes who arrives. Compare
    the same sources, and say when the sample is too small to tell.
 5. **Write down what you learned** in the brief, whichever way it went. The next

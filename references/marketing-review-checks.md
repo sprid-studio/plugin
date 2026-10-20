@@ -13,6 +13,7 @@ The PostHog source carries `checks`: findings that a number in this review canno
 | `apple-review-devices` | Possible store-review or test activity. Corroborate with release timing and verified test identities; locale or country alone does not establish who used the app. |
 | `signup-surface` | An account-created event fires on a surface the registration event never covers, so registrations undercount. |
 | `dead-entry` | A configured entry page (`entryUrls`) has little observed traffic. Check tracking, links and alternate entrances before interpreting the funnel. |
+| `silent-event` | A key event (registration, activation, paywall, purchase or a RevenueCat sale) reached enough people in the three weeks before for its absence to be unlikely, and nobody in the last seven days. Check what shipped since it was last seen and confirm against the source of truth before reading the drop as behaviour. |
 
 Two traps have no automatic check, because Sprid does not read the data:
 

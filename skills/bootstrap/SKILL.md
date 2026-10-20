@@ -30,7 +30,7 @@ If the repo is not a product people use (an app, website or service), say so in 
 
 Read [product measurement coverage](../../references/marketing-review-checks.md#product-instrumentation-workflow) and [instrumentation checks](../../references/marketing-review-checks.md#instrumentation-checks). Inspect analytics dependencies and actual emitting code, including wrappers, router integration, onboarding steps and core feature success. Check the existing provider, including alternatives to PostHog. List what is observed, missing or unverified; configuration alone does not verify delivery. Use an available authorized live read to check recent events, but bootstrap still works without provider access.
 
-If product analytics is absent or incomplete, include a concrete instrumentation recommendation in `marketing/PLAN.md`: which screens/actions to measure, where code should emit, the real activation definition and how to verify an ordered onboarding funnel. Follow [service selection and access](../../references/marketing-review-checks.md#choose-services-by-the-question): reuse existing providers, recommend by capability when something is missing, and distinguish a Sprid connection from an agent tool or export. Check other measurement categories only where the diagnosis needs them. If events already arrive and only access is missing, recommend the verified read path. Do not turn a missing key into a claim that the app has no analytics, or silently implement app changes during bootstrap.
+If product analytics is absent or incomplete, include a concrete instrumentation recommendation in `marketing/PLAN.md` and name `/sprid:measurement` as the skill that carries it out: which screens/actions to measure, where code should emit, the real activation definition and how to verify an ordered onboarding funnel. Follow [service selection and access](../../references/marketing-review-checks.md#choose-services-by-the-question): reuse existing providers, recommend by capability when something is missing, and distinguish a Sprid connection from an agent tool or export. Check other measurement categories only where the diagnosis needs them. If events already arrive and only access is missing, recommend the verified read path. Do not turn a missing key into a claim that the app has no analytics, or silently implement app changes during bootstrap.
 
 ## Discover the app's own review data
 
@@ -55,6 +55,8 @@ Five checks, each pass/fail with the evidence quoted:
 Score as `n of 5`, never a percentage.
 
 ## 3. Read the voice
+
+Find the rules that already exist before writing any ([standing rules](../../references/standing-rules.md)): voice, positioning, design and per-format lessons are often in docs that `CLAUDE.md` or `AGENTS.md` points to. Record their paths in `marketing/VOICE.md` so later skills load them instead of guessing.
 
 Read and preserve an existing voice guide first. Create `marketing/VOICE.md`
 only when no usable guide exists; update an existing guide only when the user
@@ -103,6 +105,12 @@ Then run the voice's never-say list over it. Fix, do not explain.
   a budget and approval; a missing benchmark does not prevent preparing drafts.
 - If the app's market needs capabilities outside Sprid, state that gap and still
   deliver the useful local diagnosis.
+
+Propose the first surface inventory in `.sprid/app.json` `review.surfaces`
+([surface inventory](../../references/repository-review-sources.md#keep-a-surface-inventory)):
+the homepage, the entry pages people land on, the store listing, onboarding and the
+paywall where they exist. Leave `lastAuditedAt` empty for anything this run did
+not read.
 
 ## 6. Propose the App Profile
 

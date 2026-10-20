@@ -3,6 +3,15 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.0 - 2026-10-20
+
+- New skill `/sprid:measurement`: a tracking plan written from the questions the business needs answered, each event fired on the live product and checked as it arrives, and the key events registered so Sprid notices when one stops arriving.
+- Marketing reviews keep their history. Each agenda item keeps its id and the date it was first made; an item carried unchanged through two reviews is escalated, handed off or dropped with a reason. A claimed defect needs a reproduced check first.
+- Reviews recheck the pages and flows people decide on (homepage, product pages, onboarding, checkout, listing) on a cadence, even when their numbers did not move, and keep a hypothesis ledger whose bar and read date are set before a change ships.
+- Content skills load the rules and corrections the repository already keeps before drafting, and write accepted corrections back. Search pages ask the person behind the product for a concrete case, number or opinion before drafting a guide, and posts can use that material as hooks.
+- Ads: an ad set needs a hypothesis and a target cost per event, which the skill helps work out from what one event is worth; verdicts wait until spend reaches twice the target.
+- Research counts distinct people, marks paraphrases and tracks themes against the last run. Landing pages read where visitors stop and keep a tested page unchanged until its read date.
+
 ## 1.3.2 - 2026-10-19
 
 - Bing Webmaster Tools: a connect guide, and the marketing review reads Bing clicks, impressions, queries, pages and index size beside Search Console. A site Google ranks poorly can still draw its search traffic from Bing, so the review checks Bing before concluding search does not work.

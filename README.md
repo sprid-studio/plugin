@@ -71,6 +71,7 @@ Reads the repo and relevant public product pages, reuses your existing marketing
 | `/sprid:bootstrap` | "where do I start" | The local diagnosis and first draft above |
 | `/sprid:connect` | "connect this service" | Connect analytics, stores, revenue and publishing channels |
 | `/sprid:marketing-review` | "how is it going", "did that change work" | Connected results and available change history, compared against your saved goals, with a dated report, evidence-based recommendations and explicit data gaps |
+| `/sprid:measurement` | "tracking", "this number looks wrong" | A tracking plan from the questions you need answered, each event fired and checked on the real build, and the key events registered so Sprid notices when one goes silent |
 | `/sprid:screenshots` | "screenshots", "localise the listing" | A config file and a headless composer: every language × device × slot from raw captures |
 | `/sprid:landing-page` | "rewrite my homepage", "nobody signs up" | Investigates the page, its visitors and the competitors, writes a short brief of testable decisions, drafts the headings first, then measures whether the new page converts |
 | `/sprid:seo-pages` | "SEO", "rank on Google", "why no clicks" | Decides whether search can reach this app, writes a small test batch of pages, runs the technical checks that silently stop ranking, and grows only what earns clicks |

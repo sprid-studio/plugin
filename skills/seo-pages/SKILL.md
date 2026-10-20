@@ -6,7 +6,7 @@ description: Find out whether search can bring this app users, then write, ship 
 # /sprid:seo-pages
 
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
-Read [one marketing plan](../../references/guided-marketing.md). Search is one route among several; take it when the evidence says it can reach this app's readers.
+Read [one marketing plan](../../references/guided-marketing.md). Search is one route among several; take it when the evidence says it can reach this app's readers. Load [standing rules and corrections](../../references/standing-rules.md) before drafting, and write accepted corrections back.
 
 Assess search demand, competition and what the product can contribute before
 recommending a page library. Use the customer's existing results to choose the
@@ -29,7 +29,13 @@ Answer with evidence, and mark guesses as guesses.
   [connected investigations](../../references/connected-queries.md)): queries with
   impressions, pages at positions 5 to 30, pages with impressions and no clicks,
   and which countries they come from. Impressions in a market the app does not
-  serve are not progress.
+  serve are not progress. Read the review packet's `bing` source too when it is connected:
+  Bing's index also feeds Copilot's answers.
+- **Who do AI answers cite?** Ask two or three assistants the questions the
+  readers ask, three times each. Record whether the app is mentioned and which
+  pages and domains the answers cite. Those cited pages (a forum thread, a list,
+  a review site) are distribution targets in their own right, often easier to
+  reach than the ranking.
 - **What do the readers search?** From research, reviews and support: the questions
   people ask before they would need this app, in their words and their languages.
   Search autocomplete shows the phrasing. Count real queries, do not assume them.
@@ -58,6 +64,12 @@ For each page, write down:
 - the page type that matches that intent, chosen from what ranks today;
 - the next step a reader takes into the app, and how you will count it;
 - what result after the read date would make you write more like it.
+
+A guide, comparison or opinion page needs something the top results lack. Get
+one anchor from the person behind the product first ([founder
+material](../../references/founder-material.md)); without one, pick another topic
+or say the page will likely not stand out. A page built from the app's own data
+has its anchor in that data.
 
 Prefer queries that already show impressions in Search Console, and queries where
 this app has something nobody else has. If the app holds data that could fill one

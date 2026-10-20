@@ -6,7 +6,7 @@ description: Draft, review, schedule and publish a Pin, carousel or reel through
 # /sprid:post
 
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
-Read [one marketing plan](../../references/guided-marketing.md). Reuse the plan's accepted audience, guidance bundle and prepared artifact instead of asking for a new brief.
+Read [one marketing plan](../../references/guided-marketing.md). Reuse the plan's accepted audience, guidance bundle and prepared artifact instead of asking for a new brief. Load [standing rules and corrections](../../references/standing-rules.md) before drafting, and write accepted corrections back.
 
 Sprid MCP supplies connected operations; this skill supplies editorial method. Read [Use Sprid in chat](guides/chat.md) for the complete browser-only path, attachment imports and hosted creation. Read [Build locally](guides/local.md) when a repository or renderer is available. If tools are missing, connect remote MCP through the host; CLI installation is optional. The agent drafts and prepares. **Nothing is published unless the person asks for it**, and a TikTok post straight to the profile requires the person's explicit settings and approval for that post (see TikTok below). Never claim a post is live because a tool returned; say what state it is in.
 
@@ -34,7 +34,7 @@ The authenticated `?surface=core` list is the everyday workflow. Every other ver
 ## The verbs, in the order a post moves
 
 1. `list_accounts` → if empty, follow the shared setup browser link (local alternative: `sprid open accounts`), then connect the chosen channel. Once available, pick the account; read its `instructions` (the voice rules) before writing a word.
-2. `marketing/HOOKS.md` in the repo for hooks already researched, and `list_posts {work: "idea"}` for ideas already gathered in Sprid. Never reuse a hook verbatim across posts.
+2. `marketing/HOOKS.md` in the repo for hooks already researched, and `list_posts {work: "idea"}` for ideas already gathered in Sprid. Never reuse a hook verbatim across posts. Saved [founder material](../../references/founder-material.md) is a hook source of its own: an opinion in the founder's words, a choice made against the obvious option, or a case nobody else can post.
 3. Start from an idea when one fits: it is a post in `idea` status with gathered media, `notes` and a `sourceUrl`, so `update_post {status: "draft"}` takes it forward in place. Otherwise `create_post` (optionally with a `seedHook` or a library `imageId`), or `draft_post_from_hook`. To save something for later without writing it yet, `create_post {status: "idea", notes, sourceUrl, imageIds}` and `add_slides {postId, slides: [{imageId}]}` as more turns up.
 4. `update_slides` with the copy. Use the selected account’s templates and voice; `/sprid:bootstrap` §4 provides a starting structure when neither exists.
 5. `search_images` by tag and mood; `generate_image` only when generation is authorized and `spend_status` shows headroom. Choose style, subjects and demographics from the brief and account guidance. Do not inject another brand’s camera style or restrictions.
