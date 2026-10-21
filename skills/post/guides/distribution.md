@@ -72,6 +72,24 @@ customer's plan. If several variables change, attribute the outcome to the whole
 variant until further evidence separates them. Preserve unsuccessful examples
 as well as successful ones so later reviews can compare them.
 
+Record a content test in Sprid so the app's Reviews page tracks it. Change one
+thing (the format, the message or hook, or the visual), state what it should
+beat, and save it with `update_review_hypotheses` as an entry whose `measure`
+has `source: "posts"`, a short `label` and the ids of the posts made for the
+test in `postIds`. Add each new test post to `postIds` as it is made. Sprid
+reads each post at `ageDays` old (7 by default) against the app's other posts
+of the same platform and kind from the last 90 days. The default metric is
+saves and shares per reach, read on Instagram, where reach is reported; a test
+with no Instagram posts reads views. Where the usual posts almost never get
+saved or shared, the rate cannot tell formats apart: set `metric: "views"`.
+Put the number to beat in `target`, in the metric's own unit.
+
+When the test is read: if it held up, make 5 to 10 variants of the winner, each
+changing one thing. If it did not hold, propose the next thing to change as a
+new entry with `follows` set to this one's id, in the order format, then message,
+then visual, and drop or settle this one with its result. If too few posts were
+old enough to read, keep posting under the same entry.
+
 ## Recheck external claims when they matter
 
 For a platform requirement or a claimed ranking mechanism, consult current

@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.2 - 2026-10-21
+
+- Content tests: a format, message or visual test is a hypothesis listing the posts made for it, read at seven days old against your usual posts of the same platform and kind, on saves and shares per reach (views where no reach is reported). The post skill says how to record one; the review says what follows: variants of a winner, or the next thing to change as a new hypothesis that follows the old one.
+- The person can close review items between reviews on the Reviews page (done, dropped with a reason) and add hand-counted readings; reviews treat those as decided. A hypothesis can be `dropped`, with the reason in `result`.
+
 ## 1.4.1 - 2026-10-21
 
 - Marketing reviews write each hypothesis for the app's Reviews page: one plain sentence, a `measure` the line is drawn from (a PostHog query, an Insights series or dated hand readings), a short `label` and a numeric `target`. A query is checked against the number the review reported before it is saved, and every agenda item that tests something names its hypothesis.
