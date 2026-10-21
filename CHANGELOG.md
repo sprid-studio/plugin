@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.3 - 2026-10-21
+
+- A first post starts from what travels in its niche. Bootstrap and the post skill run `/sprid:scout` before drafting when the app has no niche research yet, ask once first because scout drives the person's own Chrome, and say plainly when the draft was made without it.
+
 ## 1.4.2 - 2026-10-21
 
 - Content tests: a format, message or visual test is a hypothesis listing the posts made for it, read at seven days old against your usual posts of the same platform and kind, on saves and shares per reach (views where no reach is reported). The post skill says how to record one; the review says what follows: variants of a winner, or the next thing to change as a new hypothesis that follows the old one.
