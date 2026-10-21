@@ -12,7 +12,7 @@ Initial local work needs no Sprid token; the output is files in the repo and a p
 
 ## What this touches
 
-Reads: the repo (config, existing marketing material, relevant public product surfaces, `git log`). Writes only the missing artifact and plan under `marketing/`, plus `.sprid/app.json` when an App Profile draft is useful. Initial artifacts stay local; fetching public product pages makes requests to those sites. Never reads `.env` values into the conversation; it only notes which keys exist.
+Reads: the repo (config, existing marketing material, relevant public product surfaces, `git log`). Writes only the missing artifact and plan under `marketing/`, plus `.sprid/app.json` when an App Profile draft is useful. Initial artifacts stay local; fetching public product pages makes requests to those sites, and scout, when the person agrees to run it, browses TikTok and Meta's ad library in their own Chrome. Never reads `.env` values into the conversation; it only notes which keys exist.
 
 ## 1. Find the app
 
@@ -74,8 +74,12 @@ If the repo has no copy at all, say so and write the guide from the listing plus
 
 Choose the route from the observed product, audience and existing distribution. A product demo, useful search page, store-listing change, profile package, measurement patch or outreach draft can be a better first artifact than a social post. Social-account creation never blocks another supported route. Preserve an explicit artifact the user asked for.
 
-When content is the recommended route, find out what travels before drafting the
-first post: run [/sprid:scout](../scout/SKILL.md) with its `product.md` for the
+Prepare the recommended artifact, and when it is not a post, a first post as well,
+for the same audience: a page or listing change pays off over weeks, a post can go
+out this week. Skip the post only when the audience is still unknown; say that the
+route has to answer who the app is for first.
+
+Before drafting any first post, find out what travels: run [/sprid:scout](../scout/SKILL.md) with its `product.md` for the
 accounts and formats getting views for this kind of app, and draft from what it
 finds. Scout drives the person's own Chrome and takes minutes, so ask once
 before starting it. If it is not installed or they skip it, draft from the

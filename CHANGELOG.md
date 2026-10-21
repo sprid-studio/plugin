@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.4 - 2026-10-21
+
+- Bootstrap prepares a first post beside its recommended artifact when that artifact is not a post, for the same audience, so a post can go out this week while a page or listing change takes effect. It skips the post only when the audience is still unknown. Bootstrap's "What this touches" now says that scout, when the person agrees to run it, browses TikTok and Meta's ad library in their own Chrome.
+
 ## 1.4.3 - 2026-10-21
 
 - A first post starts from what travels in its niche. Bootstrap and the post skill run `/sprid:scout` before drafting when the app has no niche research yet, ask once first because scout drives the person's own Chrome, and say plainly when the draft was made without it.
