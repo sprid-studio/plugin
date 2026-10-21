@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.1 - 2026-10-21
+
+- Marketing reviews write each hypothesis for the app's Reviews page: one plain sentence, a `measure` the line is drawn from (a PostHog query, an Insights series or dated hand readings), a short `label` and a numeric `target`. A query is checked against the number the review reported before it is saved, and every agenda item that tests something names its hypothesis.
+
 ## 1.4.0 - 2026-10-20
 
 - New skill `/sprid:measurement`: a tracking plan written from the questions the business needs answered, each event fired on the live product and checked as it arrives, and the key events registered so Sprid notices when one stops arriving.
