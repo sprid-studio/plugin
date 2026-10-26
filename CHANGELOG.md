@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.5 - 2026-10-26
+
+- Explain the directory connector’s separate video editing tools and the batch editor available on other connections.
+
 ## 1.4.4 - 2026-10-21
 
 - Bootstrap prepares a first post beside its recommended artifact when that artifact is not a post, for the same audience, so a post can go out this week while a page or listing change takes effect. It skips the post only when the audience is still unknown. Bootstrap's "What this touches" now says that scout, when the person agrees to run it, browses TikTok and Meta's ad library in their own Chrome.

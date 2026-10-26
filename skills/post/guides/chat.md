@@ -47,7 +47,7 @@ Agent: show the person the preview, and link every post you mention with the `li
 
 Check `get_capabilities` for hosted creation first. `create_reel` takes ordered scenes (`imageId`, `text`, `durationMs`), up to 120 seconds, and makes a silent MP4. It costs 3 Sprid credits per started render minute, or uses the plan allowance: check `spend_status`, tell the person, and get their go-ahead before sending `confirmed: true`. Save the job ID and read `get_studio_job`. Retrying with the same ID never starts a second render; a stopped job reports `needs_attention` instead of charging again.
 
-To turn an existing post's slides into a video instead, use its own video: `get_video_capabilities`, then `get_post_video` and `edit_post_video` for transitions and motion, and `update_post {outputs}` for which destinations get it. Rendering it is metered the same way: `quote_post_video_render`, the person's go-ahead, then `render_post_video` with `confirmed: true`. Schedule a video destination with the render's `videoRenderId`.
+To turn an existing post's slides into a video instead, use its own video: `get_video_capabilities`, then `get_post_video` and the individually exposed video edit tools for transitions and motion. Use `edit_post_video` only when your connector exposes it; directory connections expose fixed edits such as `video_set_transition` with their full input schemas. Use `update_post {outputs}` for which destinations get it. Rendering it is metered the same way: `quote_post_video_render`, the person's go-ahead, then `render_post_video` with `confirmed: true`. Schedule a video destination with the render's `videoRenderId`.
 
 App captures, simulator recordings and your own build scripts run outside remote MCP. Upload their finished files.
 
