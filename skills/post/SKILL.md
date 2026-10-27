@@ -103,6 +103,19 @@ for the selected destinations. It covers collapsed text, cropping, interface
 controls, links and the fields Sprid actually publishes, with examples. Keep
 the user's theme, voice and chosen format; these are technical checks.
 
+## The weekly read: winners get a part 2
+
+Publishing is half the loop. Once a week, or when the person asks how posts are doing, read what came back and turn it into the next drafts. Formats are found by posting: most posts land near the account's normal, a few land far above it, and nobody predicts which. A post that broke out is the strongest brief there is.
+
+1. **Read per-post results** from `get_marketing_review` (`social.publishes`). A null metrics row is unmeasured, not zero.
+2. **Compare at the same age.** Views keep arriving, so read every post at the same age, seven days by default. A post's breakout is its views at that age divided by the account's median at that age, the median taken over its last 20 measured posts on the same platform. Before 10 measured posts there is no median: report views and saves and name no winners.
+3. **A post at 3x or more is a winner.** Draft its part 2 within the week: the same hook template and slide skeleton (slide count, the role of each slide, where the call to action sits), with a new payload, meaning a new item, place, case or example. Duplicate the post and replace its content, or use "Make more like this" where the app offers it. Number the part where the account's voice allows. Never repeat the payload of an earlier part.
+4. **A part 2 that also lands above the median makes a series.** Give it a standing slot in the schedule and draft the next part each week. Two parts in a row under the median end it; say so instead of drafting another.
+5. **A post at 10x or more** also earns its own video on a video-default destination (`update_post {outputs}`, then the render quote and the person's yes from the video section). 10x is a starting point; move it once the account has a history.
+6. **Report** each winner with its breakout and a link, the drafts made, and what waits for approval. Every draft stays a draft until the person approves it.
+
+Breakout chooses formats. It does not show that the channel brings customers: that is link clicks and the app's own outcomes, read through `/sprid:marketing-review`. Pinterest is read at 30, 60 and 90 days instead (see Pinterest above).
+
 ## What not to do
 
 - No posting to a channel the user did not name.

@@ -36,7 +36,21 @@ Set these at the top level to move the whole call, and any single account may ca
 
 Those offsets are not arbitrary. Frame 0 is the cover the feed shows before anyone presses anything, and the seconds after it are where a viewer either stays or leaves. Read the sheet the way you would read a storyboard: what the cover already says, what the opening card claims, when the first cut lands, whether the last frame is worth screenshotting. `sheet_offsets` moves the times when a longer post needs them. ffmpeg tiles the sheet; without it the frames still land and the sheet does not.
 
-Once something is on disk, [teardown.md](teardown.md) is how to read it: the order to look in, the six things to name, and what a sheet cannot tell you.
+Once something is on disk, [teardown.md](teardown.md) is how to read it: the order to look in, the six things to name, and what a sheet cannot tell you. For the question "which of this account's formats should we build on", use the census below.
+
+## Format census: what each format does on average
+
+`top_posts` shows what peaked. A peak can be one lucky post, so it cannot tell a repeatable format from a fluke. The census asks what each of an account's formats does across everything it posted, which is the number a content plan can be built on: "this account runs three formats, and the first averages several times the other two".
+
+Run it on the one to three accounts that matter most for the plan, usually the strongest `view_follower_ratio` with a steady cadence. One deep account beats ten skimmed ones.
+
+1. **Read the whole window, not the top of it.** `start_download` by account with `max_days` set to the window and `count` above the number of slideshows in it, so every post comes down, not only the best. `count` stops at 200, so for a prolific account narrow the window until it fits rather than letting the sort pick the top 200. `analyze_account` with `all_videos: true` gives the totals to check coverage against. Say what the window was and how many posts it held.
+2. **Label every post's format** from what came down: slide 1's wording with the changing part as a slot (the hook template), slide count, where the product or the call to action appears, the visual (a recurring character, one photo world, screenshots), the sound (`music.title` in `metadata.json`) and caption length. Posts sharing a hook template and skeleton are one format, whatever their topic.
+3. **Measure each format**: post count, median views, that median divided by the account's median (its breakout), saves per thousand views, and the date range. Leave out posts younger than seven days, because their views are still arriving. A format seen fewer than three times is an anecdote; say so rather than ranking it.
+4. **Check the sound separately.** Group by `music.title` within a format. A sound that only beats the median inside one format is telling you about the format, not the sound.
+5. **Present** a table of formats (count, median views, breakout, saves per thousand views), name the one to three worth rebuilding with two standout and two ordinary posts each as links, and end on the rebuild: the hook template and the slide skeleton in the user's own words, voice and images. The rights rule at the top of SKILL.md holds for every post the census pulled.
+
+The census also tells you how the account repeats itself. A hook template posted many times with a new payload each time, still drawing views, is a series, and a series is cheaper to run than a stream of new ideas. Say when you see one.
 
 **When to pull at all:** when the structure is the question and the summary numbers cannot answer it. How many slides before the turn, where the hook lands, whether the caption carries the promise or the first card does, what the last card asks for. Pull a few strong examples of one format, not an account's whole output; a teardown needs enough to see the pattern and nothing more.
 

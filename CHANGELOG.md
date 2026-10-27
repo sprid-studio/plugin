@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.7 - 2026-10-27
+
+- Scout's format census: before planning a batch on an account, pull everything it posted in a window, label each post's format (hook template, slide skeleton, where the call to action sits, visual, sound) and measure each format's median views against the account's own median. Top posts show what peaked; the census shows what a format does on average, which is what a plan can repeat.
+- The post skill's weekly read: every post is compared at seven days old against the account's median at the same age. A post at 3x or more gets a part 2 with the same hook template and skeleton and a new payload; a part 2 that also beats the median becomes a series; two parts in a row under it end the series. A post at 10x or more also earns its own video.
+
 ## 1.4.6 - 2026-10-27
 
 - The ads skill covers Meta's wider surface, each part only when the person asks: audiences (cities and regions with a radius, ages, interests, saved and lookalike audiences, reach estimates), delivery (app promotion, awareness, profile visits, bid and cost caps, lifetime and campaign budgets, schedules, placements), creative (carousels from a post, text options, named Advantage+ features, previews, lead forms) and measurement (server conversions, A/B tests, live breakdowns, Meta-side hard stops). Unprompted, an agent keeps the playbook defaults. Financial products and services replaces credit as the regulated category.

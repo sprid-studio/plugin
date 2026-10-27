@@ -162,7 +162,7 @@ Discovery must only read. Scout `0.1.0` can like posts automatically; do not run
 ## Go deeper
 
 - **discover.md**: how discovery works, how to write keywords, how the filters behave as mechanisms, how to follow and retune a run in flight, and how to recover one that came back short. Read it before any discovery.
-- **analysis.md**: `analyze_account`, pulling evidence, the library, how to read the metrics, and how to present results like a strategist.
+- **analysis.md**: `analyze_account`, pulling evidence, the format census (what each of an account's formats does on average, read before planning a batch on it), the library, how to read the metrics, and how to present results like a strategist.
 - **teardown.md**: how to read a frame sheet or a pulled slideshow - the order, the six things to name, what a sheet cannot tell you, and how to end on a rebuild. Read it before describing anything you pulled.
 - **ads.md**: the ad-library half - how to write the queries, what days live does and does not mean, and how to read a harvest. Read it before any ad research.
 - **product.md**: how to research and understand the user's product first, then derive the niche and the keywords from it. Start here whenever the goal is to promote something.
