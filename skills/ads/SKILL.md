@@ -64,8 +64,8 @@ against them; a bar moved after the data arrived is not a bar.
 
 ## Declare the regulated category
 
-`special_ad_categories` on the campaign. Housing, credit, employment and
-political advertising have targeting restricted by law in several markets, and an
+`special_ad_categories` on the campaign. Housing, financial products and
+services (Meta's replacement for credit), employment, gambling and political advertising have targeting restricted by law in several markets, and an
 undeclared one does not get quietly rejected - it gets pulled, with the ad
 account attached to it.
 
@@ -173,6 +173,55 @@ Run `dataset_health` and resolve its readiness reason before preparing launch.
 - `create_ad_rule` and `evaluate_ad_rules` flag a threshold for review. A fired
   rule sends its observed value to the owner; it does not pause delivery. The
   person chooses Pause or Keep in the Sprid app.
+- A Meta-side hard stop (`create_meta_ad_rule` with pause or lower_budget),
+  `resume_ad`, and an A/B test over ad sets that are already delivering all
+  return an `approvalUrl`, like any other spend change. `archive_ad_object`
+  archives; delete only when the user asks.
+
+## Beyond the defaults, only when the user asks
+
+Unprompted, keep the playbook above: Sales, Leads, Traffic or Engagement, lowest
+cost bidding, a daily ad set budget, countries only, Advantage+ audience on, the
+creative exactly as supplied. Everything below is opt-in. Read every setting you
+chose back to the user with the approval link; the approval screen shows them too.
+
+**Who sees it.** `audience` narrows an ad set or promotion. Find places,
+interests and locales with `search_ad_targeting` and send each result's `id` as
+the `key` with its `countryCode`; a city or region replaces its country rather
+than adding to it. Cities take a radius of 17-80 km. With Advantage+ audience on,
+ages, genders and interests are suggestions, not limits. Including a saved
+audience means only those people; excluding one skips them. Check the size with
+`estimate_ad_audience` before proposing a budget. `list_custom_audiences`,
+`create_custom_audience` (website, engagement, customer list, lookalike) and
+`add_custom_audience_members` cost nothing; customer lists are hashed by Sprid,
+and phone numbers need their country code. Housing, employment and financial ads
+take regions, cities of 15 km or more in Europe (25 km elsewhere), interests and
+saved audiences that are not lookalikes, never ages or genders.
+
+**How it delivers.** `OUTCOME_APP_PROMOTION` (with `app` and its event,
+`skadnetwork` for iOS), Awareness (`REACH`, `THRUPLAY` with `frequencyCap`),
+profile visits, `bidStrategy` caps, `lifetimeBudgetCents`, `schedule`,
+`campaignBudget`, `destinationType`, `attribution` and manual `placements`.
+`COST_CAP` with no `bidAmountCents` uses `targetCostPerEventCents`. Budget
+changes name their kind. Ads reaching Taiwan or Singapore need the advertiser's
+identity ids saved in the account's ad settings first.
+
+**Creative.** `create_carousel_ad_creative` turns a 1:1 or 4:5 post into 2-10
+cards. Extra texts or headlines make a dynamic creative: create the ad set with
+`isDynamicCreative: true` and put only that creative in it. Turn Advantage+
+creative features on by name in `formatSpec.creativeFeatures`, never as a bundle. Run
+`preview_ads` and show the user before sending the launch link. Lead forms
+(`list_lead_forms`, `create_lead_form`) need a lead generation ad set; ask the
+user for their privacy policy URL and never invent one, and never fetch leads
+into the conversation. Partnership ads and lead forms say so when the Meta
+permission they need is missing.
+
+**Measurement.** `send_conversion_events` sends server conversions; pass the
+pixel's event id as `eventId` so Meta does not count one purchase twice. Never
+send cohort outcomes there. `create_ad_study` settles a decision the council
+cannot; it is a test with its own budget share, not a dashboard.
+`ad_breakdown` with `live: true` covers country, region, device and market; if
+`availability` says `needs_opt_in`, offer `enable_insights_breakdown`.
 
 ## Reading results
 

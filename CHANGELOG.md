@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.4.6 - 2026-10-27
+
+- The ads skill covers Meta's wider surface, each part only when the person asks: audiences (cities and regions with a radius, ages, interests, saved and lookalike audiences, reach estimates), delivery (app promotion, awareness, profile visits, bid and cost caps, lifetime and campaign budgets, schedules, placements), creative (carousels from a post, text options, named Advantage+ features, previews, lead forms) and measurement (server conversions, A/B tests, live breakdowns, Meta-side hard stops). Unprompted, an agent keeps the playbook defaults. Financial products and services replaces credit as the regulated category.
+
 ## 1.4.5 - 2026-10-26
 
 - Explain the directory connector’s separate video editing tools and the batch editor available on other connections.
