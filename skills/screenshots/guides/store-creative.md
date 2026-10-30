@@ -117,3 +117,21 @@ ascCreative: {
 A Play preview video is listing copy: `playVideo` on the locale's `storeCopy`,
 pushed by `sprid release metadata`. The feature graphic goes through
 `sprid release graphics`.
+
+## Test them
+
+Apple's product page optimization test shows up to three treatments (another
+icon, other screenshots) to a share of the default page's visitors and measures
+which converts. `ascProductPageTest` in `release.config.ts` names the test, the
+share and each treatment's screenshot glob. `sprid release page-test` checks it
+locally; `--execute` builds it unstarted; `--start` starts it and sends it to App
+Review when the treatments need it. One test runs at a time, for up to 90 days,
+and a stopped test cannot restart.
+
+Test one difference: the first screenshot's message, or the icon, not both.
+Apple's API returns no results, so read them in App Store Connect (Analytics →
+Acquisition → Product Page Optimization) once Apple shows a confidence level,
+then record what it says with
+`sprid release page-test --result "<what Apple shows>" --annotate`. To compare
+screenshot sets for traffic you send yourself, use custom product pages instead
+(`sprid release pages`, measured with `page-results`).

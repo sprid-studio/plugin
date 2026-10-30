@@ -57,6 +57,15 @@ keywords, so a search for one use case lands on screenshots and copy about that
 use case. Reach for them once the default listing is sound and search evidence
 shows distinct intents.
 
+`sprid release pages` builds App Store custom product pages from
+`ascCustomProductPages` in `release.config.ts` and prints each page's URL. That
+URL is the tag: a page only shows to traffic sent to it (an ad, a link, a
+landing page button) or to the searches it takes keywords for, and a page can
+only take keywords the live version already has. `sprid release page-results`
+then reads views and first-time downloads per page against the default page
+from Apple's analytics reports, which name the page, so keep the name fixed once
+it has traffic.
+
 ## What to change first
 
 In order, because this is the order of what it costs to be wrong:

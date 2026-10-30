@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.1 - 2026-10-30
+
+- The store listing guide shows how to build App Store custom product pages with `sprid release pages`, use each page's URL as its tag, and read views and downloads per page with `sprid release page-results`. The screenshots skill's store art guide adds running a product page optimization test with `sprid release page-test` and recording its result, which Apple's API does not return.
+
 ## 1.6.0 - 2026-10-30
 
 - The screenshots skill covers store art beyond screenshots: the App Store's iOS 27 product page header and search results asset with Apple's safe areas, app previews, iPhone Duo sizes, Play's preview video and feature graphic, how to compose them with `sprid screenshots` and push them with `sprid release creative`. The example devices start at 6.9".
