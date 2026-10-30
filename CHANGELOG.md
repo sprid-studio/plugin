@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.0 - 2026-10-30
+
+- The screenshots skill covers store art beyond screenshots: the App Store's iOS 27 product page header and search results asset with Apple's safe areas, app previews, iPhone Duo sizes, Play's preview video and feature graphic, how to compose them with `sprid screenshots` and push them with `sprid release creative`. The example devices start at 6.9".
+- The store listing guide names Play's preview video field and keyword-targeted custom product pages and custom store listings; the reels skill sends store videos to the same specs.
+
 ## 1.5.0 - 2026-10-30
 
 - The reels skill has a guide for building motion graphics in code with Remotion or HyperFrames: their licences, a project structure for demos and ads, and fast cuts on a tempo grid. A reel is written from research and Scout findings first.

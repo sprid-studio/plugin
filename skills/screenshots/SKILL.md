@@ -1,6 +1,6 @@
 ---
 name: screenshots
-description: Produce App Store and Google Play screenshot sets from raw captures and a config the skill writes from the voice guide, in every store language, with headlines, device frames and an optional laurel badge. Use when the user mentions screenshots, store images, localising the listing, or App Store assets.
+description: Produce App Store and Google Play screenshot sets from raw captures and a config the skill writes from the voice guide, in every store language, with headlines, device frames and an optional laurel badge. Also the App Store header and search results asset, app previews and Play's feature graphic and preview video. Use when the user mentions screenshots, store images, the product page header, an app preview, the feature graphic, localising the listing, or App Store assets.
 ---
 
 # /sprid:screenshots
@@ -53,8 +53,8 @@ export const config: AsoConfig = {
   filenamePrefix: "<slug>",
   languages: [{ id: "en", label: "English" } /* every store locale the app ships */],
   devices: [
-    { id: "iphone-65", label: 'iPhone 6.5"', width: 1284, height: 2778, platform: "ios", frame: "iphone" },
-    { id: "iphone-67", label: 'iPhone 6.7"', width: 1290, height: 2796, platform: "ios", frame: "iphone" },
+    // App Store Connect requires 6.9" (or 6.5") and scales it for smaller iPhones.
+    { id: "iphone-69", label: 'iPhone 6.9"', width: 1320, height: 2868, platform: "ios", frame: "iphone" },
     { id: "play-phone", label: "Android Phone", width: 1080, height: 1920, platform: "android", frame: "android-phone" },
   ],
   slots: [
@@ -87,6 +87,10 @@ sprid screenshots --config ./aso.config.ts --lang en --slot 1 --platform ios   #
 Output: `screenshots/{lang}/aso/<slug>_{lang}_{deviceId}_{slotId}.jpg`. Open slot 1 for one language and look at it before rendering everything.
 
 When comparing directions, export a `ReviewConfig` as `review` alongside `config`, with a separate `outputDir` and labelled `variants` (each supplies an `AsoConfig`). Run `sprid screenshots --config ./aso.config.ts --review`. It produces an offline gallery, contact strips and an image manifest without replacing the store outputs. Check every locale/device, including translated text fit, before presenting the review. Missing captures or hero translations fail the render.
+
+## Store art beyond screenshots
+
+The App Store header and search results asset (iOS 27), app previews, iPhone Duo sizes, the Play preview video and the feature graphic each have their own sizes and rules. Read [store art beyond screenshots](guides/store-creative.md) before making any of them, and offer the ones the listing lacks once the screenshots are done.
 
 ## 5. Report
 

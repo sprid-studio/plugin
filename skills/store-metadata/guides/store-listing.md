@@ -46,6 +46,17 @@ description reads like spam to both the algorithm and the reader.
 iOS before "more"). Almost nobody opens the rest - but the store's reviewers do,
 so every claim in it has to be true.
 
+**Play's preview video is a listing field too.** `playVideo` in a locale's
+copy sets the YouTube URL Play shows before the screenshots. The images and
+videos themselves, on both stores, are in
+[store art beyond screenshots](../../screenshots/guides/store-creative.md).
+
+**One listing is not the only listing.** App Store custom product pages (up to
+70) and Play custom store listings (up to 50) can each be tied to search
+keywords, so a search for one use case lands on screenshots and copy about that
+use case. Reach for them once the default listing is sound and search evidence
+shows distinct intents.
+
 ## What to change first
 
 In order, because this is the order of what it costs to be wrong:

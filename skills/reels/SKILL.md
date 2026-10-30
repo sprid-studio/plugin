@@ -42,6 +42,10 @@ and the build command with each spec so edits can be reproduced.
   no renderer yet, build it in code: [motion graphics](guides/motion-graphics.md)
   starts from research and scout findings, names two renderers and a project
   structure that holds up.
+- A store video (App Store header or search loop, app preview, Play preview
+  video) has fixed sizes, lengths and audio rules: read
+  [store art beyond screenshots](../screenshots/guides/store-creative.md)
+  before choosing the canvas.
 - A lane that should also go to Pinterest gets a `pinterest` block: `boardId`,
   a `link` containing `<slug>`, and `title`, `description` and `altText`. The
   optional `utm` replaces Sprid's per-Pin link tagging, so set it only for your
