@@ -12,7 +12,7 @@ A Facebook **Page** you can publish to: **Professional dashboard → Page access
 sprid connect facebook --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug.
+Replace `<slug>` with your publishing account’s slug.
 
 ## Click path (the connect)
 
@@ -29,7 +29,7 @@ Run `sprid status` and check the Page name. After publishing a reviewed post, ch
 
 - **No Pages found:** check your Page access, reconnect and select the Page in Facebook’s chooser.
 - **Permission missing:** reconnect and approve all requested permissions.
-- **Page already connected:** check you picked the intended Page. A Page connects to one Sprid account; disconnect the old one only if you mean to move it.
+- **Page already connected:** check you picked the intended Page. A Page connects to one publishing account; disconnect the old one only if you mean to move it.
 - **“Invalid Scopes”, app unavailable or “URL blocked”:** contact [Sprid support](mailto:hello@sprid.studio). Only Sprid can fix these.
 
 ## Investigate with this connection

@@ -25,7 +25,7 @@ Skip any step you have already done.
 sprid connect google-ads --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug.
+Replace `<slug>` with your publishing account’s slug.
 
 ## Click path (the connect)
 

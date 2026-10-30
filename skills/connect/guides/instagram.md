@@ -15,7 +15,7 @@ To switch a personal account: profile → **≡ → Settings and activity → Fo
 sprid connect instagram --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug, or use **Settings → Channels → Connect Instagram** in Sprid. In an agent-controlled browser, add `--no-browser` and open the returned link in the session for the intended account. Keep that link private.
+Replace `<slug>` with your publishing account’s slug, or use **Settings → your app → Publishing → Channels → Instagram** in Sprid. In an agent-controlled browser, add `--no-browser` and open the returned link in the session for the intended account. Keep that link private.
 
 ## Click path (the connect)
 
@@ -30,7 +30,7 @@ Run `sprid status` and check that Instagram shows the right handle. Before sched
 ## If it fails
 
 - **Account not eligible:** switch to Business or Creator, then reconnect.
-- **Already connected elsewhere:** check the handle. If the wrong account was signed in, cancel and restart. Move a connection only if you mean to change its Sprid destination.
+- **Already connected elsewhere:** check the handle. If the wrong account was signed in, cancel and restart. Move a connection only if you mean to change its publishing account.
 - **Connection expired or permissions missing:** run the connect command again and approve all requested access.
 - **App unavailable, “Invalid Scopes” or a redirect error:** send the error to [Sprid support](mailto:hello@sprid.studio). Only Sprid can fix these.
 - **Long-lived token exchange fails after Allow:** authorization did not complete. Send the error text to [Sprid support](mailto:hello@sprid.studio). If Sprid invites your account as a tester, open Instagram **Settings → Website permissions → Apps and websites → Tester Invites**, accept Sprid-IG, then start a fresh connection. The tab may only appear after an invitation. Do not create another Instagram account or your own Meta developer app. `Unsupported request - method type: get` alone does not identify the cause.

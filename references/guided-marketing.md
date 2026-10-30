@@ -95,7 +95,7 @@ success claim.
 Hosted research requires separate `costCeilingCents` (provider safety cap) and
 `creditCeilingCents` (maximum retail credit charge) with `confirmed: true`.
 Read `marketing_plan_capabilities` before quoting either.
-Hosted screenshot composition also requires `creditCeilingCents` (3–30 cents).
+Hosted screenshot composition also requires `creditCeilingCents` (3 to 30 cents).
 Every `*Cents` credit field is stored in cents, and the person sees Sprid
 credits: one to a cent, so a 400-cent ceiling is 400 credits. Quote credits,
 never dollars, when explaining a charge. Explain the maximum before approval; actual usage is charged and unused

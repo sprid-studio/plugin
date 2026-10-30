@@ -18,15 +18,9 @@ Reads `marketing/VOICE.md`, the current listing (fetched public page, or `fastla
 
 `@sprid/release` (run with Bun, no build step): `sprid release metadata` reads `storeCopy`, `contact` and `listingLocales` from `release.config.ts` and prints the exact fields and values it would send to the configured stores. `--asc` or `--play` limits it to one store; `--execute` sends. `--config <file>` accepts TS, JS, MJS or JSON; `--locale <code,...>` selects store locales. Paths resolve beside the config. Expo/EAS and build settings are optional; use existing native, Flutter or other build pipelines unchanged. `--annotate` explicitly opts an executed change into Sprid logging. `npm install -D @sprid/cli` gives the repo `defineReleaseConfig` from `@sprid/cli/release`. Keys are resolved from `asc.keyPath` / `play.keyPath` in the config or from `$ASC_KEY_PATH`, `$ASC_KEY_ID`, `$ASC_ISSUER`, `$GOOGLE_SERVICE_ACCOUNT_KEY_PATH`; the skill never reads their values into the conversation. If the package cannot be installed, write the config and stop; the copy is the work.
 
-## Rules (the ones that cost real downloads when broken)
+## Rules
 
-1. **Name: 30 characters.** Preserve established branding and naming constraints. Consider a relevant category term when search evidence supports it; category-first naming is an option. Quote the current name and proposed alternatives side by side.
-2. **Subtitle: 30 characters.** Choose the benefit, use case or distinguishing feature that helps this audience decide.
-3. **Keywords: 100 characters, comma-separated, no spaces after commas, no words already in the name or subtitle** (Apple indexes those already). No plurals when the singular is present.
-4. **Choose locales from the customer's markets.** Preserve each locale's useful keywords and adapt regional vocabulary. Verify current official store localization guidance before making indexing claims; do not assume a particular English locale covers other countries.
-5. **Evaluate local-language keywords independently.** Use relevant local search evidence where available. Do not discard terms because another locale might also be indexed.
-6. **Description first line survives the fold** (~170 characters on iOS). The rest is read by almost nobody and by Apple's reviewers; keep claims true.
-7. **Keywords and description are version-scoped on ASC.** They push only when an editable version exists ("Prepare for Submission"); name and subtitle also require an editable app information record. The offline dry run validates local values; the execute step checks remote editability.
+Read [Write a store listing people can find](guides/store-listing.md) before drafting. It owns the field limits on both stores, the keyword rules, locales, what to change first and when App Store Connect accepts a push. Judge each locale's keywords on that language's own search evidence, and keep a useful term even when another locale might also index it.
 
 ## Workflow
 

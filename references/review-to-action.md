@@ -1,6 +1,6 @@
 # From diagnosis to an activity
 
-Use this method for apps, shops, services and other businesses. Establish the business context before choosing metrics; return to sections 4–8 after explaining the evidence. The output is a concrete activity someone can carry forward. A review alone does not authorize execution.
+Use this method for apps, shops, services and other businesses. Establish the business context before choosing metrics; return to sections 4 to 8 after explaining the evidence. The output is a concrete activity someone can carry forward. A review alone does not authorize execution.
 
 ## 1. Follow the money, then split volume from rate
 

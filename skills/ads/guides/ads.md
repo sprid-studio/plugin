@@ -1,7 +1,7 @@
 # Ads: pay to show more people what already worked
 
 **What this guide does:** Explains how Sprid thinks about paid ads on
-Instagram, Facebook, YouTube and TikTok: when to spend, how a promotion runs
+Instagram, Facebook, YouTube, TikTok and Pinterest: when to spend, how a promotion runs
 from draft to result, and which numbers to believe along the way.
 
 Choose a paid campaign from the customer's audience, objective and acquisition
@@ -43,6 +43,7 @@ behind it:
 | Facebook | a Meta ad on Facebook only | your Meta ad account |
 | YouTube | a Google Ads video campaign (YouTube, Shorts, Discover, Gmail) | your Google Ads account |
 | TikTok | a Spark Ad on TikTok | your TikTok ad account |
+| Pinterest | a promoted Pin, with a maximum cost per click you set | your Pinterest ad account |
 
 Instagram needs one more thing: the Instagram account has to be linked to the
 Facebook Page your Meta ad account runs as, because that is how Meta runs an
@@ -54,7 +55,9 @@ reviews the ad, and you get an email when it goes live, is rejected (with the
 network's reason) or ends (with what the money bought). The budget and end date
 can change while it runs, from Sprid. A TikTok post also needs the creator's
 permission for that one post: a code the TikTok app makes under the post's Ad
-settings, pasted into Sprid.
+settings, pasted into Sprid. A Pinterest promotion needs a public Pin owned by
+the advertiser, runs whole UTC days and ends at midnight UTC, and Sprid
+supports only ordinary categories there.
 
 **Run a test.** For finding out what to say, not just saying it louder. Tests
 run on Meta. Every
@@ -71,10 +74,10 @@ It covers server events, custom conversions and the fresh checks before launch.
 ## The checks before money moves
 
 - **The copy check.** Banned words, your own never-say list, invented urgency,
-  and openings that name an identity ("for anxious people") instead of a moment
-  ("you reread the message four times"). Warnings pass, errors block the launch.
-- **Regulated categories.** Housing, credit, employment and political ads must
-  be declared. An undeclared one isn't quietly rejected, it's pulled with the
+  and openings that name an identity ("for runners") instead of a moment
+  ("your alarm goes off and it is raining"). Warnings pass, errors block the launch.
+- **Regulated categories.** Housing, financial products and services,
+  employment, gambling and political ads must be declared. An undeclared one isn't quietly rejected, it's pulled with the
   ad account attached. Anything about where people live, what they can borrow or
   who gets hired counts, even when the product doesn't look like it.
 - **The payment method**, before a budget is chosen rather than after Meta has
@@ -107,7 +110,8 @@ market. Use those observations to propose tests, with their sources and limits.
   the post: [Meta Ads](https://sprid.studio/docs/connect/meta-ads) for
   Instagram and Facebook, [Google Ads](https://sprid.studio/docs/connect/google-ads)
   for YouTube, [TikTok Ads](https://sprid.studio/docs/connect/tiktok-ads) for
-  TikTok.
+  TikTok, [Pinterest Ads](https://sprid.studio/docs/connect/pinterest-ads) for
+  Pinterest.
 - A published post to promote, or, on Meta, an image or video to build a
   creative from.
 - You, signed in to the Sprid app, to press Launch. No agent or token can.

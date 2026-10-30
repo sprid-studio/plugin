@@ -21,15 +21,9 @@ An **API key**. On Umami Cloud that is any plan. Self-hosting, you need a versio
 sprid connect umami --key-from-clipboard --site 8f2a1c90-4d1e-4b7a-9f33-2c0b5e7a1d44
 ```
 
-Self-hosting? Add `--host https://analytics.example.com`. Sprid appends the `/api` your instance serves under, so either form works. Add `--use` to make Umami the source Sprid reports website traffic from.
+Self-hosting? Add `--host https://analytics.example.com`. Sprid appends the `/api` your instance serves under, so either form works. Add `--use` to make Umami the source Sprid reports website traffic from; [Only one provider answers](https://sprid.studio/docs/connect/google-analytics#only-one-provider-answers) explains which provider answers when several are connected.
 
-## Only one provider answers
-
-PostHog, Google Analytics, Plausible and Umami all count the same visits to the same site. Sprid reads **one** of them per app and never adds them together, because adding them would overstate your traffic by roughly the overlap, and the overlap is nearly everything.
-
-With one connected, that one answers. With several, Sprid uses the one you chose with `--use` (PostHog by default, because it also answers the people and registration cards). The others stay connected and idle, and the traffic card says so.
-
-Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
+Typing the command yourself? Copy the key last, as [Keys from your clipboard](https://sprid.studio/docs/connect/posthog#keys-from-your-clipboard) explains, with the fallback for a shell without a clipboard.
 
 ## How to check it worked
 

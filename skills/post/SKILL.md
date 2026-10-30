@@ -10,7 +10,7 @@ Read [one marketing plan](../../references/guided-marketing.md). Reuse the plan'
 
 Sprid MCP supplies connected operations; this skill supplies editorial method. Read [Use Sprid in chat](guides/chat.md) for the complete browser-only path, attachment imports and hosted creation. Read [Build locally](guides/local.md) when a repository or renderer is available. If tools are missing, connect remote MCP through the host; CLI installation is optional. The agent drafts and prepares. **Nothing is published unless the person asks for it**, and a TikTok post straight to the profile requires the person's explicit settings and approval for that post (see TikTok below). Never claim a post is live because a tool returned; say what state it is in.
 
-For Pinterest, read [Pinterest content and publishing](guides/pinterest.md) before drafting, reviewing or scheduling. Pinterest is search- and destination-led: a useful standalone checklist can be complete on the Pin, and the Instagram/TikTok open-loop and carousel-completion rules do not apply. Keep the account’s voice, factual gates and asset-rights rules. The user must select every Pin in an approved batch; those selected Pins may then publish automatically on their schedule without another approval at posting time.
+For Pinterest, read [Pinterest content and publishing](guides/pinterest.md) before drafting, reviewing or scheduling.
 
 If `.sprid/setup.json` holds the first draft, read
 [resuming setup](../../references/setup-continuation.md) before creating a post.
@@ -19,15 +19,7 @@ approval; `draft-prepared` only means the copy arrived, not that visual review p
 
 ## Connect once
 
-The server speaks OAuth 2.1. Follow [agent runtime](../../references/agent-runtime.md) for the current client’s connection flow. In Claude Code, or to inspect the connection in Codex:
-
-```
-/mcp                          # pick sprid; a browser opens on app.sprid.studio
-```
-
-They sign in (magic link), pick the workspace the client may see, press Allow, and `list_accounts` answers. Nothing is pasted into the terminal. Find the connection for the current client under Settings → Tokens; removing it there disconnects.
-
-A token (`SPRID_PAT`, minted at `https://app.sprid.studio/settings/tokens`, starts with `sprd_`) is only for CI or a client that cannot open a browser. Never ask the user to paste one into the conversation. The `sprid` CLI (`npm i -g @sprid/cli`) pairs a machine the same browser-first way (`sprid login`), and `sprid mcp` is a stdio adapter for clients that cannot reach the HTTP endpoint.
+Connect as [agent runtime](../../references/agent-runtime.md#mcp-discovery-and-connection) describes for the current client; in a browser chat, follow the [chat guide](guides/chat.md#connect-sprid). The connection appears under Settings → Tokens, and removing it there disconnects. A token (`SPRID_PAT`, minted at `https://app.sprid.studio/settings/tokens`, starts with `sprd_`) is only for CI or a client that cannot open a browser. Never ask the user to paste one into the conversation.
 
 The authenticated `?surface=core` list is the everyday workflow. Every other verb this skill names is still available: if it is not in your tool list, run it with `call_tool {name, arguments}`, and use `find_tools {query}` to find a tool by what you want to do. `get_capabilities` reports availability and browser fallbacks; specialized primitives are listed with `?surface=all`.
 
@@ -38,12 +30,12 @@ The authenticated `?surface=core` list is the everyday workflow. Every other ver
 3. Start from an idea when one fits: it is a post in `idea` status with gathered media, `notes` and a `sourceUrl`, so `update_post {status: "draft"}` takes it forward in place. Otherwise `create_post` (optionally with a `seedHook` or a library `imageId`), or `draft_post_from_hook`. To save something for later without writing it yet, `create_post {status: "idea", notes, sourceUrl, imageIds}` and `add_slides {postId, slides: [{imageId}]}` as more turns up.
 4. `update_slides` with the copy. Use the selected account’s templates and voice; `/sprid:bootstrap` §4 provides a starting structure when neither exists.
 5. `search_images` by tag and mood; `generate_image` only when generation is authorized and `spend_status` shows headroom. Choose style, subjects and demographics from the brief and account guidance. Do not inject another brand’s camera style or restrictions.
-6. `review_post`. Fix every applicable error, then re-review. Apply the configured account and format gates. For Pinterest, do not rewrite a useful standalone Pin to satisfy an Instagram/TikTok open-loop, slide-count or completion gate; report that gate as inapplicable and use the Pinterest guide. Report the returned review result and keep other unresolved failures in draft; do not invent a universal score threshold.
+6. `review_post`. Fix its errors, then re-review. Voice follows the customer's own accepted voice ([writing gate](../../references/writing-gate.md)), and an em dash is always an error. Apply the account's configured gates. For Pinterest, do not rewrite a useful standalone Pin to satisfy an Instagram/TikTok open-loop, slide-count or completion gate; report that gate as inapplicable and use the Pinterest guide. Report the returned review result and keep other unresolved failures in draft; do not invent a universal score threshold.
 7. `preview_post` (with `slideIds` for a subset). It returns a small inline image of every slide: look at them before you call the post done, then show the user the post as in [Hand it over for review](#hand-it-over-for-review).
 8. Schedule with the narrowest bulk verb that fits:
    - Adding a destination to an existing future queue: `mirror_schedule` with its default dry run, inspect every post/time/error, then repeat with `dryRun: false`.
    - Placing several unscheduled posts on a cadence: `schedule_batch` with `dryRun: true`, inspect every placement/error, then repeat with `dryRun: false`.
-   - One post: `next_schedule_slot`, then `schedule_post` — or `publish_post` for now.
+   - One post: `next_schedule_slot`, then `schedule_post`, or `publish_post` for now.
 
 Do not loop over `schedule_post` when either bulk verb fits. Both bulk paths preflight the complete queue before writing, so one invalid destination or media file stops the run with nothing new scheduled. A later concurrent channel change can still interrupt execution; report each returned placement rather than claiming the whole batch from the call alone.
 
@@ -62,7 +54,7 @@ A video destination publishes a final render of the video as it is now. `quote_p
 Whenever the user has to look at something, give them a way to open it in one click. A bare post ID or a file path sends them hunting for it.
 
 - **Rendered locally and not yet in Sprid** (a reel or stills from `sprid media build`, or the output of the app's own renderer): open it in their browser for them. `sprid media preview --open` puts the whole batch on one page, as a grid and a feed you arrow through; use `--serve` instead when they need to scrub a video or are on Safari. For a single file outside the registry, run `open <file>` on macOS or `xdg-open <file>` on Linux. Say in one line what just opened.
-- **In a chat** (Claude, ChatGPT): the preview tools' inline images and embedded preview are what the person sees. Never rebuild a preview in your own widget, artifact or HTML: those sandboxes block Sprid's media host, so every image shows broken.
+- **In a chat** (Claude, ChatGPT): show the preview as the [chat guide](guides/chat.md#create-and-review-the-post) describes.
 - **In Sprid** (an idea, draft, scheduled or published post): link every post you mention to its screen in Sprid, as a Markdown link on the post's title or ref. The review screen, where a person approves it and makes the platform choices, is `https://app.sprid.studio/p/<id>`. The editor is `https://app.sprid.studio/post/<id>`. Both accept the ref (`APP-78`) as well as the number. Prefer a link a tool returned (`links.review` and `links.editor` on every post, `url` on each `list_posts` row) over one you build. Link the review screen when the ask is to approve or schedule, and the editor when the ask is to change something.
 
 Once local work has been pushed into Sprid, the Sprid link is the one to act on, because that is where approval happens. When the agent runs on the user's machine and exactly one post is waiting, also `open` its link; for a batch, give the list of links rather than opening a tab per post.
@@ -73,24 +65,13 @@ Use `list_apps` to resolve the app and its content accounts inside the authorize
 
 ## TikTok
 
-Read the chat guide's "Approve and confirm delivery" section. Neither delivery mode nor privacy, interaction and disclosure settings have a connector default; the person chooses for the post being reviewed.
+Follow the chat guide's [Approve and confirm delivery](guides/chat.md#approve-and-confirm-delivery): the draft and direct-post modes, every required setting, the approval before `confirmed: true` and the `rebook` after an edit. When running on the person's machine, open a returned `approvalUrl` for them.
 
-- **Draft.** Pass `options.tiktok = {"postMode": "MEDIA_UPLOAD"}`. It lands in the creator's TikTok inbox for them to finish. Report it as a draft.
-- **Direct post.** Fetch fresh creator choices with `list_connections {includeTikTokCreatorInfo: true}`. Show the identity and preview, collect every setting, and obtain approval of the post and TikTok's linked policies before passing `postMode: "DIRECT_POST"` and `confirmed: true`. The chat guide lists every required field. Missing choices can be completed through `approvalUrl`; open it when running on the person's machine. Moving a scheduled post can retain its answers only while the content and settings match.
-
-- **Editing a scheduled direct post.** An approval covers the version the person saw. When an edit changes what TikTok would receive (slides, their templates, the TikTok caption, its output, motion, audio, or the account's fonts and palette), the edit's result carries `tiktokApproval` with a ready `rebook` call, and the scheduled post will not publish until it is approved again. Show the person the change with `preview_post` and the settings in `rebook`, ask whether to post this version, and only after they say yes call `rebook` with `options.tiktok.confirmed: true` added. Changing another platform's output does not touch the TikTok approval. Finish edits before scheduling where you can; each change after scheduling needs this yes.
-
-Connector confirmation is caller-attested. TikTok has not verified acceptance of this chat-based flow; do not represent it as an audited posting-screen click.
-
-Report a direct TikTok post as scheduled only once `post_queue` or `get_post` shows it.
+An edit to a scheduled direct post needs a new yes when it changes what TikTok would receive: slides, their templates, the TikTok caption, its output, motion, audio, or the account's fonts and palette. Another platform's output leaves the TikTok approval as it was, and moving the post keeps its answers only while content and settings match. Finish edits before scheduling where you can. Report a direct TikTok post as scheduled only once `post_queue` or `get_post` shows it.
 
 ## Pinterest
 
-For cadence advice or a request to fill the Pinterest queue, read the guide’s “Choose a cadence to test” and “Review and schedule the batch” sections. Keep its suggested cadences labelled as experiments; respect an existing user-chosen schedule. Check timezone, occupied days and unplaced Pins in the dry run before committing.
-
-Use `list_connections` to select the exact Pinterest `channelId`, then `list_pinterest_boards`. If it returns no boards, say so and use `create_pinterest_board` only after the user supplies or approves the name and privacy. An image Pin is one post, preferably created at `aspectRatio: "2:3"`; a video Pin is one finished video, preferably 9:16, and a finished reel can go out as one. A carousel deck is not a Pin. Every Pin needs a board and a destination link. Give the plain destination URL: Sprid adds per-Pin tracking parameters (`utm_source=pinterest` and the publish ID) when it publishes, which is how the site’s analytics sees the visit. A link that already carries its own `utm_source` goes out as written and loses that per-Pin attribution, so add your own only when you need your own campaign names. Save its board, optional section, title, description, destination, alt text and disclosures as `pinterestOptions` through `update_post`. Render and show the preview.
-
-Before scheduling, show the concrete Pin or dry-run batch and have the user select every Pin. That one selection authorizes the saved schedule; the cron publishes it later without another approval. Added or edited Pins need review before they join the schedule. Read results with `get_pinterest_metrics`: dated daily impressions, saves, Pin clicks, outbound clicks and video views. Saves are interest on Pinterest; an outbound click is someone leaving it, and neither is a site session or an install. Pins keep being found for months, so compare them at equal ages (30, 60 and 90 days), never a fresh Pin against an old one and never on a first-48-hours read. There are no likes, comments or shares, and Pin comments are not collected into the Inbox.
+The [Pinterest guide](guides/pinterest.md) owns Pins: its MCP steps for boards and `pinterestOptions`, “Choose a cadence to test”, “Review and schedule the batch” and “Measure what happened”. Select the exact Pinterest `channelId` from `list_connections`, and schedule only the Pins the user selected.
 
 ## Captions and hashtags
 
@@ -105,16 +86,7 @@ the user's theme, voice and chosen format; these are technical checks.
 
 ## The weekly read: winners get a part 2
 
-Publishing is half the loop. Once a week, or when the person asks how posts are doing, read what came back and turn it into the next drafts. Formats are found by posting: most posts land near the account's normal, a few land far above it, and nobody predicts which. A post that broke out is the strongest brief there is.
-
-1. **Read per-post results** from `get_marketing_review` (`social.publishes`). A null metrics row is unmeasured, not zero.
-2. **Compare at the same age.** Views keep arriving, so read every post at the same age, seven days by default. A post's breakout is its views at that age divided by the account's median at that age, the median taken over its last 20 measured posts on the same platform. Before 10 measured posts there is no median: report views and saves and name no winners.
-3. **A post at 3x or more is a winner.** Draft its part 2 within the week: the same hook template and slide skeleton (slide count, the role of each slide, where the call to action sits), with a new payload, meaning a new item, place, case or example. Duplicate the post and replace its content, or use "Make more like this" where the app offers it. Number the part where the account's voice allows. Never repeat the payload of an earlier part.
-4. **A part 2 that also lands above the median makes a series.** Give it a standing slot in the schedule and draft the next part each week. Two parts in a row under the median end it; say so instead of drafting another.
-5. **A post at 10x or more** also earns its own video on a video-default destination (`update_post {outputs}`, then the render quote and the person's yes from the video section). 10x is a starting point; move it once the account has a history.
-6. **Report** each winner with its breakout and a link, the drafts made, and what waits for approval. Every draft stays a draft until the person approves it.
-
-Breakout chooses formats. It does not show that the channel brings customers: that is link clicks and the app's own outcomes, read through `/sprid:marketing-review`. Pinterest is read at 30, 60 and 90 days instead (see Pinterest above).
+Once a week, or when the person asks how posts are doing, follow [Learn from a result](guides/distribution.md#learn-from-a-result) in the distribution guide: it reads posts at the same age, names winners, drafts their part 2 and records content tests in Sprid.
 
 ## What not to do
 

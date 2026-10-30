@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.5.0 - 2026-10-30
+
+- The reels skill has a guide for building motion graphics in code with Remotion or HyperFrames: their licences, a project structure for demos and ads, and fast cuts on a tempo grid. A reel is written from research and Scout findings first.
+- One home per rule: the Pinterest rules, the marketing review flow, the connect clipboard steps and the traffic provider order each live in one place. Retired formats and variants are gone, bootstrap saves the plan with `sprid plan`, the connect guides name the current Settings paths and Cloudflare's account id, and Scout installs on Codex too.
+- Windows: the marketing review reaches `sprid` through its npm shim, and the Scout skill shows the `cmd /c sprid-scout` form for MCP clients.
+
 ## 1.4.7 - 2026-10-27
 
 - Scout's format census: before planning a batch on an account, pull everything it posted in a window, label each post's format (hook template, slide skeleton, where the call to action sits, visual, sound) and measure each format's median views against the account's own median. Top posts show what peaked; the census shows what a format does on average, which is what a plan can repeat.

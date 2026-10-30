@@ -20,19 +20,21 @@ Access to your domain’s Cloudflare account and permission to create a token. E
 
 For a connection that survives you leaving the team, create an account-owned token instead under **Manage Account → Account API Tokens**, with the same permissions.
 
-## Zone id
+## Find your Account ID
 
-Your domain → **Overview** → **API** card: copy **Zone ID** and **Account ID**. The Zone ID goes in the command; ask your agent to save the Account ID in your Sprid app profile.
+Your domain → **Overview** → **API** card: copy **Account ID**. Visitor reports need it and your website’s address saved in Sprid. Copy **Zone ID** too if you also want the domain’s request counts.
 
 ## Then run
 
 ```
-sprid connect cloudflare --key-from-clipboard --zone 0123456789abcdef0123456789abcdef
+sprid connect cloudflare --app <slug> --key-from-clipboard --account-id 0123456789abcdef0123456789abcdef
 ```
 
-Use your own Zone ID. Keep the token out of chat.
+Use your own app slug and Account ID. Add `--zone <Zone ID>` for request counts. Keep the token out of chat.
 
-Sprid reads the token from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the token is copied and it runs this for you. Typing it yourself, copy the token last: paste the command into your terminal first, then copy the token, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the token and run it again. Without clipboard access (a remote shell), save the token to a file and pass `--token <file>` instead.
+Cloudflare answers your website traffic only when no other analytics provider is connected; see [Only one provider answers](https://sprid.studio/docs/connect/google-analytics#only-one-provider-answers).
+
+Typing the command yourself? Copy the token last, as [Keys from your clipboard](https://sprid.studio/docs/connect/posthog#keys-from-your-clipboard) explains, with the fallback for a shell without a clipboard.
 
 ## How to check it worked
 

@@ -5,7 +5,7 @@
 ## You need
 
 - A Pinterest business account with an advertising account you can manage, set up in Pinterest Ads Manager.
-- A public Pin published through the ordinary Pinterest connection on the same Sprid account. Its owner must match the advertising account’s owner.
+- A public Pin published through the ordinary Pinterest connection on the same publishing account. Its owner must match the advertising account’s owner.
 - A reviewed daily budget, maximum cost per click, run length and audience countries. Sprid supports advertising currencies with two decimal places.
 
 ## Then run
@@ -14,7 +14,7 @@
 sprid connect pinterest-ads --account <slug>
 ```
 
-Or open **Settings → Accounts → [account] → Ads → Pinterest Ads**.
+Replace `<slug>` with your publishing account’s slug, or open **Settings → your app → Advertising → Ad accounts → Pinterest Ads** in Sprid.
 
 ## Click path
 

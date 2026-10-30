@@ -12,7 +12,7 @@ A LinkedIn account. Publishing to a Company Page needs **Super admin** or **Cont
 sprid connect linkedin --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug.
+Replace `<slug>` with your publishing account’s slug.
 
 ## Click path (the connect)
 

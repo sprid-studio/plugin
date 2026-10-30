@@ -1,6 +1,6 @@
 ---
 name: connect
-description: Walk the user through connecting one service to Sprid, click by click, without ever seeing a secret. Covers the store and analytics keys (App Store Connect, Google Play, Search Console, PostHog, Cloudflare), the five revenue rails (RevenueCat, Stripe, Polar, Lemon Squeezy, Paddle) and the publishing channels (Instagram, TikTok, YouTube, LinkedIn, Facebook, X, Pinterest). Use when `sprid status` or `next_actions` reports a `connect` item, when a channel shows expiring or revoked, when a sensor is missing, or when the user says "connect", "hook up", "add my key", "why is the Monday mail missing PostHog".
+description: Walk the user through connecting one service to Sprid, click by click, without ever seeing a secret. Covers creating social accounts; stores, search and analytics (App Store Connect, Google Play, Search Console, Bing Webmaster Tools, PostHog, Google Analytics 4, Plausible, Umami, Cloudflare, GitHub); the five revenue rails (RevenueCat, Stripe, Polar, Lemon Squeezy, Paddle); the publishing channels (Instagram, TikTok, TikTok comments, YouTube, LinkedIn, Facebook, X, Pinterest); and ad accounts (Meta Ads, Google Ads, TikTok Ads, Pinterest Ads). Use when `sprid status` or `next_actions` reports a `connect` item, when a connection shows expiring, revoked or error, when a sensor is missing, or when the user says "connect", "hook up", "add my key", "connect GA4", "connect Meta Ads", "why is the Monday mail missing PostHog".
 ---
 
 # /sprid:connect [service]
@@ -20,7 +20,7 @@ Sprid holds encrypted keys and OAuth tokens and does the unattended work. This s
 
 ## A copied key: `--key-from-clipboard` (recommended)
 
-Most providers show a key once and expect it copied: RevenueCat, Stripe, PostHog, Polar, Paddle, Lemon Squeezy, Plausible, Umami and Cloudflare. For these, `sprid connect <service> … --key-from-clipboard` is the recommended path. The CLI reads the clipboard when it runs, saves the key to Sprid and then empties the clipboard. The key never reaches the screen, the chat, shell history or a file. Services whose key is a download (ASC `.p8`, Google service-account JSON) keep `--key <file>`, and the CLI refuses the flag for them.
+Most providers show a key once and expect it copied: RevenueCat, Stripe, PostHog, Polar, Paddle, Lemon Squeezy, Plausible, Umami, Cloudflare, GitHub and Bing. For these, `sprid connect <service> … --key-from-clipboard` is the recommended path. The CLI reads the clipboard when it runs, saves the key to Sprid and then empties the clipboard. The key never reaches the screen, the chat, shell history or a file. Services whose key is a download (ASC `.p8`, Google service-account JSON) keep `--key <file>`, and the CLI refuses the flag for them.
 
 **The agent runs the command, the user only copies.** Walk the user through the guide's click path to the point where the key is shown, then ask them to copy it and reply "copied". Don't ask for the key itself. Then run the guide's `Then run` line yourself, with the ids filled in. This way the user never has to copy the command out of chat, which is what would put the command on the clipboard in place of the key.
 
@@ -40,25 +40,23 @@ Use an existing MCP connection first; browser users need no CLI. Local users can
 
 ## Pick the guide
 
-1. Run `sprid status --json` (or call MCP `next_actions`). Items with `kind: "connect"` name the service and carry the exact `verb` to run. Channels appear under `connections` with `ok | expiring | revoked | missing`; sensors under each profile's `sensors` as booleans, with `secretsSet` saying which keys are held.
+1. Run `sprid status --json` (or call MCP `next_actions`). Items with `kind: "connect"` name the service and carry the exact `verb` to run. Every row under `connections` (channels and sensors) has a `health` of `ok | expiring | revoked | missing | error`; `error` means a saved key's last read failed, and `retryable: true` means a retry can succeed without a new key. Sensors also appear under each profile's `sensors` as booleans, with `secretsSet` saying which keys are held.
 2. If the user named a service, use that guide. Otherwise take the first `connect` item in the shared ranked list and explain what it unlocks. Publishing work can rank above adding another sensor.
-3. Read the shared guide section by section: prerequisites, provider click path, then save in the secure Sprid form or run the guide's CLI command with the provided file path when authorized. Browser users select the same identifiers and key in Settings → App Profiles; a guide's `Then run` block is the local alternative. Never ask for the value in chat.
+3. Read the shared guide section by section: prerequisites, provider click path, then save in the secure Sprid form or run the guide's CLI command with the provided file path when authorized. Browser users enter the same identifiers and key in **Settings → your app → Data sources**; a guide's `Then run` block is the local alternative. Never ask for the value in chat.
 4. Rerun `sprid status --json`, then perform the guide's live "How to check it worked" read using [connected analytics checks](../../references/marketing-review-checks.md#reading-connected-analytics). A sensor boolean or `marketing-review --check` confirms configuration only; do not call a connection verified until the correct project returns data or a successful empty response. Inspect individual revenue sources and history notes even when the aggregate is available. If it failed, match the error against the guide's "If it fails" list before theorising. Quote the fix, not the whole section.
-5. Not in the guide: say so, and give the guide's source URLs. Do not invent menu labels. PostHog and RevenueCat paths and reads were verified live on 2026-09-09; other guides were checked against official docs on 2026-09-08. Anything marked *(unverified)* is a report we could not confirm, say that too.
+5. Not in the guide: say so, and give the guide's source URLs. Do not invent menu labels. When a guide names the date it was checked, quote that date; a guide without one makes no claim about when it was last checked. Anything marked *(unverified)* is a report we could not confirm, say that too.
 
 `sprid connect` with no argument prints the wizard (missing for the plan, channels, optional) from the same `next` list; offering it is the shortest path when several things are missing.
 
 ## Shared guides
 
-Read MCP `get_documentation` with `topic` set to the service name before giving setup advice. The same guide is available as `sprid docs <service> --json` and on the public website. Omit the topic to list services; `asc`, `play` and `gsc` are accepted aliases.
+Read MCP `get_documentation` with `topic` set to the service name before giving setup advice. The guide supplies prerequisites, exact permissions, commands, live verification and troubleshooting; read it and do not reconstruct those steps from memory. The same guide is `sprid docs <service> --json` and `https://sprid.studio/docs/connect/<service>`. Omit the topic to list services; `asc`, `play`, `gsc`, `ga4` and `meta` are accepted aliases.
 
-The CLI fetches current instructions and labels a bundled fallback if the server is unavailable. `--offline` selects that fallback explicitly. Use the returned `revision` when comparing copies. If neither tool is available, read `guides/<service>.md` here (`app-store-connect`, `google-play`, `search-console` for those aliases). Do not claim the installed copy is current without checking.
-
-The guide supplies prerequisites, exact permissions, commands, live verification and troubleshooting. Read the relevant guide instead of reconstructing those steps from memory. The same guides are available through `sprid docs` and `https://sprid.studio/docs`.
+The CLI fetches current instructions and labels a bundled fallback if the server is unavailable. `--offline` selects that fallback explicitly. Use the returned `revision` when comparing copies. If neither tool is available, read `guides/<service>.md` here, under the full name for an alias (`app-store-connect`, `google-play`, `search-console`, `google-analytics`, `meta-ads`). Do not claim the installed copy is current without checking.
 
 Connect multiple revenue rails when they represent separate sales. RevenueCat app-list access lets Sprid check Stripe/Paddle overlap; inspect the result before summing money.
 
-Store and analytics keys land on the **App Profile** (`.sprid/app.json` holds the ids; the server holds the secrets, listed back only as `secretsSet`). Channels land on the **Sprid account** named by `--account`.
+Store and analytics keys land on the **App Profile** (`.sprid/app.json` holds the ids; the server holds the secrets, listed back only as `secretsSet`). Channels and ad accounts land on the **publishing account** named by `--account`, which is separate from the person's Sprid login.
 
 ## Already have keys locally?
 
@@ -72,7 +70,7 @@ For a local fallback, the CLI and plugin scripts can read `~/.sprid/secrets/<slu
   "posthogApiKey": "phx_…", "revenuecatApiKey": "sk_…" }
 ```
 
-`sprid connect --from-local` pushes everything that file points at in one go. Offer it before walking six guides. The agent still does not open the file.
+`sprid connect --from-local` pushes the keys for six services from that file in one go: the App Store Connect key (`asc`), the Google Play service account for the profile's package, the Search Console service account, `cloudflareApiToken`, `posthogApiKey` and `revenuecatApiKey`. It sets no ids (PostHog project, Cloudflare Account ID) and skips every other entry, including `bingWebmasterApiKeyPath`; connect those services with their guide's command. Offer it before walking several guides. The agent still does not open the file.
 
 ## Finish
 

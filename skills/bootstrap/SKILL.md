@@ -12,7 +12,7 @@ Initial local work needs no Sprid token; the output is files in the repo and a p
 
 ## What this touches
 
-Reads: the repo (config, existing marketing material, relevant public product surfaces, `git log`). Writes only the missing artifact and plan under `marketing/`, plus `.sprid/app.json` when an App Profile draft is useful. Initial artifacts stay local; fetching public product pages makes requests to those sites, and scout, when the person agrees to run it, browses TikTok and Meta's ad library in their own Chrome. Never reads `.env` values into the conversation; it only notes which keys exist.
+Reads: the repo (config, existing marketing material, relevant public product surfaces, `git log`). Writes only the missing artifact under `marketing/`, the plan through `sprid plan` (§5), plus `.sprid/app.json` when an App Profile draft is useful. Initial artifacts stay local; fetching public product pages makes requests to those sites, and scout, when the person agrees to run it, browses TikTok and Meta's ad library in their own Chrome. Never reads `.env` values into the conversation; it only notes which keys exist.
 
 ## 1. Find the app
 
@@ -30,7 +30,7 @@ If the repo is not a product people use (an app, website or service), say so in 
 
 Read [product measurement coverage](../../references/marketing-review-checks.md#product-instrumentation-workflow) and [instrumentation checks](../../references/marketing-review-checks.md#instrumentation-checks). Inspect analytics dependencies and actual emitting code, including wrappers, router integration, onboarding steps and core feature success. Check the existing provider, including alternatives to PostHog. List what is observed, missing or unverified; configuration alone does not verify delivery. Use an available authorized live read to check recent events, but bootstrap still works without provider access.
 
-If product analytics is absent or incomplete, include a concrete instrumentation recommendation in `marketing/PLAN.md` and name `/sprid:measurement` as the skill that carries it out: which screens/actions to measure, where code should emit, the real activation definition and how to verify an ordered onboarding funnel. Follow [service selection and access](../../references/marketing-review-checks.md#choose-services-by-the-question): reuse existing providers, recommend by capability when something is missing, and distinguish a Sprid connection from an agent tool or export. Check other measurement categories only where the diagnosis needs them. If events already arrive and only access is missing, recommend the verified read path. Do not turn a missing key into a claim that the app has no analytics, or silently implement app changes during bootstrap.
+If product analytics is absent or incomplete, include a concrete instrumentation recommendation in the plan (§5) and name `/sprid:measurement` as the skill that carries it out: which screens/actions to measure, where code should emit, the real activation definition and how to verify an ordered onboarding funnel. Follow [service selection and access](../../references/marketing-review-checks.md#choose-services-by-the-question): reuse existing providers, recommend by capability when something is missing, and distinguish a Sprid connection from an agent tool or export. Check other measurement categories only where the diagnosis needs them. If events already arrive and only access is missing, recommend the verified read path. Do not turn a missing key into a claim that the app has no analytics, or silently implement app changes during bootstrap.
 
 ## Discover the app's own review data
 
@@ -44,12 +44,13 @@ Run this section only for an app with a store listing when listing quality can
 change the selected route. Otherwise record “not applicable” and inspect the
 actual acquisition destination instead.
 
-Five checks, each pass/fail with the evidence quoted:
+Five checks, each pass/fail with the evidence quoted. Field limits and what each
+field is for: [Write a store listing people can find](../store-metadata/guides/store-listing.md).
 
-1. **The name follows the brand’s naming constraints and makes the product identifiable.** (Apple 30 chars, Play 30.) Quote the current name. Treat category terms as an evidence-based option, not a pass/fail requirement.
+1. **The name fits its limit and makes the product identifiable.** Quote the current name.
 2. **The subtitle explains a concrete benefit.** Check it against the app’s audience and positioning.
 3. **Screenshot one carries the reason to install.** Quote its headline if the repo has the source; otherwise say it could not be read.
-4. **The description's first line survives the fold** (about 170 chars on iOS before "more").
+4. **The description's first line survives the fold.**
 5. **Ratings.** Count and average from the listing page. Under 20 ratings is a fact, not a failure; say it plainly.
 
 Score as `n of 5`, never a percentage.
@@ -90,7 +91,7 @@ Draft one carousel in `marketing/posts/001-<slug>.md`, unless the user has reque
 another format. Use the account's existing templates where available; otherwise choose
 an appropriate structure for the app and explain that choice briefly.
 
-When Pinterest is the recommended or requested channel, read [Pinterest content and publishing](../post/guides/pinterest.md) and draft one standalone image Pin, preferably 2:3, or a finished video concept, preferably 9:16, instead of a carousel. Start from a matching destination page, and include its board, title, description, URL, alt text and measurement plan: outbound clicks and site visits read at 30, 60 and 90 days of Pin age. Instagram/TikTok open-loop and slide-completion rules do not apply.
+When Pinterest is the recommended or requested channel, draft one standalone Pin in place of the carousel, as [Pinterest content and publishing](../post/guides/pinterest.md) describes: its destination page, board, title, description, URL, alt text and measurement plan.
 
 - State the opening promise clearly and deliver on it in the following slides.
 - Give each slide a distinct role and keep text readable at the intended size.
@@ -105,7 +106,12 @@ Then run the voice's never-say list over it. Fix, do not explain.
 
 ## 5. Record the plan
 
-`marketing/PLAN.md`, one page:
+Record it in the app's marketing plan, kept locally in `.sprid/marketing.json` ([one marketing plan](../../references/guided-marketing.md)). `sprid plan` writes it and the other skills read it there; write no separate plan file.
+
+- **Signed in** (`sprid plan --app <slug>` answers): send the route, its evidence and the prepared artifact with `sprid plan discover --file <input.json> --app <slug>` (`intent`, `publicUrls`, `productDescription`, `preparedArtifact`, `foundationPatch`, `signals`), then show the user the returned proposal.
+- **Not signed in:** when `sprid plan --offline` finds no local plan, save one with `sprid plan import --offline --file <bundle.json>`: `{schemaVersion: 2, baseRevision: 0, app: {slug, name}, context, documents: [], actions: []}`, with the recommendation in `context`: `objective`, `audience`, `foundation.acquisitionRoute` (`product_demo`, `editorial_series`, `problem_led`, `search`, `store_conversion`, `community` or `measurement`) and a `decisions` entry (`id`, `decision`, `rationale`, `revisitWhen`). The file must sit inside the repo; delete it once imported. An existing local plan is never replaced: show the proposed change and reconcile it with the user.
+
+What the plan says:
 
 - Recommend a channel and explain how its audience and format fit this app. Use
   existing results where available; label an untested choice as a hypothesis.

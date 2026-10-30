@@ -12,7 +12,7 @@ A TikTok account you can sign in to, set to public if you want public posts.
 sprid connect tiktok --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug.
+Replace `<slug>` with your publishing account’s slug.
 
 ## Click path (the connect)
 

@@ -15,7 +15,7 @@ This is a separate connection from TikTok publishing and from TikTok Ads. The pu
 sprid connect tiktok-comments --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug. You can also use **Settings → Accounts → [account] → TikTok comments** in Sprid.
+Replace `<slug>` with your publishing account’s slug. You can also use **Settings → your app → Publishing → Channels → TikTok comments** in Sprid.
 
 ## Click path (the connect)
 
@@ -23,7 +23,7 @@ Replace `<slug>` with your Sprid account slug. You can also use **Settings → A
 2. Review the requested access (your profile and your comments) and click **Authorize**.
 3. Back in Sprid, check the connected handle.
 
-With several brands, connect each Sprid account separately, signed in as that brand's TikTok account.
+With several brands, connect each publishing account separately, signed in as that brand's TikTok account.
 
 ## How to check it worked
 

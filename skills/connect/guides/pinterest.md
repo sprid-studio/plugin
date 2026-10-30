@@ -5,7 +5,7 @@
 ## You need
 
 - A Pinterest account. A free business account is recommended, because Pinterest Analytics requires one.
-- Access to the Sprid account that will own this channel.
+- Access to the publishing account in Sprid that will own this channel.
 - A board topic in mind. Sprid can create the board during publishing.
 
 You do **not** create a Pinterest developer app, request API access or copy a token. You only authorize your own Pinterest account.
@@ -16,7 +16,7 @@ You do **not** create a Pinterest developer app, request API access or copy a to
 sprid connect pinterest --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug, or use **Settings → Accounts → [account] → Pinterest → Continue with Pinterest** in Sprid.
+Replace `<slug>` with your publishing account’s slug, or use **Settings → your app → Publishing → Channels → Pinterest → Continue with Pinterest** in Sprid.
 
 ## Click path (the connect)
 
@@ -25,7 +25,7 @@ Replace `<slug>` with your Sprid account slug, or use **Settings → Accounts �
 3. Back in Sprid, confirm the connected Pinterest name.
 4. Open a post, select **Publish → Pinterest** and pick the destination in the **Board** picker. If none fits, select **Create board**, name it and choose public or secret; Sprid selects it automatically.
 
-Each Sprid account needs its own connect, even when several Pinterest accounts are signed in to the same browser. Check the identity every time.
+Each publishing account needs its own connect, even when several Pinterest accounts are signed in to the same browser. Check the identity every time.
 
 ## Check the connection
 

@@ -27,7 +27,7 @@ The examples are naming ideas, not availability checks. The purpose is separate 
 
 For each identity, write down the owner, purpose, handle and platforms. Group the same identity’s profiles under one Sprid publishing account: your brand’s Instagram and YouTube share one, a founder’s account gets its own.
 
-An Instagram login, a Facebook Page, a Meta business portfolio and a Sprid publishing account are separate objects. Connecting a channel to Sprid does not move its ownership into a portfolio, and a Sprid destination does not reserve a handle or create a social account.
+An Instagram login, a Facebook Page, a Meta business portfolio and a Sprid publishing account are separate objects. Connecting a channel to Sprid does not move its ownership into a portfolio, and a publishing account does not reserve a handle or create a social account.
 
 Your agent can list existing publishing accounts with `sprid apps` and create missing ones with `sprid account create --file account.json` (see the [CLI reference](https://sprid.studio/docs/cli)).
 
@@ -50,9 +50,7 @@ Reuse an existing Page where you can. Otherwise open [Create a Page](https://www
 
 Sign in to [YouTube’s channel list](https://www.youtube.com/channel_switcher) with the owner’s Google account. Review existing channels, then choose **Create a channel** for each additional identity. Check both the channel name and handle.
 
-If YouTube asks for advanced-feature verification, the owner completes it in YouTube Studio (video, ID or channel history). Review can stay pending: continue other platforms and recheck eligibility before retrying. Approval on one channel does not unlock every new channel. See [YouTube eligibility and owner verification](https://support.google.com/youtube/answer/9891124?hl=en).
-
-Then follow the [YouTube connection guide](https://sprid.studio/docs/connect/youtube) and pick that exact channel in Google’s authorization screen.
+Then follow the [YouTube connection guide](https://sprid.studio/docs/connect/youtube) and pick that exact channel in Google’s authorization screen. If YouTube asks the owner for verification, [its troubleshooting](https://sprid.studio/docs/connect/youtube#if-it-fails) covers what to do.
 
 ## Set up TikTok
 
@@ -60,7 +58,7 @@ Create or sign in to each account in TikTok, confirm the handle and the owner’
 
 ## Set up Pinterest
 
-Create a free business account at [Pinterest for business](https://www.pinterest.com/business/create/), or convert an existing personal account in its settings; a private personal account has to be made public first. Pinterest Analytics needs a business account. Claim your website there if Pins will link to it, then create one or two boards named for topics people search. Then follow the [Pinterest connection guide](https://sprid.studio/docs/connect/pinterest).
+Create a free business account at [Pinterest for business](https://www.pinterest.com/business/create/), or convert an existing personal account in its settings; a private personal account has to be made public first. Then follow the [Pinterest connection guide](https://sprid.studio/docs/connect/pinterest); its [Prepare the account](https://sprid.studio/docs/connect/pinterest#prepare-the-account) section covers boards and claiming your website.
 
 ## Then run
 
@@ -68,7 +66,7 @@ Create a free business account at [Pinterest for business](https://www.pinterest
 sprid connect instagram --account yourbrand
 ```
 
-Use your Sprid publishing-account slug and the platform: `instagram`, `facebook`, `youtube`, `tiktok` or `pinterest`. Connect only accounts that already exist.
+Use your publishing account’s slug and the platform: `instagram`, `facebook`, `youtube`, `tiktok` or `pinterest`. Connect only accounts that already exist.
 
 In an agent-controlled browser, add `--no-browser` and open the returned authorization link in the session signed in to the correct account. Keep that link private.
 
@@ -79,7 +77,7 @@ Run `sprid status --json` and match each platform identity to its Sprid publishi
 - Account created, with its confirmed handle or Page/channel ID.
 - Owner and business-portfolio access checked.
 - Provider verification or tester invitation still pending.
-- Sprid connection saved to the correct destination.
+- Sprid connection saved to the correct publishing account.
 - Publishing tested with approved content, or untested.
 
 “You allowed access” on the authorization screen does not prove Sprid saved the connection, and a connected channel does not prove a post was delivered. Check the platform itself after a publishing test.
@@ -87,9 +85,7 @@ Run `sprid status --json` and match each platform identity to its Sprid publishi
 ## If it fails
 
 - **Another account appears in authorization:** cancel, sign in to the intended account and restart. Do not move a working channel to clear the error.
-- **Several Facebook Pages are listed:** rerun with `--page <id>` using the intended Page’s returned ID.
-- **YouTube verification is pending:** leave that destination pending and continue with another platform.
-- **Instagram authorizes but Sprid reports a token-exchange error:** send the error to [Sprid support](mailto:hello@sprid.studio). Sprid checks its Meta permissions and tester restrictions; any tester invitation comes from Sprid and must be accepted by the intended Instagram account. You do not need your own developer app.
+- **Several Facebook Pages listed, YouTube verification pending or an Instagram token-exchange error:** follow the fix in that channel’s guide: [Facebook](https://sprid.studio/docs/connect/facebook#click-path-the-connect), [YouTube](https://sprid.studio/docs/connect/youtube#if-it-fails), [Instagram](https://sprid.studio/docs/connect/instagram#if-it-fails).
 - **The CLI points to an unavailable local server:** check `sprid whoami --json`, then retry with `SPRID_URL=https://api.sprid.studio` for that command. Do not change credentials or workspaces to fix a server-address mismatch.
 
 ## Sources

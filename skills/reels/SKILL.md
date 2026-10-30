@@ -10,7 +10,7 @@ script paths and account setup. Load [standing rules and corrections](../../refe
 
 ## Choose the format from the brief
 
-Read the account's voice, audience and existing formats. Establish the video's
+Read the account's voice, audience and existing templates. Establish the video's
 purpose and destination. Product demos, explainers, stories and entertainment
 need different pacing, imagery and calls to action. Do not import another
 account's tone, preferred length or engagement thresholds.
@@ -38,13 +38,15 @@ and the build command with each spec so edits can be reproduced.
   `stills` recipe. Inspect `sprid post help` and the repo's existing configuration.
 - Custom graphics or generated media: use the customer's renderer through a
   `build:` command in `sprid.config.ts`, then register, check, preview and draft
-  with `sprid post`. Preserve the customer's established rendering pipeline.
+  with `sprid post`. Preserve the customer's established rendering pipeline. With
+  no renderer yet, build it in code: [motion graphics](guides/motion-graphics.md)
+  starts from research and scout findings, names two renderers and a project
+  structure that holds up.
 - A lane that should also go to Pinterest gets a `pinterest` block: `boardId`,
-  a `link` containing `<slug>`, and `title`, `description` and `altText`.
-  Sprid tags each Pin's link for attribution; the optional `utm` is off by
-  default and replaces that per-Pin tagging, so set it only for your own
-  campaign names. `sprid post check` refuses a Pin with no board or link, more
-  than one slide, or an image taller than 2:3.
+  a `link` containing `<slug>`, and `title`, `description` and `altText`. The
+  optional `utm` replaces Sprid's per-Pin link tagging, so set it only for your
+  own campaign names. `sprid post check` refuses a Pin with no board or link,
+  more than one slide, or an image taller than 2:3.
 
 ## Review before scheduling
 
@@ -72,12 +74,9 @@ follow through to attributable visits and product outcomes when coverage allows.
 Average watch time is not a direct measurement of retention at a particular second.
 State unavailable metrics and avoid universal kill thresholds or guarantees of reach.
 
-A reel published as a Pinterest video Pin is judged differently. Pins are found
-through search and related Pins for months, so compare them at equal Pin ages
-(30, 60 and 90 days) and never on a first-48-hours read. Its numbers are dated
-daily impressions, saves, Pin clicks, outbound clicks and video views, with no
-retention curve, likes, comments or shares. Read the
-[Pinterest guide](../post/guides/pinterest.md) before judging one.
+A reel published as a Pinterest video Pin is judged as a Pin: read
+[Measure what happened](../post/guides/pinterest.md#measure-what-happened) in
+the Pinterest guide before judging one.
 
 ## Then: what is next
 

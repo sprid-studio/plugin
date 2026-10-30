@@ -24,7 +24,7 @@ Skip any step you have already done.
 sprid connect tiktok-ads --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug. You can also use **Settings → Accounts → [account] → TikTok Ads** in Sprid.
+Replace `<slug>` with your publishing account’s slug. You can also use **Settings → your app → Advertising → Ad accounts → TikTok Ads** in Sprid.
 
 ## Click path (the connect)
 
@@ -32,7 +32,7 @@ Replace `<slug>` with your Sprid account slug. You can also use **Settings → A
 2. Choose the ad account, leave every requested permission switched on and click **Confirm**.
 3. Back in Sprid, pick the **ad account** if the login manages more than one. The list only appears when there is a choice.
 
-With several brands, connect each Sprid account separately and pick that brand’s own ad account every time.
+With several brands, connect each publishing account separately and pick that brand’s own ad account every time.
 
 ## Get a post's ad authorization code
 

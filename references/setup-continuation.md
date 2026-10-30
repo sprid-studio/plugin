@@ -53,7 +53,7 @@ saved UUID key to REST `POST /api/posts/setup-draft`; MCP `prepare_setup_draft`
 uses the same helper. Retry with that key to recover after a lost response.
 Do not rewrite the payload once preparation starts. Edit the recovered post
 through normal slide/template tools. This text import is a starting draft;
-apply the account's format, images and voice, then render and visually review it.
+apply the account's templates, images and voice, then render and visually review it.
 A Pinterest destination takes one image, preferably 2:3, or one finished video,
 plus a board and a destination link; a multi-slide draft is not a Pin.
 

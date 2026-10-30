@@ -25,9 +25,11 @@ Access to your app’s PostHog project and permission to create a **personal API
 sprid connect posthog --app myapp --key-from-clipboard --project 12345 --host eu
 ```
 
-Use your own app slug, project id and host. Add `--workspace <slug>` if needed. Keep the key out of chat.
+Use your own app slug, project id and host. Add `--workspace <slug>` if needed. Keep the key out of chat. Typing the command yourself? Copy the key last, as Keys from your clipboard below explains.
 
-Sprid reads the key from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs this for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead.
+## Keys from your clipboard
+
+Every guide whose command uses `--key-from-clipboard` works the same way. Sprid reads the key or token from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the key is copied and it runs the command for you. Typing it yourself, copy the key last: paste the command into your terminal first, then copy the key, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the key and run it again. Without clipboard access (a remote shell), save the key to a file and pass `--key <file>` instead, or `--token <file>` for Cloudflare.
 
 ## How to check it worked
 
@@ -35,7 +37,7 @@ Ask your agent: “Check that Sprid can read recent PostHog events for this app,
 
 ## Metric definitions
 
-In **Settings → Apps → your app → PostHog**, set the account-created event and the first UTC date from which tracking is complete.
+In **Settings → your app → Data sources → PostHog**, set the account-created event and the first UTC date from which tracking is complete.
 
 | Metric | What counts |
 |---|---|
@@ -164,7 +166,7 @@ Read [Check whether a traffic spike is real](https://sprid.studio/docs/traffic) 
 
 Not every crawler arrives as a spike. One site's September was 84% people on desktop, with no referrer, from one country, most of them for one pageview, with a normal Chrome user agent that no bot filter catches. The marketing review flags a desktop, direct, single-country group above half of website people; confirm it here before excluding anything.
 
-Open **Web visitors → Review traffic exclusions**, or **Settings → Apps → your app → PostHog → Review traffic**. Pick a UTC date range and a traffic group, preview the effect, then save. Agents use MCP `review_traffic` or `POST /api/app-profiles/:ref/traffic-review?workspaceId=…` with `{"start":"2026-09-18","end":"2026-09-19"}`: end dates exclusive, UTC, at most 31 days. An optional `exclusion` previews a rule against this period and the one before. Save approved rules in `posthogConfig.trafficExclusions` through `upsert_app_profile` or the profile PATCH route, keeping the rest of the configuration. Sprid records who edited it and when.
+Open **Web visitors → Review traffic exclusions**, or **Settings → your app → Data sources → PostHog → Review traffic**. Pick a UTC date range and a traffic group, preview the effect, then save. Agents use MCP `review_traffic` or `POST /api/app-profiles/:ref/traffic-review?workspaceId=…` with `{"start":"2026-09-18","end":"2026-09-19"}`: end dates exclusive, UTC, at most 31 days. An optional `exclusion` previews a rule against this period and the one before. Save approved rules in `posthogConfig.trafficExclusions` through `upsert_app_profile` or the profile PATCH route, keeping the rest of the configuration. Sprid records who edited it and when.
 
 How exclusions apply:
 
@@ -190,7 +192,7 @@ It uses your PostHog client and consent state and sends nothing to Sprid. Call `
 
 ## If it fails
 
-- **Access denied:** check the key is active, grants your project and has both Read permissions. Reconnect with a corrected key file.
+- **Access denied:** check the key is active, grants your project and has both Read permissions. Copy a corrected key and run the connect command again.
 - **Project not found:** check project number and host together. A US project needs the US host.
 - **Connected but no events:** check the dates and project, then ask your agent to check your app’s tracking is sending events.
 

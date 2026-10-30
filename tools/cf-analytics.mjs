@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-// Cloudflare zone web-traffic for a marketing site, via the GraphQL Analytics API.
-// Emits requests / page views / unique visitors / top referrers for the window and
-// the prior equal window. Needs a CF API token with Zone Analytics: Read.
+// Cloudflare web traffic for a marketing site, via the GraphQL Analytics API.
+// Emits Web Analytics page loads, visits and top countries, referrers and pages
+// for the window and the prior equal window. Needs a CF API token with Account
+// Analytics: Read. When the beacon cannot be read it falls back to the zone's
+// request counts (bots included), which need Zone Analytics: Read.
 //
 // Usage: node cf-analytics.mjs --app <slug> [--days 30] [--check]
 import { resolveApp, loadSecrets, windows, pctChange, parseArgs } from './lib/config.mjs';

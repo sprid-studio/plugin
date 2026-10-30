@@ -12,7 +12,8 @@ Check clarity and consistency with the customer's voice. These are editing promp
 not a universal banned-word list. Keep a construction when it conveys the intended
 meaning clearly; do not flag it solely because it appears in this list.
 
-- **Punctuation.** Follow the customer's conventions for dashes, quotes and emphasis.
+- **Punctuation.** Follow the customer's conventions for quotes and emphasis. Em and
+  en dashes are always an error, on every account: use a hyphen with spaces, a comma or a colon.
 - **Contrast reveals.** "Not X, but Y", "X, not Y", "It's not about X", "rather than",
   "instead of", "more than just". Check that the comparison explains a real
   difference instead of adding a slogan. Preserve useful negations and comparisons.

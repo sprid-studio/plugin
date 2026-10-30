@@ -75,9 +75,7 @@ outcome where measurement supports it.
 
 ## A reel as a Pinterest video Pin
 
-Prepare its board, destination, title and description using the
-[Pinterest guide](../../post/guides/pinterest.md). Compare Pins at matching ages
-and keep platform metrics separate from site visits and product outcomes.
+Prepare and judge it with the [Pinterest guide](../../post/guides/pinterest.md).
 Do not import an Instagram or TikTok retention benchmark into a Pin review.
 
 ## Reuse footage across languages

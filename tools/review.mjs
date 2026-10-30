@@ -11,9 +11,23 @@ import { resolveApp, parseArgs, windows } from './lib/config.mjs';
 const exec = promisify(execFile);
 const here = dirname(fileURLToPath(import.meta.url));
 
+// Windows installs `sprid` as an npm shim (`sprid.cmd`), which only cmd.exe
+// starts. The arguments are flags, dates, slugs and ids; quote any with a space
+// and refuse one cmd.exe cannot carry intact.
+function windowsLine(command, args) {
+  return [command, ...args].map(arg => {
+    if (/^[\w@+=:,./\\-]+$/.test(arg)) return arg;
+    if (/["\r\n]/.test(arg)) throw Object.assign(new Error('unsafe argument'), { code: 'an argument cmd.exe cannot carry' });
+    return `"${arg}"`;
+  }).join(' ');
+}
+
 async function capture(command, args, env = process.env) {
+  const options = { env, cwd: process.cwd(), maxBuffer: 16 * 1024 * 1024, timeout: 300000 };
   try {
-    const { stdout } = await exec(command, args, { env, cwd: process.cwd(), maxBuffer: 16 * 1024 * 1024, timeout: 300000 });
+    const { stdout } = process.platform === 'win32' && command !== process.execPath
+      ? await exec(windowsLine(command, args), [], { ...options, shell: true, windowsHide: true })
+      : await exec(command, args, options);
     try { return { ok: true, data: JSON.parse(stdout) }; }
     catch { return { ok: false, error: 'Command returned invalid JSON; the source cannot be used.' }; }
   } catch (e) {

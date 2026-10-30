@@ -79,10 +79,10 @@ ad work and rebuild it in the user's own product, voice and images.
 ## Sending findings to Sprid
 
 A harvest can be pushed into the user's inspiration library, where each ad lands
-with its metrics and its source. That is what lets Sprid cluster competitor ads
-into formats with evidence behind them, the same way it clusters carousels - and
-the archetype standings that follow are only as honest as the labels, so correct
-the guesses before distilling.
+with its metrics, its source and its archetype label. `refresh_archetype_evidence`
+then recomputes each archetype's competitor baseline from those ads, and
+`archetype_standing` compares the account's own results with it. The baseline is
+only as honest as the labels, so correct the guesses before refreshing.
 
 Pushing needs the user's own Sprid token and is theirs to run. Never send
 anything anywhere without asking first.

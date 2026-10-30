@@ -12,7 +12,7 @@ An X account you can sign in to. Sprid handles the developer connection.
 sprid connect x --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug.
+Replace `<slug>` with your publishing account’s slug.
 
 ## Click path (the connect)
 

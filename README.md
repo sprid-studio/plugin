@@ -9,7 +9,7 @@ For developers with apps in the stores. The skills run in your repo with your ke
 
 ## Install
 
-The plugin includes native manifests for Codex, Claude Code and Cursor, sharing all eleven skills and the same MCP server.
+The plugin includes native manifests for Codex, Claude Code and Cursor, sharing every skill listed below and the same MCP server.
 
 ### Codex
 
@@ -120,9 +120,9 @@ Your agent’s MCP connection is separate from CLI login. In Claude Code:
 /mcp
 ```
 
-Pick `sprid`. A browser opens on `app.sprid.studio`: sign in (magic link), choose the workspace the client may see, press Allow, and the terminal is connected. Nothing is pasted. Find the connection for your client under Settings → Tokens; remove it there to disconnect. For Codex, follow [agent runtime](references/agent-runtime.md).
+Pick `sprid`. A browser opens on `app.sprid.studio`: sign in (magic link), choose the workspace the client may see, press Allow, and the terminal is connected. Nothing is pasted. Find the connection for your client under Settings → You → Agents & API; remove it there to disconnect. For Codex, follow [agent runtime](references/agent-runtime.md).
 
-A token is only for CI, or a client that cannot open a browser: mint one under Settings → Tokens, export it as `SPRID_PAT`, and send it as `Authorization: Bearer`. The `sprid` CLI pairs a machine the same browser-first way (`npm i -g @sprid/cli && sprid login`).
+A token is only for CI, or a client that cannot open a browser: mint one under Settings → You → Agents & API, export it as `SPRID_PAT`, and send it as `Authorization: Bearer`. The `sprid` CLI pairs a machine the same browser-first way (`npm i -g @sprid/cli && sprid login`).
 
 Keys for the sensors never go through the conversation: `sprid connect asc --key ~/AuthKey.p8 …`, `sprid connect play --key sa.json`, or `sprid connect --from-local` to push everything in `~/.sprid/secrets/<slug>.json`. A client that only speaks stdio can use `sprid mcp`.
 

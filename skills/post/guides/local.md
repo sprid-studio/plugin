@@ -2,19 +2,20 @@
 
 **What this guide does:** Build content with your own tools, upload the finished files to Sprid, and keep editing, reviewing and measuring the same posts in chat or the dashboard.
 
-Two command families: `sprid media` is local production and file transfer (`init`, `build`, `check`, `register`, `push`, `preview`, `upload`). `sprid post` works on shared posts on the server. If sign-in fails, the local result stays usable. Keep the same post and plan IDs when you move work into Sprid.
+`sprid post` does both halves. Locally it builds, checks and pushes the media in your repo (`init`, `new`, `build`, `register`, `check`, `push`, `draft`, `preview`, `status`); on the server it works on shared posts (`create`, `get`, `update`, `preview --id`, `deliveries`, `schedule`, `publish`). `sprid media` handles media on the server (`upload`, `import`, the hosted `reel` and `job`); its other subcommands are the same local commands as `sprid post`. Run `sprid post help` for every local command. If sign-in fails, the local result stays usable. Keep the same post and plan IDs when you move work into Sprid.
 
 ## Build
 
 Use your app’s own renderer or design tools, or a built-in recipe:
 
 ```sh
-sprid media init          # set up the stills or simulator-screen recipe
-sprid media build <slug>
-sprid media check <slug>
+sprid post init --kind stills   # or text (your text renderer) or own (you render the MP4s)
+sprid post new <slug>
+sprid post build <slug>
+sprid post check <slug>
 ```
 
-A TS/JS config runs local code, so only use one you trust. Native captures and binary builds need your app’s own environment. A local slug stays local; a shared preview is always `sprid post preview --id <postId>`.
+`init` writes `sprid.config.ts`. A lane's `build` is your own command, or a built-in recipe: `stills` for photographs and screenshots, `screen` for an app recorded in the simulator from a gesture script. A TS/JS config runs local code, so only use one you trust. Native captures and binary builds need your app’s own environment. A local slug stays local; a shared preview is always `sprid post preview --id <postId>`.
 
 ## Upload
 
@@ -23,7 +24,7 @@ sprid login
 sprid media upload slide-01.png slide-02.png --account my-account --json
 ```
 
-Files go straight to storage and come back as ordered asset IDs. PNG, JPEG, WebP and MP4, up to 32 MiB each; larger videos go through `sprid media push`. The command prints a request ID first. To resume, rerun with the same files in the same order and `--request-id <UUID>`, or read the saved result with `sprid media job <UUID>`. Don’t reuse a request ID for a different selection.
+Files go straight to storage and come back as ordered asset IDs. PNG, JPEG, WebP and MP4, up to 32 MiB each; larger videos go through `sprid post push`. The command prints a request ID first. To resume, rerun with the same files in the same order and `--request-id <UUID>`, or read the saved result with `sprid media job <UUID>`. Don’t reuse a request ID for a different selection.
 
 ## Create and review the post
 

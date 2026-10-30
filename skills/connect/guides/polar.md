@@ -21,7 +21,7 @@ sprid connect polar --app <slug> --key-from-clipboard
 
 Use your Sprid app slug. A personal token covering several organizations also needs `--org <organization-id>`.
 
-Sprid reads the token from your clipboard, saves it and clears the clipboard, so it never shows on screen or lands in a file. Working with an agent? Tell it the token is copied and it runs this for you. Typing it yourself, copy the token last: paste the command into your terminal first, then copy the token, then press Enter. If the clipboard still holds the command, Sprid refuses it; copy the token and run it again. Without clipboard access (a remote shell), save the token to a file and pass `--key <file>` instead.
+Typing the command yourself? Copy the token last, as [Keys from your clipboard](https://sprid.studio/docs/connect/posthog#keys-from-your-clipboard) explains, with the fallback for a shell without a clipboard.
 
 ## How to check it worked
 

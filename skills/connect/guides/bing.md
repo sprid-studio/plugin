@@ -28,6 +28,8 @@ sprid connect bing --app <slug> --key-from-clipboard --site https://example.com
 
 `--site` is the address of this app’s website as verified in Bing. Leave it out when the app already has its website set in Sprid.
 
+Typing the command yourself? Copy the key last, as [Keys from your clipboard](https://sprid.studio/docs/connect/posthog#keys-from-your-clipboard) explains, with the fallback for a shell without a clipboard.
+
 ## If Sprid cannot reach Bing
 
 Sprid reads Bing on its servers. Should Bing ever refuse them, your agent’s marketing review can read Bing from your computer instead. Save the key in a private file and point the app’s local secrets at it:
@@ -36,7 +38,7 @@ Sprid reads Bing on its servers. Should Bing ever refuse them, your agent’s ma
 { "bingWebmasterApiKeyPath": "~/.config/bing-webmaster/api_key" }
 ```
 
-That line goes in `~/.sprid/secrets/<slug>.json`. One file serves every app on the same Bing account. Keep it out of any repository.
+That line goes in `~/.sprid/secrets/<slug>.json`. One file serves every app on the same Bing account. Keep it out of any repository. Only the review on your computer reads it: `sprid connect --from-local` does not send it to Sprid, so `sprid connect bing` above stays the way Sprid gets the key.
 
 ## How to check it worked
 

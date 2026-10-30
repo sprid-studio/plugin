@@ -36,7 +36,7 @@ For campaigns that optimise for signups or purchases, three more:
 sprid connect meta-ads --account <slug>
 ```
 
-Replace `<slug>` with your Sprid account slug. Add `--dataset <id>` if you created one in step 6. You can also use **Settings → Accounts → [account] → Meta Ads** in Sprid.
+Replace `<slug>` with your publishing account’s slug. Add `--dataset <id>` if you created one in step 6. You can also use **Settings → your app → Advertising → Ad accounts → Meta Ads** in Sprid.
 
 ## Click path (the connect)
 
@@ -49,7 +49,7 @@ Replace `<slug>` with your Sprid account slug. Add `--dataset <id>` if you creat
 sprid connect meta-ads --account <slug> --page <page id> --ad-account <ad account id> --dataset <dataset id>
 ```
 
-With several apps, connect each Sprid account separately. Pick that app’s Page and dataset each time; you can select the same ad account for apps in the same workspace. Their campaigns and conversion lists stay separate.
+With several apps, connect each app’s publishing account separately. Pick that app’s Page and dataset each time; you can select the same ad account for apps in the same workspace. Their campaigns and conversion lists stay separate.
 
 ## Check the connection
 
@@ -74,7 +74,7 @@ In Sprid, open **Ad settings → Shared Meta limits** on any connected account. 
 - **“No Facebook Pages found”:** the profile you signed in with has no Page access. Check the Page in the portfolio, give yourself access and reconnect.
 - **No ad account to choose, or the wrong ones:** only active ad accounts are listed. Check that the account is not disabled or closed in Ads Manager and that your profile is assigned to it.
 - **“Re-run the connect with --page / --ad-account”:** the profile manages several. Copy the right ids from the message and run the command again with them.
-- **“Already connected to another account”:** check the workspace. Sharing a Meta ad account is supported within one workspace. Social publishing channels still belong to one Sprid account at a time.
+- **“Already connected to another account”:** check the workspace. Sharing a Meta ad account is supported within one workspace. Social publishing channels still belong to one publishing account at a time.
 - **Campaign refuses to start with a conversion goal:** inspect the readiness reason. Connect the correct dataset, send a real event, or confirm a recent fire of the selected custom conversion. [The conversion guide](https://sprid.studio/docs/meta-conversions#if-it-fails) covers each repair.
 - **Campaign refuses to start at all:** add a payment method to the ad account (step 5).
 - **Instagram shows “Not linked” on the Ads page or in Promote:** the Page has no Instagram account linked. Link it (step 3), then press **I’ve linked it**. If the Page is linked to a different Instagram account than the one Sprid publishes to, Meta will only promote that other account’s posts: change the link, or connect the Page that belongs to your Instagram account.

@@ -41,9 +41,9 @@ Add `--use` to make Google Analytics the source Sprid reports website traffic fr
 
 ## Only one provider answers
 
-PostHog, Google Analytics and Plausible all count the same visits to the same site. Sprid reads **one** of them per app and never adds them together, because adding them would overstate your traffic by roughly the overlap, and the overlap is nearly everything.
+PostHog, Google Analytics, Plausible, Umami and Cloudflare Web Analytics all count the same visits to the same site. Sprid reads **one** of them per app and never adds them together, because adding them would overstate your traffic by roughly the overlap, and the overlap is nearly everything.
 
-With one connected, that one answers. With several, Sprid uses the one you chose with `--use` (PostHog by default, because it also answers the people and registration cards). The others stay connected and idle, and the traffic card says so.
+With one connected, that one answers. With several, Sprid uses the one you chose with `--use` when connecting Google Analytics, Plausible or Umami. With no choice made, the first connected in this order answers: PostHog, Google Analytics, Plausible, Umami, Cloudflare. PostHog leads because it also answers the people and registration cards; it counts as a traffic source once the app’s website is saved in Sprid. Cloudflare answers only when nothing else is connected and cannot be chosen with `--use`, because it counts visits and some of them are crawlers. The others stay connected and idle, and the traffic card says so.
 
 ## How to check it worked
 

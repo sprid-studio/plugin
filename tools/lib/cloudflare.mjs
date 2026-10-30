@@ -15,23 +15,16 @@ async function cfGraphql(token, query, variables) {
   return j.data;
 }
 
-// Resolve zone id + name for a domain via the REST API (needs Zone: Read).
-async function resolveZone(token, zoneHint) {
-  // zoneHint may be a zone id (32 hex) or a domain name.
-  if (/^[0-9a-f]{32}$/.test(zoneHint)) {
-    const r = await request(`https://api.cloudflare.com/client/v4/zones/${zoneHint}`, {
-      headers: { authorization: `Bearer ${token}` },
-    });
-    const j = await r.json();
-    if (!j.success) throw new Error('CF zone lookup failed: ' + JSON.stringify(j.errors));
-    return { id: j.result.id, name: j.result.name };
-  }
-  const r = await request(`https://api.cloudflare.com/client/v4/zones?name=${encodeURIComponent(zoneHint)}`, {
+// Look up a zone id from a domain name via the REST API. Only the domain needs
+// this: it requires Zone: Read, which the setup guide does not grant, so a saved
+// zone id is used as it is.
+async function zoneIdForDomain(token, domain) {
+  const r = await request(`https://api.cloudflare.com/client/v4/zones?name=${encodeURIComponent(domain)}`, {
     headers: { authorization: `Bearer ${token}` },
   });
   const j = await r.json();
-  if (!j.success || !j.result?.length) throw new Error(`No CF zone found for "${zoneHint}"`);
-  return { id: j.result[0].id, name: j.result[0].name };
+  if (!j.success || !j.result?.length) throw new Error(`No CF zone found for "${domain}"`);
+  return j.result[0].id;
 }
 
 // RUM counts beacon events. Blocklists suppress them; JS-capable crawlers can emit them.
@@ -116,9 +109,9 @@ export async function collectCloudflare(app, token, w) {
     ]);
   } catch (e) { rumError = e.message; }
   if (rumError) {
-    const zone = await resolveZone(token, zoneHint || host);
-    const zc = await pullZone(token, zone.id, w.curStart, w.curEnd);
-    const zp = await pullZone(token, zone.id, w.prevStart, w.prevEnd);
+    const zoneId = zoneHint && /^[0-9a-f]{32}$/i.test(zoneHint) ? zoneHint : await zoneIdForDomain(token, zoneHint || host);
+    const zc = await pullZone(token, zoneId, w.curStart, w.curEnd);
+    const zp = await pullZone(token, zoneId, w.prevStart, w.prevEnd);
     return {
       source: 'cloudflare', app: app.slug, zone: zoneName,
       dataset: 'zone-http (INCLUDES BOTS/CRAWLERS — not real audience)',

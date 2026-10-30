@@ -68,8 +68,15 @@ browser and needs a login: it gets installed on purpose, once.
 
 ```
 npm install -g @sprid/scout
-claude mcp add --transport stdio --scope user scout -- sprid-scout
+claude mcp add --transport stdio --scope user scout -- sprid-scout   # Claude Code
+codex mcp add scout -- sprid-scout                                    # Codex
 ```
+
+Any other MCP client: add a stdio server named `scout` whose command is
+`sprid-scout`, with no arguments. On Windows the command is `cmd` with the
+arguments `/c sprid-scout` (`claude mcp add ... scout -- cmd /c sprid-scout`),
+because npm installs it as a `.cmd` shim a client cannot start directly. The
+fast lane below needs macOS.
 
 If the tools are missing, check whether Scout is installed but disconnected.
 Explain its local browser requirement and help connect it within the user's

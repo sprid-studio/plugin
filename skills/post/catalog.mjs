@@ -22,6 +22,13 @@ export const CONTENT_GUIDE_SPECS = [
     url: 'https://sprid.studio/docs/reel-first-seconds',
   },
   {
+    id: 'reel-motion-graphics',
+    file: 'motion-graphics',
+    dir: 'reels/guides',
+    title: 'Motion graphics in code',
+    url: 'https://sprid.studio/docs/reel-motion-graphics',
+  },
+  {
     id: 'store-listing',
     file: 'store-listing',
     dir: 'store-metadata/guides',

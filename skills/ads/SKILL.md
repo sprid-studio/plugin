@@ -10,7 +10,9 @@ Read [one marketing plan](../../references/guided-marketing.md). An ad serves th
 
 Everything here prepares. **No call spends money.** Spending starts when the
 user presses Launch or Confirm in the Sprid app, on a link you hand them.
-Everything before that is drafting, and everything after it is reading.
+Everything before that is drafting, and everything after it is reading. When the
+user asks how Sprid ads work, send them [Ads: pay to show more people what
+already worked](guides/ads.md), the plain-language version of this skill.
 
 Ads are the surface where being wrong is most expensive. A post that breaks a
 voice rule can be deleted. An ad that breaks one has already been shown to people
@@ -28,7 +30,9 @@ the user paid to reach.
    **`create_ads`** with an `ads` array for one or several
    creatives, which is the normal shape of a test.
 4. **`review_ad_copy`** on every piece of copy before it goes anywhere near the
-   launch. Errors stop the launch; fix them rather than arguing with them.
+   launch. Errors stop the launch: fix them, then review again. Voice follows the
+   customer's own accepted voice ([writing gate](../../references/writing-gate.md)),
+   and an em dash is always an error.
 5. **`launch_ads`** returns what launching commits and an `approvalUrl`. Show the
    user the amount and send them the link; they press Launch there.
 6. **`ad_council`** once a week. **`ad_post_mortem`** and **`close_ad_set`** when
@@ -72,7 +76,7 @@ account attached to it.
 `suggest_ad_categories` reads the copy and guesses. Treat a guess as a prompt to
 think, not as clearance. Anything about where people live, what they can borrow,
 or who gets hired is in scope even when the product is not obviously one of those
-things: an app that values apartments is housing-adjacent by construction.
+things: a budgeting app that compares loan rates touches financial products.
 
 If you are unsure, say so to the user and let them decide. That is a question
 worth interrupting for.
@@ -95,19 +99,19 @@ account against the competitor baseline.
 
 ## The copy gate
 
-`review_ad_copy` runs the shared vocabulary rules plus the account's own
-never-say lists, each carrying the reason it exists - so a refusal cannot be
-worked around by rephrasing until it passes. What it catches:
+`review_ad_copy` runs the same em dash rule as organic posts plus the
+account's own never-say lists, each carrying the reason it exists - so a refusal
+cannot be worked around by rephrasing until it passes. What it catches:
 
-- **Forbidden vocabulary**, the same list the organic content runs against.
+- **Em and en dashes**, an error on every account.
 - **The account's never-say phrases**, one-offs and named presets. A phrase may
   be **quoted** and may not be **asserted**: a listing's own words printed over a
   photograph of what they describe is a quotation, and the reader draws the
   conclusion. The same words as our claim are something else.
 - **Manufactured urgency.** State the real deadline or drop it.
-- **An opening that names an identity rather than a moment.** "For anxious
-  people" is a category; "You reread the message four times before sending it" is
-  a moment, and the moment is what stops a scroll.
+- **An opening that names an identity rather than a moment.** "For runners" is a
+  category; "Your alarm goes off and it is raining" is a moment, and the moment
+  is what stops a scroll.
 - **Length before the fold**, and headline truncation.
 
 Warnings pass. Errors stop the launch. A draft is allowed to be wrong; an ad
@@ -255,9 +259,10 @@ volume and the time people have had to pay before judging the result.
 
 ## Where the shapes come from
 
-The archetype library was read off live competitor ads, and it can be refreshed
-against the user's own market rather than inherited from ours - the `scout` skill
-harvests the public ad library for exactly this. Two things travel with those
+The archetype library starts from live competitor ads. Refresh it against the
+user's own market: the `scout` skill harvests the public ad library, and
+`refresh_archetype_evidence` recomputes each archetype's baseline from what it
+pushed. Two things travel with those
 numbers and must travel with every sentence you write from them:
 
 **Days live is the only performance signal the ad library gives**, outside EU
