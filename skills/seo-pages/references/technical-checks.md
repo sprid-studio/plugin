@@ -61,6 +61,8 @@ in the repo's build, make it one, so it cannot regress.
 
 ## Crawlers and AI assistants
 
+- For AI discovery, apply the [engine-specific checks](ai-discovery.md#verify-access-for-the-target-engine),
+  including live edge responses and the distinction between search and training.
 - **Decide which bots may read the site:** search crawlers and the crawlers behind
   AI answers, separately from crawlers collecting training data. Write the choice in
   `robots.txt` and any edge rules, and check it is served.

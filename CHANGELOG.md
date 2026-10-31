@@ -3,6 +3,12 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.4 - 2026-11-01
+
+- Post, reels, principles and landing-page skills read a new guide on choosing what a post gives the viewer before drafting hooks or a series. Distribution thresholds are editorial defaults for follow-up drafts, not platform rules: a part 2 above the median is a candidate for a series, and two parts below it prompt a review.
+- The SEO pages skill adds a reference on being found and recommended by AI assistants, with how to measure it.
+- The plugin's MCP address carries `src=plugin`, so Sprid can tell which install a connection came from.
+
 ## 1.6.3 - 2026-10-31
 
 - Ads guidance covers shared Meta advertisers, app-specific Pages and datasets, external campaigns, and the simpler campaign browsing flow. Creative recommendations distinguish format diversity and a strong opening from fixed video or three-format rules.

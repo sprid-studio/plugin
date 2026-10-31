@@ -15,6 +15,10 @@ purpose and destination. Product demos, explainers, stories and entertainment
 need different pacing, imagery and calls to action. Do not import another
 account's tone, preferred length or engagement thresholds.
 
+Use [choose what the post gives the viewer](../post/references/content-value.md)
+to select the actual demonstration, example or story before choosing a renderer.
+For a series, state what each episode adds beyond another wording of the same idea.
+
 Make the opening frame understandable and check that the viewer has a reason to
 continue. Base hooks on product value or sourced audience language; keep direct
 quotes distinct from rewritten copy. Pick duration from the material's reading

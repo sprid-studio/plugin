@@ -17,6 +17,10 @@ Read the reference relevant to the decision:
   channels, acquisition economics, pricing and retention.
 - [Content and SEO checks](references/scars-content-seo.md): comparisons, coverage
   gaps and confounds for sites with repeated page templates.
+- [AI discovery](../seo-pages/references/ai-discovery.md): recommendations, crawl
+  access and evidence when assistants are a proposed acquisition route.
+- [Content value](../post/references/content-value.md): concrete material for social
+  posts, series progression and the scope of platform statements about originality.
 
 These are methods to apply to this customer, with no inherited proof or benchmarks.
 

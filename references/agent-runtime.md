@@ -109,7 +109,7 @@ In Codex, `/mcp` shows the installed server and authentication action. For a
 manually configured connection, run:
 
 ```sh
-codex mcp add sprid --url 'https://api.sprid.studio/api/mcp?surface=core'
+codex mcp add sprid --url 'https://api.sprid.studio/api/mcp?surface=core&src=plugin'
 codex mcp login sprid
 ```
 

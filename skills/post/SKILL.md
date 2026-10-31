@@ -12,6 +12,10 @@ Sprid MCP supplies connected operations; this skill supplies editorial method. R
 
 For Pinterest, read [Pinterest content and publishing](guides/pinterest.md) before drafting, reviewing or scheduling.
 
+Before drafting or extending a series, read [choose what the post gives the viewer](references/content-value.md).
+Name the actual material and viewer payoff before generating hooks or variants.
+Keep the account's accepted voice, purpose and format.
+
 If `.sprid/setup.json` holds the first draft, read
 [resuming setup](../../references/setup-continuation.md) before creating a post.
 Recover its saved post ID and edit that post. Render and inspect it before seeking

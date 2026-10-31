@@ -1,6 +1,6 @@
 ---
 name: seo-pages
-description: Find out whether search can bring this app users, then write, ship and measure pages meant to rank in Google and be cited in AI answers, starting with a small test batch and growing only what earns clicks. Covers guides, definitions, comparison pages, tools and pages built from the app's own data, plus the technical checks that silently stop pages from ranking. Use when the user says "SEO", "rank on Google", "search pages", "blog posts for traffic", "programmatic pages", "Search Console", "why don't we get clicks", or a marketing review points at search.
+description: Improve discovery through search and AI product recommendations. Investigate demand and crawl access, write useful product and search pages, and measure citations separately from recommendations and customers. Use for SEO, GEO/AEO, AI visibility, search pages, Search Console, or getting a product recommended by assistants.
 ---
 
 # /sprid:seo-pages
@@ -12,6 +12,13 @@ Assess search demand, competition and what the product can contribute before
 recommending a page library. Use the customer's existing results to choose the
 scale of the work. For an untested page type, agree a representative test and
 the evidence needed to expand it.
+
+For AI visibility or product recommendations, read [AI discovery](references/ai-discovery.md).
+Start with the target customer question, inspect real answers when available,
+and diagnose access, missing product evidence or an inaccurate recommendation.
+Then prepare the relevant page changes using that reference. Use the investigation
+below for supporting demand and technical evidence; do not force an AI task through
+a page-library proposal. Improve existing URLs when they answer the gap.
 
 ## What this touches
 
@@ -31,11 +38,10 @@ Answer with evidence, and mark guesses as guesses.
   and which countries they come from. Impressions in a market the app does not
   serve are not progress. Read the review packet's `bing` source too when it is connected:
   Bing's index also feeds Copilot's answers.
-- **Who do AI answers cite?** Ask two or three assistants the questions the
-  readers ask, three times each. Record whether the app is mentioned and which
-  pages and domains the answers cite. Those cited pages (a forum thread, a list,
-  a review site) are distribution targets in their own right, often easier to
-  reach than the ranking.
+- **Where do AI answers find products?** Use the [AI discovery protocol](references/ai-discovery.md#measure-the-outcome).
+  Separate citations, product mentions and recommendations. Inspect the actual
+  cited pages before proposing a contribution or partnership; a citation alone
+  establishes neither customer demand nor an easy distribution opportunity.
 - **What do the readers search?** From research, reviews and support: the questions
   people ask before they would need this app, in their words and their languages.
   Search autocomplete shows the phrasing. Count real queries, do not assume them.
@@ -53,7 +59,7 @@ Answer with evidence, and mark guesses as guesses.
 Write the answer in `marketing/search/PLAN.md` as go, not yet, or no, with the
 evidence. A "no" is a useful result; say it plainly.
 
-## 2. Plan a small first batch
+## 2. Plan the page changes
 
 Choose a batch large enough to test the relevant page types and markets. Preserve
 an explicitly requested scope and explain any evidence that argues for changing it.
@@ -122,8 +128,8 @@ fine in the code.
 2. **Log the change:** `add_event` with `areas: ["search"]` and a `why` naming the
    query and the hypothesis. With Sprid connected, prepare each page as a reviewable
    change with `prepare_marketing_execution` (kind `search`).
-3. **Read after four to eight weeks.** New pages are crawled slowly; check that a
-   sample is indexed before reading rankings.
+3. **Confirm retrieval first.** Check crawl/index evidence after shipping, then
+   choose a read date with enough comparable observations to assess the change.
 4. **Compare a fixed set of pages.** New pages enter low and drag every average
    down, so compare the same pages across periods, and positions within bands.
 5. **Decide per page:**
@@ -134,19 +140,22 @@ fine in the code.
      permanent redirect;
    - a query owned by a dictionary or a giant: stop investing in it;
    - nothing after a fair window: say so, and move the effort.
-6. **AI answers.** Ask a few assistants the questions your pages answer, three to
-   five times each, and record how often the app is mentioned or recommended (for
-   example "2 of 5"). Add "an AI assistant" to the app's "how did you hear about
-   us" question, so it can be counted.
+6. **AI answers.** Repeat the saved [AI discovery protocol](references/ai-discovery.md#measure-the-outcome).
+   Use available engine reports alongside answer samples and attributable product
+   outcomes. Small prompt samples describe those runs, not market visibility.
 
 Write the decisions and what you learned into `marketing/search/PLAN.md`. The next
 marketing review reads the results against it.
 
 ## Report
 
-Go / not yet / no with the evidence, the first batch with each page's query and
-reason to win, the technical check results, the baseline with dates and the read
-date.
+For a search-page project: go / not yet / no with evidence, the proposed pages,
+each query and reason to win, technical checks, baseline and evaluation criteria.
+
+For AI discovery: target questions and engines, observed answer/access defects,
+verified product facts, exact page diffs and the saved comparison protocol. Mark
+answers or provider reports that were unavailable. A writing proposal is not a
+measured visibility gain; do not report success before observing it.
 
 ## Then: what is next
 

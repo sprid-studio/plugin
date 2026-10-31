@@ -24,6 +24,10 @@ Writes the page change in the repo as a reviewable diff and a brief at
 
 ## 1. Investigate
 
+When the requested outcome includes AI recommendations, read
+[AI discovery](../seo-pages/references/ai-discovery.md) for product evidence and
+measurement. Preserve the page's human conversion purpose.
+
 Answer these with evidence before writing a word. Note what each answer rests on and
 mark guesses as guesses.
 

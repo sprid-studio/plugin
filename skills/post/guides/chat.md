@@ -6,7 +6,7 @@ You tell the agent what you want; it handles the tool calls below. The tool name
 
 ## Connect Sprid
 
-Choose your chat at `https://sprid.studio/start#chat` and follow its steps. Your chat may call this an app, connector or integration. The address is `https://api.sprid.studio/api/mcp?surface=core`. Sign in to Sprid and authorize the right workspace.
+Choose your chat at `https://sprid.studio/start#chat` and follow its steps. Your chat may call this an app, connector or integration. The address is `https://api.sprid.studio/api/mcp?surface=core&src=docs`. Sign in to Sprid and authorize the right workspace.
 
 Agent: once the app exists, start with `get_marketing_plan` and reuse its prepared work and next step rather than starting over. Discovery can start from a website or store URL, with no social account.
 

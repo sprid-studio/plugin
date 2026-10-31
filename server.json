@@ -7,7 +7,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://api.sprid.studio/api/mcp"
+      "url": "https://api.sprid.studio/api/mcp?src=registry"
     }
   ]
 }

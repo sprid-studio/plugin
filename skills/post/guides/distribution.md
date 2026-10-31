@@ -73,16 +73,17 @@ whole post until further evidence separates them. Preserve unsuccessful examples
 as well as successful ones so later reviews can compare them.
 
 Read the week's posts once a week, or when the person asks how posts are doing.
-Most posts land near the account's usual result and a few land far above it;
-nobody predicts which, so a post that broke out is the strongest brief there is.
+The thresholds below are editorial defaults for choosing follow-up drafts, not
+platform rules or tests of statistical significance. Adapt them to the account's
+history and declared outcome; a reach outlier is a candidate for another example.
 
 1. **Read per-post results** from `get_marketing_review` (`social.publishes`).
    A null metrics row is unmeasured, not zero.
 2. **Compare at the same age**, seven days by default, because views keep
    arriving. A post's breakout is its views at that age divided by the
    account's median at that age over its last 20 measured posts on the same
-   platform. Before 10 measured posts there is no median: report views and
-   saves and name no winners. Pins are read on their own clock
+   platform. Before 10 measured posts, treat that baseline as exploratory:
+   report the available results without declaring a repeatable winner. Pins are read on their own clock
    ([Pinterest guide](pinterest.md#measure-what-happened)).
 3. **A post at 3x or more is a winner.** Draft its part 2 within the week: the
    same hook template and slide skeleton (slide count, each slide's role, where
@@ -90,9 +91,10 @@ nobody predicts which, so a post that broke out is the strongest brief there is.
    or example. Duplicate the post and replace its content, or use "Make more
    like this" where the app offers it. Number the part where the account's
    voice allows, and never repeat an earlier part's payload.
-4. **A part 2 that also lands above the median makes a series.** Give it a
-   standing slot in the schedule and draft the next part each week. Two parts
-   in a row under the median end it; say so and stop drafting.
+4. **A part 2 above the median is a candidate for a series.** Draft subsequent
+   parts with new material. Two parts below the median trigger a review of
+   topic, audience and delivery before continuing or stopping. Change the
+   schedule only within the user's authorized scope.
 5. **A post at 10x or more** also earns its own video on a video-default
    destination (`update_post {outputs}`, then the render quote and the
    person's yes). 10x is a starting point; move it once the account has a history.

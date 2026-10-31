@@ -2,7 +2,7 @@
   "mcpServers": {
     "sprid": {
       "type": "http",
-      "url": "https://api.sprid.studio/api/mcp?surface=core"
+      "url": "https://api.sprid.studio/api/mcp?surface=core&src=plugin"
     }
   }
 }
