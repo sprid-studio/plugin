@@ -63,6 +63,19 @@ A campaign Sprid prepares starts **paused**. Nothing is spent until you confirm 
 
 Keep one business portfolio for your company. Use a Page and dataset for each app. You can share one ad account across apps in the same Sprid workspace, or use separate ad accounts if Meta allows them and you want separate billing.
 
+In **Ads → your app → Settings**, an account without a connection offers
+**Use shared Meta account**.
+A workspace owner or admin can select an existing connection, this app’s Page
+and an optional dataset. This reuses the existing authorisation. Choose the
+correct dataset explicitly; leave it empty when unavailable. Nothing starts.
+Your agent can do the same with `connect_shared_meta_ads`.
+
+**Ads** also reads campaigns created directly in Meta. Their app is inferred
+only when every returned ad identifies one connected Page owner. Otherwise they
+appear as **Unassigned campaigns**. In **Details**, **Assign to app** changes their placement in
+Sprid; their delivery and budget remain managed in Meta. See
+[the ads guide](https://sprid.studio/docs/ads) for the campaign tree and creative recommendations.
+
 A shared ad account uses one billing currency. Its payment and account status affect every app advertising through it. Check the currency before choosing budgets.
 
 In Sprid, open **Ad settings → Shared Meta limits** on any connected account. A workspace owner or admin can set the combined daily budget and monthly spend-and-commitment limit. These limits cover campaigns managed through Sprid. Meta can vary actual daily spend, and changes made directly in Ads Manager can exceed these limits. Lowering a limit blocks new commitments; it does not pause running ads.

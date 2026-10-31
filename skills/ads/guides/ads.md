@@ -1,117 +1,148 @@
-# Ads: pay to show more people what already worked
+# Ads: create, compare and manage campaigns
 
-**What this guide does:** Explains how Sprid thinks about paid ads on
-Instagram, Facebook, YouTube, TikTok and Pinterest: when to spend, how a promotion runs
-from draft to result, and which numbers to believe along the way.
+**What this guide does:** Explains how to organise campaigns across apps,
+prepare creatives and ad sets, and read results with a shared Meta advertiser.
 
-Choose a paid campaign from the customer's audience, objective and acquisition
-economics. Organic results can help select a post to promote, but a paid creative
-can also be tested directly with an approved budget and a measurable outcome.
-Neither social engagement nor a competitor's activity proves profitable demand.
+Choose a campaign from the audience you want to reach, the result you need and
+what that result is worth. An organic post can supply a promising creative;
+you can also test a new paid creative directly.
 
-## Preparing a campaign
+## Find what is running
 
-**Nothing spends without you.** Everything Sprid or your agent prepares is
-paused. Spending starts only when you press Launch or Confirm in the Sprid app,
-on a screen that shows what will run, what it costs a day and for how long. An
-agent can prepare a campaign and send you that link. It can't start one or
-raise a budget itself.
+Open **Ads** and use the same brand filter as the other screens. Ads appear
+immediately. **Ads / Ad sets / Campaigns** changes the level; each row shows
+its app when several brands are selected. Open a row to inspect its contents.
+**Details** holds targeting, budgets and results. **Refresh from Meta** reads
+the latest delivery status and results.
 
-**Give each test a question.** A visual test can hold the copy constant; a
-message test can hold the format constant. Record what changes and what result
-would support the hypothesis. When several elements change together, treat the
-result as evidence about the complete variant.
+When readings exist, the overview shows spend, a named result and cost per
+result, with daily minigraphs. One chart combines result bars with spend or cost
+per result. With a shared saved target, it opens on **Cost per result**. A dashed
+target line appears in both cost graphs; at or below it meets the cost goal.
+Both axes are labelled and use different scales. Choose the app/result group to
+inspect. Different events, currencies, datasets and attribution settings stay
+separate. Missing readings leave gaps, and recent conversions can still change.
 
-**Check how much evidence you have.** Read delivery, conversions and the
-follow-up period before judging a campaign. A platform's learning status and
-Sprid's review guidance answer different questions. A small sample may reveal a
-broken destination without establishing which creative performs better.
+**Lowest cost** and **Most results** order observed ads within each ad set.
+Small samples can change the order; this ranking is not an experiment verdict.
 
-**Judge by what happens in your product.** Use the outcome the campaign is meant to produce, such as a qualified lead,
-paid account or completed order. Check attribution and reconcile platform
-conversions with the business records before estimating acquisition value.
+- A **campaign** defines the objective. Its budget can sit at campaign level
+  when you deliberately choose Advantage campaign budget.
+- An **ad set** defines the audience, optimisation goal, schedule and budget
+  when the campaign does not share one. Its ads compete for delivery.
+- An **ad** contains the creative, message, identity and destination people see.
 
-## Two ways to start
+**Created in Meta** identifies campaigns made outside Sprid. Those appear
+alongside campaigns prepared here. A Page that identifies one connected account
+can place an external campaign under that app. Missing or mixed identities stay
+under **Unassigned campaigns**. In the campaign’s **Details**, a workspace
+owner or admin can choose **Assign to app** or **Change app**. This changes organisation in Sprid only.
 
-**Promote a post.** Pick a post already live, set a daily budget and an end
-date, and confirm. The ad runs only where that post lives, through the network
-behind it:
+In **Details**, use **Manage campaign** or **Manage ad set** for Sprid’s controls.
+An app’s **Settings → Creative library & tools** opens ad sets, creatives,
+layouts, rules and experiments for the chosen account. **Open in Meta** reaches settings Sprid does not expose
+and manages externally created objects. Viewing or assigning an external
+campaign does not import it into Sprid’s launch, automation or budget controls.
+Workspace membership is required to read a shared advertiser’s complete tree.
 
-| Post live on | Runs as | Paid by |
-|---|---|---|
-| Instagram | a Meta ad on Instagram only | your Meta ad account |
-| Facebook | a Meta ad on Facebook only | your Meta ad account |
-| YouTube | a Google Ads video campaign (YouTube, Shorts, Discover, Gmail) | your Google Ads account |
-| TikTok | a Spark Ad on TikTok | your TikTok ad account |
-| Pinterest | a promoted Pin, with a maximum cost per click you set | your Pinterest ad account |
+## Share one Meta ad account across apps
 
-Instagram needs one more thing: the Instagram account has to be linked to the
-Facebook Page your Meta ad account runs as, because that is how Meta runs an
-Instagram ad. Until it is, the Ads page shows Instagram as **Not linked**, and
-tapping it says what to do.
+You can use the same advertiser for several apps in one Sprid workspace. Under
+an app’s **Settings**, choose **Use shared Meta account**, select an existing connection and
+choose this app’s Facebook Page. Choose its conversion dataset explicitly, or
+leave it empty until the right source is available. The source app’s dataset
+is never selected automatically. The Page supplies the linked Instagram identity.
 
-Sprid checks the ad account can pay before you choose a budget, the network
-reviews the ad, and you get an email when it goes live, is rejected (with the
-network's reason) or ends (with what the money bought). The budget and end date
-can change while it runs, from Sprid. A TikTok post also needs the creator's
-permission for that one post: a code the TikTok app makes under the post's Ad
-settings, pasted into Sprid. A Pinterest promotion needs a public Pin owned by
-the advertiser, runs whole UTC days and ends at midnight UTC, and Sprid
-supports only ordinary categories there.
+Keep unrelated products in separate campaigns. Check each set’s dataset or
+native application ID and conversion event. Separate datasets for unrelated
+products make measurement easier to audit; that is a recommendation, not a
+Meta requirement. Locales of the same product can use the same appropriate source.
 
-**Run a test.** For finding out what to say, not just saying it louder. Tests
-run on Meta. Every
-creative is built from a named shape, such as the screen that shows the app's
-verdict about the reader, two columns where the reader does the arithmetic, or
-one sourced number. The shape is what makes a result transferable: "showing the
-verdict beat listing features" is something you can build again, "ad 7 beat
-ad 3" is not.
+Sharing an advertiser does not by itself change an ad set’s selected conversion
+source. Sharing a dataset with unfiltered events can mix products’ signals.
+Custom audiences and lookalikes are available across the advertiser: check their
+source before using them. Advantage+ can treat audience inputs as suggestions;
+read which controls are strict before calling a campaign retargeting.
 
-For a campaign that optimizes for a signup or purchase, follow
-[Run your first Meta conversion campaign](https://sprid.studio/docs/meta-conversions).
-It covers server events, custom conversions and the fresh checks before launch.
+Meta also learns patterns across campaigns and assets. Separate campaigns or
+ad accounts do not promise isolated model learning. Billing currency and account
+restrictions belong to the shared advertiser. Sprid’s shared spend limits cover
+Sprid-managed commitments; campaigns and changes made in Meta remain outside
+those limits. Check the advertiser’s full spend in Meta.
 
-## The checks before money moves
+## Build the creatives
 
-- **The copy check.** Banned words, your own never-say list, invented urgency,
-  and openings that name an identity ("for runners") instead of a moment
-  ("your alarm goes off and it is raining"). Warnings pass, errors block the launch.
-- **Regulated categories.** Housing, financial products and services,
-  employment, gambling and political ads must be declared. An undeclared one isn't quietly rejected, it's pulled with the
-  ad account attached. Anything about where people live, what they can borrow or
-  who gets hired counts, even when the product doesn't look like it.
-- **The payment method**, before a budget is chosen rather than after Meta has
-  accepted the campaign and refused the ad.
+For Reels, prepare vertical 9:16 video with useful sound and keep important
+content inside the placement’s safe area. Use speech, music or effects when they
+help the idea. Add readable text or captions so the message also makes sense
+without sound. Preview at phone size, both with sound and muted.
 
-## Reading the result
+Make the opening immediately understandable. Putting the hook within two seconds
+is a useful editorial target to test; Meta’s guidance says the first few seconds.
+It is not a universal two-second cutoff or a reason to rush unreadable text.
+There is no fixed winning duration. Show the product or benefit as soon as it
+makes sense, then give people a clear next action.
 
-Ask for an ad set's verdict once a week and it answers three questions: did it
-work, why, and what next.
-When a test ends, it writes down what the hypothesis was, what happened and
-which shape carried it, so the next test starts from that instead of from zero.
-A losing set is data: close it and say what it ruled out.
+Use genuinely different concepts and suitable formats, including images and
+carousels. Video is useful for demonstration and Reels; it is not mandatory for
+every ad. Meta recommends creative diversity across formats, visuals and messages.
+There is no universal requirement for exactly three formats in each ad set.
 
-Two rules for the numbers. A campaign's totals and its ad sets' totals are
-separate readings of the same money, never added together. And a period that
-ends today and one that ended last week are two different readings, so every
-number says which window it covers.
+## Create an ad set
 
-## What competitors can and can't tell you
+Start with **New campaign** to promote a published post or prepare a standalone
+creative. Inside a Sprid campaign, choose **Add ad set**. Name the question you
+are testing, select countries and a result, then set the run and target cost per
+result. Add creatives from the library. They remain paused for review.
+Both the campaign composer and ad-set composer ask for a hypothesis and target.
+For an existing Sprid ad set, open **Details → Set a goal** or **Edit goal**.
+Goal changes are recorded in its history. A target is a reporting estimate;
+saving it changes no Meta bid or budget and does not enable automatic pausing.
+Your agent can save the same fields with `set_ad_goal`.
+For advanced campaign objectives and delivery options, your agent can prepare
+the settings through Sprid’s API and send you the review link.
 
-Meta's Ad Library shows every active ad: the creative, the copy and the date it
-started. It shows no spend, no clicks and no results. Days live means somebody
-keeps paying, not that it works, so a competitor's ad is "longest-running",
-never "best-performing". Sprid's scout research reads the library for your own
-market. Use those observations to propose tests, with their sources and limits.
+For a format comparison, hold the message and offer constant. To compare
+messages, keep the format constant. When several elements change, the result
+applies to the complete variant. Multiple ads in one ad set receive delivery
+chosen by Meta; they do not receive equal spend. The ad receiving most spend
+is not thereby a proven causal winner. A controlled A/B study is a separate
+experiment under **Creative library & tools**. An ordinary ad set is not an A/B test.
 
-## You need
+## Review before spending
 
-- An ad account with a card on it, connected to Sprid, for the network behind
-  the post: [Meta Ads](https://sprid.studio/docs/connect/meta-ads) for
-  Instagram and Facebook, [Google Ads](https://sprid.studio/docs/connect/google-ads)
-  for YouTube, [TikTok Ads](https://sprid.studio/docs/connect/tiktok-ads) for
-  TikTok, [Pinterest Ads](https://sprid.studio/docs/connect/pinterest-ads) for
-  Pinterest.
-- A published post to promote, or, on Meta, an image or video to build a
-  creative from.
-- You, signed in to the Sprid app, to press Launch. No agent or token can.
+Everything prepared through Sprid starts paused. Only a signed-in person can
+press Launch or Confirm in the app after reviewing creatives, identity,
+audience and the financial commitment. Agents can prepare and pause ads.
+They cannot start delivery or raise a budget through a token.
+
+Check payment readiness, copy, destination, regulated categories and the
+conversion event before launch. For signup or purchase goals, follow
+[the conversion guide](https://sprid.studio/docs/meta-conversions).
+A connected dataset alone does not prove events arrive or match the intended goal.
+
+Promoted posts run through the network behind their published platform: Meta
+for Instagram or Facebook, Google Ads for YouTube, TikTok Spark Ads for TikTok,
+and Pinterest Ads for a Pin. TikTok requires the creator’s ad authorisation.
+Each network’s connection and review requirements still apply.
+
+## Read the result
+
+Judge the outcome you bought: qualified leads, paid accounts or orders. Reconcile
+platform attribution with business records before estimating acquisition value.
+Views and clicks help diagnose the path; they do not establish profitable demand.
+Wait for enough results and the relevant attribution period. Learning status and
+an arbitrary number of elapsed days cannot establish a winner.
+
+Campaign, ad-set and ad totals describe overlapping money. Never add parent and
+child totals. Compare the same period and currency. Missing results remain
+unavailable. Close a test with its question, evidence and remaining uncertainty.
+
+## Sources and review date
+
+Reviewed 2026-10-31 against Meta’s
+[creative diversification guidance](https://www.facebookblueprint.com/student/activity/707402),
+[Reels creative guidance](https://www.facebookblueprint.com/student/activity/641202),
+[cross-campaign learning explanation](https://engineering.fb.com/2026/10/19/ml-applications/genrecs-tokenization-transforming-ads-recommendation-at-meta-with-stable-model-vocabulary/)
+and [promoted-object fields](https://github.com/facebook/facebook-python-business-sdk/blob/main/facebook_business/adobjects/adpromotedobject.py).
+These support the recommendations above; they do not predict results for your app.

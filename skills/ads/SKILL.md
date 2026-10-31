@@ -11,8 +11,7 @@ Read [one marketing plan](../../references/guided-marketing.md). An ad serves th
 Everything here prepares. **No call spends money.** Spending starts when the
 user presses Launch or Confirm in the Sprid app, on a link you hand them.
 Everything before that is drafting, and everything after it is reading. When the
-user asks how Sprid ads work, send them [Ads: pay to show more people what
-already worked](guides/ads.md), the plain-language version of this skill.
+user asks how Sprid ads work, send them [Ads: create, compare and manage campaigns](guides/ads.md), the plain-language version of this skill.
 
 Ads are the surface where being wrong is most expensive. A post that breaks a
 voice rule can be deleted. An ad that breaks one has already been shown to people
@@ -37,6 +36,24 @@ the user paid to reach.
    user the amount and send them the link; they press Launch there.
 6. **`ad_council`** once a week. **`ad_post_mortem`** and **`close_ad_set`** when
    it ends.
+
+## Shared advertisers and creative recommendations
+
+Read [the ads guide](guides/ads.md) before recommending formats or account
+structure. Reels: vertical video, useful sound, safe areas and a message that
+also works muted. An opening hook within two seconds is an editorial target,
+not a Meta rule. Do not prescribe exactly three formats: choose distinct concepts
+and formats for the question and delivery context. Same copy is useful for a
+format comparison; ordinary ad-set delivery does not establish a causal winner.
+
+Use `ads_inventory` for the workspace’s live campaign → ad set → ad tree,
+including objects created directly in Meta. Read failures and partial pagination
+are explicit. Stored campaign ownership wins; uncertain external objects stay
+unassigned. `assign_meta_campaign` changes their place in Sprid only.
+`connect_shared_meta_ads` reuses an authorised advertiser inside one workspace,
+with an explicit Page and optional dataset. Both writes require owner/admin.
+Never substitute one product’s dataset just because another product lacks one.
+External campaigns remain outside Sprid’s spend limits and launch controls.
 
 ## Agree the bar before it spends
 

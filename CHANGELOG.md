@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.3 - 2026-10-31
+
+- Ads guidance covers shared Meta advertisers, app-specific Pages and datasets, external campaigns, and the simpler campaign browsing flow. Creative recommendations distinguish format diversity and a strong opening from fixed video or three-format rules.
+
 ## 1.6.2 - 2026-10-31
 
 - With Sprid CLI 1.9.0 a global install keeps the CLI and these skills current by
