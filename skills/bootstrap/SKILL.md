@@ -162,9 +162,11 @@ Name the publishing destinations already connected and the next missing destinat
 
 ## 6c. Ask once about keeping Sprid current
 
-Only when the session's version check ran through a CLI whose `installation.kind`
-is not `unsupported` and whose output says `autoDecided: false`. Otherwise skip
-this step without comment: someone already answered, or there is nothing to switch.
+Only when the session's version check ran through a CLI whose output says
+`auto: false` and `autoDecided: false`: a project dependency nobody has answered
+for. A global CLI is on by default and needs no question. Otherwise skip this step
+without comment: it is already on, someone already answered, or there is nothing
+to switch.
 
 Ask one question after the prepared work, never before it and never bundled with
 a connection pitch:

@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.2 - 2026-10-31
+
+- With Sprid CLI 1.9.0 a global install keeps the CLI and these skills current by
+  default. Bootstrap asks about automatic updates only for a project dependency.
+
 ## 1.6.1 - 2026-10-30
 
 - The store listing guide shows how to build App Store custom product pages with `sprid release pages`, use each page's URL as its tag, and read views and downloads per page with `sprid release page-results`. The screenshots skill's store art guide adds running a product page optimization test with `sprid release page-test` and recording its result, which Apple's API does not return.

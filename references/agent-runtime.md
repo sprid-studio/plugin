@@ -67,18 +67,19 @@ unavailable check is not evidence that the CLI is current; continue ordinary
 supported work offline. A missing doctor command means the CLI needs updating
 through its original package manager before relying on this protocol.
 
-`--apply-updates` installs only when this installation has explicitly opted in with
-`sprid update --auto on`, the check succeeds, and the update is compatible. That
-one switch covers the CLI and the skills. Never enable it on the user's behalf
-without their instruction; when they ask Sprid to keep itself current, that is
-the instruction. `autoDecided: false` means nobody has answered for this
-installation yet; bootstrap asks once ([step 6c](../skills/bootstrap/SKILL.md#6c-ask-once-about-keeping-sprid-current)),
-and no other skill raises it. Major changes, and minor changes before 1.0, need a new
+`--apply-updates` installs when automatic updates are on (`auto: true`), the check
+succeeds, and the update is compatible. That one switch covers the CLI and the
+skills. It is on by default for a global CLI; `sprid update --auto off` switches it
+off. A project dependency starts off, because its update edits the project's
+package.json and lockfile; bootstrap asks once when `auto` and `autoDecided` are
+both false ([step 6c](../skills/bootstrap/SKILL.md#6c-ask-once-about-keeping-sprid-current)),
+and no other skill raises it. Never change the setting on the user's behalf
+without their instruction. Major changes, and minor changes before 1.0, need a new
 approval; no 0.0.x update is automatic. When the CLI reports `updated`, start a
 new CLI process before continuing. Do not replay a publish, release upload or
 other mutation just because an update completed.
 
-Without opt-in, report an available update before starting the task. Run
+With automatic updates off, report an available update before starting the task. Run
 `sprid update` only within the user's authorization; `--yes` approves a potentially
 breaking update and must not be added merely to get past the check. Project updates
 change its dependency declaration and lockfile; review those diffs. Updates use the
