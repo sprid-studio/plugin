@@ -3,6 +3,10 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.5 - 2026-11-02
+
+- Post, reels and ads share an editorial rule for generated fictional people: reactions followed by app demos and general copy are allowed, while invented first-person experiences and customer testimonials are not. A reaction-to-demo cut alone is not grounds to reject the format.
+
 ## 1.6.4 - 2026-11-01
 
 - Post, reels, principles and landing-page skills read a new guide on choosing what a post gives the viewer before drafting hooks or a series. Distribution thresholds are editorial defaults for follow-up drafts, not platform rules: a part 2 above the median is a candidate for a series, and two parts below it prompt a review.

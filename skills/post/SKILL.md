@@ -16,6 +16,8 @@ Before drafting or extending a series, read [choose what the post gives the view
 Name the actual material and viewer payoff before generating hooks or variants.
 Keep the account's accepted voice, purpose and format.
 
+For a generated fictional person, read [AI people: reactions and general copy](../../references/writing-gate.md#ai-people-reactions-and-general-copy) before drafting or reviewing. A reaction followed by an app demo is allowed; do not attribute invented personal experience to the avatar.
+
 If `.sprid/setup.json` holds the first draft, read
 [resuming setup](../../references/setup-continuation.md) before creating a post.
 Recover its saved post ID and edit that post. Render and inspect it before seeking

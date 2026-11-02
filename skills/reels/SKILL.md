@@ -10,6 +10,8 @@ script paths and account setup. Load [standing rules and corrections](../../refe
 
 ## Choose the format from the brief
 
+For a generated fictional person, read [AI people: reactions and general copy](../../references/writing-gate.md#ai-people-reactions-and-general-copy) before drafting or reviewing. A reaction followed by an app demo is allowed; do not attribute invented personal experience to the avatar.
+
 Read the account's voice, audience and existing templates. Establish the video's
 purpose and destination. Product demos, explainers, stories and entertainment
 need different pacing, imagery and calls to action. Do not import another

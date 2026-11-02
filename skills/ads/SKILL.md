@@ -19,6 +19,8 @@ the user paid to reach.
 
 ## The order
 
+For a generated fictional person, read [AI people: reactions and general copy](../../references/writing-gate.md#ai-people-reactions-and-general-copy) before drafting or reviewing. A reaction followed by an app demo is allowed; do not attribute invented personal experience to the avatar.
+
 1. **`ads_overview`** - what the account can actually do: the ad account, the
    page, the pixel, the caps, and `canRunAds`. If that is false, stop and fix the
    connection; nothing below will work and a half-built campaign is worse than

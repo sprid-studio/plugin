@@ -57,6 +57,26 @@ meaning clearly; do not flag it solely because it appears in this list.
 - A competitor fact carries its date and where it was read: "not listed on their
   pricing page (3 Oct 2026)". A feature you did not see may still exist.
 
+## AI people: reactions and general copy
+
+Apply this editorial rule when a generated fictional person appears in content,
+across accounts and repositories. It overrides persona instructions that would
+give the avatar invented personal experience.
+
+- A generated reaction followed by an app screen recording is allowed. That cut
+  alone is not a customer testimonial and is not a reason to reject the format.
+- Use general copy in the avatar's speech, overlays and captions. “Here is how
+  the app works” is fine; “This helped me” or “I use this every day” attributes
+  fictional personal experience and must be rewritten. Do not invent a life
+  story or product results for the avatar.
+- Captions must not turn the reaction into a purported real customer's account.
+  A surprised face followed by a demo can stay; “My reaction after using this
+  app for a month” cannot. General product claims still need evidence.
+- Use independently generated or appropriately licensed footage and audio.
+  A face replacement does not clear the source material's rights. Check the
+  applicable advertising and AI disclosure requirements before publishing;
+  this editorial rule is not legal clearance.
+
 ## 4. Read it like a stranger
 
 1. Read only the headings, top to bottom. They should tell the whole story on their
