@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.7 - 2026-11-03
+
+- The marketing review is now a step flow that ends in a plan: pull and label completeness, count the people on the path and choose the mode (one by one under about fifty, noise bands above), a scorecard of outcomes and the inputs the business controls, one sentence that explains the period, then up to five ordered steps with who does each (the agent, the person or a named executor), why in one number and what closes it, or holding course when nothing needs to change. Saved reviews carry the direction and each step's owner, due date and done condition, which Sprid's status, next actions, Plans page and Monday mail read. Reports never name a customer, an email, a device or a sibling product's numbers.
+- The review runner keeps the window's commit counts per day and the newest 40 subjects instead of the full git log, and Sprid's review packet caps milestones at 40 without their validation notes, so the agent reads evidence rather than history.
+
 ## 1.6.6 - 2026-11-02
 
 - The Google Ads connect guide says Sprid always asks which ad account to connect, even when the login reaches only one, and explains accounts listed as not set up yet.

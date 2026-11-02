@@ -61,6 +61,8 @@ Draw steps from the whole business, not only from what a Sprid skill can prepare
 
 End with what the agent will start now unless the person says otherwise, and what is waiting on the person. A review authorizes analysis, not sending, spending or publishing: keep the steps that need approval in the plan and mark them, rather than leaving them out.
 
+Saved, the plan is the agenda items that carry a `step` (1 to 5): `owner` is `agent`, `person` or `handoff` (with `executor`), `doneWhen` is the done condition, `due` the date when there is one, and the review's `direction` is the one line. Sprid shows these on the app's Plans page, answers `status` with them, lists each open step in `next` (a person's step as work waiting on them, with its date; an agent's as work it can start) and sends them in the Monday mail. A step closed on the Plans page between reviews is decided.
+
 ## One ranked agenda
 
 The agenda is the plan's durable record: the plan's steps first, in plan order, then the other open items. Rank decisions across these areas together. Each recommendation names what changes, where, the evidence strength, the outcome sought and what would stop or reverse it. Prioritize measurement work only when it can change a consequential decision. Maintain successful distribution when evidence supports it; a review need not manufacture a new direction.

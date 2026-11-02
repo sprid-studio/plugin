@@ -1,5 +1,7 @@
 # Checks that keep a marketing review honest
 
+Apply the sections that fit the business. Every review: the measurement checks, product identity, traffic and acquisition, evidence and decisions. A business that sells through an app store: store coverage, paywall and installs. A shop: orders, returns and the checkout path in place of installs and paywalls. A service: enquiries and paid delivery. A check about a step the business does not have is skipped, not reported as a gap.
+
 ## Read the measurement checks first
 
 The PostHog source carries `checks`: findings that a number in this review cannot be taken at face value, each with its evidence and fix (`checksRun` and `checksSkipped` say what was tested). Read them before any rate or trend, and carry each into the report's appendix until a later reading clears it. They ask; they never change a number.

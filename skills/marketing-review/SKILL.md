@@ -1,58 +1,104 @@
 ---
 name: marketing-review
-description: Review marketing and business results for apps, web shops, software and services. Compare connected evidence across periods, verify the customer path and outcome definitions, and recommend concrete work or measurement where evidence is missing. Use for marketing reviews, funnel analysis, campaign assessment or evaluating a delivered change.
+description: Review marketing and business results for apps, web shops, software and services, and end with a plan: the direction, up to five steps in order with who does each and when it is done. Compares connected evidence across periods, verifies the customer path and outcome definitions, and names measurement where evidence is missing. Use for marketing reviews, funnel analysis, campaign assessment or evaluating a delivered change.
 ---
 
 # Marketing review [period]
 
-Read [agent runtime](../../references/agent-runtime.md) for invocation and tool discovery, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else. Without a local repository or terminal, follow the [portable connected review](../post/guides/marketing-review.md), also available through `get_documentation` with `topic: "marketing-review"`. Label missing repository and private-database evidence explicitly; supported server reads require no CLI. The repo-specific workflow below applies in Codex or Claude Code, with the report in `marketing-reports/<YYYY-MM-DD>.md`.
+A review ends in a plan the business acts on: one line of direction, then the steps in order, each with who does it and what closes it. The evidence serves that plan. The steps below are the order of the job; each names the reference that holds its rules. Nothing here authorizes publishing, spending, deploying or instrumenting: a review prepares, and work continues within what the person already allowed.
 
-## Resolve the app and its history
+Run [agent runtime](../../references/agent-runtime.md)'s [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session first. Without a repository or terminal, follow the [portable connected review](../post/guides/marketing-review.md) (`get_documentation` with `topic: "marketing-review"`): the same steps through MCP alone, with repository and private-database evidence labelled missing. In a repo the report goes to `marketing-reports/<YYYY-MM-DD>.md`.
 
-Read `.sprid/app.json`, repository instructions and the latest marketing report, including corrections. A profile with `enabled: false` or `review.enabled: false` is paused: stop before queries or report writes and give its reason.
+## 1. Start from the last plan
 
-For a migrated local review, preserve the event map, identity basis, exclusions and app-specific investigations. The importer accepts an explicit old mapping path, prints a preview by default and writes only the current repo’s profile with `--write`:
+Read `.sprid/app.json` and repository instructions. A profile with `enabled: false` or `review.enabled: false` is paused: stop and say why. Read the newest saved review (`list_marketing_reviews {profile}` / `sprid marketing-review history --app <slug>`) and the shared context (`get_marketing_review_context` / `sprid marketing-review context --app <slug> --json`): definitions, corrections, surfaces, the hypothesis ledger. Treat what the person closed on the Plans page as decided. The latest local report carries same-day corrections; read it too.
 
-```sh
-node "<plugin>/tools/migrate-review.mjs" --from <old-mapping.json> --app <slug>
-```
+Which steps of the last plan happened? Check the live product, the queue and the window's changes, not the agenda's wording. A step that shipped becomes a running hypothesis with its ship date; one still open is carried with its first-made date, or escalated with the blocker named. A recommendation nobody acted on twice is a finding about the process; the server refuses a third unchanged carry.
 
-It does not import keys, send anything to Sprid, or make inherited notes verified evidence. Existing local identifiers and event mappings win. If no mapping or profile exists, infer the non-secret identifiers from the repo as bootstrap does; do not make an existing customer redo their marketing strategy just to run a review.
+Reuse the saved business goal, payment model and customer path ([business context and outcomes](../../references/review-to-action.md#1-follow-the-money-then-split-volume-from-rate)); fill only what is missing or changed. A migrated local review keeps its event map, identity basis, exclusions and investigations ([repository review sources](../../references/repository-review-sources.md)); `node "<plugin>/tools/migrate-review.mjs" --from <old-mapping.json> --app <slug>` previews and `--write` writes. Keep local `review` settings when reconciling the profile; never let a server response erase a populated local event map.
 
-Read [one marketing plan](../../references/guided-marketing.md), then load, reuse and save the shared context as the [portable review](../post/guides/marketing-review.md) describes (step 2 of “Start with the question”, and “Shared context” under “Report and save”). The CLI reads it with `sprid marketing-review context --app <slug> --json` and imports `{baseRevision,context}` with `--file <file.json>`. Preserve local-only notes and pause rules. Never upload the repository or raw customer rows as context. Locally, the surfaces to audit are `review.surfaces` in `.sprid/app.json` ([surface inventory](../../references/repository-review-sources.md#keep-a-surface-inventory)): audit the most overdue even when their numbers did not move.
+## 2. Pull the evidence and label how complete it is
 
-Read the newest saved review with `list_marketing_reviews {profile}` or `sprid marketing-review history --app <slug>` and check whether its agenda shipped. Fetch evidence, receipts and refreshes as the portable review's steps 3 and 4 and “Collection and coverage” describe. The CLI equivalents are `sprid marketing-review --app <slug> --json` (full view by default, `--view summary` for the compact one) and `sprid marketing-review evidence --app <slug> --id <id>`. Retain local exports beyond server retention.
-
-Sprid supplies every connected sensor and stored post performance; local provider reads are fallbacks only. Use `get_app_profile` for identifier reconciliation. Resolve the workspace explicitly when necessary (`workspace` in the local profile or `--workspace`). Resolve a social account using `accountId`, then a same-workspace slug; an app's publishing account may have a different name or a market suffix.
-
-Keep local `review` settings when reconciling profiles. Do not replace the file with a server response: it cannot carry local pause flags, query notes or investigation paths. An empty server `posthogEvents` map must not erase a populated local one. Use `sprid init` to sync verified profile fields when profile updates are authorized; local review settings remain local.
-
-## Define the periods and collect evidence
-
-Use the saved business goal, payment model and relevant customer path; fill only missing or changed parts using [business context and outcomes](../../references/review-to-action.md#1-follow-the-money-then-split-volume-from-rate). App installs, paywalls and renewals apply only where those steps exist; shops may need paid orders and returns, services qualified enquiries and paid delivery. Keep irrelevant metrics separate from relevant but unavailable evidence. App Profile and `--app` remain the existing selectors; no repository or mobile listing is required for the portable review.
-
-Default: the last 30 complete calendar days, ending at today’s date, exclusive. Use the preceding equal window. `--since YYYY-MM-DD` and `--end YYYY-MM-DD` support custom windows. Preserve provider timezones: GSC uses Pacific dates, and PostHog uses its project timezone. Do not describe these as identical UTC cohorts.
+Default window: the last 30 complete days ending today, exclusive, against the 30 before (`--since`, `--end` for custom windows). Provider calendars stay as they are: GSC is Pacific, PostHog its project zone.
 
 ```sh
 node "<plugin>/tools/review.mjs" --check
 node "<plugin>/tools/review.mjs" --days 30
-# or --since 2026-08-01 --end 2026-09-01
 ```
 
-The runner calls Sprid first using the CLI’s existing login. Sources marked ready come from Sprid without opening local provider keys. It runs local collectors only for unavailable/failed sources, records both outcomes, adds git history, and saves a JSON evidence packet. ASC and Play fallbacks run separately so one missing leg does not repeat the connected leg. `SPRID_CLI=/absolute/path/to/bin.mjs` selects a development CLI. The packet is the starting evidence, not the finished review. Check every source’s nested status and coverage, even when the process succeeded. Store and GSC comparisons with missing observed dates withhold percentage changes; do not reconstruct those deltas from incomplete totals. Use explicit matched periods in a targeted follow-up. `diagnostic.code`, `httpStatus` and `retryable` distinguish permissions from transient failures; reconnect only when evidence supports a credential problem.
+The runner reads Sprid first with the CLI's login, runs local collectors only for sources Sprid cannot supply, adds the window's git history, and saves a packet under `marketing-reports/evidence/`. Over MCP alone, `get_marketing_review` returns the same packet; `get_marketing_review_evidence` re-reads a saved one. `--refresh` / `refresh: true` queues collection; read again while it runs. Never bypass a cooldown with local keys. Keys connected on Sprid are not local keys; a missing local key is not a disconnected source.
 
-The server packet includes `sources`, `social.publishes` with per-post metrics, the current publishing queue/channel health, stored reviews and milestones. Read that distribution evidence before proposing more content: drafted supply, scheduled posts, failed publishes and measured results answer different questions. Missing social-account linkage does not block the sensors. Each publish’s metrics are cumulative as sampled before the requested end, except Pinterest, whose Pin metrics are dated daily activity summed to the end with observed-day coverage; compare post ages before declaring a format winner. A null metrics row is unmeasured, not zero performance.
+Before reading a number, label the packet: **complete**, **provisional** (a source still collecting), **partial** (a source failed or a window has missing dates) or **insufficient** (the sources that matter for the decision are missing), with the failed sources named. This label leads the report. Each source's nested `status`, `coverage`, `dataThrough` and `collection` say which; a missing date is unknown, never zero, and an incomplete window gets no percentage change. The packet's `dataset` carries validated calculations with `blocked` reasons; follow [metric evidence](../../references/metric-evidence.md) before combining anything.
 
-For Pinterest, read Pins as [Measure what happened](../post/guides/pinterest.md#measure-what-happened) describes. The connected `pinterest` source has a `posts` operation only, and per-Pin live results come from `get_pinterest_metrics`. Do not turn rolling API windows into lifetime totals or present platform, account or competitor benchmarks without Pinterest’s written permission.
+Then read the PostHog source's measurement `checks` ([review checks](../../references/marketing-review-checks.md)): each one says a number cannot be read at face value. Carry each into the appendix until a later reading clears it.
 
-When present, use the packet’s `dataset` for validated calculations. Each observation names its definition, window, scope and quality; `results` either supplies a calculated value or a `blocked` reason. Follow [metric evidence](../../references/metric-evidence.md) before combining sources. A blocked total does not invalidate the available source readings. Keep investigating through custom queries, but do not turn their `investigative` metadata into a verified population join by relabeling it.
+Rules that hold on every read: the same explicit dates on every call, never a rolling-window delta spliced into a calendar comparison; a source's `diagnostic.code`, `httpStatus` and `retryable` tell a permission problem from a transient one, and a reconnect is recommended only when the evidence says the credential failed; a social account resolves by `accountId`, then a same-workspace slug, and missing social linkage does not block the sensors; `get_app_profile` reconciles identifiers, `sprid init` syncs verified profile fields when authorized; an older server without `get_marketing_review` falls back to `get_insights` plus publishing reads, with the reduced coverage named. Platform, account or competitor benchmarks for Pinterest need Pinterest's written permission.
 
-`--refresh` is the CLI's `refresh: true`; poll it as the portable review describes and continue independent repo analysis meanwhile. Never bypass a collection cooldown with local provider reads. Saved values during a refresh retain their original date, and `get_insights` exposes the same progress in `refresh.sources`.
+## 3. Count the people on the path, then choose the mode
 
-If the CLI is unavailable but MCP is connected, call `get_marketing_review` directly and use its packet. If the installed server has not shipped this verb yet, use `get_insights` plus publishing/metrics reads, and name the reduced coverage. Use the same explicit dates on every read; never splice a rolling-window delta into a different calendar comparison.
-Local scripts read `~/.sprid/secrets/<slug>.json` themselves; never print it. `SPRID_SECRETS_FILE` selects an explicit alternative. Keys connected on Sprid are not downloadable local keys. A missing local key does not mean the source is disconnected on the server. Use the available server or MCP read before declaring a gap. Do not reconnect a working source just because one transport is absent.
+Count the people on the relevant path in the window: signups, first orders, enquiries, trials, whatever the business's path is. The count sets the method.
 
-Individual pulls remain available for investigations:
+**Few (roughly under 50).** Read them one by one: who they are (never named in the report), what they did, where they stopped, and whether they can be contacted. Rates over this population are noise; say so and do not rank them. Talking to them, or keeping a lapsing cohort reachable, usually beats any automated change. The useful evidence is often in durable records (accounts, orders, tool calls) rather than analytics; use the repository's reads when available ([repository review sources](../../references/repository-review-sources.md)).
+
+**Many.** Establish each metric's usual range over the trailing periods before calling a move a change; a move inside that range gets one line, "normal variation". Exclude internal people and automation first ([traffic and acquisition](../../references/marketing-review-checks.md#traffic-and-acquisition)). Use cohorts of equal age and fixed windows for return and conversion ([connected investigations](../../references/connected-queries.md)).
+
+Either way: count people, not events; keep orders, items and people apart; never invent an identity join between providers.
+
+## 4. The scorecard: outcomes and the inputs the business controls
+
+A stable scorecard for the business's own path. Outcomes: the people reaching each relevant step through purchase and delivered value, and revenue (period revenue apart from current MRR, gross apart from refunds, rails reconciled before adding; see [store coverage and money](../../references/marketing-review-checks.md#store-coverage-and-money)). Inputs: what the business did in the window and the one before (posts published, pages shipped, mails sent, releases, spend). Every value carries its source, population, dates and comparable period; a rate shows numerator and denominator. A relevant metric that is unavailable keeps its slot with the reason. An irrelevant one (installs for a shop, a paywall for a service) is left out.
+
+The packet's `social.publishes`, queue and channel health are the distribution inputs: drafted supply, scheduled posts, failed publishes and measured results answer different questions. Read them before proposing more content. Post metrics are cumulative snapshots sampled before the end; Pins are summed daily activity with their observed-day coverage ([Pinterest](../post/guides/pinterest.md#measure-what-happened)). A null metrics row is unmeasured, not zero performance. Compare posts at equal ages before declaring a format winner.
+
+Where coverage on the path is missing, name the exact event or record that would answer the question, the emitting file or responsible system, and the verification ([product instrumentation workflow](../../references/marketing-review-checks.md#product-instrumentation-workflow)). `/sprid:measurement` carries that out when authorized. Continue the review with the sources that work; unknown drop-off stays unknown. Do not end at "connect PostHog".
+
+## 5. Find the story
+
+One sentence that explains the period, before any recommendation. Test it against a competing explanation (tracking change, exclusion change, seasonality, audience mix, a release) and a second read of the same number where one exists ([evidence and decisions](../../references/marketing-review-checks.md#evidence-and-decisions)). Patterns that hold for any business:
+
+- Growth that does not survive removing the top mover (one post, one customer, one page, one referrer) is fragile growth, and the review says so.
+- Spend up while cost per result rises is saturation, not scale.
+- Volume up while the next-step rate falls points at who is arriving, not at the page.
+- Sentiment, ratings or support load falling while revenue holds is next quarter's revenue.
+- One step losing most of the people is worth more than any new campaign.
+- Something stopped: a channel silent, an event gone quiet, a page gone. Check what shipped before reading it as behaviour.
+
+Then follow [from diagnosis to an activity](../../references/review-to-action.md) sections 2 to 7: trace a volume change upstream, check a lever's history before recommending it again, pick the kind of activity the evidence points to. Audit the surfaces that are due (`context.dueSurfaces`; locally `review.surfaces`), even when their numbers did not move, and record each with `update_review_surfaces`. Complete each investigation the profile lists, or name its gap.
+
+## 6. Write the plan
+
+Up to five numbered steps in the order to do them ([the plan](../../references/marketing-review-report.md#the-plan)). A step that unblocks or informs another comes first; a deadline in the evidence (a cohort that lapses, a season, a read date) sets the order and appears on the step. Each step:
+
+- **The action**, concrete enough to start without asking how.
+- **Who**: `agent` (you, now, within what the person allowed), `person` (only they can: send as themselves, approve, run a check on their own device or account), or `handoff` with the executor named.
+- **Why**, in one number from this review.
+- **Done when**: the observable result, with the date when the evidence gives one.
+
+Name what to stop or pause and why. When nothing needs to change, the direction is "hold course" and the plan has fewer steps or none; a review that manufactures work every period trains the reader to ignore it. Steps you own and can start now, start in this session. Prepare the person's steps as far as you can (the text to send, the exact check, the link) so what is left for them is small.
+
+Other findings that earn a place but not a step stay on the agenda without one, each with its evidence line. A defect goes on the agenda only after a controlled check reproduced it (`defect: true`, `verifiedBy`); until then it is an investigation.
+
+## 7. Save, report, hand off
+
+Save the review so the Plans page, `status`, `next_actions`, the Monday mail and the next review start from it. Direction, verdict and agenda only; the report and evidence stay where the review ran:
+
+```sh
+sprid marketing-review save --app <slug> --file <review.json>
+# {"direction": "...", "verdict": "...", "period": {"start": "YYYY-MM-DD", "end": "YYYY-MM-DD"}, "reportPath": "marketing-reports/<YYYY-MM-DD>.md",
+#  "agenda": [{"id": "ask-signups", "title": "...", "why": "...", "status": "new", "step": 1, "owner": "person", "due": "YYYY-MM-DD", "doneWhen": "..."}, ...]}
+```
+
+Over MCP: `save_marketing_review {profile, direction, verdict, agenda, period, reportPath, surface: "repo"}`. Reuse each item's `id` from the last review; statuses and their exits follow the [report contract](../../references/marketing-review-report.md#one-ranked-agenda). In the same run: `update_review_hypotheses` (threshold, measure and read date set before a change ships; results written on the read date), `update_review_surfaces`, and `save_marketing_review_context` for corrected definitions and decisions at `baseRevision`. Write the JSON to a scratch location. A same-day re-save replaces that day's review, so a correction never sits beside the old text.
+
+Write the report ([report contract](../../references/marketing-review-report.md)): direction and plan first, then the completeness label, the scorecard, the story and its competing explanations, the ledger, the evidence appendix with definitions and exact sources. A report that already carries same-day corrections is not overwritten by an unqualified re-run; the correction wins. Evidence packets hold commercial analytics: they stay local unless sharing was asked for, and product documentation gets a short index, never the raw output. When instrumentation ships after a review named the gap, record its verified release boundary and revisit the gap in the next report. Never in a report or a saved review: a named customer, an email address, a device name, a private note, an internal id without its meaning, tool noise as a finding, or a sibling product's numbers.
+
+The final message leads with the direction and the plan, says which steps you are starting and which wait on the person, gives the few numbers behind it, and links the report. A list of findings without steps is not a finished review.
+
+Then read `next_actions` once, reusing this run's result, and follow [keep setup current](../../references/setup-continuation.md#keep-setup-current) only for gaps that affect the plan. Do not restart completed setup or repeat declined connections. A separately authorized change that ships gets an `add_event` with its `areas` and `why`.
+
+## Investigations between reviews
+
+`list_marketing_queries` lists supported reads; `query_marketing_source` and `query_marketing_posthog` run them with Sprid's credentials ([connected investigations](../../references/connected-queries.md)). The CLI: `sprid marketing-review capabilities|query --app <slug>`. Individual local pulls stay available for a repo investigation:
 
 ```sh
 node "<plugin>/tools/gsc.mjs" --days 30 --pages 10000
@@ -61,47 +107,4 @@ node "<plugin>/tools/store.mjs" --days 30
 node "<plugin>/tools/posthog.mjs" --days 30
 ```
 
-ASC reads existing report requests by default. If none exists, record that gap; `--request-reports` enables generation only with authorization for that external change. A pending report is not zero downloads.
-
-## Complete the analysis
-
-Read [connected investigations](../../references/connected-queries.md) before custom follow-ups. Call `list_marketing_queries` for the App Profile, then `query_marketing_source` with a discovered source, operation and parameters. These reads use Sprid-held credentials across the supported connectors; provider MCP setup in this repo is optional. Keep following questions after the first report, and preserve corrections. The reference covers ordered funnels, fixed return windows, login/CTA checks and content-demand joins.
-
-Read [review checks](../../references/marketing-review-checks.md) before interpreting the packet, starting with the PostHog source's measurement `checks`: each one says a number in this review cannot be read at face value. It carries the project drift, activation, bot, attribution and revenue checks relevant to interpreting the returned evidence.
-
-Assess measurement coverage even when PostHog is connected. Follow [the shared instrumentation guide](../../references/marketing-review-checks.md#product-instrumentation-workflow): distinguish no provider, inaccessible data, failed delivery and missing events. Inspect the business's relevant steps through purchase and delivered value. Use emitting code when accessible; otherwise check available event definitions, CMS or commerce records and controlled observations. Reuse working analytics through available reads or exports; disclose unsupported integrations and unverifiable steps.
-
-When coverage is missing, recommend exact events/properties, the emitting files if known or the responsible system, and a verification query or check. `/sprid:measurement` carries that recommendation out as a tracking plan with verified events. Explain which business question each change makes answerable. Follow [service selection and access](../../references/marketing-review-checks.md#choose-services-by-the-question), including billing, reliability or feedback sources when the question requires them. Reuse a working provider; otherwise recommend the capability and a suitable service. Cite supplemental tool reads or exports separately from the automatic packet and record unsupported-connector needs without inventing profile fields or commands. Do not end at “connect PostHog” or “data unavailable.” Continue the review with the sources that work; unknown drop-off stays unknown. A review alone does not authorize implementing instrumentation. Record its verified release boundary when it does ship and revisit the gap in the next report.
-
-PostHog’s local pull pins every request to the profile’s project id. It returns per-event people split by surface, and the exact query. Those counts are a diagnostic, not an ordered conversion funnel. Use `query_marketing_posthog {profile, workspace, query}` or `sprid marketing-review query --app <slug> --query-file <query.sql>` for cohorts, internal exclusions, return behaviour, market splits and the app’s actual activation definition. These follow-ups use Sprid’s stored key and pin the project again. Use a direct provider MCP/REST query only when that source is not connected on Sprid. If using a stateful MCP, switch and verify the project before each query; do not batch project switches.
-
-RevenueCat: prefer Sprid’s revenue block or available aggregate MCP tools. The overview is a current snapshot with a fixed revenue window, not historical period-over-period data. Use explicit-range revenue/chart tools for revenue, trials, paid conversion, churn and retention. If those are unavailable, query the app’s purchase records or subscription tables read-only, with their coverage stated. Account for every configured web revenue rail and check overlap before adding totals.
-
-Read available diffs or CMS/campaign change records, current pages and delivery evidence for changes in either period. A commit, draft or completed issue alone does not prove a change reached customers. Verify the latest report’s recommendations against the delivered product or offer and live distribution; carry unresolved recommendations with their original dates. Reconcile the hypothesis ledger with what shipped and escalate anything carried twice, as the [report contract](../../references/marketing-review-report.md) describes.
-
-Read app-specific `review` settings and referenced investigations using [repository review sources](../../references/repository-review-sources.md). Complete each enabled investigation or name its coverage gap in the report. An investigation used in earlier reviews (a retention query, an attribution question, an email or order analysis) remains part of coverage after migration. If an existing app has no inventory yet, discover it from the repo and earlier reports during this review; do not require another bootstrap. Re-check inherited metric definitions against the instrumentation; never silently substitute an easier event.
-
-## Turn the diagnosis into an activity
-
-Use [from diagnosis to an activity](../../references/review-to-action.md), sections 2 to 8, once the headline movements are explained. Split the relevant segment's volume from its rates, investigate competing causes and check previous work. Select a concrete activity from the evidence, with audience, assets, destination, outcome, baseline and next observation; leave unavailable counts or dates unknown. Rank by the business problem and evidence, including product or checkout repairs when needed. Name delivery dependencies instead of automatically ranking release-dependent work last.
-
-Match the deliverable to actual access: finished content, a CMS draft, a tested repo patch or a complete handoff to another executor. A review alone prepares its recommendation; further work follows the user's existing authorization. A missing code connection does not justify replacing a necessary repair with more content. Use supported action tools when saving authorized work, and distinguish a prepared artifact, an external handoff, verified delivery and later effect.
-
-## Write and finish
-
-Follow [the business report contract](../../references/marketing-review-report.md). Lead with the direction and [the plan](../../references/marketing-review-report.md#the-plan): up to 5 steps in order, or hold course when nothing needs to change, each with its action, who does it, why and when it is done. Then the commercial verdict, a compact scorecard and one ranked agenda spanning marketing, revenue and product value. Inspect actual pages and distribution, challenge the current strategy and revisit the dated hypothesis ledger. Keep required revenue and app-specific investigations in this review. Measurement fixes earn priority through the decisions they enable.
-
-Record definitions, joined-cohort rates, period coverage and exact evidence in the appendix. Missing metrics stay missing. Distinguish raw audience, filtered floors and verified actions; test findings against a competing explanation. The final response must deliver the direction and the plan inline, then the consequential movements behind it with a compact measured chart when useful, then link the full report. Say which steps the agent starts now and which wait on the person. A list of findings without steps, or a completion notice, is insufficient.
-
-Save the review to Sprid once the report is written, so the app's Reviews page, the Monday mail and the next review start from it. Send the verdict and the ranked agenda only; the report and evidence stay in the repo:
-
-```sh
-sprid marketing-review save --app <slug> --file <review.json>
-# {"verdict": "...", "agenda": [{"id": "save-test", "title": "...", "why": "...", "status": "carried"}], "period": {"start": "YYYY-MM-DD", "end": "YYYY-MM-DD"}, "reportPath": "marketing-reports/<YYYY-MM-DD>.md"}
-```
-
-Over MCP: `save_marketing_review {profile, verdict, agenda, period, reportPath, surface: "repo"}`. Agenda items carry `id` and `status` as the [report contract](../../references/marketing-review-report.md#one-ranked-agenda) describes; a refused save names the item and the exits it has. Save the hypothesis ledger with `update_review_hypotheses` and surface audits with `update_review_surfaces` in the same run. A same-day re-run replaces that day's saved review, matching the corrected report. Write the JSON to a scratch location, not the repo. A paused profile saves nothing.
-
-Keep same-day corrections when a report already exists; never overwrite them with an unqualified re-run. Evidence packets can include commercial analytics: keep them local unless sharing was requested, and keep a short index rather than copying raw outputs into product documentation.
-
-After delivering the business brief and report path, read `next_actions` once in scope, reusing a current result from this run. Follow [keep setup current](../../references/setup-continuation.md#keep-setup-current) for returned gaps that affect the work or unfinished setup the user requested. Do not restart identity/icon/voice discovery for completed setup or repeat explicitly declined connections. Otherwise follow agent runtime’s account/CLI handoff when the user wants connected results or the weekly email; a local review must still be delivered with its data gaps. Reading/reviewing does not authorize publishing, paid generation, store changes or external writes. If a separately authorized growth change ships, record an `add_event` with its actual `areas` and `why`.
+Local scripts read `~/.sprid/secrets/<slug>.json` themselves; never print it. ASC reads existing report requests; `--request-reports` creates one only with authorization. A pending report is not zero downloads.

@@ -80,8 +80,16 @@ async function main() {
   packet.sources.revenue = server.ok ? { via: 'sprid', ...server.data.sources.revenue } : { status: 'unavailable', reason: 'Sprid revenue unavailable. Use an available RevenueCat MCP or read-only app records; do not treat absent revenue as zero.' };
   if (args.check) { console.log(JSON.stringify(packet, null, 2)); return; }
   try {
-    const { stdout } = await exec('git', ['log', `--since=${window.prevStart}T00:00:00Z`, `--until=${window.curEnd}T00:00:00Z`, '--format=%H %aI %s'], { maxBuffer: 8 * 1024 * 1024 });
-    packet.commits = stdout.trim().split('\n').filter(Boolean);
+    const { stdout } = await exec('git', ['log', `--since=${window.prevStart}T00:00:00Z`, `--until=${window.curEnd}T00:00:00Z`, '--format=%h %aI %s'], { maxBuffer: 8 * 1024 * 1024 });
+    const lines = stdout.trim().split('\n').filter(Boolean);
+    // A thousand raw log lines were half the packet and none of the decision.
+    // The agent gets the shape of the work (commits per day, each period) and
+    // the newest subjects; `git log` is one command away for anything else.
+    const byDay = {};
+    for (const line of lines) { const day = line.split(' ')[1]?.slice(0, 10); if (day) byDay[day] = (byDay[day] || 0) + 1; }
+    const inWindow = (from, to) => lines.filter(l => { const d = l.split(' ')[1]?.slice(0, 10); return d >= from && d < to; }).length;
+    packet.commits = { current: inWindow(window.curStart, window.curEnd), prior: inWindow(window.prevStart, window.prevEnd), byDay,
+      latest: lines.slice(0, 40), note: `${lines.length} commits in both windows; the newest 40 are listed. Run git log for the rest.` };
     packet.codeNote = 'Commit presence is not proof of deployment; verify release evidence before attributing a change.';
   } catch { packet.codeGap = 'Could not read git history in the current directory.'; }
   const reports = resolve('marketing-reports');
