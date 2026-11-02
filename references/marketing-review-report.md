@@ -1,10 +1,10 @@
 # Deliver a business review
 
-The review answers: are we reaching the right people, delivering value and building a sustainable business, and what should change? Analytics checks support that judgment. Do not let an easy-to-prove instrumentation defect consume the conclusion or let connected providers define the strategy.
+The review answers: are we reaching the right people, delivering value and building a sustainable business, and what should change? It ends in [a plan](#the-plan): the few steps to take next, in order, with who does each. Analytics checks support that judgment. Do not let an easy-to-prove instrumentation defect consume the conclusion or let connected providers define the strategy.
 
 ## Decision brief
 
-Open with the commercial verdict and recommended direction. Name the consequential improvement, unresolved business problem and assumption worth challenging when the evidence supports them. Distinguish judgment from measured impact; never invent numerical impact scores.
+Open with the direction in one sentence: what to do next and what to stop or pause. Then give the commercial verdict that justifies it. Name the consequential improvement, unresolved business problem and assumption worth challenging when the evidence supports them. Distinguish judgment from measured impact; never invent numerical impact scores.
 
 Choose a compact, stable scorecard for the business's actual customer path, using [business context and outcomes](review-to-action.md#1-follow-the-money-then-split-volume-from-rate). An app may need meaningful use and paid conversion; a shop new buyers, paid orders and net sales; a service qualified enquiries and paid delivery. Include downstream value and relevant economics alongside reach. Omit irrelevant metrics; keep a relevant but unavailable metric with its reason. For each value record its source, population, dates and comparable-period change. Show numerator and denominator for rates.
 
@@ -44,9 +44,26 @@ Paid acquisition and publisher advertising get separate verdicts. When buying ad
 
 **Delivered value and product changes.** Judge whether customers receive what the offer promises. For software, inspect meaningful task completion and repeat use among eligible people; for commerce, consider fulfillment, returns and customer feedback; for services, completed delivery and customer outcomes. Propose a product, offer or operational change when evidence supports it. Rare use alone does not justify removal. A cut proposal identifies the lost task, alternative path and reversible test. Name the responsible system when repository access is unavailable.
 
+## The plan
+
+The plan is what the person reads first and acts on. After the analysis, turn the top of the agenda into at most 5 numbered steps in the order to do them. When the honest answer is that nothing needs to change, the plan says so and holds course with fewer steps or none: a review that manufactures work every period trains the reader to ignore it. A step that unblocks or informs another goes first. A deadline in the evidence sets the order and appears in the step: trials that lapse, a season, a renewal date, a review that closes.
+
+Each step says:
+
+- **The action**, concrete enough to start without asking how: what changes, where, for whom.
+- **Who does it**: the agent, now, within the user's authorization; the person, for what only they can do (send as themselves, approve spend or a price, run a test on their own device or account); or a named handoff.
+- **Why**, in one number from this review.
+- **Done when**: the observable result, with the date when the evidence gives one.
+
+Name what to stop, pause or leave alone, and why: work no customer can reach yet, a metric that does not matter until an earlier step moves. A plan that only adds work has not chosen.
+
+Draw steps from the whole business, not only from what a Sprid skill can prepare. When few enough people are on the path to contact them (roughly under 50) and their drop-off is unexplained, talking to them beats an automated change: draft the message for the person to send. When a cohort will lapse before a fix can ship, keep it reachable first, with a trial extension or a personal note. Pausing product work customers cannot reach yet is a legitimate step.
+
+End with what the agent will start now unless the person says otherwise, and what is waiting on the person. A review authorizes analysis, not sending, spending or publishing: keep the steps that need approval in the plan and mark them, rather than leaving them out.
+
 ## One ranked agenda
 
-Rank decisions across these areas together. Each recommendation names what changes, where, the evidence strength, the outcome sought and what would stop or reverse it. Prioritize measurement work only when it can change a consequential decision. Maintain successful distribution when evidence supports it; a review need not manufacture a new direction.
+The agenda is the plan's durable record: the plan's steps first, in plan order, then the other open items. Rank decisions across these areas together. Each recommendation names what changes, where, the evidence strength, the outcome sought and what would stop or reverse it. Prioritize measurement work only when it can change a consequential decision. Maintain successful distribution when evidence supports it; a review need not manufacture a new direction.
 
 Show each carried recommendation with the date it was first made. One carried unchanged through two earlier reviews cannot be carried a third time as it stands: rank it first with the blocker named and the smallest step that removes it, hand it to a named executor, or drop it with the reason. Repetition without action is itself a finding about the process.
 
@@ -73,7 +90,7 @@ Sprid’s review packet includes a versioned metric dataset with checked results
 
 ## Deliver the report and a useful final response
 
-Write the durable report with the brief, analysis, dated hypothesis ledger and evidence appendix. In the final response give a self-contained commercial verdict, a compact scorecard or chart of consequential movement, the interpretation and decisions, and a link to the full report. A completion notice and file link alone do not deliver the review.
+Write the durable report with the brief, the plan, analysis, dated hypothesis ledger and evidence appendix. The final response leads with the direction, then the plan's steps, then the few numbers that justify them (a compact scorecard or chart), then the link to the full report. Findings without steps are not a finished review; a completion notice and file link alone do not deliver it either.
 
 Aim for about 200 words of prose, adapting to the user's preferences. Use portable ASCII bars in text-only clients. Generate charts from measured data with plotting tools when images are more useful, save an export and provide a text fallback. Use interaction only when selecting dates or cohorts helps answer the question. Never use image generation to fabricate an analytical chart, invent intermediate observations or build a dashboard when a compact comparison suffices.
 

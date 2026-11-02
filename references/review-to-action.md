@@ -45,6 +45,9 @@ Treat broken measurement as a hypothesis. Where authorized, reproduce the releva
 | Visitors cannot complete a useful step on their device or path | Repair the handoff, checkout or product behavior | § 5 | Page specification or a patch through an authorized coding agent |
 | Copy, images or an offer contradict what customers can actually receive | Correct the product claim | § 5 | Relevant content skill; store skills only for app listings |
 | Missing measurement prevents a consequential decision | Establish that measurement | Review checks | `/sprid:measurement`: tracking plan and verified events, with implementation only when authorized |
+| Few enough people stalled on the path to contact them (roughly under 50), and the data cannot say why | Ask them | § 5 | A personal message for the person to send, one question each |
+| A cohort or moment lapses before a fix can ship | Keep it reachable: extend, hold or contact it | § 7 | The change, marked for the person's approval |
+| Effort goes to work no customer reaches yet | Pause or redirect it | § 8 | A stop step in [the plan](marketing-review-report.md#the-plan) |
 
 Several activities can apply. Available tools determine what can be delivered, not which business problem deserves attention. A missing code connection should leave a concrete handoff, not generate unrelated content in its place.
 
@@ -88,6 +91,8 @@ The first agenda item includes:
 - expected deliverable and an available executor, or the named handoff needed
 - the downstream success measure, baseline, next observation and stop/reversal condition
 - timing when relevant, with unsupported dates or impact estimates left unknown
+
+Then sequence the top items into [the plan](marketing-review-report.md#the-plan): ordered steps, who does each, and what stops.
 
 Then hand off to the appropriate skill or customer workflow within existing authorization. A content recipe may produce the next finished piece; a new creative direction can first deliver a pilot. A website task may produce a CMS draft, a tested patch or a complete change brief, depending on actual access. Discover supported tools; never infer a CMS, order-data or coding integration from the business type.
 

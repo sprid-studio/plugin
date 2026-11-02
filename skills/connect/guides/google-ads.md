@@ -31,7 +31,7 @@ Replace `<slug>` with your publishing account’s slug.
 
 1. Sign in with the Google login that has access to the ad account.
 2. Google asks to let Sprid **see, edit, create and delete your Google Ads accounts and data**. Click **Continue**. Sprid only creates the campaigns you review, and creates them paused.
-3. If the login can manage more than one ad account, Sprid lists their ids. Connect again with the one this brand should use:
+3. Sprid always asks which ad account to connect, even when the login reaches only one, so a client’s account is never connected by accident. Accounts the login can see but not use are listed with the reason. Pick one in the app, or from the terminal connect again with its id:
 
 ```sh
 sprid connect google-ads --account <slug> --ad-account <customer id>
@@ -51,7 +51,8 @@ What Sprid sends Google for the ad: the video, its title as the headline, the fi
 
 - **“Google Ads promotion is not switched on in Sprid yet”:** Sprid is waiting on Google’s approval of its own access. Nothing on your side needs to change.
 - **“This Google login has no active Google Ads account”:** the login you signed in with has no ad account, or only cancelled ones. Create one (step 1) or sign in with the login that has access.
-- **Your ad account is missing from the list:** only active accounts you can open directly, or directly under a manager account you can open, are listed. Ask the owner to add your login to the ad account itself.
+- **Your ad account is missing from the list:** only active accounts you can open directly, or directly under a manager account you can open, are listed. Ask the owner to add your login to the ad account itself, or sign in with the Google login that has it.
+- **Your ad account is listed as “Not set up yet”:** Google Ads will not open an account until its setup is finished. Open it at [ads.google.com](https://ads.google.com), finish the setup and billing steps it asks for, then connect again.
 - **“Google returned no refresh token”:** remove Sprid at [myaccount.google.com/permissions](https://myaccount.google.com/permissions), then connect again.
 - **“This Google login cannot manage the connected Google Ads account”:** your access is read-only or billing-only. Ask for Standard access and reconnect.
 - **A campaign refuses to start:** add a payment method (step 2). Sprid shows this before you pick a budget when Google reports no approved billing.

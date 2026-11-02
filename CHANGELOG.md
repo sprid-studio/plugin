@@ -3,6 +3,11 @@
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 
+## 1.6.6 - 2026-11-02
+
+- The Google Ads connect guide says Sprid always asks which ad account to connect, even when the login reaches only one, and explains accounts listed as not set up yet.
+- The marketing review leads with the direction and a plan of up to five ordered steps, or holding course when nothing needs to change, each with who does it and why in one number.
+
 ## 1.6.5 - 2026-11-02
 
 - Post, reels and ads share an editorial rule for generated fictional people: reactions followed by app demos and general copy are allowed, while invented first-person experiences and customer testimonials are not. A reaction-to-demo cut alone is not grounds to reject the format.
