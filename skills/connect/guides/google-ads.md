@@ -1,13 +1,16 @@
 # Google Ads
 
-**What Sprid does with this:** Promote your published YouTube videos from your own Google Ads account, start each campaign only when you confirm, and report what it spent and how many people watched.
+**What Sprid does with this:** Connect your Google Ads account for campaign research, Search and App campaign preparation, YouTube promotions and results. Spending requires approval in Sprid.
+
+For purchases or leads, start with [Set up conversion tracking](https://sprid.studio/docs/tracking). Connecting the ad account does not send conversion events.
 
 ## You need
 
 - A **Google Ads account** with a payment method. It can be the same Google login as your YouTube channel or a different one.
 - Access to that ad account as **Standard** or **Admin**. Read-only and Billing access cannot create campaigns.
-- A **YouTube video published through Sprid** that is **public** or **unlisted**. Google does not run private videos as ads.
-- A **channel picture** on that YouTube channel. Google shows it as the ad’s logo and refuses an ad without one.
+- **For a YouTube promotion:** a public or unlisted video published through Sprid and a channel picture. Google does not run private videos as ads and uses the channel picture as the logo.
+
+Search and App campaigns use their own destination and assets. A YouTube post is not required to connect the account or prepare a Search campaign.
 
 You do **not** create a Google Cloud project, a developer token or an API key. You only sign in with Google and pick the ad account.
 
@@ -43,7 +46,18 @@ The customer id is the ten-digit number at the top right of Google Ads, for exam
 
 Run `sprid status` and check that the ad account’s name shows, followed by “(Google Ads)”.
 
-When you promote a YouTube video, Sprid prepares a **Demand Gen** campaign that shows the video on YouTube (in-stream, in-feed and Shorts) in the countries you pick, at the daily budget you review. It starts **paused**. Nothing is spent until you confirm the start. Google reviews the ad before it runs, usually within a day.
+For a conversion campaign, open **Ads → New campaign**. Your agent can prepare
+Google Search with keywords and search copy, or an App campaign with a store
+destination and app assets. Both require explicit conversion actions. A connected
+Google Ads account does not install app measurement or send website purchases.
+Import the appropriate Firebase/GA4 or supported app-provider events where
+needed, then check campaign-specific goals and a source-to-Google test.
+
+Keyword ideas and search-term reporting are available through `google_ad_research`.
+A Keyword Planner access-level error needs Sprid’s API access fixed; reconnecting
+your Google login does not resolve it.
+
+When you explicitly boost a YouTube video, Sprid prepares a **Demand Gen** campaign that shows the video on YouTube (in-stream, in-feed and Shorts) in the countries you pick, at the daily budget you review. It starts **paused**. Nothing is spent until you confirm the start. Google reviews the ad before it runs, usually within a day.
 
 What Sprid sends Google for the ad: the video, its title as the headline, the first line of its caption as the description, the channel name as the business name and the channel picture as the logo. Hashtags are left out.
 

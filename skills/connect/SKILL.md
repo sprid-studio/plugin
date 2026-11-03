@@ -32,6 +32,8 @@ Use a dedicated credential for a new connection, with the permissions in the ser
 
 ## Before connecting
 
+For “connect my purchases to ads” or “set up tracking”, read [conversion tracking](../measurement/guides/tracking.md) first, then [measurement](../measurement/SKILL.md). A revenue connection provides reads; ad-event delivery needs its own sender and checks. Keep the same task when handing off between these skills. Do not replace purchase verification with a successful login.
+
 Read [service selection and access](../../references/marketing-review-checks.md#choose-services-by-the-question) when recommending a service or handling an unsupported provider. Use the customer’s existing tools and distinguish Sprid’s unattended reads from an agent-accessible tool or export. Check the current documentation catalog and available command/tool before recommending a Sprid connection; do not invent a connection verb for an unsupported service. Record the capability and missing read in the current plan/report as an integration need.
 
 For product analytics, read [the instrumentation workflow](../../references/marketing-review-checks.md#product-instrumentation-workflow). Check whether the app sends useful events already. A missing SDK or missing onboarding steps needs an app instrumentation recommendation; saving a read key cannot repair it. Use the PostHog connection instructions only for PostHog.

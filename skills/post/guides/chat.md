@@ -4,9 +4,11 @@
 
 You tell the agent what you want; it handles the tool calls below. The tool names are here so the agent knows the order. Setup should only ask for the connection the current task needs.
 
+For purchase or lead tracking, ask your agent to read the [tracking setup guide](https://sprid.studio/docs/tracking), available through `get_documentation {topic: "tracking"}`. It explains the checks and any handoff to a coding agent.
+
 ## Connect Sprid
 
-Choose your chat at `https://sprid.studio/start#chat` and follow its steps. Your chat may call this an app, connector or integration. The address is `https://api.sprid.studio/api/mcp?surface=core&src=docs`. Sign in to Sprid and authorize the right workspace.
+Open [Get started](https://sprid.studio/start), choose your chat app and follow its steps. Your chat may call this an app, connector or integration. The address is `https://api.sprid.studio/api/mcp?surface=core&src=docs`. Sign in to Sprid and authorize the right workspace.
 
 Agent: once the app exists, start with `get_marketing_plan` and reuse its prepared work and next step rather than starting over. Discovery can start from a website or store URL, with no social account.
 

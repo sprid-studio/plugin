@@ -4,6 +4,7 @@ export const CONTENT_GUIDE_SPECS = [
   { id: 'chat', file: 'chat', title: 'Use Sprid in chat', url: 'https://sprid.studio/docs/chat' },
   { id: 'local', file: 'local', title: 'Build locally and send to Sprid', url: 'https://sprid.studio/docs/local' },
   { id: 'marketing-review', file: 'marketing-review', title: 'Review marketing from connected evidence', url: 'https://sprid.studio/docs/marketing-review' },
+  { id: 'tracking', file: 'tracking', dir: 'measurement/guides', title: 'Set up conversion tracking.', url: 'https://sprid.studio/docs/tracking' },
   { id: 'traffic', file: 'traffic', title: 'Check whether a traffic spike is real', url: 'https://sprid.studio/docs/traffic' },
   {
     id: 'pinterest-content',

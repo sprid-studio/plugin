@@ -2,33 +2,58 @@
 
 **What this guide does:** Takes you from Meta account setup to a conversion campaign prepared in Sprid, with a real event checked before you approve spending.
 
-A conversion campaign asks Meta to find people likely to complete an action in your app. Choose the action you want, prove that Meta receives it, then build the campaign. Your agent prepares the ads. You review the campaign and press Launch in Sprid.
+A conversion campaign asks Meta to find people likely to complete a chosen action on your website or in your app. Choose the action you want, prove that Meta receives it, then build the campaign. Your agent prepares the ads. You review the campaign and press Launch in Sprid.
+
+For an agent-led setup across Meta and Google, start with [Set up conversion tracking](https://sprid.studio/docs/tracking). It covers payment ownership, consent and evidence to save.
+
+## Choose where the conversion happens.
+
+**Website, shop or service:** use the product's dataset and a supported commerce
+integration or consent-aware server sender. A native Meta app is not required
+for a website purchase. Keep the payment source, product and event definition
+explicit, including new subscriptions versus renewals.
+
+**Native app:** use App Promotion with the registered Meta app, its store URL
+and an eligible app event. The app SDK or measurement partner supplies install,
+activation and matching context. RevenueCat can send purchases server-side.
+Disable overlapping SDK purchase logging; it does not share RevenueCat's event
+ID. Configure iOS consent and measurement separately, then verify event
+eligibility for the intended campaign. Never label native events as website events.
+
+**RevenueCat Web Billing:** Stripe can process the charge while RevenueCat owns
+the purchase event. Prefer one sender. Before enabling RevenueCat's Meta
+integration, verify how your web consent choice suppresses delivery and handles
+withdrawal. Do not infer that clearing click cookies prevents delivery when the
+payment provider still holds email. If that gate cannot be verified, keep the
+existing consent-aware server sender and leave the second sender disabled.
 
 ## You need.
 
 - Admin access to the Meta business portfolio and ad account that will pay for this app’s ads.
 - A Facebook Page for the app, linked to its professional Instagram account if you want Instagram delivery.
-- Access to your app’s server and domain DNS. A developer needs to send your conversion events to Meta.
+- Access to the relevant payment integration or app code. Website domain verification needs DNS access; native apps need their store identity and app measurement setup.
 - A Sprid account connected to Meta Ads, and a person signed in to Sprid to approve the reviewed budget.
 
 ## Set up Meta once.
+
+Steps 4 to 6 describe website/server-event setup. For native app events, follow [RevenueCat’s native Meta setup](https://www.revenuecat.com/docs/integrations/attribution/meta-ads) for the registered app, SDK and identifiers; verify the selected integration path before creating a token.
 
 1. **Create or choose the business portfolio.** Keep the app’s Page, ad account and dataset under the business that owns them. Your personal Facebook login administers those assets.
 2. **Create the Page and link Instagram.** The Page supplies the identity for the ad, including ads that run only on Instagram. Check the linked handle before connecting Sprid.
 3. **Choose or create the ad account and add billing.** Choose its currency and time zone carefully. Changing them creates a new ad account and closes the old one, stopping its ads. Sprid’s budget amounts use the connected ad account’s currency.
 4. **Create the dataset in Events Manager.** This is where Meta receives conversion events. Keep its ID. A server-only Conversions API integration can use the dataset without installing browser pixel code.
 5. **Verify the app’s domain.** In Meta’s business settings, follow domain verification and add the supplied DNS TXT record with your DNS provider. Verify the domain where your conversions happen.
-6. **Create the Conversions API token.** Use the dataset’s direct integration setup in Events Manager. Save the token in your server’s secret settings. This token sends your app’s events; Sprid’s Meta Ads connection manages campaigns separately.
+6. **Create the Conversions API token.** Use the dataset’s direct integration setup in Events Manager. Save the token directly in the chosen integration’s secret settings, such as RevenueCat or your server. Never paste it into chat. This token sends your app’s events; Sprid’s Meta Ads connection manages campaigns separately.
 7. **Review account-level advertising settings.** Check any optional AI tests that change the destination or its presentation. Your agent’s creative settings cannot prove what an account-level test will do. If you use Meta’s audience-segment reports, define the engaged audience and existing customers there before interpreting those reports.
 8. **Connect Meta Ads to Sprid.** Follow [Connect Meta Ads](https://sprid.studio/docs/connect/meta-ads), selecting this app’s Page, ad account and dataset. Set the daily, campaign and monthly spending caps in Sprid’s account settings. If several apps share the ad account, a workspace owner or admin also sets **Shared Meta limits** there. Each app keeps its own Page and dataset; the shared limits cover campaigns managed through Sprid.
 
 ## Prove the conversion signal.
 
-1. In Events Manager, select the dataset and open **Test events**. Add its test code to your server’s Conversions API request as `test_event_code`.
+1. Use an isolated test dataset or the integration’s documented sandbox setup. For a direct server sender, Events Manager’s test code can identify a test request. Do not fabricate a live purchase or charge a card to populate diagnostics.
 2. Complete the chosen action through the app. Check that Events Manager receives the exact event name and reports a server connection. A successful HTTP request alone does not prove the expected event arrived.
-3. Inspect the event details. Website events need `event_source_url` and the visitor’s `client_user_agent`. Send a stable `external_id` for matching. When a real Meta click supplies `fbclid`, preserve it through redirects and send the correctly formatted `fbc` value. Keep the click ID’s case unchanged.
+3. Inspect the event details. Website events use `event_source_url` and the visitor’s `client_user_agent`. Send a stable `external_id` for matching. When a real Meta click supplies `fbclid`, preserve it through redirects and send the correctly formatted `fbc` value. Keep the click ID’s case unchanged.
 4. Check `Purchase` with the actual paid amount and currency if the app sells something. Store the visitor’s user agent and click ID when they arrive, so a later payment webhook can use the original values.
-5. Remove `test_event_code` for production. Complete another real action and check its arrival, then ask your agent to run `dataset_health` for the event you will optimize on.
+5. Replay the same confirmed source event and verify that it counts once. Keep its original event ID, timestamp, amount and currency. Configure production separately and observe an authorized real outcome when available; then run `dataset_health` for the chosen event.
 
 Email and phone identifiers need Meta’s normalization and hashing. Hashing `external_id` is recommended; keep its representation consistent across integrations. `fbc` and `client_user_agent` must remain unhashed. See [customer information parameters](https://developers.facebook.com/documentation/ads-commerce/conversions-api/parameters/customer-information-parameters) when implementing the server call.
 
@@ -57,7 +82,7 @@ Give your agent the intended countries, total budget, run length, destination an
 
 Ask the agent to follow this order:
 
-1. **Check readiness:** `ads_overview`, then `dataset_health` with the chosen `conversionEvent`. Fix missing connections or an unobserved event before creating ads.
+1. **Check readiness:** `ad_campaign_context`, `ad_measurement` and `ads_overview`, then `dataset_health` with the chosen `conversionEvent`. Fix missing connections or an unobserved event before creating ads.
 2. **Create the paused campaign:** `create_ad_campaign` with an objective such as `OUTCOME_SALES` and explicit `specialAdCategories`. Political campaigns also need explicit `countries`. For housing, credit and employment, Sprid derives the campaign countries from the ad sets.
 3. **Create the paused ad set:** `create_ad_set` with `OFFSITE_CONVERSIONS`, the chosen event, countries and reviewed budget. Use explicit Facebook and Instagram Feed, Stories and Reels placements for paired creatives. Set `hypothesis` and `targetCostPerEventCents`, the cost you will judge results against; both are required. This is a reporting target, not a bid. Rules and the council's readable flag wait until spend reaches twice it. Use `startAt` if you want a later start.
 4. **Prepare the creative:** `render_ad_creative` builds from a named template, or `create_ad_creative` accepts your own material. Ask for feed and vertical assets. An external pair must identify whether its assets are images or videos. Keep `destinationUrl` free of hand-written `utm_*` parameters; Sprid adds tracking.

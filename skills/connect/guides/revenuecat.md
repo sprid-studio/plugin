@@ -2,6 +2,8 @@
 
 **What Sprid does with this:** See subscription revenue and how it changes over time.
 
+For Meta or Google purchase optimization, follow [Set up conversion tracking](https://sprid.studio/docs/tracking). This revenue connection only reads sales; it does not send conversion events.
+
 ## You need
 
 **Admin** access to the RevenueCat project, to create a dedicated **V2 secret API key**. The app’s public key and V1 keys do not work.

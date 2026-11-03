@@ -2,6 +2,8 @@
 
 **What Sprid does with this:** Read revenue and subscriptions from your Stripe account.
 
+For Meta or Google purchase optimization, follow [Set up conversion tracking](https://sprid.studio/docs/tracking). This revenue connection only reads sales; it does not send conversion events.
+
 ## You need
 
 Permission to create a **restricted API key** in Stripe: live and read-only, beginning with `rk_live_`.

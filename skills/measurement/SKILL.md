@@ -12,6 +12,8 @@ The job is a number the next review can read at face value. A saved key, an
 installed SDK or a dashboard is not that; an event observed arriving from the
 deployed product, with the meaning the plan gives it, is.
 
+For purchase or lead feedback to ad platforms, read the shared [conversion tracking guide](guides/tracking.md) before provider setup. It is also MCP `get_documentation {topic: "tracking"}`, `sprid docs tracking` and [the website guide](https://sprid.studio/docs/tracking). Use its customer-path selection and verification record. Give the user one concrete next action, with who does it and what proves it worked; keep code or provider diagnostics out of their instructions unless needed.
+
 ## What this touches
 
 Reads the repository's analytics code and configuration, the provider's event
@@ -99,22 +101,32 @@ tracking plan: lowercase values, `utm_source` for the site or sender
 `referral`, `paid`), `utm_campaign` as a stable slug. Variants of one source
 (`Facebook`, `facebook`, `fb`) split its numbers; the review flags them.
 
+## Paid campaigns: prove the feedback loop
+
+Follow the shared [tracking setup guide](guides/tracking.md) for payment ownership,
+consent and the receipt/replay checks. Read `ad_campaign_context` and
+`ad_measurement` for the explicit product/account; their configuration evidence
+cannot establish delivery or eligibility. Preserve the chosen business outcome
+when a provider check is blocked.
+
+Implementation must queue delivery durably and expose failed/blocked attempts.
+A webhook retry after fulfillment must still deliver an unsent conversion.
+Preserve the source payment ID and original timestamp across attempts. Refusal
+and withdrawal must also cover queued events and identifiers stored at the payment
+provider. Keep unsupported or unverified paths disabled and record the exact
+remaining check. Never charge a real card or manufacture conversions to finish.
+
 ## Provider notes
 
-- **PostHog:** pin every query to the project; tell surfaces apart by `$lib`
-  and an explicit surface property; flag internal and test people and exclude
-  them in queries.
-- **RevenueCat:** money comes from RevenueCat or the store, not client events. Put
-  price, currency, product, offering and whether it loaded on the paywall event.
-- **GA4 / Firebase:** prefer the recommended event names (`sign_up`,
-  `tutorial_complete`, `purchase` with `value` and `currency`) and mark the
-  ones that matter as key events. Verify in DebugView.
-- **Plausible, Umami and other cookieless tools:** goals and revenue goals count
-  totals; there is no person, so no cohort or return rate.
-- **Web shop pixel with a server-side Conversions API:** send both with the same
-  `event_id` and event name so the platform deduplicates them. Platform-reported
-  purchases above the shop's real orders mean deduplication is failing. For
-  Sprid's own conversion setup read [Meta conversions](../ads/guides/meta-conversions.md).
+- **PostHog:** pin project, surface and app version; exclude internal and test identities.
+- **RevenueCat:** verified paid transactions own money. Trial starts and entitlement grants are not purchases. Prefer its supported purchase integration over a duplicate sender.
+- **GA4 / Firebase:** reuse existing instrumentation when suitable. Recommended events and imported Ads conversions need separate checks. DebugView proves analytics ingestion, not Ads eligibility.
+- **Meta:** `dataset_health` is recent aggregate evidence. It cannot prove per-order deduplication. Check source receipts and destination diagnostics; see [Meta conversions](../ads/guides/meta-conversions.md).
+- **Cookieless analytics:** totals can support goals and revenue reads; do not invent person-level cohorts.
+
+Never add Meta and Google attributed purchases as unique customers. Differences
+from commerce totals can reflect dates, attribution windows, renewals or value
+basis as well as duplicates. Test those explanations before diagnosing a bug.
 
 ## Report
 

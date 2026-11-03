@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.7.0
+
+- A shared tracking guide walks users through app, website and shop setup, with an agent prompt and evidence for consent, event delivery and duplicate handling. Measurement, connect and ads skills route to it.
+
+- Campaigns begin with purchases, subscriptions, qualified leads or product use. Organic posts become creative candidates; reach and engagement boosts remain a separate choice.
+- Ads and measurement guidance covers Google Search and App campaigns, server-purchase conversion setup, purchase-event ownership, consent, delivery verification and duplicate counting.
+- Campaign briefs continue in the product’s existing marketing plan across agents and the app.
+
 the Sprid plugin follows semver: a breaking change to a command's arguments,
 its output shape or its exit codes is a major release.
 

@@ -1,291 +1,91 @@
 ---
 name: ads
-description: Prepare, review and run paid campaigns through Sprid - promoting a published post on Instagram or Facebook (Meta), YouTube (Google Ads) TikTok (Spark Ads) or Pinterest, and on Meta the full test system of campaigns, ad sets, creatives built from archetypes, the copy gate, the launch that spends, the weekly verdict and the post-mortem. Use when the user wants to run ads, boost or promote a post, check how a campaign is doing, kill or scale an ad set, or asks what their competitors are paying to show. Requires the sprid MCP server; spending itself is confirmed by the user in the Sprid app.
+description: Prepare and manage campaigns around purchases, subscriptions, qualified leads or meaningful product use. Start with the business goal, customer path and verified conversion signal; use a successful organic post or new creative inside that campaign. Covers Meta campaigns, ad sets, creatives, Google Search and App campaigns, keyword research, results and iteration. Boosting a published post is a secondary, explicit reach or engagement task. Requires Sprid MCP; spending is approved in the Sprid app.
 ---
 
 # /sprid:ads
 
-Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
-Read [one marketing plan](../../references/guided-marketing.md). An ad serves the plan's active goal; a campaign with no stated hypothesis is money spent on finding out nothing.
+Read [agent runtime](../../references/agent-runtime.md) and run its version check once per session.
+Read [one marketing plan](../../references/guided-marketing.md). Continue the accepted goal, audience, voice and unfinished work. A product can be an app, website, shop or service; social posts and a repository are optional.
 
-Everything here prepares. **No call spends money.** Spending starts when the
-user presses Launch or Confirm in the Sprid app, on a link you hand them.
-Everything before that is drafting, and everything after it is reading. When the
-user asks how Sprid ads work, send them [Ads: create, compare and manage campaigns](guides/ads.md), the plain-language version of this skill.
+## Start with the result
 
-Ads are the surface where being wrong is most expensive. A post that breaks a
-voice rule can be deleted. An ad that breaks one has already been shown to people
-the user paid to reach.
+1. Read `ad_campaign_context` for the explicit account. It joins the product's marketing context, saved campaign briefs, destination capabilities and purchase-tracking evidence. Read `get_marketing_plan` for the supporting research and accepted guidance. Missing data is unknown, never zero.
+2. Name the business outcome and the actual customer path: ad → destination → useful action → payment or qualified lead. Distinguish a new paying customer, a first purchase and renewal revenue. An install, trial, saved item or checkout click is not a paid purchase.
+3. Select the outcome used for bidding and record its meaning, sender and counting rule. Use a paid outcome when that signal is usable. A more frequent upstream action needs evidence of a relationship to payment and an explicit learning hypothesis. Never silently substitute clicks, impressions or engagement for a purchase goal.
+4. Read `ad_measurement` and the event-specific provider evidence. Read the shared [tracking setup guide](../measurement/guides/tracking.md), then follow [measurement](../measurement/SKILL.md) to repair missing instrumentation. A connected ad account, dataset ID, primary conversion action or successful upload does not establish attribution eligibility or deduplication.
+5. Save a campaign brief with `prepare_ad_campaign`: goal, destination, audience, countries, hypothesis, funnel, optimization event, counting rule and conversion lag. Include economics when known and mark assumptions. This saves a draft in the same marketing plan, creates no platform campaign and starts no delivery. Keep its request key on retry. Read the returned action and readiness before continuing.
 
-## The order
+Prepare useful copy and assets while setup is incomplete. Show the exact missing setup step beside the blocked action; never replace the business goal to bypass it. Do not require users to recreate existing analytics or accounts.
 
-For a generated fictional person, read [AI people: reactions and general copy](../../references/writing-gate.md#ai-people-reactions-and-general-copy) before drafting or reviewing. A reaction followed by an app demo is allowed; do not attribute invented personal experience to the avatar.
+## Choose the campaign from the destination
 
-1. **`ads_overview`** - what the account can actually do: the ad account, the
-   page, the pixel, the caps, and `canRunAds`. If that is false, stop and fix the
-   connection; nothing below will work and a half-built campaign is worse than
-   none.
-2. **`suggest_ad_categories`** - read the copy and declare the regulated
-   category if there is one. See below; this is the step with legal consequences.
-3. **`create_ad_campaign`** → **`create_ad_set`** → **`create_ad_creative`** →
-   **`create_ads`** with an `ads` array for one or several
-   creatives, which is the normal shape of a test.
-4. **`review_ad_copy`** on every piece of copy before it goes anywhere near the
-   launch. Errors stop the launch: fix them, then review again. Voice follows the
-   customer's own accepted voice ([writing gate](../../references/writing-gate.md)),
-   and an em dash is always an error.
-5. **`launch_ads`** returns what launching commits and an `approvalUrl`. Show the
-   user the amount and send them the link; they press Launch there.
-6. **`ad_council`** once a week. **`ad_post_mortem`** and **`close_ad_set`** when
-   it ends.
+| Customer path | Campaign | Measurement |
+|---|---|---|
+| Website purchase or subscription | Meta Sales; Google Search where queries express the need | Confirmed paid outcome from the commerce owner; website matching and consent |
+| Qualified enquiry or booking | Meta Leads or suitable Google Search | Lead submission plus an explicit qualification definition; later revenue separately |
+| Native app install and use | Meta App Promotion; Google App campaigns | Store/app identity, install/activation SDK or supported measurement partner, eligible app event |
+| Online shop | Purchase campaign with the product destination | Existing commerce integration first; order ID, value, currency and refund treatment |
 
-## Shared advertisers and creative recommendations
+Heard “promote this post”? Treat the post as proposed creative for the business goal. Read the context and prepare that campaign. Ask only for information that changes the draft. Organic response suggests an angle worth testing; it does not establish paid conversion performance.
 
-Read [the ads guide](guides/ads.md) before recommending formats or account
-structure. Reels: vertical video, useful sound, safe areas and a message that
-also works muted. An opening hook within two seconds is an editorial target,
-not a Meta rule. Do not prescribe exactly three formats: choose distinct concepts
-and formats for the question and delivery context. Same copy is useful for a
-format comparison; ordinary ad-set delivery does not establish a causal winner.
+An eligible existing Meta post can retain its social engagement. Verify identity, destination, CTA and placement compatibility with the chosen objective. If the original post cannot support it, prepare a new ad using the material and say which engagement will carry over. Google App campaigns assemble text, image and video assets; an Instagram post is not itself a Google app ad. Search uses search terms and search-ad copy. Never make an organic winner a prerequisite for either.
 
-Use `ads_inventory` for the workspace’s live campaign → ad set → ad tree,
-including objects created directly in Meta. Read failures and partial pagination
-are explicit. Stored campaign ownership wins; uncertain external objects stay
-unassigned. `assign_meta_campaign` changes their place in Sprid only.
-`connect_shared_meta_ads` reuses an authorised advertiser inside one workspace,
-with an explicit Page and optional dataset. Both writes require owner/admin.
-Never substitute one product’s dataset just because another product lacks one.
-External campaigns remain outside Sprid’s spend limits and launch controls.
+Read [Ads: create, compare and manage campaigns](guides/ads.md) for the user flow and [Meta conversions](guides/meta-conversions.md) before event setup. Use `google_ad_research` for keyword ideas, actual search terms and campaign results. Pin market, language and advertiser. API access restrictions are provider capability gaps; reconnecting the customer's login does not fix them.
 
-## Agree the bar before it spends
+## Prepare, inspect, then approve
 
-`create_ad_set` refuses without a `hypothesis` and a `targetCostPerEventCents`.
-Most people have never written either, so propose both and ask the user to accept
-or change them. Say it in their words, not this vocabulary.
+For Meta: `ads_overview` → `suggest_ad_categories` → `create_ad_campaign` → `create_ad_set` → creatives → `create_ads`. The brief supplies the goal; these tools prepare delivery objects. Choose `OUTCOME_SALES`, `OUTCOME_LEADS` or `OUTCOME_APP_PROMOTION` from the actual path. App promotion is an ordinary path, not an advanced exception.
 
-- **The hypothesis** is one sentence: what this shows, to whom, and the result
-  that would count as working. "People who just tried a rival app will start our
-  trial from the first-week carousel, at or under 4.00 a trial", or for a shop,
-  "Gift buyers in December order from the bundle video at or under 12.00 an
-  order" Take the
-  audience and promise from the plan and the creative; the number comes next.
-- **The target cost** is the most one optimised event may cost and still pay.
-  Work it out with the user from what one event is worth: for a trial, the
-  trial-to-paid rate times first-year revenue times margin; for a shop order,
-  the margin on an average order; for an enquiry, the share that becomes paid
-  work times the margin on it. Show the arithmetic with their numbers. Where a number is
-  unknown, say so, use a stated guess and mark the test as a learning budget.
-- **The rules** Sprid arms with the set: cost per event above 1.5x the target
-  after 7 days, a week of spend with no events, and a cohort that does not come
-  back once the product reports one. Rules on cost or counts, and the council's
-  readable flag, wait until spend reaches twice the target: before that, a
-  verdict is noise at a small budget. Tell the user what that means in money and
-  days at the budget they chose.
+For Google: discover `create_google_campaign` and its current schema. Search and App campaigns use their own input and assets; a YouTube post promotion uses Demand Gen. Do not call these interchangeable. Check which conversion actions the campaign actually bids toward; two primary purchase actions are not evidence that one payment should be counted twice.
 
-Write all three into the brief before launch. Afterwards, read results only
-against them; a bar moved after the data arrived is not a bar.
+Google preparation defaults to `validateOnly:true`, which creates no objects. Read actual Search terms and keywords with `google_ad_research`; `update_google_keywords` changes keywords only while the campaign is paused. Keep the expected update timestamp. After an uncertain response, use `reconcile_google_campaign` to compare provider state before retrying; never create a replacement campaign to bypass an unresolved write. The CLI exposes `ads google prepare|research|keywords|reconcile --file`.
 
-## Declare the regulated category
+For standalone server purchase uploads, `prepare_google_conversion_action` validates or creates a secondary `UPLOAD_CLICKS` purchase action; validation is the default. It does not send purchases or change account bidding goals. Verify Data Manager access, event ownership and receipts separately. A `WEBPAGE` action's multi-source ingestion needs its own supported tag setup and access; do not substitute a website or Play action ID. Select the prepared action explicitly in the intended Search campaign after verification. CLI: `ads google conversion --file`.
 
-`special_ad_categories` on the campaign. Housing, financial products and
-services (Meta's replacement for credit), employment, gambling and political advertising have targeting restricted by law in several markets, and an
-undeclared one does not get quietly rejected - it gets pulled, with the ad
-account attached to it.
+For every campaign:
 
-`suggest_ad_categories` reads the copy and guesses. Treat a guess as a prompt to
-think, not as clearance. Anything about where people live, what they can borrow,
-or who gets hired is in scope even when the product is not obviously one of those
-things: a budgeting app that compares loan rates touches financial products.
+- Propose a hypothesis and target cost per optimized event from the customer's economics. `create_ad_set` requires both. A missing margin or trial-to-paid rate stays a labelled assumption; never fabricate one to complete setup.
+- State countries, identity, destination, optimization event, attribution window, revenue basis, budget and run. Store business outcome and bidding event separately when they differ.
+- Declare `special_ad_categories`. Housing, financial products/services, employment, gambling and political advertising need review. `suggest_ad_categories` is a prompt to investigate, never policy clearance. Clarify uncertain classification before platform creation.
+- Use the accepted voice. For a fictional person read [AI people](../../references/writing-gate.md#ai-people-reactions-and-general-copy); never invent personal testimony. Review every copy with `review_ad_copy`; fix errors, then review again.
+- Every Meta creative carries an archetype. Read [archetypes](archetypes.md), then `ad_archetypes`, `render_ad_creative` or `create_ad_creative`. `create_carousel_ad_creative` uses 2–10 cards from a 1:1 or 4:5 post. Dynamic creative requires a compatible ad set. Preview the actual placements with `preview_ads` and run `ads_preflight` before requesting launch.
 
-If you are unsure, say so to the user and let them decide. That is a question
-worth interrupting for.
+**Money starts from a press in the app.** `launch_ads`, `start_promotion`, `update_ad_budget` and `change_promotion_budget` return the commitment and an `approvalUrl`. They do not authorize a token to spend. Show the exact material, identity, amount and duration before handing off. A user's request to prepare tracking or draft a campaign grants no launch permission. Do not report it live until the provider read confirms delivery.
 
-## An ad creative must carry its archetype
+A preparation call can create paused platform objects. If the user said no campaigns at all, stop at the saved brief and local assets. Neither a draft nor permission for one public change grants permission for another.
 
-`create_ad_creative` refuses without one, and the refusal is the point.
+## Measurement ownership
 
-An archetype is a recipe, not a tag: what the shape is, which slots it takes,
-what breaks it, and how long competitors' versions of it have been running.
-Untagged creatives are how a system degrades into an ads dashboard with extra
-steps - you keep the ability to launch and lose the ability to learn, because
-afterwards an outcome can only be read as "ad 7 beat ad 3" rather than "the
-shape that shows the product's verdict beat the shape that lists features".
+Use one authoritative sender for each source → destination → event. RevenueCat can own purchases it processes, including Web Billing; Stripe being its processor does not make a second Stripe purchase feed necessary. Direct Stripe Checkout purchases use the confirmed-payment webhook. An existing shop integration can own its orders.
 
-Read [archetypes.md](archetypes.md) before building a creative. `ad_archetypes`
-lists what an account has, `render_ad_creative` builds one from a recipe plus
-slot values, and `archetype_standing` says how each shape is doing for this
-account against the competitor baseline.
+Keep native install/activation signals separate from purchase delivery. For RevenueCat → Meta, disable overlapping SDK purchase logging: the SDK and RevenueCat do not share a purchase event ID. A Meta app is needed for native app promotion; a website purchase does not become a native event because its product also has an app.
 
-## The copy gate
+Verify a test payment and replay at the authoritative source and destination. Preserve the payment ID, original timestamp, value and currency on retry. Distinct renewals need distinct payment IDs. Meta browser/server duplicates need the same event name and event ID. Google deduplicates a transaction ID within one conversion action, not across different actions. Consent, matching and optimization eligibility need their own checks.
 
-`review_ad_copy` runs the same em dash rule as organic posts plus the
-account's own never-say lists, each carrying the reason it exists - so a refusal
-cannot be worked around by rephrasing until it passes. What it catches:
+`send_conversion_events` is for authorized server-event delivery, never for fabricated conversions, cohort aggregates or historical replays just to make the dataset look healthy. `report_ad_outcome` records the business's cohort evidence separately. See the measurement skill for receipts and verification scope.
 
-- **Em and en dashes**, an error on every account.
-- **The account's never-say phrases**, one-offs and named presets. A phrase may
-  be **quoted** and may not be **asserted**: a listing's own words printed over a
-  photograph of what they describe is a quotation, and the reader draws the
-  conclusion. The same words as our claim are something else.
-- **Manufactured urgency.** State the real deadline or drop it.
-- **An opening that names an identity rather than a moment.** "For runners" is a
-  category; "Your alarm goes off and it is raining" is a moment, and the moment
-  is what stops a scroll.
-- **Length before the fold**, and headline truncation.
+## Boost only when that is the task
 
-Warnings pass. Errors stop the launch. A draft is allowed to be wrong; an ad
-about to be paid for is not.
+Reach, video views, engagement and traffic can be legitimate goals when explicitly requested. Say the exact result being bought. Use `promotion_connection`, then `create_promotion` with the selected network's request key, currency and explicit goal. Keep the request key on retry. `start_promotion` returns the approval link.
 
-## Where spending starts
+The promotion network follows the published post: Instagram/Facebook → Meta, YouTube → Google Demand Gen, TikTok → Spark, Pinterest → Pinterest Ads. A TikTok post marked `needsAuthorization` needs the creator's own authorization code. Pinterest needs a public Pin owned by the advertiser and explicit `maxBidCents`; its run uses UTC days. Read [Pinterest Ads](../connect/guides/pinterest-ads.md).
 
-Only a person signed in to the Sprid app can start delivery or raise a budget.
-`launch_ads`, `start_promotion`, `update_ad_budget` and
-`change_promotion_budget` change nothing: each returns what the spend would
-commit and an `approvalUrl`. No token can do more, whatever its scopes, and the
-REST routes behind those buttons refuse tokens too.
+## Read results and continue
 
-Show the user what will run, what it costs a day, for how long and the total,
-then send them the link. Do not say anything is live until `ads_overview` or
-`list_promotions` shows it.
+Read source purchases/revenue and platform-attributed results as separate measures. Never add Meta and Google attributed purchases together as unique customers, or add parent campaign rows to their child rows. Match dates, currency, conversion lag and revenue basis; refunds and renewals must retain their meanings. Missing or failed reads stay unknown.
 
-## Promoting a published post, on any network
+`ad_council` judges cost per optimized event first. `ad_metrics`, `ad_breakdown` and `google_ad_research` supply detail. The council's readable flag is review guidance, not platform learning status or proof of a conclusive sample. Check outcome volume and time to purchase before judging. Ordinary ad-set allocation is not a randomized experiment.
 
-A promotion is a paid ad built from a post as it went out, and it runs only on
-the platform that post is live on. The network follows the platform:
-Instagram and Facebook go through Meta, YouTube through Google Ads, TikTok as a
-Spark Ad, Pinterest through Pinterest Ads. An Instagram post is never shown on Facebook, and the reverse.
+- `iterate_winner` prepares another creative under the winning hypothesis. Change one testable variable where possible. Keep the original comparison and observation that would change the recommendation.
+- `ad_post_mortem` then `close_ad_set` records what happened and what was learned. A campaign is judged against its original goal; do not move the bar after seeing results.
+- `pause_ads` stops an ad/set; `pause_promotion` stops a promotion. Confirm the provider's receipt before saying it stopped. Failed or uncertain pauses remain unresolved.
+- `create_ad_rule`/`evaluate_ad_rules` flag a threshold for human review, never automatically pause. Meta hard-stop rules, resume, changes to budgets and studies over delivering sets retain their approval gates. Propose budget changes only when asked. Archive by default; delete only on request.
 
-1. **`promotion_connection`** lists every network with its own answer: the ad
-   account, currency, the posts it can promote and a `requestKey`, or the
-   sentence saying why it is not connected. Pick the row whose network matches
-   the post. A network that is not connected is a
-   [connect](../connect/SKILL.md) step for the user, never something to route
-   around by promoting the same post on another platform.
-2. **`create_promotion`** with that row's `requestKey` and currency. It
-   prepares everything paused. Keep the `requestKey` on a retry.
-3. **`start_promotion`** returns the budget and an `approvalUrl`. Show the user the
-   network, the platform, the daily budget, the days and the total, and send
-   them the link; they press Confirm there.
+Save the conclusion, artifact and next action in the existing marketing plan. Reuse actual audience language, accepted corrections and previous tests for the next creative. Competitor-library days live show that an ad remains active, not its spend, conversion rate or profitability.
 
-Two network details. A TikTok post marked `needsAuthorization` needs the
-creator's ad authorization code (in TikTok: the post, then Ad settings, then
-generate a code), passed as `promotion.authorizationCode`; only the user can
-make it. The archetype test system above (ad sets, creatives, batches) is Meta
-only; on Google Ads, TikTok and Pinterest, promotion is the whole surface.
+## Shared accounts and advanced controls
 
-Pinterest requires a public Pin owned by the selected advertiser and an explicit
-`promotion.maxBidCents` (maximum CPC). It creates a paused consideration campaign
-with a fixed daily budget. Its run counts UTC days, including the creation day,
-and ends at UTC midnight. Only ordinary categories are supported. Read the
-[Pinterest Ads guide](../connect/guides/pinterest-ads.md) for consent and reporting.
+`ads_inventory` includes external Meta objects; uncertain ownership stays unassigned. `assign_meta_campaign` only changes Sprid organization. `connect_shared_meta_ads` requires owner/admin and explicit Page/dataset selection. Never borrow another product's dataset. External campaigns remain outside Sprid's launch controls and spend caps.
 
-For conversion campaigns, read [the Meta conversion guide](guides/meta-conversions.md)
-before setup. A dataset ID alone cannot prove recent activity for the chosen event.
-Run `dataset_health` and resolve its readiness reason before preparing launch.
-
-## Budgets, pauses and rules
-
-- `update_ad_budget` and `change_promotion_budget` take your proposed amount and
-  return the link where the user sets it. **Propose a budget change only when
-  asked.** An agent that reallocates budgets between reads is a worse failure
-  than a campaign that runs three days too long, because the user can see the
-  second one.
-- `pause_ads` with `target: {kind: "ad" | "set", id}` stops delivery, and a pause is only real once the
-  platform confirms it. An unconfirmed compensating pause leaves the row needing
-  attention: say that, rather than reporting a pause that may not have landed.
-- `create_ad_rule` and `evaluate_ad_rules` flag a threshold for review. A fired
-  rule sends its observed value to the owner; it does not pause delivery. The
-  person chooses Pause or Keep in the Sprid app.
-- A Meta-side hard stop (`create_meta_ad_rule` with pause or lower_budget),
-  `resume_ad`, and an A/B test over ad sets that are already delivering all
-  return an `approvalUrl`, like any other spend change. `archive_ad_object`
-  archives; delete only when the user asks.
-
-## Beyond the defaults, only when the user asks
-
-Unprompted, keep the playbook above: Sales, Leads, Traffic or Engagement, lowest
-cost bidding, a daily ad set budget, countries only, Advantage+ audience on, the
-creative exactly as supplied. Everything below is opt-in. Read every setting you
-chose back to the user with the approval link; the approval screen shows them too.
-
-**Who sees it.** `audience` narrows an ad set or promotion. Find places,
-interests and locales with `search_ad_targeting` and send each result's `id` as
-the `key` with its `countryCode`; a city or region replaces its country rather
-than adding to it. Cities take a radius of 17-80 km. With Advantage+ audience on,
-ages, genders and interests are suggestions, not limits. Including a saved
-audience means only those people; excluding one skips them. Check the size with
-`estimate_ad_audience` before proposing a budget. `list_custom_audiences`,
-`create_custom_audience` (website, engagement, customer list, lookalike) and
-`add_custom_audience_members` cost nothing; customer lists are hashed by Sprid,
-and phone numbers need their country code. Housing, employment and financial ads
-take regions, cities of 15 km or more in Europe (25 km elsewhere), interests and
-saved audiences that are not lookalikes, never ages or genders.
-
-**How it delivers.** `OUTCOME_APP_PROMOTION` (with `app` and its event,
-`skadnetwork` for iOS), Awareness (`REACH`, `THRUPLAY` with `frequencyCap`),
-profile visits, `bidStrategy` caps, `lifetimeBudgetCents`, `schedule`,
-`campaignBudget`, `destinationType`, `attribution` and manual `placements`.
-`COST_CAP` with no `bidAmountCents` uses `targetCostPerEventCents`. Budget
-changes name their kind. Ads reaching Taiwan or Singapore need the advertiser's
-identity ids saved in the account's ad settings first.
-
-**Creative.** `create_carousel_ad_creative` turns a 1:1 or 4:5 post into 2-10
-cards. Extra texts or headlines make a dynamic creative: create the ad set with
-`isDynamicCreative: true` and put only that creative in it. Turn Advantage+
-creative features on by name in `formatSpec.creativeFeatures`, never as a bundle. Run
-`preview_ads` and show the user before sending the launch link. Lead forms
-(`list_lead_forms`, `create_lead_form`) need a lead generation ad set; ask the
-user for their privacy policy URL and never invent one, and never fetch leads
-into the conversation. Partnership ads and lead forms say so when the Meta
-permission they need is missing.
-
-**Measurement.** `send_conversion_events` sends server conversions; pass the
-pixel's event id as `eventId` so Meta does not count one purchase twice. Never
-send cohort outcomes there. `create_ad_study` settles a decision the council
-cannot; it is a test with its own budget share, not a dashboard.
-`ad_breakdown` with `live: true` covers country, region, device and market; if
-`availability` says `needs_opt_in`, offer `enable_insights_breakdown`.
-
-## Reading results
-
-**`ad_council` is the weekly judgement**, and it answers "did this work, why, and
-what next" rather than printing a dashboard. It reads cost per optimised event
-first and impressions last, on purpose: the order a report puts numbers in is the
-order people believe them in.
-
-Its **readable** flag is review guidance: at least 3 days, and spend of at least twice the target cost per event when one is set. It does
-not report Meta’s learning status or prove a sample is conclusive. Check event
-volume and the time people have had to pay before judging the result.
-
-- `ad_metrics` and `ad_breakdown` for the detail. **Never sum a campaign row and
-  its children**; they are independent reporting levels and adding them double
-  counts everything.
-- Paid numbers come from saved rows over a stated window, so a period that ends
-  today and a period that ended last Tuesday are two different readings. Say
-  which one you used.
-- `report_ad_outcome` is where the product's own cohort read comes back - the
-  install that became a subscriber, which the platform cannot see. When it is
-  available it outranks every platform number in the same report.
-
-## When something works, and when it doesn't
-
-- **`iterate_winner`**: same copy, new creatives, behind the winner. One variable
-  at a time or the result teaches nothing.
-- **`ad_post_mortem`** then **`close_ad_set`**: write down what the hypothesis
-  was, what happened, and which archetype carried it. An archetype standing is
-  only as good as the post-mortems behind it.
-- A losing set is data. Close it and say what it ruled out.
-
-## Where the shapes come from
-
-The archetype library starts from live competitor ads. Refresh it against the
-user's own market: the `scout` skill harvests the public ad library, and
-`refresh_archetype_evidence` recomputes each archetype's baseline from what it
-pushed. Two things travel with those
-numbers and must travel with every sentence you write from them:
-
-**Days live is the only performance signal the ad library gives**, outside EU
-political ads. There is no spend, no impressions, no click-through rate. It means
-somebody keeps paying, not that it is efficient. Never call a competitor's ad
-"best-performing" on that evidence, and never let a baseline built from it be
-quoted as a benchmark of results.
+Keep advanced targeting/bidding deliberate. `search_ad_targeting`, `estimate_ad_audience` and custom audiences serve the hypothesis. Advantage+ audience inputs can be suggestions; special categories restrict ages, gender, radii and lookalikes. Taiwan/Singapore require advertiser identity settings. `bidStrategy`, lifetime/campaign budgets, placements and attribution stay visible in review. Lead forms require the customer's privacy policy and correct permissions; never fetch personal leads into chat.

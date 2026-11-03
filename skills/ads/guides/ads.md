@@ -7,13 +7,43 @@ Choose a campaign from the audience you want to reach, the result you need and
 what that result is worth. An organic post can supply a promising creative;
 you can also test a new paid creative directly.
 
+Need purchase or lead tracking first? Follow [Set up conversion tracking](https://sprid.studio/docs/tracking), with a prompt for your agent and checks for apps, websites and shops.
+
+## Start with a business outcome
+
+Open **Ads → New campaign**. Choose purchases, paying subscribers, qualified
+leads, product use or app installs, then the website or store destination.
+**Prepare with your agent** carries the selected product and any chosen post
+into the same marketing plan. Your agent reads the product, audience, accepted
+voice and previous results before proposing the campaign.
+
+The setup shows missing connections and signal checks. **Fill in campaign details
+myself** saves the audience, hypothesis, event owner, counting rule and markets.
+**Save campaign brief** creates a plan only. It creates no platform campaign and
+spends nothing. Continue the saved brief with your agent to prepare the assets and
+delivery settings. Campaign briefs stay visible in Ads and the marketing plan.
+
+A website sale uses a website conversion campaign, even if the business also has
+an app. Native installs and in-app actions use an app campaign. A shop can reuse
+its commerce integration; a service needs an actual qualified-lead definition.
+Your agent keeps the business goal separate from an earlier event used for bidding.
+
+**Use in campaign** on a published post carries its identity into this setup.
+An organic winner supplies a creative hypothesis. Your agent checks that its CTA,
+destination and format work with the campaign objective. If they do not, it can
+prepare a new ad from the same material. Google App campaigns assemble assets;
+Google Search uses keywords and search-ad copy. Neither needs an Instagram post.
+
+**Boost for reach or engagement** is a separate choice at the bottom of setup.
+Choose it when those are the results you intend to buy. It prepares a paused
+promotion on the post's network; it does not establish purchase optimization.
+
 ## Find what is running
 
-Open **Ads** and use the same brand filter as the other screens. Ads appear
-immediately. **Ads / Ad sets / Campaigns** changes the level; each row shows
-its app when several brands are selected. Open a row to inspect its contents.
-**Details** holds targeting, budgets and results. **Refresh from Meta** reads
-the latest delivery status and results.
+Open **Ads** and use the same product/account filter as other screens. Running
+and finished ads show their current status. Open an ad to inspect the creative,
+its campaign and ad set, destination, spend and named results. Use **Limits**
+for spend caps and connections. Unknown or failed readings remain visible.
 
 When readings exist, the overview shows spend, a named result and cost per
 result, with daily minigraphs. One chart combines result bars with spend or cost
@@ -90,17 +120,22 @@ There is no universal requirement for exactly three formats in each ad set.
 
 ## Create an ad set
 
-Start with **New campaign** to promote a published post or prepare a standalone
-creative. Inside a Sprid campaign, choose **Add ad set**. Name the question you
+Start with a saved campaign brief and verify its chosen signal. Your agent can
+prepare a paused Meta campaign and ad set through the same tools. Inside a Sprid
+campaign, choose **Add ad set**. Name the question you
 are testing, select countries and a result, then set the run and target cost per
 result. Add creatives from the library. They remain paused for review.
-Both the campaign composer and ad-set composer ask for a hypothesis and target.
+The ad-set composer asks for a hypothesis and target.
 For an existing Sprid ad set, open **Details → Set a goal** or **Edit goal**.
 Goal changes are recorded in its history. A target is a reporting estimate;
 saving it changes no Meta bid or budget and does not enable automatic pausing.
 Your agent can save the same fields with `set_ad_goal`.
-For advanced campaign objectives and delivery options, your agent can prepare
-the settings through Sprid’s API and send you the review link.
+Your agent can prepare Google Search and App campaign settings and Meta app
+promotion through Sprid’s API and send you the review link. Google Search needs
+keywords, language, search copy and explicit conversion actions. App campaigns
+need one store destination, app assets and eligible imported app events. Setup
+shows when provider creation is unavailable; validation can still prepare a
+reviewable draft without creating advertising objects.
 
 For a format comparison, hold the message and offer constant. To compare
 messages, keep the format constant. When several elements change, the result
@@ -140,7 +175,7 @@ unavailable. Close a test with its question, evidence and remaining uncertainty.
 
 ## Sources and review date
 
-Reviewed 2026-10-31 against Meta’s
+Reviewed 2026-11-03 against Meta’s
 [creative diversification guidance](https://www.facebookblueprint.com/student/activity/707402),
 [Reels creative guidance](https://www.facebookblueprint.com/student/activity/641202),
 [cross-campaign learning explanation](https://engineering.fb.com/2026/10/19/ml-applications/genrecs-tokenization-transforming-ads-recommendation-at-meta-with-stable-model-vocabulary/)
