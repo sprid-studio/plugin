@@ -63,6 +63,7 @@ Ask the agent to keep a short evidence record for each destination:
 | Meaning and source | A redacted source receipt for an authorized action, its stable ID, original time, value and currency. |
 | Delivery | The expected event observed in the intended provider and environment. An accepted HTTP request alone is insufficient. |
 | Duplicate handling | Replay the same source event with its original identifiers and confirm one counted outcome. A new renewal gets its own payment ID. |
+| Matching | Confirm the allowed matching identifiers reach the intended destination, with the required consent. Keep their values out of the evidence record. |
 | Consent | Check opt-in, refusal and withdrawal, including queued server events and identifiers stored by integrations. |
 | Bidding eligibility | Confirm the event is selectable for the intended campaign and inspect the actual conversion goals when preparing it. |
 
@@ -75,6 +76,8 @@ The result should say **configured**, **observed in test**, or **observed in pro
 ## Save the knowledge and use it.
 
 Keep the event map, receipt references and unresolved checks in the product’s existing marketing plan so another agent can continue. With a code repository, maintain `marketing/TRACKING_PLAN.md` and the actual key-event names in `.sprid/app.json`. Save only redacted evidence; no keys, personal customer data or raw payment payloads.
+
+Agent: when available, use `record_ad_measurement_evidence` to persist this record, then read `ad_measurement` to confirm it. Discover the current schema before writing. Scope it to the selected product account, network, channel, dataset/app/conversion target, event, build and environment. Include the observation date and redacted source and destination references, with separate delivery, duplicate handling, consent, matching and bidding-eligibility checks. Use a UUID `requestKey` on retry and set `expiresAt` within 30 days of `checkedAt`. Each check has `status` (`passed`, `failed` or `not_tested`), `summary` and `references`; the bidding-eligibility check is named `optimization`. Passed duplicate handling needs passed delivery plus original and replay/count references. The record is caller-attested; saving it performs no live verification, sends no conversion and grants no launch permission. Preserve local test evidence separately from provider observations. Recheck evidence after a destination or instrumentation change. A dataset read cannot confirm a native Meta app target; that record remains `target_unconfirmed`. Fully passed production checks can make a matching campaign ready for review, and never authorize launch.
 
 For each unresolved check, record the next action and the evidence that will close it. This lets the agent distinguish a connection problem from missing instrumentation without repeating setup next time.
 

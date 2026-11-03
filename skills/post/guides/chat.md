@@ -1,6 +1,6 @@
 # Use Sprid in chat
 
-**What this guide does:** Take an app from setup to a reviewed post and confirmed delivery using only your chat app and a browser. No CLI or installed skills needed.
+**What this guide does:** Prepare a campaign from its business goal, tracking and creative, or take a post through review and confirmed delivery, using your chat app and a browser. No CLI or installed skills needed.
 
 You tell the agent what you want; it handles the tool calls below. The tool names are here so the agent knows the order. Setup should only ask for the connection the current task needs.
 
@@ -16,7 +16,21 @@ Agent: once the app exists, start with `get_marketing_plan` and reuse its prepar
 
 Agent: call `get_capabilities`, then `list_apps` and `list_accounts`, and reuse what exists. If the app is missing, get its description or website/store URL, confirm it and create it with `upsert_app_profile`. A content account owns voice and media; a channel is one exact social destination. Never pick a handle just because it is first in a list. If the app has no account, ask what to call it. Use `create_content_account` when your connector exposes it. If that tool is unavailable, open `https://app.sprid.studio/settings/accounts/new?workspaceId=<workspace-id>&app=<app-id>` with the selected app’s workspace and app IDs filled in. Ask the person to confirm that app and create the account, then read `list_accounts` again.
 
-Then ask whether the app has users yet. If it does, offer the analytics and revenue connections `next_actions` lists first: each link opens Sprid’s secure form, and the first recommendation then reads real numbers. If it has none yet, go on to the first post; connecting stays optional.
+Then ask whether the app has users yet. If it does, offer the analytics and revenue connections `next_actions` lists first: each link opens Sprid’s secure form, and the first recommendation then reads real numbers. If it has none yet, continue the requested campaign, tracking setup or first post; connecting stays optional until that work needs it.
+
+## Prepare a campaign
+
+For purchases, subscriptions, qualified leads or meaningful app use, start with the business goal and the place where the customer acts. A request to promote a successful post makes that post a creative candidate. Its organic response does not prove paid conversion performance. Boosting for reach or engagement is a separate, explicit goal.
+
+Agent: check the `paidCampaigns` capability first. The following campaign tools are conditional on this connection exposing them. On a core connection, use `find_tools` and `call_tool` to discover and run tools outside the everyday list. If campaign tools are unavailable, read the [campaign guide](https://sprid.studio/docs/ads) and [tracking guide](https://sprid.studio/docs/tracking), preserve the goal and hand off to a connection with campaign tools or [Sprid Ads](https://app.sprid.studio/ads). Do not try hidden tools on a directory connection.
+
+1. Read `ad_campaign_context` for the selected account and reuse the saved plan. Save the outcome, destination, funnel and bidding event with `prepare_ad_campaign`. This records a brief without creating platform objects.
+2. Read `ad_measurement` and follow the tracking guide. Inspect source receipts and destination diagnostics. Use `record_ad_measurement_evidence` to save dated, caller-attested checks for the exact network, channel, event target, build and environment. Keep delivery, duplicate handling, consent, matching and bidding eligibility separate. Configuration alone does not verify them; sandbox evidence does not verify production.
+3. Prepare compatible paused delivery objects only when requested. For Meta, use `create_ad_campaign`, `create_ad_set`, then `create_ad_creative` or `create_carousel_ad_creative` for suitable post assets and `create_ads`. For Google Search or App campaigns, use `create_google_campaign` with the chosen conversion actions and required assets; validation is the default. An Instagram post is not a Google campaign type.
+4. Review the destination, event, creative, budget and duration. For Meta, use `preview_ads` and `ads_preflight`. Spending requires a person in Sprid. A saved brief, tracking record or chat approval does not start delivery.
+5. Read `ads_inventory` and `ad_council` for Meta, or `google_ad_research` for Google. Compare results with the saved business goal. Keep actual purchases separate from platform-attributed purchases; never sum different networks' claims as unique customers.
+
+Tracking-only work stops at the evidence and unresolved checks. A no-campaign request stops before creating paused objects too.
 
 ## Connect a destination or data source
 

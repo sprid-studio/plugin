@@ -6,11 +6,7 @@ description: Make the numbers a business runs on trustworthy. Inventory what is 
 # /sprid:measurement
 
 Read [agent runtime](../../references/agent-runtime.md) first for Codex/Claude invocation, tool discovery, and script paths, and run its [version check](../../references/agent-runtime.md#versions-at-the-start-of-a-job) once per session before anything else.
-Read [one marketing plan](../../references/guided-marketing.md). Measurement earns its place when a decision depends on it; start from that decision.
-
-The job is a number the next review can read at face value. A saved key, an
-installed SDK or a dashboard is not that; an event observed arriving from the
-deployed product, with the meaning the plan gives it, is.
+Read [one marketing plan](../../references/guided-marketing.md). Start from the decision measurement must support. The next review needs events observed from the deployed product with their intended meaning. A saved key or installed SDK proves configuration only.
 
 For purchase or lead feedback to ad platforms, read the shared [conversion tracking guide](guides/tracking.md) before provider setup. It is also MCP `get_documentation {topic: "tracking"}`, `sprid docs tracking` and [the website guide](https://sprid.studio/docs/tracking). Use its customer-path selection and verification record. Give the user one concrete next action, with who does it and what proves it worked; keep code or provider diagnostics out of their instructions unless needed.
 
@@ -31,10 +27,9 @@ purchase code, and any server that emits events. Then read what actually arrives
 with PostHog connected, `query_marketing_posthog` for the last 28 days of each
 candidate event, counted in people, split by surface (`$lib`) and app version.
 
-Give every event one status: `live` (arrives, means what its name says),
-`rename` (arrives under a name or with properties the plan should change),
-`broken` (expected and not arriving, or arriving twice) or `new` (not sent yet).
-Configuration alone is `unverified`, never `live`.
+Classify each event: `live` (observed with the intended meaning), `rename` (needs a
+new name or properties), `broken` (missing or duplicated), `new` (not sent yet).
+Configuration alone is `unverified`.
 
 ## 2. Plan from the questions
 
@@ -109,6 +104,24 @@ consent and the receipt/replay checks. Read `ad_campaign_context` and
 cannot establish delivery or eligibility. Preserve the chosen business outcome
 when a provider check is blocked.
 
+Persist checks through `record_ad_measurement_evidence` when available, then read
+`ad_measurement` to confirm the record. Supply `account`, a UUID `requestKey` and
+`evidence`: `channelId`, `target {kind,id}`, `surface`, `source`, `sourceEvent`,
+`event`, `counting`, `build`, `environment`, `checkedAt`, `expiresAt` and `checks`.
+The channel determines the network. Expiry must be within 30 days of the check.
+Each check (`delivery`, `deduplication`, `consent`, `matching`, `optimization`)
+needs `status` (`passed`, `failed`, `not_tested`), `summary` and `references`.
+Passed/failed checks need redacted evidence references; passed deduplication also
+needs passed delivery and references for both original delivery and replay/count.
+Use the summary to preserve the exact remaining check. Reuse the request key on
+retry; a new check gets a new key and preserves prior records.
+
+These are caller attestations. Saving them performs no provider check, sends no
+events and grants no launch permission. Local/sandbox evidence cannot verify
+production. Recheck expired evidence or a changed build, sender or target; a newer
+failure supersedes an older pass. If writing is unavailable, preserve the same
+record in the product's tracking plan and name the missing capability. Native Meta app targets remain `target_unconfirmed` when the read only confirms a dataset.
+
 Implementation must queue delivery durably and expose failed/blocked attempts.
 A webhook retry after fulfillment must still deliver an unsent conversion.
 Preserve the source payment ID and original timestamp across attempts. Refusal
@@ -134,6 +147,4 @@ The tracking plan's path, the events verified with build and date, the ones stil
 unverified with the exact check that remains, and which decisions the review can
 now answer. Never present an unverified event as working.
 
-## Then: what is next
-
-Follow [agent runtime: next useful action](../../references/agent-runtime.md#end-with-the-next-useful-action). When the plan came from a review, the next review reads the verified rows; say when its first comparable read is.
+Follow [agent runtime: next useful action](../../references/agent-runtime.md#end-with-the-next-useful-action). The next review reads the verified rows; say when its first comparable read is.

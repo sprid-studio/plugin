@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.1 - 2026-11-03
+
+- Campaign discovery in chat starts from the business goal, tracking and suitable post creative.
+- Agents save dated tracking evidence with explicit environment, sender, destination, build and receipt references. Reported checks never authorize spending.
+
 ## 1.7.0
 
 - A shared tracking guide walks users through app, website and shop setup, with an agent prompt and evidence for consent, event delivery and duplicate handling. Measurement, connect and ads skills route to it.

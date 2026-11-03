@@ -10,13 +10,16 @@ Read [one marketing plan](../../references/guided-marketing.md). Continue the ac
 
 ## Start with the result
 
-1. Read `ad_campaign_context` for the explicit account. It joins the product's marketing context, saved campaign briefs, destination capabilities and purchase-tracking evidence. Read `get_marketing_plan` for the supporting research and accepted guidance. Missing data is unknown, never zero.
+1. Check `get_capabilities`; use `find_tools` and `call_tool` on a core connection for tools outside its everyday list. A directory connection may lack campaign operations: preserve the goal and hand off instead of calling hidden tools. Read `ad_campaign_context` for the explicit account. It joins the product's marketing context, saved campaign briefs, destination capabilities and purchase-tracking evidence. Read `get_marketing_plan` for the supporting research and accepted guidance. Missing data is unknown, never zero.
 2. Name the business outcome and the actual customer path: ad → destination → useful action → payment or qualified lead. Distinguish a new paying customer, a first purchase and renewal revenue. An install, trial, saved item or checkout click is not a paid purchase.
 3. Select the outcome used for bidding and record its meaning, sender and counting rule. Use a paid outcome when that signal is usable. A more frequent upstream action needs evidence of a relationship to payment and an explicit learning hypothesis. Never silently substitute clicks, impressions or engagement for a purchase goal.
 4. Read `ad_measurement` and the event-specific provider evidence. Read the shared [tracking setup guide](../measurement/guides/tracking.md), then follow [measurement](../measurement/SKILL.md) to repair missing instrumentation. A connected ad account, dataset ID, primary conversion action or successful upload does not establish attribution eligibility or deduplication.
+   Save completed and unresolved checks with `record_ad_measurement_evidence` for the exact account, network, channel, dataset/app/conversion target, event, build and environment. Include dated source and destination references and separate delivery, deduplication, consent, matching and bidding-eligibility results. These are caller attestations, not Sprid live verification. Read the saved evidence on the next `ad_measurement` call; recheck its scope and freshness before using it. Test evidence cannot establish production readiness.
 5. Save a campaign brief with `prepare_ad_campaign`: goal, destination, audience, countries, hypothesis, funnel, optimization event, counting rule and conversion lag. Include economics when known and mark assumptions. This saves a draft in the same marketing plan, creates no platform campaign and starts no delivery. Keep its request key on retry. Read the returned action and readiness before continuing.
 
 Prepare useful copy and assets while setup is incomplete. Show the exact missing setup step beside the blocked action; never replace the business goal to bypass it. Do not require users to recreate existing analytics or accounts.
+
+Before drafting creative, read `list_accounts` and select the requested account’s saved instructions and `resolve_marketing_guidance` for accepted task-specific guidance. An empty guidance bundle does not erase the account's voice or any supplied product rules. Name unresolved conflicts before publishing or preparing provider objects.
 
 ## Choose the campaign from the destination
 
