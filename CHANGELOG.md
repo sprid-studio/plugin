@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.2 - 2026-11-06
+
+- The chat guide says a hosted reel uses the workspace's render allowance.
+
 ## 1.7.1 - 2026-11-03
 
 - Campaign discovery in chat starts from the business goal, tracking and suitable post creative.
