@@ -1,0 +1,25 @@
+{
+  "name": "sprid",
+  "version": "1.7.2-directory.1",
+  "description": "Plan marketing, draft content and review results through Sprid’s hosted connection. Includes skills for research, posts, store copy and campaigns.",
+  "author": {
+    "name": "Sprid",
+    "url": "https://sprid.studio"
+  },
+  "homepage": "https://sprid.studio/agents",
+  "repository": "https://github.com/sprid-studio/plugin",
+  "privacyPolicyUrl": "https://sprid.studio/privacy",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "marketing",
+    "app-store",
+    "aso",
+    "tiktok",
+    "instagram",
+    "mcp",
+    "indie",
+    "solo-founder"
+  ],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}

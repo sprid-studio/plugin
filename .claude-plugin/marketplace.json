@@ -1,0 +1,15 @@
+{
+  "name": "sprid",
+  "owner": {
+    "name": "Sprid",
+    "url": "https://sprid.studio"
+  },
+  "plugins": [
+    {
+      "name": "sprid",
+      "source": "./",
+      "description": "Plan marketing, draft content and review results through Sprid’s hosted connection. Includes skills for research, posts, store copy and campaigns.",
+      "category": "marketing"
+    }
+  ]
+}
