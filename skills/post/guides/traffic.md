@@ -70,7 +70,12 @@ Replace its dates, conditions and reason with verified evidence before saving:
 - Conditions in a rule are AND; separate rules are OR.
 - Fields: `browser`, `browserVersion`, `os`, `osVersion`, `screenWidth`,
   `screenHeight`, `timezone`, `referrer`, `country`. Values are exact strings;
-  a missing property never matches.
+  a missing property never matches. `{ "field": "country", "values": ["BR", "US"] }`
+  matches any listed value.
+- A crawl that rotates through many countries shares no browser or referrer, so
+  no group stands out. `review_traffic` then returns `spikedCountries`: the
+  countries at 10x their own usual level over the spike's days. Check that the
+  product's real markets are not on the list, then save it as one rule.
 - Write the evidence and affected counts in `reason`. Keep unrelated exclusions
   and profile settings intact.
 

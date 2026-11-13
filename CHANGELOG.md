@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.3 - 2026-11-13
+
+- The traffic guide covers a crawl spread over many countries: `review_traffic` returns `spikedCountries`, saved as one rule with a `values` condition.
+
 ## 1.7.2 - 2026-11-06
 
 - The chat guide says a hosted reel uses the workspace's render allowance.
