@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.4 - 2026-11-13
+
+- The traffic guide says Sprid filters a crawl spread over 30 or more countries by itself, with an undo, and that an undone filter is never re-enabled without the person.
+
 ## 1.7.3 - 2026-11-13
 
 - The traffic guide covers a crawl spread over many countries: `review_traffic` returns `spikedCountries`, saved as one rule with a `values` condition.

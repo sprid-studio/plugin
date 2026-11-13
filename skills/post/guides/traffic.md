@@ -76,6 +76,11 @@ Replace its dates, conditions and reason with verified evidence before saving:
   no group stands out. `review_traffic` then returns `spikedCountries`: the
   countries at 10x their own usual level over the spike's days. Check that the
   product's real markets are not on the list, then save it as one rule.
+- Sprid saves that rule itself when 30 or more countries spiked, they carry the
+  spike's days and no group holds a fifth of them. Such a rule carries `auto`,
+  shows in the app as Crawl filtered with an Undo, and appears in insights as
+  `trafficFilters`. Undo disables it and Sprid does not save it again. Never
+  re-enable an undone one without the person.
 - Write the evidence and affected counts in `reason`. Keep unrelated exclusions
   and profile settings intact.
 
