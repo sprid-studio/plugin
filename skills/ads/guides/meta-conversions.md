@@ -53,7 +53,9 @@ Steps 4 to 6 describe website/server-event setup. For native app events, follow 
 2. Complete the chosen action through the app. Check that Events Manager receives the exact event name and reports a server connection. A successful HTTP request alone does not prove the expected event arrived.
 3. Inspect the event details. Website events use `event_source_url` and the visitor’s `client_user_agent`. Send a stable `external_id` for matching. When a real Meta click supplies `fbclid`, preserve it through redirects and send the correctly formatted `fbc` value. Keep the click ID’s case unchanged.
 4. Check `Purchase` with the actual paid amount and currency if the app sells something. Store the visitor’s user agent and click ID when they arrive, so a later payment webhook can use the original values.
-5. Replay the same confirmed source event and verify that it counts once. Keep its original event ID, timestamp, amount and currency. Configure production separately and observe an authorized real outcome when available; then run `dataset_health` for the chosen event.
+5. Open the destination inside Instagram’s and Facebook’s own browsers (send the link to yourself in a direct message) and complete the action there. Ad clicks land in those browsers, where a bot check, a cookie or an app-store banner that works in Safari can fail or send people to the app, whose actions never reach the website dataset.
+6. If a visitor can act as a guest and sign in later, carry the stored click record (`fbc`, user agent) to the account when the two merge, and store it before the action that sends the first conversion. Otherwise the conversions that matter most, the later purchases, reach Meta without the click. Log and alert when Meta rejects an event; a server sender otherwise fails silently.
+7. Replay the same confirmed source event and verify that it counts once. Keep its original event ID, timestamp, amount and currency. Configure production separately and observe an authorized real outcome when available; then run `dataset_health` for the chosen event.
 
 Email and phone identifiers need Meta’s normalization and hashing. Hashing `external_id` is recommended; keep its representation consistent across integrations. `fbc` and `client_user_agent` must remain unhashed. See [customer information parameters](https://developers.facebook.com/documentation/ads-commerce/conversions-api/parameters/customer-information-parameters) when implementing the server call.
 
@@ -63,7 +65,9 @@ Test codes identify test payloads. Meta says those events still flow into Events
 
 ## Choose an event that predicts payment.
 
-Use `Purchase` when purchases happen often enough to give the campaign a useful signal. If purchases are sparse, choose a completed action in the same visit that customers take before paying. Check the connection to payment in your own analytics.
+Use `Purchase` when purchases happen often enough to give the campaign a useful signal. If purchases are sparse, consider an earlier completed action with evidence that it predicts payment. State what makes it meaningful for this product; removing sign-in can increase volume without improving lead quality.
+
+Define whether the event counts each action or only a person's first qualifying action. A first-activation event is emitted once, enforced in the product's records. Purchases, bookings and other repeatable actions each get their own event ID. Reuse that ID for the same action's browser/server copies and retries; never use a person ID to collapse distinct actions. Meta's deduplication window is not a lifetime once-per-person guarantee. Verify both a retry and a second distinct action using [Meta's deduplication guidance](https://developers.facebook.com/documentation/ads-commerce/conversions-api/deduplicate-pixel-and-server-events).
 
 Meta says ad sets usually leave learning after about 50 results in the week following the last significant edit. This is guidance about stable delivery. Results below that volume can still tell you about a broken checkout or whether anyone paid.
 

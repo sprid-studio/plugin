@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.5 - 2026-11-19
+
+- Advertising and marketing-review guidance adapts decisions to conversion delays, evidence and agreed loss limits, with explicit coverage for Meta/PostHog and alternatives for other data sources.
+- Conversion tracking guidance gives distinct actions separate event IDs and preserves the same ID on retries.
+- PostHog collectors exclude configured internal people and their merged identities from historical readings.
+
 ## 1.7.4 - 2026-11-13
 
 - The traffic guide says Sprid filters a crawl spread over 30 or more countries by itself, with an undo, and that an undone filter is never re-enabled without the person.

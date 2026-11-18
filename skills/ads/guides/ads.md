@@ -107,6 +107,14 @@ content inside the placement’s safe area. Use speech, music or effects when th
 help the idea. Add readable text or captions so the message also makes sense
 without sound. Preview at phone size, both with sound and muted.
 
+One 9:16 video can run in every placement, but each one hides a different part
+of it. Meta's spec for Facebook Feed video is 4:5, so plan for a 9:16 file to
+lose its top and bottom 285 px there (on 1080×1920). Reels covers roughly the
+top 14% and the bottom 35% with its interface and caption. On 1080×1920, keep
+every line that carries the message between y 285 and y 1250, or pair a 4:5
+Feed version with the 9:16 one (`verticalVideoId`). Check the frames where text
+appears, not only the first frame.
+
 Make the opening immediately understandable. Putting the hook within two seconds
 is a useful editorial target to test; Meta’s guidance says the first few seconds.
 It is not a universal two-second cutoff or a reason to rush unreadable text.
@@ -117,6 +125,13 @@ Use genuinely different concepts and suitable formats, including images and
 carousels. Video is useful for demonstration and Reels; it is not mandatory for
 every ad. Meta recommends creative diversity across formats, visuals and messages.
 There is no universal requirement for exactly three formats in each ad set.
+Distinguish a new proposition or demonstration from a cosmetic variant.
+Choose how many concepts to test from the available budget and expected cost
+per meaningful result. If an ad received too little delivery, its result is
+inconclusive; adding more variants will not guarantee a useful comparison.
+
+Give every link ad its own description. Without one, Meta can fill it from the
+landing page’s own description, which may promise something the ad does not.
 
 ## Create an ad set
 
@@ -137,12 +152,66 @@ need one store destination, app assets and eligible imported app events. Setup
 shows when provider creation is unavailable; validation can still prepare a
 reviewable draft without creating advertising objects.
 
+Two account settings stop an ad set before Meta sees it, both in the account’s
+**Settings → Ad settings**. Ads delivered in the EU name who they are for and
+who pays (beneficiary and payer). The daily and per-campaign spending limits
+must cover the budget you intend; a new account starts with a low daily limit,
+and an ad set above it is refused.
+
 For a format comparison, hold the message and offer constant. To compare
 messages, keep the format constant. When several elements change, the result
 applies to the complete variant. Multiple ads in one ad set receive delivery
 chosen by Meta; they do not receive equal spend. The ad receiving most spend
 is not thereby a proven causal winner. A controlled A/B study is a separate
 experiment under **Creative library & tools**. An ordinary ad set is not an A/B test.
+
+## Set the ceiling before the budget
+
+Set an affordable cost for the chosen business outcome and a maximum test loss
+before choosing a daily budget. Use contribution after refunds, fees and
+variable fulfilment costs, with an explicit payback period. For subscriptions,
+measured retention can support future contribution; unmeasured renewals stay
+an assumption. For leads, use qualification and close rates to connect a lead
+ceiling to customer value. If those rates are unknown, agree a bounded test to
+measure them instead of presenting a profitable acquisition target as known.
+
+Choose the read date from expected outcome volume and conversion delay,
+including trial length or an offline sales cycle. Record the attribution
+window and keep it consistent across comparisons. Write these decisions in
+the plan before launch:
+
+| When | Observation | Action |
+|---|---|---|
+| Any time | Broken destination, wrong audience, invalid tracking or breached spending limit | Pause affected delivery and verify the repair before resuming; learning does not justify known waste |
+| Early delivery, within the agreed loss limit | Too little mature evidence | Check delivery and tracking; avoid speculative creative or budget changes |
+| Planned review | Few outcomes or weak conversion | Check impressions, clicks, landing visits, action completion and event receipts in order; test the suspected failure before blaming the creative, landing page or offer |
+| Agreed loss limit reached | Evidence remains inconclusive or outcomes cost too much | Pause and reconcile delayed outcomes; further spend requires a revised, approved hypothesis and limit |
+| After the relevant conversion delay | Reliable outcome costs meet the target | If scaling is requested, propose a specific budget increment, its additional exposure and a rollback threshold; choose the size from the customer's risk limit and observed stability |
+
+For Sprid-managed Meta ad sets, a campaign brief with customer and event
+ceilings supplies editable review defaults: the week-one floor when the
+budget supports it, cost per event over its ceiling
+from ten events, the check at three customer ceilings spent, and an ad
+with no events after twice the ceiling per event. The ceiling per event is
+the brief's pause cost per event when you save one, otherwise the ad set's
+target cost; save it when the target is a reporting goal rather than the
+line the plan pauses at. These are product defaults, not universal evidence
+thresholds or a guarantee that spending stops. Review each against the
+customer's goal, conversion delay and maximum test loss before launch.
+The launch screen lists the rules with the most
+it can spend before one asks you, and which ceiling per event they use. Change or retire one
+from the ad set’s rules, or ask your agent to. The check at three customer
+ceilings can also stop the money itself: Meta pauses the ad set once it has
+spent that amount with no purchase, after you confirm it in the app. Keep the
+rule that asks you at the same amount. Verify that Meta counts the intended
+purchase event and that the stop is active; an approval alone is not proof.
+For lead or install goals, do not adopt a purchase-based stop unchanged.
+
+Group non-urgent creative changes at the planned review to keep comparisons
+interpretable. Retire an ad only when delivery and mature outcomes support
+that decision. A weekly check can conclude "keep running". Separate ad sets
+when the objective, audience restrictions or experiment requires it, and check
+that each can receive enough delivery to answer its question.
 
 ## Review before spending
 
@@ -160,6 +229,35 @@ Promoted posts run through the network behind their published platform: Meta
 for Instagram or Facebook, Google Ads for YouTube, TikTok Spark Ads for TikTok,
 and Pinterest Ads for a Pin. TikTok requires the creator’s ad authorisation.
 Each network’s connection and review requirements still apply.
+
+## Know it is on plan
+
+For Sprid-managed Meta ad sets, Home shows one word and one line: **On plan**,
+**Needs you** or **Learning**, then the day of the run, what it has spent
+against the point where a rule asks you, and the next read date. Your agent
+reads the same with `ads_status`. A campaign appears in your to-do list only
+when it needs you: a rule fired, Meta stopped delivering it, it reached the
+spend the plan asks at, or a read date came. You get a push when that word
+changes, not every day.
+
+Sprid schedules a first read on day 7, weekly reads and an end read. Use these
+as checkpoints: check delivery and measurement first, then judge outcomes only
+after the customer's conversion delay. Keep an inconclusive read with the
+missing evidence and next review date. Add or retire creative when the
+comparison supports it; closing a test can record unresolved uncertainty.
+
+The per-ad website reading requires connected PostHog, Meta ad IDs in
+`utm_content`, and configured product funnel events. It reports visitors and
+session duration; CTA and product actions require matching instrumentation.
+It applies review-visit filters and excludes marked internal people. These
+filters do not prove every bot or tester was identified. An unavailable read
+or an unconfigured event is not evidence of zero activity.
+
+This view does not cover every advertising network or externally managed
+campaign. For Google, use its campaign reports (`google_ad_research`); for
+other networks, use their available reporting. Reconcile outcomes with the
+customer's existing analytics, commerce or CRM records. A GA4 or offline sales
+workflow does not require switching to PostHog to conduct a useful review.
 
 ## Read the result
 

@@ -22,19 +22,30 @@ export async function queryPosthog(app, apiKey, query, { trustedHost } = {}) {
     possiblyTruncated: data.hasMore === true || data.results.length >= 1000 };
 }
 
+const quote = s => `'${String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+/** The app's internal persons (`posthogConfig.internalPersons`) left out by distinct id and by the person they merged into. */
+export function internalPersonsClause(app) {
+  const ids = (app.posthogConfig?.internalPersons ?? []).map(p => p?.distinctId).filter(id => typeof id === 'string' && id);
+  if (!ids.length) return '';
+  const list = ids.map(quote).join(', ');
+  return ` AND distinct_id NOT IN (${list}) AND person_id NOT IN (SELECT person_id FROM person_distinct_ids WHERE distinct_id IN (${list}))`;
+}
+
 export async function collectPosthog(app, apiKey, window, options = {}) {
+  const internal = internalPersonsClause(app);
+  const left = (app.posthogConfig?.internalPersons ?? []).length;
   // Both windows in one request; the URL pins identity for every query.
   const query = `SELECT if(timestamp >= '${window.curStart}', 'current', 'prior') AS period,
     multiIf(properties.$lib = 'web', 'marketing_site',
       properties.$lib = 'posthog-react-native' AND notEmpty(toString(properties.$app_version)), 'native',
       properties.$lib = 'posthog-react-native', 'web_spa', 'other') AS surface,
     event, count() AS events, count(DISTINCT person_id) AS people
-    FROM events WHERE timestamp >= '${window.prevStart}' AND timestamp < '${window.curEnd}'
+    FROM events WHERE timestamp >= '${window.prevStart}' AND timestamp < '${window.curEnd}'${internal}
     GROUP BY period, surface, event ORDER BY events DESC LIMIT 1000`;
   const result = await queryPosthog(app, apiKey, query, options);
   return { source: 'posthog', app: app.slug, window, ...result,
     eventMap: app.posthogEvents || {},
-    coverage: { possiblyTruncated: result.possiblyTruncated, internalTrafficExcluded: false,
-      note: 'Event audience counts are not an ordered cohort funnel. Validate surface instrumentation and exclude internal identities with a follow-up query; other includes server/unknown SDKs. No bot filter applied.' },
+    coverage: { possiblyTruncated: result.possiblyTruncated, internalTrafficExcluded: false, internalPersonsExcluded: left,
+      note: `Event audience counts are not an ordered cohort funnel. Validate surface instrumentation and exclude internal identities with a follow-up query; other includes server/unknown SDKs. No bot filter applied.${left ? ` The app's ${left} internal person${left === 1 ? ' is' : 's are'} left out.` : ''}` },
   };
 }

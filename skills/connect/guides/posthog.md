@@ -80,6 +80,14 @@ its built-in exclusions and flags including `is_internal`, `is_test` and
   safely, and apply the same convention to server events.
 - Use custom exclusions only for properties that reliably identify testing in
   this product. A common phone model, country or language also describes customers.
+- A flag set after the fact does not reach back: PostHog stamps person
+  properties onto events as they arrive, so `$set is_internal` hides only later
+  events, and a test purchase made before it keeps counting. Mark the person in
+  Sprid instead, by distinct id with a reason: `add_internal_persons` (REST
+  `POST /api/app-profiles/<app>/internal-persons`). Sprid leaves them out of
+  every read over their whole history, including every id merged into the same
+  person, and lists them under PostHog in the app's data sources, where Count
+  again undoes it. In your own HogQL, write `{not_internal}` in the WHERE clause.
 
 For example, a dedicated person property can identify verified staff accounts:
 
