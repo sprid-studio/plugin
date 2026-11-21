@@ -10,6 +10,8 @@ Read [one marketing plan](../../references/guided-marketing.md). Use the accepte
 
 Make screenshot sets reproducible: a config file is the source of truth, raw captures go in named files, one command renders every language × device × slot.
 
+The same config and captures make ad images: add the feed sizes as devices in a separate ad config rather than drawing new slides. Read [ad images](../../references/ad-images.md) before designing them.
+
 ## What this touches
 
 Reads `marketing/VOICE.md`, the repo's locales, and `screenshots/{lang}/raw/*.png` if present. Writes `aso.config.ts` and `screenshots/{lang}/aso/*.jpg`. Runs `@sprid/shots`, a headless composer (`@napi-rs/canvas`, no browser). Nothing leaves the machine.

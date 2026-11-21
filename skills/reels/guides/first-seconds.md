@@ -42,8 +42,37 @@ Write alternatives for the same idea before choosing. Keep the account's voice,
 accepted examples and previous corrections with the brief. Do not invent a
 quotation or present a drafted hook as something a customer said.
 
-Choose the next beat so the explanation progresses. End with the useful result
-and a call to action when it serves the purpose of the post.
+Among the alternatives, write one that commits fully to its claim. A mild
+opinion or an ordinary activity gives the viewer nothing to stop for: "I don't
+enjoy meal prep" against "Meal prep is the worst part of my week", "I tidied
+the garage" against "I emptied the garage onto the lawn". Then cut it back to
+what is true and what the voice allows. The strength should come from a more
+specific situation, a stronger verb or a sharper comparison. An invented
+result, a superlative nobody can check or an exclamation mark does not make a
+hook stronger.
+
+Whatever the cover and the opening frame show becomes an obligation. If they
+show a result, a screen or an object, the video has to show it too, early
+enough that the viewer does not feel misled.
+
+## Build toward the payoff
+
+Treat the opening as a promise and every later beat as a step toward keeping it.
+When the body is a set of items, examples or results, order them so each one is
+stronger than the last and the strongest lands at or just before the end. A best
+item placed in the middle makes everything after it feel like a letdown. Put the
+one beat that explains or teaches after the viewer is already invested, not in
+the opening.
+
+End on the payoff. Once the promised result has landed, cut. A recap line, a
+wind-down or a separate card asking for a follow tells the viewer the video is
+over and lowers completion. Carry the call to action on the payoff card or in
+the caption instead, when the post needs one. Where the destination loops
+video, check whether the last frame leads cleanly back into the first.
+
+These are editorial defaults to test against the account's own watch time, not
+measured platform rules. A paid ad may still need its end card: judge it by the
+ad's outcome, as in the ads guide.
 
 ## Diagnose with available evidence
 
@@ -51,6 +80,13 @@ Read the connected platform's returned metrics and coverage before selecting a
 comparison. Use retention or opening-view metrics when actually available through
 that connection or the user's native analytics. Do not promise an API metric that
 the current tools do not expose.
+
+Where the platform reports them, each published video's `metrics` in
+`get_marketing_review` carries `avgWatchMs` and `skipRate`. Instagram reels
+report both, YouTube reports average watch time, and TikTok reports neither
+through Sprid yet. Skip rate is the share of first plays that left within three
+seconds, so it reads the opening. Average watch time divided by the video's
+length reads how much of the rest people saw. Null means not reported.
 
 Average watch time divided by duration describes average watch proportion. It
 does not establish how many viewers stayed through the opening. Views, likes and

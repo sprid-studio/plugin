@@ -55,6 +55,11 @@ mark guesses as guesses.
   from one who sees it and leaves. Check how fast the page loads on a phone.
 - **What was tried before?** Read earlier briefs, reports and the page's history.
   A version that was tested and lost comes back only with a reason it would do better now.
+- **Which pages already sell this offer?** Before adding a page for an ad or an
+  audience, list the pages that sell the same offer in the same market. A new one
+  is worth it only when it would differ in more than the headline; the
+  [campaign promise check](../../references/campaign-promise-check.md) (checks 12
+  and 13) covers merging pages and keeping the ad's price on one page.
 - **What can only this app say?** The data, the screen, the result or the way of
   working nobody else has. If the honest answer is "nothing yet", that is the
   finding; tell the user before polishing words.
@@ -86,7 +91,9 @@ Test the spine against the brief and the competitors, not against a formula:
 - Would a reader at another stage (a beginner, or someone already doing this at
   scale) feel the page is for them too, or shut out?
 - Put each heading next to the competitor pages. Could it sit on theirs unchanged?
-- If an ad or post links here, does the hero keep that ad's promise?
+- If an ad or post links here, does the hero keep that ad's promise? Run the
+  [campaign promise check](../../references/campaign-promise-check.md) on the whole
+  path: ad, hero, the first screen after the action, the follow-up email and checkout.
 
 Take the user's feedback on the spine before writing body copy.
 

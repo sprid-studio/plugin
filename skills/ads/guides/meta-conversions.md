@@ -78,20 +78,22 @@ Standard events use their exact names, such as `Purchase`, `Lead` or `CompleteRe
 3. If needed, call `create_custom_conversion` with a name and the exact `eventName`. Keep the returned ID.
 4. Complete the action again after creating the rule. The custom conversion itself must have a recent fire before launch; an earlier underlying event cannot prove a new rule worked.
 
+A new event stays unobserved until someone fires it, and the product may keep your own test runs out of the dataset. Launch waits for an observed event. If the intended event has not fired yet, start on an earlier event in the same path that visitors already fire, and move to the intended one in a new ad set once it reaches the weekly volume you named in the plan.
+
 A custom conversion is a named rule on events in your dataset. Sprid creates a case-sensitive event-name rule. The ad set selects that rule by `customConversionId`.
 
 ## Build the campaign through Sprid.
 
-Give your agent the intended countries, total budget, run length, destination and hypothesis. State the regulated category before the campaign is created. Housing, employment, financial products and services have targeting restrictions; declare `NONE` only when no category applies. [Meta’s category guide](https://developers.facebook.com/docs/marketing-api/audiences/special-ad-category/) explains the scope.
+Give your agent the intended countries, total budget, run length, destination and hypothesis. State the regulated category before the campaign is created, judged from the finished ad text with every variant and card. The category belongs to the campaign, and Sprid checks the ad text against it again when it creates the ads: a mismatch found then means preparing the campaign and its ad sets again. Housing, employment, financial products and services have targeting restrictions; declare `NONE` only when no category applies. [Meta’s category guide](https://developers.facebook.com/docs/marketing-api/audiences/special-ad-category/) explains the scope.
 
 Ask the agent to follow this order:
 
 1. **Check readiness:** `ad_campaign_context`, `ad_measurement` and `ads_overview`, then `dataset_health` with the chosen `conversionEvent`. Fix missing connections or an unobserved event before creating ads.
 2. **Create the paused campaign:** `create_ad_campaign` with an objective such as `OUTCOME_SALES` and explicit `specialAdCategories`. Political campaigns also need explicit `countries`. For housing, credit and employment, Sprid derives the campaign countries from the ad sets.
 3. **Create the paused ad set:** `create_ad_set` with `OFFSITE_CONVERSIONS`, the chosen event, countries and reviewed budget. Use explicit Facebook and Instagram Feed, Stories and Reels placements for paired creatives. Set `hypothesis` and `targetCostPerEventCents`, the cost you will judge results against; both are required. This is a reporting target, not a bid. Rules and the council's readable flag wait until spend reaches twice it. Use `startAt` if you want a later start.
-4. **Prepare the creative:** `render_ad_creative` builds from a named template, or `create_ad_creative` accepts your own material. Ask for feed and vertical assets. An external pair must identify whether its assets are images or videos. Keep `destinationUrl` free of hand-written `utm_*` parameters; Sprid adds tracking.
+4. **Prepare the creative:** `render_ad_creative` builds from a named template, or `create_ad_creative` accepts your own material. Ask for feed and vertical assets. An external pair must identify whether its assets are images or videos. Keep `destinationUrl` free of hand-written `utm_*` parameters; Sprid adds tracking. Settle the link and the text before the first review: a Meta creative cannot be edited, so a change means a new creative and ad, a new review, and archiving the old ad.
 5. **Attach and review:** use `create_ads` to attach the creatives, review each one with `review_ad_copy`, then run `ads_preflight`. Check previews for Feed, Stories and Reels. A passing comparison confirms the stored fields checked against Sprid’s intent; it does not guarantee Meta will approve delivery.
-6. **Approve in Sprid:** `launch_ads` returns the reviewed commitment and an `approvalUrl`. Open that link, check the amount and end date, then press Launch. The agent cannot start spending or raise the budget.
+6. **Approve in Sprid:** `launch_ads` returns the reviewed commitment and an `approvalUrl`. Open that link, check the amount and end date, then press Launch. The end date was fixed when the ad set was created, so days spent waiting for review or approval come off the run; if it no longer reaches its read dates, prepare a new ad set. The agent cannot start spending or raise the budget.
 
 The following is a fictional ad-set input for Pantry Note on a USD ad account. The IDs are examples. Choose your own budget and target cost before preparing a campaign.
 

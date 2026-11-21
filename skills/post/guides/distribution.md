@@ -25,7 +25,9 @@ customer's approved publishing scope.
 For an Instagram or TikTok carousel, make the opening understandable and let
 each following slide advance the idea. Preview the full deck at its intended
 size. Use enough slides to deliver the promise; a fixed slide count is not a
-quality check or a guarantee of distribution.
+quality check or a guarantee of distribution. When the slides list items, put
+the strongest at or near the end, and stop on the slide that pays off the
+opening, as in [build toward the payoff](../../reels/guides/first-seconds.md#build-toward-the-payoff).
 
 For video, inspect the opening, pacing and delivered result using
 [first seconds](../../reels/guides/first-seconds.md). A question, demonstration or
@@ -84,7 +86,10 @@ history and declared outcome; a reach outlier is a candidate for another example
    account's median at that age over its last 20 measured posts on the same
    platform. Before 10 measured posts, treat that baseline as exploratory:
    report the available results without declaring a repeatable winner. Pins are read on their own clock
-   ([Pinterest guide](pinterest.md#measure-what-happened)).
+   ([Pinterest guide](pinterest.md#measure-what-happened)). For video, also read
+   `avgWatchMs` against the video's length and `skipRate` where they are reported:
+   a reel with many views and a high skip rate travelled on its opening without
+   holding people, which makes its body the thing to change in a part 2.
 3. **A post at 3x or more is a winner.** Draft its part 2 within the week: the
    same hook template and slide skeleton (slide count, each slide's role, where
    the call to action sits) with a new payload, meaning a new item, place, case

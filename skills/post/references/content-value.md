@@ -12,6 +12,15 @@ and the desired response. The payoff can be useful information, recognition or
 entertainment. An app demonstration is appropriate when the task calls for one;
 do not turn every story into a product pitch.
 
+For acquisition, ask who would enjoy this opening without needing the product.
+If a tutorial also attracts people who already do the job professionally, try
+opening on the moment the buyer needs the result. For example, a shop owner
+with new stock arriving needs product photos ready for tomorrow's listing.
+Show one original photo and the listing image the product actually produces.
+Judge the hook against the buyer action chosen in the brief. When the post
+becomes an ad or an acquisition carousel, check its images with
+[ad images](../../../references/ad-images.md).
+
 Look for material the account can contribute specifically: a real product result,
 an observed detail, an interpretation with evidence, or a distinctive scene.
 Ask what would remain useful or enjoyable if the logo and call to action vanished.

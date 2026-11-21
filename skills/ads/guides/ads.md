@@ -132,6 +132,9 @@ inconclusive; adding more variants will not guarantee a useful comparison.
 
 Give every link ad its own description. Without one, Meta can fill it from the
 landing page’s own description, which may promise something the ad does not.
+In a carousel, give each card its own headline of up to 35 characters that says
+that card's message. Meta reports results by card headline, so two cards with the
+same one cannot be told apart.
 
 ## Create an ad set
 
@@ -164,6 +167,15 @@ applies to the complete variant. Multiple ads in one ad set receive delivery
 chosen by Meta; they do not receive equal spend. The ad receiving most spend
 is not thereby a proven causal winner. A controlled A/B study is a separate
 experiment under **Creative library & tools**. An ordinary ad set is not an A/B test.
+
+For a video ad, read the creative in two parts before replacing it. Hook rate
+(3-second plays per impression) reads the opening and the first frame. Hold
+rate (ThruPlays per 3-second play) reads whether the rest keeps the opening's
+promise. A low hook rate points at the first seconds; a usual hook rate with a
+low hold rate points at the middle, or at an opening the video does not pay off.
+Compare both with the same account's other video ads, not a published average.
+Neither is the campaign's outcome: an ad people watch to the end can still send
+no qualified visits.
 
 ## Set the ceiling before the budget
 

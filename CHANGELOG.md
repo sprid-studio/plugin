@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.0 - 2026-11-21
+
+- Ads and landing-page work check the whole promise chain: the texts the buyer sees from the ad to checkout side by side, one landing page per offer, the ad's price on one page, and every surface a variant changes listed before asking.
+- Before spending, the payment path is proven with the live key, every funnel event must have arrived once in production, and the owner tests the way a stranger arrives.
+- Ad image sets start from the product's own visual system, stay legible at feed size and keep their message inside the placement safe zone.
+- Acquisition hooks start from the buyer's situation and carry through to checkout.
+- Reel and carousel guides ask for one hook that commits fully to its claim, treat whatever the cover shows as a promise, order items so the strongest lands last, and end on the payoff.
+- Video results are read by average watch time and the share of first plays skipped inside three seconds where the platform reports them; a video ad's hook rate and hold rate are read separately.
+
 ## 1.7.5 - 2026-11-19
 
 - Advertising and marketing-review guidance adapts decisions to conversion delays, evidence and agreed loss limits, with explicit coverage for Meta/PostHog and alternatives for other data sources.
