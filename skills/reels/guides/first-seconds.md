@@ -88,6 +88,14 @@ through Sprid yet. Skip rate is the share of first plays that left within three
 seconds, so it reads the opening. Average watch time divided by the video's
 length reads how much of the rest people saw. Null means not reported.
 
+Each video's `watch` holds Sprid's reading of those numbers: `verdict`
+(`opening`, `middle`, `holds` or null), `watchedShare` and the account's
+`usual` over its last ten videos on that platform. The verdict stays null
+with fewer than five to compare or inside the account's usual range. The
+review's summary lists the videos that have one as `watchOutsideUsual`.
+Report that verdict rather than computing a different one, so your read
+matches what the person sees in Sprid.
+
 Average watch time divided by duration describes average watch proportion. It
 does not establish how many viewers stayed through the opening. Views, likes and
 saves also cannot reconstruct that curve. State a missing metric as a gap.

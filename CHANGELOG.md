@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.1 - 2026-11-21
+
+- Video results carry Sprid's watch verdict for each video (`opening`, `middle` or `holds`) against the account's own last ten videos on that platform, and the guides say which part to change for each. The marketing review's summary lists the videos that have one.
+- Fixes the weekly-read guidance: a high three-second skip rate now points at the hook. It pointed at the body before.
+
 ## 1.8.0 - 2026-11-21
 
 - Ads and landing-page work check the whole promise chain: the texts the buyer sees from the ad to checkout side by side, one landing page per offer, the ad's price on one page, and every surface a variant changes listed before asking.

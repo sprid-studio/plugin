@@ -86,10 +86,11 @@ history and declared outcome; a reach outlier is a candidate for another example
    account's median at that age over its last 20 measured posts on the same
    platform. Before 10 measured posts, treat that baseline as exploratory:
    report the available results without declaring a repeatable winner. Pins are read on their own clock
-   ([Pinterest guide](pinterest.md#measure-what-happened)). For video, also read
-   `avgWatchMs` against the video's length and `skipRate` where they are reported:
-   a reel with many views and a high skip rate travelled on its opening without
-   holding people, which makes its body the thing to change in a part 2.
+   ([Pinterest guide](pinterest.md#measure-what-happened)). For video, read each
+   publish's `watch` as well. `opening` means more people than usual left in
+   the first three seconds: change the hook. `middle` means they got past the
+   hook and still left sooner than usual: change the body. `holds` is a
+   candidate for a part 2 even before its views break out.
 3. **A post at 3x or more is a winner.** Draft its part 2 within the week: the
    same hook template and slide skeleton (slide count, each slide's role, where
    the call to action sits) with a new payload, meaning a new item, place, case
