@@ -15,4 +15,6 @@ Draft the page as a connected argument: a clear promise, the demonstration or ev
 
 Deliver exact replacement copy, preserving the user's requested layout or scope. If implementation is requested and project editing is available, use that authorized workflow; otherwise provide a reviewable handoff. Do not imply copy edits have been deployed.
 
+When an ad links here, the hero keeps that ad's promise in the same words, and so do the first screen after the action, the follow-up email and checkout. The price the ad states is the option preselected at checkout. Before adding a page for an ad or audience, list the pages that already sell the same offer in that market; a new one is worth it only when it would differ in more than the headline. Merged pages redirect permanently and keep the query string. Keep the ad's price on the paid landing alone, outside the site's navigation and the search index, until that offer is the offer for everyone.
+
 Read `get_documentation` topics `tracking` and `marketing-review` when evaluating conversion. Compare the intended action with consistent audience, period and denominator; traffic mix or simultaneous changes can confound a result.

@@ -15,4 +15,6 @@ Read the `storeScreenshots` capability. If hosted composition is exposed, upload
 
 If composition is unavailable, deliver the exact headline, capture, crop and layout brief for each locale. Do not claim images were rendered. Inspect every produced image for legibility, clipping, device framing and factual accuracy; verify current store dimensions before export.
 
+The same captures and style can make ad images at feed sizes: one message per card said by the headline, the real product large and legible at about 360 px wide, no small sub-lines, brand labels or emoji icons.
+
 Show the output for review. Screenshot preparation and composition never imply store submission; unsupported uploads remain a clearly named manual step.

@@ -11,6 +11,8 @@ Read `get_documentation` topic `chat`; for Pins also read `pinterest-content`, a
 
 Confirm the app, content account and exact destination channels. Reuse an existing idea or draft when continuing it. Prepare copy in the customer's voice with a distinct promise and payoff, sourced claims and no invented testimonials. Fictional people may react or explain, but may not supply invented personal experience.
 
+For acquisition posts, ask who might enjoy the hook without needing the product. Try opening on the buyer's decision and show one real input and the result they can use.
+
 Use exposed library/template and draft tools. Import authorized assets through the supported file handoff or returned upload page. Do not promise an upload succeeded until the asset is readable. Existing video assets and generated video need explicit destination choices.
 
 Show the actual preview and caption; inspect readability, crops, asset rights and destination links. Preserve revision checks and stop on an editing conflict. Ask for the required publication choices and approval for the exact content, channels and schedule; a draft request is not publication permission. A person completes any app-only approval and TikTok choices.
