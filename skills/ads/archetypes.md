@@ -79,14 +79,17 @@ measured against their competitors rather than inherited from someone else's.
 
 ## Choosing one
 
-Not by taste. Ask what the ad has to do:
+Not by taste. Match the shape to the buyer's awareness and market
+sophistication ([ad persuasion](../../references/ad-persuasion.md)), then ask
+what the ad has to do:
 
-- The reader does not know the category exists → the shape that shows the
-  product's verdict, or the four-panel narrative.
-- They know the category and are comparing → two columns, or price typography.
-- They know the brand → one word.
+- Unaware or ad-blind (camouflage / stage 5) → *Their words, your picture*,
+  *Copy typed onto a thing*, or *One person, with an age*.
+- Problem-aware or solution-aware (mechanism / gradualization) → *The screen
+  that reads you back*, or *Four panels, before and after*.
+- Product-aware or comparing alternatives → *Two columns*, or *Price typography*.
+- Most-aware (they know the brand and offer) → *One word*, or *Price typography*.
 - The claim is a number → one sourced number, with the source line.
-- The category speaks in euphemism → their words, your picture.
 
 Then check `archetype_standing` before building: a shape that has already been
 tried here and stalled is worth a different hypothesis, not a second attempt with

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.2 - 2026-11-24
+
+- Adds `references/ad-persuasion.md` and connects it to the `ads` and `principles` skills: one desire per ad, five awareness and market-sophistication stages, broad buying-moment hooks on card 1 over narrow CPM gatekeepers, open loops for swipe pull, gradualization before price, camouflage, and creative vs post-click troubleshooting.
+
 ## 1.8.1 - 2026-11-21
 
 - Video results carry Sprid's watch verdict for each video (`opening`, `middle` or `holds`) against the account's own last ten videos on that platform, and the guides say which part to change for each. The marketing review's summary lists the videos that have one.

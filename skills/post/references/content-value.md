@@ -3,6 +3,8 @@
 Use before drafting, extending a series or diagnosing repetitive AI-assisted
 content. Read the account's voice and accepted brief first. These are editorial
 hypotheses to test for this audience, not a universal ranking formula.
+Once the material is chosen, write and review the lines with
+[why a viewer keeps going](../../../references/viewer-attention.md).
 
 ## Start with material, then choose the format
 

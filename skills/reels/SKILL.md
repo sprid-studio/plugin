@@ -22,7 +22,8 @@ to select the actual demonstration, example or story before choosing a renderer.
 For a series, state what each episode adds beyond another wording of the same idea.
 
 Make the opening frame understandable and check that the viewer has a reason to
-continue. Base hooks on product value or sourced audience language; keep direct
+continue. Reason about the script line by line with
+[why a viewer keeps going](../../references/viewer-attention.md). Base hooks on product value or sourced audience language; keep direct
 quotes distinct from rewritten copy. Pick duration from the material's reading
 and demonstration needs, then test it against the account's observed watch behavior.
 

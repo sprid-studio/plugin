@@ -148,7 +148,9 @@ Close every teardown with the thing the user can act on:
 1. **The shot list** - three to six lines, in order, each naming a frame and what
    is in it.
 2. **The swap** - what replaces the subject for this product. The action usually
-   survives the swap; the object rarely does.
+   survives the swap; the object rarely does. The format carries over; the
+   opening and the order of lines are written fresh for this product
+   ([reuse the format, write the idea fresh](../../references/viewer-attention.md#reuse-the-format-write-the-idea-fresh)).
 3. **The cost** - what they need to shoot it once, and what it costs to shoot it
    again next week.
 

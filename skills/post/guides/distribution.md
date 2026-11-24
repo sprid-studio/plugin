@@ -23,7 +23,8 @@ customer's approved publishing scope.
 ## Build for the actual format
 
 For an Instagram or TikTok carousel, make the opening understandable and let
-each following slide advance the idea. Preview the full deck at its intended
+each following slide advance the idea: every swipe is a decision, so each slide
+has to make the next one necessary ([why a viewer keeps going](../../../references/viewer-attention.md#every-line-has-to-earn-the-next)). Preview the full deck at its intended
 size. Use enough slides to deliver the promise; a fixed slide count is not a
 quality check or a guarantee of distribution. When the slides list items, put
 the strongest at or near the end, and stop on the slide that pays off the

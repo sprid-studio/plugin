@@ -21,6 +21,11 @@ Read the reference relevant to the decision:
   access and evidence when assistants are a proposed acquisition route.
 - [Content value](../post/references/content-value.md): concrete material for social
   posts, series progression and the scope of platform statements about originality.
+- [Why a viewer keeps going](../../references/viewer-attention.md): priors for
+  writing and reviewing the lines of a post, reel or video ad, each one testable.
+- [Ad persuasion](../../references/ad-persuasion.md): priors for paid creative
+  (single desire, awareness and sophistication, buying-moment hooks on CPM,
+  gradualization, camouflage and creative vs post-click diagnosis).
 
 These are methods to apply to this customer, with no inherited proof or benchmarks.
 

@@ -119,7 +119,14 @@ Make the opening immediately understandable. Putting the hook within two seconds
 is a useful editorial target to test; Meta’s guidance says the first few seconds.
 It is not a universal two-second cutoff or a reason to rush unreadable text.
 There is no fixed winning duration. Show the product or benefit as soon as it
-makes sense, then give people a clear next action.
+makes sense, then give people a clear next action. Write the lines of a video or
+carousel ad with [why a viewer keeps going](../../../references/viewer-attention.md)
+and [ad persuasion](../../../references/ad-persuasion.md): commit to one desire,
+match the buyer's awareness and market sophistication, filter on the buying
+moment rather than a narrow CPM gatekeeper, and leave card 1 an open reason to
+swipe before introducing the price.
+In an ad the viewer already knows it is one: name the doubt this ad raises and
+answer it where it lands ([answer the doubt](../../../references/viewer-attention.md#answer-the-doubt-where-it-lands)).
 
 Use genuinely different concepts and suitable formats, including images and
 carousels. Video is useful for demonstration and Reels; it is not mandatory for

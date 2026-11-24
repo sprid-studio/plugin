@@ -62,7 +62,9 @@ When the body is a set of items, examples or results, order them so each one is
 stronger than the last and the strongest lands at or just before the end. A best
 item placed in the middle makes everything after it feel like a letdown. Put the
 one beat that explains or teaches after the viewer is already invested, not in
-the opening.
+the opening. Open the next question before the current one is answered, so the
+viewer does not feel finished before the payoff
+([keep a question open](../../../references/viewer-attention.md#keep-a-question-open)).
 
 End on the payoff. Once the promised result has landed, cut. A recap line, a
 wind-down or a separate card asking for a follow tells the viewer the video is
